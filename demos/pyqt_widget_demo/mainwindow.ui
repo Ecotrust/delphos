@@ -1,0 +1,619 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1079</width>
+    <height>619</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Delphos</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <widget class="QTabWidget" name="tabProject" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1051</width>
+      <height>566</height>
+     </rect>
+    </property>
+    <property name="currentIndex" >
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="tab" >
+     <attribute name="title" >
+      <string>Alternatives</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox" >
+      <property name="geometry" >
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>111</width>
+        <height>56</height>
+       </rect>
+      </property>
+      <property name="title" >
+       <string/>
+      </property>
+      <widget class="QPushButton" name="pushButton_2" >
+       <property name="geometry" >
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>113</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Add</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_5" >
+       <property name="geometry" >
+        <rect>
+         <x>0</x>
+         <y>25</y>
+         <width>113</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Remove</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_3" >
+      <property name="enabled" >
+       <bool>true</bool>
+      </property>
+      <property name="geometry" >
+       <rect>
+        <x>130</x>
+        <y>10</y>
+        <width>206</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="mouseTracking" >
+       <bool>false</bool>
+      </property>
+      <property name="editTriggers" >
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="alternatingRowColors" >
+       <bool>true</bool>
+      </property>
+      <property name="horizontalScrollMode" >
+       <enum>QAbstractItemView::ScrollPerPixel</enum>
+      </property>
+      <property name="rowCount" >
+       <number>10</number>
+      </property>
+      <property name="columnCount" >
+       <number>1</number>
+      </property>
+      <row>
+       <property name="text" >
+        <string>1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text" >
+        <string>2</string>
+       </property>
+      </row>
+      <row>
+       <property name="text" >
+        <string>3</string>
+       </property>
+      </row>
+      <row>
+       <property name="text" >
+        <string>4</string>
+       </property>
+      </row>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <column>
+       <property name="text" >
+        <string>Name</string>
+       </property>
+      </column>
+      <item row="0" column="0" >
+       <property name="text" >
+        <string>Hilsa Fishery</string>
+       </property>
+      </item>
+      <item row="1" column="0" >
+       <property name="text" >
+        <string>Shark Fishery</string>
+       </property>
+      </item>
+      <item row="2" column="0" >
+       <property name="text" >
+        <string>Kerala Mussels</string>
+       </property>
+      </item>
+      <item row="3" column="0" >
+       <property name="text" >
+        <string>Babylonia Snail</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2" >
+     <attribute name="title" >
+      <string>Criteria</string>
+     </attribute>
+     <widget class="QPushButton" name="pushButton" >
+      <property name="geometry" >
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>113</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Add</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4" >
+      <property name="geometry" >
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>113</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Remove</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_2" >
+      <property name="geometry" >
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>111</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title" >
+       <string/>
+      </property>
+      <widget class="QPushButton" name="pushButton_7" >
+       <property name="geometry" >
+        <rect>
+         <x>0</x>
+         <y>25</y>
+         <width>113</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Edit</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_2" >
+      <property name="geometry" >
+       <rect>
+        <x>130</x>
+        <y>10</y>
+        <width>901</width>
+        <height>306</height>
+       </rect>
+      </property>
+      <property name="editTriggers" >
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="alternatingRowColors" >
+       <bool>true</bool>
+      </property>
+      <property name="horizontalScrollMode" >
+       <enum>QAbstractItemView::ScrollPerPixel</enum>
+      </property>
+      <property name="rowCount" >
+       <number>10</number>
+      </property>
+      <property name="columnCount" >
+       <number>3</number>
+      </property>
+      <row>
+       <property name="text" >
+        <string>1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text" >
+        <string>2</string>
+       </property>
+      </row>
+      <row>
+       <property name="text" >
+        <string>3</string>
+       </property>
+      </row>
+      <row>
+       <property name="text" >
+        <string>4</string>
+       </property>
+      </row>
+      <row>
+       <property name="text" >
+        <string>5</string>
+       </property>
+      </row>
+      <row>
+       <property name="text" >
+        <string>6</string>
+       </property>
+      </row>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <column>
+       <property name="text" >
+        <string>Type</string>
+       </property>
+      </column>
+      <column>
+       <property name="text" >
+        <string>Description</string>
+       </property>
+      </column>
+      <column>
+       <property name="text" >
+        <string>Cost/Benefit</string>
+       </property>
+      </column>
+      <item row="0" column="0" >
+       <property name="text" >
+        <string>ordinal</string>
+       </property>
+      </item>
+      <item row="0" column="1" >
+       <property name="text" >
+        <string>Fisher's current interest to start a certification program</string>
+       </property>
+      </item>
+      <item row="0" column="2" >
+       <property name="text" >
+        <string>benefit</string>
+       </property>
+      </item>
+      <item row="1" column="0" >
+       <property name="text" >
+        <string>ratio</string>
+       </property>
+      </item>
+      <item row="1" column="1" >
+       <property name="text" >
+        <string>Years for which catch per unit effort data are available</string>
+       </property>
+      </item>
+      <item row="1" column="2" >
+       <property name="text" >
+        <string>benefit</string>
+       </property>
+      </item>
+      <item row="2" column="0" >
+       <property name="text" >
+        <string>ordinal</string>
+       </property>
+      </item>
+      <item row="2" column="1" >
+       <property name="text" >
+        <string>Level of understanding of population dynamics</string>
+       </property>
+      </item>
+      <item row="2" column="2" >
+       <property name="text" >
+        <string>benefit</string>
+       </property>
+      </item>
+      <item row="3" column="0" >
+       <property name="text" >
+        <string>ordinal</string>
+       </property>
+      </item>
+      <item row="3" column="1" >
+       <property name="text" >
+        <string>Level of community participation in fishery management</string>
+       </property>
+      </item>
+      <item row="3" column="2" >
+       <property name="text" >
+        <string>benefit</string>
+       </property>
+      </item>
+      <item row="4" column="0" >
+       <property name="text" >
+        <string>ordinal</string>
+       </property>
+      </item>
+      <item row="4" column="1" >
+       <property name="text" >
+        <string>By catch level</string>
+       </property>
+      </item>
+      <item row="4" column="2" >
+       <property name="text" >
+        <string>benefit</string>
+       </property>
+      </item>
+      <item row="5" column="0" >
+       <property name="text" >
+        <string>ordinal</string>
+       </property>
+      </item>
+      <item row="5" column="1" >
+       <property name="text" >
+        <string>Gear ecosystem interactions</string>
+       </property>
+      </item>
+      <item row="5" column="2" >
+       <property name="text" >
+        <string>benefit</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4" >
+     <attribute name="title" >
+      <string>MCA</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget" >
+      <property name="geometry" >
+       <rect>
+        <x>50</x>
+        <y>40</y>
+        <width>711</width>
+        <height>396</height>
+       </rect>
+      </property>
+      <property name="currentIndex" >
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_7" >
+       <attribute name="title" >
+        <string>Select Alternatives</string>
+       </attribute>
+       <widget class="QTableWidget" name="tableWidget_4" >
+        <property name="enabled" >
+         <bool>true</bool>
+        </property>
+        <property name="geometry" >
+         <rect>
+          <x>15</x>
+          <y>10</y>
+          <width>206</width>
+          <height>331</height>
+         </rect>
+        </property>
+        <property name="mouseTracking" >
+         <bool>false</bool>
+        </property>
+        <property name="editTriggers" >
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="alternatingRowColors" >
+         <bool>true</bool>
+        </property>
+        <property name="horizontalScrollMode" >
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <property name="rowCount" >
+         <number>10</number>
+        </property>
+        <property name="columnCount" >
+         <number>1</number>
+        </property>
+        <row>
+         <property name="text" >
+          <string>1</string>
+         </property>
+        </row>
+        <row>
+         <property name="text" >
+          <string>2</string>
+         </property>
+        </row>
+        <row>
+         <property name="text" >
+          <string>3</string>
+         </property>
+        </row>
+        <row>
+         <property name="text" >
+          <string>4</string>
+         </property>
+        </row>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <column>
+         <property name="text" >
+          <string>Name</string>
+         </property>
+        </column>
+        <item row="0" column="0" >
+         <property name="text" >
+          <string>Hilsa Fishery</string>
+         </property>
+        </item>
+        <item row="1" column="0" >
+         <property name="text" >
+          <string>Shark Fishery</string>
+         </property>
+        </item>
+        <item row="2" column="0" >
+         <property name="text" >
+          <string>Kerala Mussels</string>
+         </property>
+        </item>
+        <item row="3" column="0" >
+         <property name="text" >
+          <string>Babylonia Snail</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_8" >
+       <attribute name="title" >
+        <string>Select Criteria</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_5" >
+       <attribute name="title" >
+        <string>Import Data</string>
+       </attribute>
+       <widget class="QTableWidget" name="FisheryDataTable_2" >
+        <property name="geometry" >
+         <rect>
+          <x>5</x>
+          <y>20</y>
+          <width>751</width>
+          <height>119</height>
+         </rect>
+        </property>
+        <row>
+         <property name="text" >
+          <string>Fisher's current interest to start a certificate program</string>
+         </property>
+        </row>
+        <row>
+         <property name="text" >
+          <string>Level of understanding of population dynamics</string>
+         </property>
+        </row>
+        <row>
+         <property name="text" >
+          <string>Level of communication in fishery management</string>
+         </property>
+        </row>
+        <column>
+         <property name="text" >
+          <string>Hilsa Fishery</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Shark Fishery</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Kerala Mussels</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Babylonia Snail</string>
+         </property>
+        </column>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_6" >
+       <attribute name="title" >
+        <string>Assign Weighting</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_9" >
+       <attribute name="title" >
+        <string>Run Analysis</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1079</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile" >
+    <property name="title" >
+     <string>File</string>
+    </property>
+    <addaction name="MenuOpenProject" />
+    <addaction name="actionExit_Delphos" />
+    <addaction name="actionExit_Delphos_2" />
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>Help</string>
+    </property>
+    <addaction name="actionDelphos_Help" />
+   </widget>
+   <widget class="QMenu" name="menuAbout" >
+    <property name="title" >
+     <string>About</string>
+    </property>
+    <addaction name="actionAbout_Delphos" />
+   </widget>
+   <addaction name="menuFile" />
+   <addaction name="menuHelp" />
+   <addaction name="menuAbout" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionFile" >
+   <property name="text" >
+    <string>File</string>
+   </property>
+  </action>
+  <action name="actionImport" >
+   <property name="text" >
+    <string>Import</string>
+   </property>
+  </action>
+  <action name="MenuOpenProject" >
+   <property name="text" >
+    <string>Open Project</string>
+   </property>
+  </action>
+  <action name="actionExit_Delphos" >
+   <property name="text" >
+    <string>Print</string>
+   </property>
+  </action>
+  <action name="actionAbout_Delphos" >
+   <property name="text" >
+    <string>About Delphos</string>
+   </property>
+  </action>
+  <action name="actionDelphos_Help" >
+   <property name="text" >
+    <string>Delphos Help</string>
+   </property>
+  </action>
+  <action name="actionExit_Delphos_2" >
+   <property name="text" >
+    <string>Exit Delphos</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
