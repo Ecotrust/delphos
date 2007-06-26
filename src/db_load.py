@@ -7,8 +7,8 @@ metadata = BoundMetaData(db)
 
 ##################### Load Tables Using Reflection #########################
 
-master_alt_table = Table('
-messages = Table('messages', meta, autoload = True)
+#master_alt_table = Table('
+#messages = Table('messages', meta, autoload = True)
 
 ###################### Define Classes ###########################
 

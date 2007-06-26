@@ -1,43 +1,46 @@
 import os
+import sqlalchemy
+import logging
+from sqlalchemy import *
+
 from project import *
 
 class ProjectManager:
 	def __init__(self):
-		self.projects = []
-		self.current_project_name = "";
-		self.current_project = None;
-		self.current_project_path = "";
-		self.default_project_path = os.getcwd()+os.sep+'db'
+		self.current_project_name = ""
+		self.current_project_path = ""
+		self.current_project = None
+		self.default_project_path = "db"
+		self.db_driver = 'sqlite'
 
 	def create_project(self, name, path):
-		#If no path provided use default
+
 		if not path:
 			path = self.default_project_path
-			
-		#Check if project DB already exists
-		db_name = path+os.sep+name+".db"
-		if os.path.exists(db_name):
+
+		#Check if DB already exists
+		db_path = path+os.sep+name+".db"
+		if os.path.exists(db_path):
 			print "\nProject named "+name+" already exists at "+path
 			return False
+
+		#Create DB URL
+		db_url = self.db_driver+':///'+path
 		
 		#Create project
-		proj = Project(name)
-		if proj:
-			self.current_project = proj
-			self.current_project_name = name
-			return True
-		else:
+		proj = Project(name, path)
+		if not proj:
 			print "\nProject creation failed"
 			return False
 
 	def get_current_project(self):
-		return self.current_project;
+		return self.current_project
 		
 	def set_current_project(self, name):
-		self.current_project = name;
+		self.current_project = name
 
 	def get_current_project_name(self):
-		return self.current_project_name;
+		return self.current_project_name
 
 	def validate_project_name(self, name):
 		if name:
