@@ -10,7 +10,7 @@ class Project():
 		self.create_project_table()
 
 	def create_project_db(self):
-		db = create_engine('sqlite:///'+self.path+self.name')
+		db = create_engine('sqlite:///'+self.path+self.name)
 	
 	def create_project_table(self):
 		crit_table = Table(self.name, metadata,

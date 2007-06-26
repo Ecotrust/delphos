@@ -1,8 +1,8 @@
 import os
 import sys
 import logging
-from project_manager import *
-from project import *
+from core.project_manager import *
+from core.project import *
 from sqlalchemy import *
 
 if __name__ == '__main__':
