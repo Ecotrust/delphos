@@ -8,7 +8,8 @@ from sqlalchemy import *
 if __name__ == '__main__':
 
 	def main_menu():
-		print "\nDelphos Menu\n\n(C)reate project\n(O)pen project\n(Q)uit"
+		cls()
+		print "\nDelphos Menu\n\n(A)dd project\n(O)pen project\n(Q)uit"
 		menu_opt = raw_input('\nEnter Option:')
 		
 		if menu_opt == 'c' or menu_opt == 'C':
@@ -32,13 +33,22 @@ if __name__ == '__main__':
 			sys.exit()
 			
 	def project_menu():
+		cls()
 		print "\nProject Menu\ncurrent project: "+project_manager.get_current_project_name()+"\n\n(Q)uit"
 		menu_opt = raw_input('\nEnter Option:')
 		
 		if menu_opt == 'q' or menu_opt == 'Q':
 			sys.exit()
 
+	def cls():
+		"""Clear screen.
+		"""
+		for i in range(40):
+			print ""
+
+	delphos_manager = DelphosManager()
 	project_manager = ProjectManager()
+
 	while True:
 		if not project_manager.get_current_project_name():
 			main_menu()
