@@ -2,10 +2,15 @@ from sqlalchemy import *
 import logging
 import sys
 
-#Represents a set of criteria which can be added and removed from.  Abstracts the details of working with
-#the underlying Criteria table and mapper
 class CriteriaSet(object):
+	"""Represents a set of analysis criteria.
+	"""
 	def __init__(self, name, metadata):
+		"""crit_set = CriteriaSet(string, BoundMetadata)
+		
+		name - name of criteria set and ultimately the underlying DB table
+		metadata - SQLAlchemy metadata object providing access to DB engine and tables
+		"""
 		self.name = name
 		self.metadata = metadata
 		self.table = None
@@ -23,10 +28,14 @@ class CriteriaSet(object):
 		#print list(self.table.columns)
 
 	def __create_criteria_table(self):
-		self.table = self.get_criteria_table_object()
+		"""Create a new criteria table in the DB
+		"""
+		self.table = self.__get_criteria_table_object()
 		self.table.create()
 	
-	def get_criteria_table_object(self):
+	def __get_criteria_table_object(self):
+		"""Create criteria Table object (SQLAlchemy)
+		"""
 		return Table(self.name, self.metadata,
 			Column('criteria_id', Integer, Sequence('crit_id_seq'), primary_key=True),
 			Column('description', String(200)),
@@ -35,36 +44,60 @@ class CriteriaSet(object):
 		)
 		
 	def add_criteria(self, desc, type, cost_benefit):
+		"""Add criteria to the CriteriaSet
+		
+		desc (string) - criteria description
+		type (int) - see criteria types table
+		cost_benefit (string 1) - 'C'=cost or 'B'=benefit
+		"""
 		self.table.insert().execute({'description':desc, 'type':type, 'cost_benefit':cost_benefit})
 	
 	def remove_criteria(self, criteria_id):
-		self.table.delete(self.table.c.criteria_id==criteria_id).execute()
+		"""Remove criteria from CriteriaSet given its unique criteria id
+		"""
+		result = self.table.delete(self.table.c.criteria_id==criteria_id).execute()
+		#TODO : verify this is True
+		return True
+		
 	
 	def get_num_criteria(self):
+		"""Returns the number of criteria stored in the CriteriaSet
+		"""
 		session = create_session(bind_to=self.metadata.engine)
 		return session.query(self.mapper).count()
 
 	def __unicode__(self):
-		return "hola"
+		"""Description of object
+		"""
+		return "CriteriaSet"
 	
 	def __str__(self):
-		return "yo"
+		"""Description of object
+		"""
+		return "CriteriaSet"
 	
 	def to_string(self):
+		"""Returns string representation of the CriteriaSet
+		"""
 		i = self.table.select().execute()
 		ir = i.fetchall()
-		print ir
-		sys.exit()
-#		for input in ir:
-#			print input		
+		crit_str = ""
+		for row in ir:
+			crit_str += str(row)+"\n"
+		return crit_str
 
 	def display_table(self):
+		"""Prints a string representation of the CriteriaSet
+		"""
 		i = self.table.select().execute()
 		ir = i.fetchall()
 		for input in ir:
 			print input
 
 class Criteria(object):
-	"""For mapping onto criteria tables using SQLAlchemy and accessing in an object-oriented way
+	"""Criteria class maps to criteria DB tables allowing access to them in OO way using SQLAlchemy
+	
+	Members for this class are created dynamically by SQLAlchemy at the time of mapping.  Member
+	names correspond directly to names of attributes in the table mapped to.
 	"""
 	pass
