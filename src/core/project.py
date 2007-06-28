@@ -4,6 +4,7 @@ import os
 import sys
 import csv
 from sqlalchemy import *
+from alternative_set import *
 from criteria_set import *
 
 csv.register_dialect("csv",csv.excel)
@@ -24,15 +25,21 @@ class Project():
 		self.debug = True
 		self.name = name
 		self.path = path
-		self.crit_base_file = 'base_criteria.csv'
-		self.crit_table_name = 'criteria'
 		self.db_driver = 'sqlite'
 		self.db_file_ext = 'del'
 		self.status_ok = False 	#1-OK, 0-Error
 		self.error = ""		#Error message
 		
+		self.altern_table_name = 'alternatives'
+		self.altern_set = None	#primary AlternativeSet
+		
+		self.crit_table_name = 'criteria'
+		self.crit_base_file = 'base_criteria.csv'
+		self.crit_set = None	#primary CriteriaSet
+		
 		self.__create_project_db()
 		if self.status_ok:
+			self.__create_alternative_set()
 			self.__create_criteria_set(load_default_crit)
 		
 	def __create_project_db(self):
@@ -44,15 +51,53 @@ class Project():
 		if self.debug:
 			self.meta.engine.echo = True
 		self.status_ok = True
-		
+
+	def __create_alternative_set(self):
+		"""Create an AlternativeSet for the given project.
+		"""
+		self.altern_set = AlternativeSet(self.altern_table_name, self.meta)
+
 	def __create_criteria_set(self, load_default_crit=False):
 		"""Create a CriteriaSet for the given project.
 		"""
-		self.crit_set = None
 		self.crit_set = CriteriaSet(self.crit_table_name, self.meta)
 		
 		if load_default_crit:
 			self.__load_default_criteria(self.crit_base_file)
+			
+	def __load_default_criteria(self, filename):
+		"""Load criteria from the given filename into the DB table.
+		"""
+		reader = csv.reader(open("data"+os.sep+filename, "rb"), 'csv')
+		crit_data = []
+		for row in reader:
+			crit_data.append(row)
+
+		for i in range(len(crit_data)):
+			#print crit_data[i]
+			self.crit_set.add_criteria(crit_data[i][0],crit_data[i][1],crit_data[i][2])
+
+		self.crit_set.display_table()
+
+	def add_alternative(self, name):
+		"""Add alternative to the project AlternativeSet
+		
+		name (string) - name of alternative
+		"""
+		self.altern_set.add_alternative(name)
+
+	def remove_alternative(self, alternative_id):
+		"""Remove alternative from the project AlternativeSet given its unique alternative id
+		"""
+		return self.altern_set.remove_alternative(alternative_id)
+		
+	def get_alternatives_as_string(self):
+		"""Get a string representation of the projects AlternativeSet
+		"""
+		if self.altern_set:
+			return self.altern_set.to_string()
+		else:
+			return False
 
 	def add_criteria(self, desc, type, cost_benefit):
 		"""Add criteria to the project CriteriaSet
@@ -75,17 +120,3 @@ class Project():
 			return self.crit_set.to_string()
 		else:
 			return False
-
-	def __load_default_criteria(self, filename):
-		"""Load criteria from the given filename into the DB table.
-		"""
-		reader = csv.reader(open("data"+os.sep+filename, "rb"), 'csv')
-		crit_data = []
-		for row in reader:
-			crit_data.append(row)
-
-		for i in range(len(crit_data)):
-			#print crit_data[i]
-			self.crit_set.add_criteria(crit_data[i][0],crit_data[i][1],crit_data[i][2])
-
-		self.crit_set.display_table()

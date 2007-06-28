@@ -84,6 +84,8 @@ class CriteriaSet(object):
 		crit_str = ""
 		for row in ir:
 			crit_str += str(row)+"\n"
+		if crit_str == "":
+			crit_str = "No criteria defined"
 		return crit_str
 
 	def display_table(self):
