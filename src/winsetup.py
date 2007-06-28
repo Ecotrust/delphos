@@ -4,7 +4,7 @@ from distutils.core import setup
 opts = {
     "py2exe": {
         "includes": [],
-        "packages": ["sqlalchemy","sqlalchemy.*","sqlalchemy.mods.*","sqlalchemy.databases.*","sqlalchemy.engine.*","sqlalchemy.ext.*","sqlalchemy.orm.*"],
+        "packages": ["sqlalchemy"],
         "dist_dir": "bin",
     }
 }
