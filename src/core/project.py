@@ -31,8 +31,6 @@ class Project():
 		self.status_ok = False 	#1-OK, 0-Error
 		self.error = ""		#Error message
 		
-		print "creating project"
-		
 		self.__create_project_db()
 		if self.status_ok:
 			self.__create_criteria_set(load_default_crit)
@@ -52,11 +50,8 @@ class Project():
 		"""
 		self.crit_set = None
 		self.crit_set = CriteriaSet(self.crit_table_name, self.meta)
-
-		print "load defaults?: "+str(load_default_crit)
 		
 		if load_default_crit:
-			print "loading defaults"
 			self.__load_default_criteria(self.crit_base_file)
 
 	def add_criteria(self, desc, type, cost_benefit):

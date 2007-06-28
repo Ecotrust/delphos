@@ -42,8 +42,9 @@ if __name__ == '__main__':
 			proj_path = raw_input('\nChoose a project directory ['+project_manager.get_default_project_path()+']:')
 			proj_name = raw_input('\nProject Name: ')
 
-			project_manager.open_project(proj_name, proj_path)
-			cur_menu[0] = 'project'
+			isLoaded = project_manager.open_project(proj_name, proj_path)
+			if isLoaded:
+				cur_menu[0] = 'project'
 
 		elif menu_opt == 'b' or menu_opt == 'B':
 			cur_menu[0] = 'project'
@@ -60,9 +61,13 @@ if __name__ == '__main__':
 			sys.exit()
 
 		elif menu_opt == 'l' or menu_opt == 'L':
-			crit_str = project_manager.get_current_project().get_criteria_as_string()
-			cls()
-			print crit_str
+			cur_proj = project_manager.get_current_project()
+			if cur_proj:
+				crit_str = cur_proj.get_criteria_as_string()		
+				cls()
+				print crit_str
+			else :
+				print "Project not loaded!"
 		
 		elif menu_opt == 'a' or menu_opt == 'A':
 			desc = raw_input('\nCriteria description: ')

@@ -55,7 +55,7 @@ class ProjectManager:
 			path = self.default_project_path
 
 		#Verify DB already exists
-		db_path = path+os.sep+name+".db"
+		db_path = path+os.sep+name+".del"
 		if not os.path.exists(db_path):
 			print "\nProject named "+name+" doesn't exist at "+path
 			return False
@@ -68,7 +68,7 @@ class ProjectManager:
 		
 		self.current_project = proj
 		self.current_project_name = name
-		return proj
+		return True
 
 	def close_current_project(self):
 		self.current_project = None
