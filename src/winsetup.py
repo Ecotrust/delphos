@@ -1,11 +1,13 @@
+from py2exe.build_exe import py2exe
 from distutils.core import setup
-import glob
-import py2exe
-
+ 
 opts = {
     "py2exe": {
-        "includes": "sqlalchemy",
-        "optimize": 2,
-                "dist_dir": "dist",
+        "includes": [],
+        "packages": ["sqlalchemy"],
+        "dist_dir": "bin",
     }
 }
+ 
+setup(options = opts,
+      console=[{"script": "start_delphos.py"}] )
