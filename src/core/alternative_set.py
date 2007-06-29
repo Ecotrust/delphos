@@ -1,5 +1,4 @@
 from sqlalchemy import *
-import logging
 import os
 import sys
 
@@ -62,7 +61,7 @@ class AlternativeSet(object):
 		"""Returns the number of alternatives stored in the AlternativeSet
 		"""
 		session = create_session(bind_to=self.metadata.engine)
-		return session.query(self.mapper).count()
+		return int(session.query(self.mapper).count())
 
 	def __unicode__(self):
 		"""Description of object

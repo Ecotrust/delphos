@@ -13,8 +13,7 @@ if __name__ == '__main__':
 		if project_manager.get_current_project():
 			print "(B)ack to project menu"
 		print "(Q)uit"
-		menu_opt = raw_input('\nEnter Option: ')
-		
+		menu_opt = raw_input("\nEnter Option: ")
 		if menu_opt == '1':
 			proj_name = None
 			while not project_manager.validate_project_name(proj_name):
@@ -54,7 +53,12 @@ if __name__ == '__main__':
 			
 	def project_menu(cur_menu):
 		#cls()
-		print "\nProject Menu\ncurrent project: "+project_manager.get_current_project_name()+"\n\n1. List criteria\n2. Add criteria\n3. Remove criteria\n4. List Alternatives\n5. Add Alternative\n6. Remove Alternative\n(B)ack to main menu\n(Q)uit"
+		cur_proj = project_manager.get_current_project()
+		
+		print "\nProject Menu\ncurrent project: "+project_manager.get_current_project_name()+"\n\n1. List criteria\n2. Add criteria\n3. Remove criteria\n4. List Alternatives\n5. Add Alternative\n6. Remove Alternative"
+		if cur_proj and cur_proj.has_alternatives() and cur_proj.has_criteria(): 
+			print "7. Input data"
+		print "(B)ack to main menu\n(Q)uit"
 		menu_opt = raw_input('\nEnter Option :')
 		
 		if menu_opt == '1':
@@ -97,11 +101,25 @@ if __name__ == '__main__':
 			#TODO - verify result
 			success = project_manager.get_current_project().remove_alternative(id)
 		
+		elif menu_opt == '7':
+			cur_menu[0] = 'input'
+		
 		elif menu_opt == 'B' or menu_opt == 'b':
 			cur_menu[0] = 'main'
 		
 		if menu_opt == 'q' or menu_opt == 'Q':
 			sys.exit()
+
+	def input_menu(cur_menu):
+		print "==========\nInput Data\n==========\n"
+		print "1. Load from csv"
+		print "2. Export Excel spreadsheet template"
+		print "3. Load from Excel spreadsheet template"
+		print "(B) Back to project menu\n"
+		menu_opt = raw_input("Enter Option: ")
+		
+		if menu_opt == 'b' or menu_opt == 'B':
+			cur_menu[0] = 'project'
 
 	def cls():
 		"""Clear screen.
@@ -118,3 +136,5 @@ if __name__ == '__main__':
 			main_menu(cur_menu)
 		elif cur_menu[0] == 'project':
 			project_menu(cur_menu)
+		elif cur_menu[0] == 'input':
+			input_menu(cur_menu)

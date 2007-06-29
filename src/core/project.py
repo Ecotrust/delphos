@@ -6,6 +6,7 @@ import csv
 from sqlalchemy import *
 from alternative_set import *
 from criteria_set import *
+from input_matrix import *
 
 csv.register_dialect("csv",csv.excel)
 
@@ -31,11 +32,14 @@ class Project():
 		self.error = ""		#Error message
 		
 		self.altern_table_name = 'alternatives'
-		self.altern_set = None	#primary AlternativeSet
+		self.altern_set = None	#Primary AlternativeSet
 		
 		self.crit_table_name = 'criteria'
 		self.crit_base_file = 'base_criteria.csv'
-		self.crit_set = None	#primary CriteriaSet
+		self.crit_set = None	#Primary CriteriaSet
+		
+		self.input_matrix_name = 'input_matrix'
+		self.input_matrix = None	#Primary input matrix
 		
 		self.__create_project_db()
 		if self.status_ok:
@@ -99,6 +103,15 @@ class Project():
 		else:
 			return False
 
+	def has_alternatives(self):
+		"""Returns true if the current project has alternatives loaded
+		"""
+		print "num criteria: "+str(self.crit_set.get_num_criteria())
+		if self.altern_set.get_num_alternatives() > 0:
+			return True
+		else:
+			return False
+		
 	def add_criteria(self, desc, type, cost_benefit):
 		"""Add criteria to the project CriteriaSet
 		
@@ -120,3 +133,20 @@ class Project():
 			return self.crit_set.to_string()
 		else:
 			return False
+			
+	def has_criteria(self):
+		"""Returns true if the current project has criteria defined
+		"""
+		print "num criteria: "+str(self.crit_set.get_num_criteria)
+		if self.crit_set.get_num_criteria() > 0:
+			return True
+		else:
+			return False
+			
+	def create_input_matrix():
+		"""Creates an input matrix from the currently defined alternatives and criteria
+		
+		If the main input table already exists, then creates a new representation in memory, 
+		populates it with values from the existing table and then generates a new table
+		"""
+		print "Not Implemented"

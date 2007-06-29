@@ -1,5 +1,4 @@
 from sqlalchemy import *
-import logging
 import sys
 
 class CriteriaSet(object):
@@ -64,7 +63,7 @@ class CriteriaSet(object):
 		"""Returns the number of criteria stored in the CriteriaSet
 		"""
 		session = create_session(bind_to=self.metadata.engine)
-		return session.query(self.mapper).count()
+		return int(session.query(self.mapper).count())
 
 	def __unicode__(self):
 		"""Description of object
