@@ -49,12 +49,12 @@ class InputMatrix(object):
 		criteria_id (int) - unique id of the criteria
 		value (int) - value to associate with alt/crit pair
 		"""
-		self.table.insert().execute({'name':name})
+		self.table.insert().execute({'alternative_id':alternative_id, 'criteria_id':criteria_id, 'value':value})
 	
-	def remove_alternative(self, alternative_id):
-		"""Remove value from InputMatrix given its associated alternative_id and criteria_id
+	def remove_input(self, alternative_id, criteria_id):
+		"""Remove input from InputMatrix given its associated alternative_id and criteria_id
 		"""
-		result = self.table.delete(self.table.c.alternative_id==alternative_id).execute()
+		result = self.table.delete(self.table.c.alternative_id==alternative_id, self.table.c.criteria_id==criteria_id).execute()
 		#TODO : verify this is True
 		return True
 

@@ -57,9 +57,16 @@ class CriteriaSet(object):
 		result = self.table.delete(self.table.c.criteria_id==criteria_id).execute()
 		#TODO : verify this is True
 		return True
-		
+
+	def get_criteria_ids(self):
+		"""Returns list of IDs of criteria currently loaded
+		"""
+		crit_id_list = []
+		for row in self.table.select(order_by=self.table.c.criteria_id).execute():
+			crit_id_list.append(row.criteria_id)
+		return crit_id_list	
 	
-	def get_num_criteria(self):
+	def get_num(self):
 		"""Returns the number of criteria stored in the CriteriaSet
 		"""
 		session = create_session(bind_to=self.metadata.engine)

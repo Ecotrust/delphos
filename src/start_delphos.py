@@ -1,9 +1,11 @@
 import os
 import sys
 import logging
+from sqlalchemy import *
+
 from core.project_manager import *
 from core.project import *
-from sqlalchemy import *
+from core.delphos_exceptions import *
 
 if __name__ == '__main__':
 
@@ -24,13 +26,20 @@ if __name__ == '__main__':
 			if proj_path: #if non-empty validate it
 				while not proj_path or not project_manager.validate_project_path(proj_path):
 					proj_path = raw_input('\nChoose a project directory ['+project_manager.get_default_project_path()+']:')
-			
+
+			default_altern_answer = raw_input('\nLoad default alternatives? [Y]:')			
 			default_crit_answer = raw_input('\nLoad default criteria? [Y]:')
+
+			load_default_altern = True
 			load_default_crit = True
+
+			if default_altern_answer == 'N' or default_altern_answer == 'n':
+				load_altern_crit = False
+
 			if default_crit_answer == 'N' or default_crit_answer == 'n':
 				load_default_crit = False
 	
-			isLoaded = project_manager.create_project(proj_name, proj_path, load_default_crit)
+			isLoaded = project_manager.create_project(proj_name, proj_path, load_default_altern, load_default_crit)
 			if isLoaded:
 				cur_menu[0] = 'project'
 
@@ -115,8 +124,18 @@ if __name__ == '__main__':
 		print "1. Load from csv"
 		print "2. Export Excel spreadsheet template"
 		print "3. Load from Excel spreadsheet template"
-		print "(B) Back to project menu\n"
+		print "(B)ack to project menu\n"
 		menu_opt = raw_input("Enter Option: ")
+		
+		cur_proj = project_manager.get_current_project()
+		
+		if menu_opt == '1':
+			csv_file = raw_input("csv filename [india1_data.csv]: ")
+			if cur_proj:
+				try:
+					cur_proj.load_input_from_csv(csv_file)
+				except DataImportError, e:
+					print 'Error when importing data: ', e.value
 		
 		if menu_opt == 'b' or menu_opt == 'B':
 			cur_menu[0] = 'project'

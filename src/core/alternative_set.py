@@ -55,9 +55,16 @@ class AlternativeSet(object):
 		result = self.table.delete(self.table.c.alternative_id==alternative_id).execute()
 		#TODO : verify this is True
 		return True
-		
+
+	def get_alternative_ids(self):
+		"""Returns list of IDs of alternatives currently loaded
+		"""
+		altern_id_list = []
+		for row in self.table.select(order_by=self.table.c.alternative_id).execute():
+			altern_id_list.append(row.alternative_id)
+		return altern_id_list
 	
-	def get_num_alternatives(self):
+	def get_num(self):
 		"""Returns the number of alternatives stored in the AlternativeSet
 		"""
 		session = create_session(bind_to=self.metadata.engine)
@@ -84,14 +91,6 @@ class AlternativeSet(object):
 		if altern_str == "":
 			altern_str = "No alternatives defined"
 		return altern_str
-
-	def display_table(self):
-		"""Prints a string representation of the AlternativeSet
-		"""
-		i = self.table.select().execute()
-		ir = i.fetchall()
-		for input in ir:
-			print input
 
 class Alternative(object):
 	"""Alternative class maps to alternative DB tables allowing access to them in OO way using SQLAlchemy

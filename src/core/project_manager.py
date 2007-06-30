@@ -12,7 +12,7 @@ class ProjectManager:
 		self.current_project = None
 		self.default_project_path = "db"
 
-	def create_project(self, name, path, load_default_criteria):
+	def create_project(self, name, path, load_default_altern, load_default_crit):
 		"""Create a new delphos Project
 	
 		name (string) - name of the project
@@ -33,7 +33,7 @@ class ProjectManager:
 			return False
 		
 		#Create project
-		proj = Project(name, path, load_default_criteria)
+		proj = Project(name, path, load_default_altern, load_default_crit)
 		if not proj:
 			print "\nProject creation failed"
 			return False
