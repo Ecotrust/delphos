@@ -1,0 +1,20 @@
+===================
+Open Delphos Readme
+===================
+
+Open Delphos is known to work with Python 4.2.3 and later
+
+Python Modules required for running OpenDelphos from source:
+  - QT 4.2
+  - PyQT
+  - SIP
+  - SQLAlchemy
+  - PyExcelerator
+  - SQLite (Already built into Python 2.5)
+
+Additional packages needed for compiling a standalone Delphos executable:
+  - py2app (Max OS X)
+  - py2exe (Windows)
+
+Running Open Delphos:
+  - Run make from the src directory to build all of the PyQT interfaces
