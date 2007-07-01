@@ -13,17 +13,23 @@ from PyQt4.QtGui import *
 #Delphos modules
 from gui import *
 #from start_wizard_ui import Ui_StartWizard
-from gui.start_language_ui import Ui_StartLanguage
+from gui.main_window_ui import Ui_MainWindow
+from gui.start_language import StartLanguageGui
 
-class DelphosWindow(QtGui.QMainWindow):
+class Delphos(QMainWindow):
 
 	def __init__(self, parent=None):
-		QWidget.__init__(self, parent)	#required
-		self.ui = Ui_StartLanguage()
-		self.ui.setupUi(self)			#required
+		QWidget.__init__(self, parent)	#Initialize as a widget
+		self.ui = Ui_MainWindow()
+		self.ui.setupUi(self)			#Create the components of the window
+ 
+ 	def startup(self):
+ 		lang_dialog = StartLanguageGui(self)
+		lang_dialog.show()
 
 if __name__ == "__main__":
 	app = QApplication(sys.argv)
-	delphos = DelphosWindow()
+	delphos = Delphos()
 	delphos.show()
+	delphos.startup()
 	sys.exit(app.exec_())

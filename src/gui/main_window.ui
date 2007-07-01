@@ -1,0 +1,88 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1079</width>
+    <height>619</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Delphos</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" />
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1079</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile" >
+    <property name="title" >
+     <string>File</string>
+    </property>
+    <addaction name="MenuOpenProject" />
+    <addaction name="actionExit_Delphos" />
+    <addaction name="actionExit_Delphos_2" />
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>Help</string>
+    </property>
+    <addaction name="actionDelphos_Help" />
+   </widget>
+   <widget class="QMenu" name="menuAbout" >
+    <property name="title" >
+     <string>About</string>
+    </property>
+    <addaction name="actionAbout_Delphos" />
+   </widget>
+   <addaction name="menuFile" />
+   <addaction name="menuHelp" />
+   <addaction name="menuAbout" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionFile" >
+   <property name="text" >
+    <string>File</string>
+   </property>
+  </action>
+  <action name="actionImport" >
+   <property name="text" >
+    <string>Import</string>
+   </property>
+  </action>
+  <action name="MenuOpenProject" >
+   <property name="text" >
+    <string>Open Project</string>
+   </property>
+  </action>
+  <action name="actionExit_Delphos" >
+   <property name="text" >
+    <string>Print</string>
+   </property>
+  </action>
+  <action name="actionAbout_Delphos" >
+   <property name="text" >
+    <string>About Delphos</string>
+   </property>
+  </action>
+  <action name="actionDelphos_Help" >
+   <property name="text" >
+    <string>Delphos Help</string>
+   </property>
+  </action>
+  <action name="actionExit_Delphos_2" >
+   <property name="text" >
+    <string>Exit Delphos</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
