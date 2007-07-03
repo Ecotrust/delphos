@@ -1,6 +1,5 @@
 all:
 	cd gui; $(MAKE)
-	cd core; $(MAKE)
 
 clean:
 	rm -f *.pyc

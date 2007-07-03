@@ -2,6 +2,17 @@
 Open Delphos Readme
 ===================
 
+Open Delphos is designed to provide a complete solution for performing 
+multi-criteria analysis (MCA).  It is cross-platform and able to run on
+Linux, Mac OSX and Windows.
+
+Open Delphos Homepage: 
+http://trac.infodrizzle.org/opendelphos/
+
+============
+Requirements
+============
+
 Open Delphos is known to work with Python 4.2.3 and later
 
 Python Modules required:

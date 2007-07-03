@@ -1,5 +1,3 @@
-
-
 all: mainwindow_ui.py
 
 clean:

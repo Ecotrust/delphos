@@ -1,0 +1,137 @@
+<ui version="4.0" >
+ <class>CreateProjectDialog</class>
+ <widget class="QWidget" name="CreateProjectDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>442</width>
+    <height>211</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <widget class="QDialogButtonBox" name="CreateButtonBox" >
+   <property name="geometry" >
+    <rect>
+     <x>265</x>
+     <y>175</y>
+     <width>162</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="standardButtons" >
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_4" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>95</y>
+     <width>421</width>
+     <height>66</height>
+    </rect>
+   </property>
+   <property name="font" >
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="title" >
+    <string>Select Project Name and Path:</string>
+   </property>
+   <widget class="QLineEdit" name="ProjectPathEdit" >
+    <property name="geometry" >
+     <rect>
+      <x>125</x>
+      <y>35</y>
+      <width>286</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="readOnly" >
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ProjectBrowseButton" >
+    <property name="geometry" >
+     <rect>
+      <x>5</x>
+      <y>30</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Browse...</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>201</width>
+     <height>76</height>
+    </rect>
+   </property>
+   <property name="font" >
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="title" >
+    <string>Select Analysis Type:</string>
+   </property>
+   <widget class="QRadioButton" name="FisheriesTypeButton" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>136</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Fisheries</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="MpaTypeButton" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>181</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Marine Protected Areas</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QCheckBox" name="AssistantCheck" >
+   <property name="geometry" >
+    <rect>
+     <x>25</x>
+     <y>180</y>
+     <width>176</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Show Analysis Assistant</string>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="image_resources.qrc" />
+ </resources>
+ <connections/>
+</ui>

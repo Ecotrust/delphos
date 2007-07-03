@@ -1,0 +1,127 @@
+<ui version="4.0" >
+ <class>StartDialog</class>
+ <widget class="QWidget" name="StartDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>427</width>
+    <height>180</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>211</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="font" >
+    <font>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="title" >
+    <string/>
+   </property>
+   <widget class="QLabel" name="label_2" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>206</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>A multi-criteria analysis tool developed by Ecotrust.  Made possible through funding from World Wildlife Fund and Comunidad y Biodiversidad (COBI).</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3" >
+   <property name="geometry" >
+    <rect>
+     <x>235</x>
+     <y>50</y>
+     <width>181</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string/>
+   </property>
+   <widget class="QRadioButton" name="start_project_button" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>136</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Start New Project</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="open_project_button" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>35</y>
+      <width>166</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Open Existing Project</string>
+    </property>
+   </widget>
+   <widget class="QDialogButtonBox" name="start_button_box" >
+    <property name="geometry" >
+     <rect>
+      <x>15</x>
+      <y>85</y>
+      <width>162</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="standardButtons" >
+     <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label_3" >
+   <property name="geometry" >
+    <rect>
+     <x>20</x>
+     <y>15</y>
+     <width>181</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font" >
+    <font>
+     <pointsize>18</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text" >
+    <string>Welcome To Delphos</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
