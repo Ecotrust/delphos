@@ -10,9 +10,9 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Form</string>
+   <string>Create New Project</string>
   </property>
-  <widget class="QDialogButtonBox" name="CreateButtonBox" >
+  <widget class="QDialogButtonBox" name="create_button_box" >
    <property name="geometry" >
     <rect>
      <x>265</x>
@@ -42,7 +42,7 @@
    <property name="title" >
     <string>Select Project Name and Path:</string>
    </property>
-   <widget class="QLineEdit" name="ProjectPathEdit" >
+   <widget class="QLineEdit" name="project_path_edit" >
     <property name="geometry" >
      <rect>
       <x>125</x>
@@ -86,7 +86,7 @@
    <property name="title" >
     <string>Select Analysis Type:</string>
    </property>
-   <widget class="QRadioButton" name="FisheriesTypeButton" >
+   <widget class="QRadioButton" name="fisheries_type_button" >
     <property name="geometry" >
      <rect>
       <x>10</x>
@@ -99,7 +99,7 @@
      <string>Fisheries</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="MpaTypeButton" >
+   <widget class="QRadioButton" name="mpa_type_button" >
     <property name="geometry" >
      <rect>
       <x>10</x>
@@ -130,8 +130,6 @@
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="image_resources.qrc" />
- </resources>
+ <resources/>
  <connections/>
 </ui>

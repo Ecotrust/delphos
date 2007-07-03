@@ -10,7 +10,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Form</string>
+   <string>Delphos Startup</string>
   </property>
   <widget class="QGroupBox" name="groupBox" >
    <property name="geometry" >
