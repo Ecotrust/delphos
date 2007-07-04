@@ -18,7 +18,7 @@ class Project:
 	analysis results.
 	"""
 	
-	def __init__(self, name, path, load_default_altern=False, load_default_crit=False):
+	def __init__(self, name, path, type, load_default_altern=False, load_default_crit=False):
 		"""new_project = Project(string, string, boolean)
 		
 		Default criteria are a predetermined set of criteria thought to be common to
@@ -27,6 +27,7 @@ class Project:
 		self.debug = True
 		self.name = name
 		self.path = path
+		self.type = type
 		self.db_driver = 'sqlite'
 		self.db_file_ext = 'del'
 		self.status_ok = False 	#1-OK, 0-Error
@@ -53,7 +54,7 @@ class Project:
 		"""Creates a persistent DB for storing project data.
 		"""
 		#TODO: catch exception
-		db = create_engine(self.db_driver+':///'+self.path+os.sep+self.name+'.'+self.db_file_ext)
+		db = create_engine(self.db_driver+':///'+self.path+os.sep+self.name)
 		self.meta = BoundMetaData(db)			#Basically a schema, or table collection
 		if self.debug:
 			self.meta.engine.echo = True

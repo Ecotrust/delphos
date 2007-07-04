@@ -20,7 +20,7 @@ class StartDialog(QDialog, Ui_StartDialog):
 		"""
 		if self.start_project_button.isChecked():
 			self.hide()
-			self.gui_manager.create_new_project()
+			self.gui_manager.start_project_creation()
 		elif self.open_project_button.isChecked():
 			self.hide()
 			self.gui_manager.open_existing_project()

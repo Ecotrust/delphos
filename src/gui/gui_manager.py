@@ -33,13 +33,23 @@ class GuiManager:
 		#Start main loop
 		sys.exit(self.qapp.exec_())
 
-	def create_new_project(self):
+	def start_project_creation(self):
 		#TODO: handle removal of startup dialog, at least simply dropping reference to it
 		self.create_proj_dialog = CreateProjectDialog(self, self.win)
 		self.create_proj_dialog.show()
 
+	def finish_project_creation(self, ):
+		self.create_proj_dialog.close()
+		project_type = self.create_proj_dialog.get_project_type()
+		project_path = self.create_proj_dialog.get_project_path()
+		project_filename = self.create_proj_dialog.get_project_filename()
+		load_default_altern = self.create_proj_dialog.do_load_default_altern()
+		load_default_crit = self.create_proj_dialog.do_load_default_crit()
+
+		self.project_manager.create_project(project_filename, project_path, project_type, load_default_altern, load_default_crit)
+
 	def open_existing_project(self):
-		print "got here"
+		QMessageBox.critical(self.win,"Delphos","Not Implemented :-(")
 		
 #Testing purposes
 if __name__ == '__main__':

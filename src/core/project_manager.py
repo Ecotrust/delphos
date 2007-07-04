@@ -11,12 +11,14 @@ class ProjectManager:
 		self.current_project_path = ""
 		self.current_project = None
 		self.default_project_path = "db"
+		self.default_file_extension = "del"
 
-	def create_project(self, name, path, load_default_altern, load_default_crit):
+	def create_project(self, name, path, type, load_default_altern, load_default_crit):
 		"""Create a new delphos Project
 	
 		name (string) - name of the project
 		path (string) - path, relative or absolute, to store project DB
+		type (string) - type of project, eg. fisheries or mpa
 		"""
 		
 		#If project already open then close it first
@@ -27,13 +29,13 @@ class ProjectManager:
 			path = self.default_project_path
 
 		#Check if DB already exists
-		db_path = path+os.sep+name+".del"
+		db_path = path+os.sep+name
 		if os.path.exists(db_path):
 			print "\nProject named "+name+" already exists at "+path
 			return False
 		
 		#Create project
-		proj = Project(name, path, load_default_altern, load_default_crit)
+		proj = Project(name, path, type, load_default_altern, load_default_crit)
 		if not proj:
 			print "\nProject creation failed"
 			return False
@@ -55,7 +57,7 @@ class ProjectManager:
 			path = self.default_project_path
 
 		#Verify DB already exists
-		db_path = path+os.sep+name+".del"
+		db_path = path+os.sep+name+self.default_file_extension
 		if not os.path.exists(db_path):
 			print "\nProject named "+name+" doesn't exist at "+path
 			return False
@@ -107,6 +109,9 @@ class ProjectManager:
 			return True
 		else:
 			return False
+	
+	def get_default_file_extension(self):
+		return self.default_file_extension
 		
 #Testing purposes
 if __name__ == '__main__':

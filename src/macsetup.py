@@ -13,6 +13,6 @@ setup(
 			includes="sqlalchemy,sqlalchemy.*,sqlalchemy.mods.*,sqlalchemy.databases.*,sqlalchemy.engine.*,sqlalchemy.ext.*,sqlalchemy.orm.*"
 		),
 	),
-	app=[ 'start_delphos.py' ],
+	app=[ 'start_gui.py' ],
 	install_requires=['py2app','SQLAlchemy']
 )

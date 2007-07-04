@@ -4,9 +4,7 @@ default_target: all
 all: main_window_ui.py start_ui.py create_project_ui.py
 
 clean:
-	rm -f main_window_ui.py
-	rm -f start_ui.py
-	rm -f create_project_ui.py
+	rm -f *_ui.py
 	rm -f *.pyc
 	rm -f *~
 	rm -f *#
