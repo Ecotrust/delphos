@@ -18,8 +18,8 @@ class Project:
 	analysis results.
 	"""
 	
-	def __init__(self, name, path, type, load_default_altern=False, load_default_crit=False):
-		"""new_project = Project(string, string, boolean)
+	def __init__(self, name, path, type=None, load_default_altern=False, load_default_crit=False):
+		"""new_project = Project(string, string, string, boolean, boolean)
 		
 		Default criteria are a predetermined set of criteria thought to be common to
 		projects of a given type.  These criteria are stored on disk.

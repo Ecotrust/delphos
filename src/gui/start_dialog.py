@@ -23,7 +23,7 @@ class StartDialog(QDialog, Ui_StartDialog):
 			self.gui_manager.start_project_creation()
 		elif self.open_project_button.isChecked():
 			self.hide()
-			self.gui_manager.open_existing_project()
+			self.gui_manager.start_project_opening()
 		else:
 			QMessageBox.critical(self,"Delphos","Please choose whether you would like to start a new project or open an existing one")
 

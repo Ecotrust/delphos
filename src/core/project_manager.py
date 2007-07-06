@@ -1,5 +1,6 @@
 import os
 import logging
+from delphos_exceptions import *
 from sqlalchemy import *
 from project import *
 
@@ -31,14 +32,12 @@ class ProjectManager:
 		#Check if DB already exists
 		db_path = path+os.sep+name
 		if os.path.exists(db_path):
-			print "\nProject named "+name+" already exists at "+path
-			return False
+			raise DelphosError, "\nProject named "+name+" already exists at "+path
 		
 		#Create project
 		proj = Project(name, path, type, load_default_altern, load_default_crit)
 		if not proj:
-			print "\nProject creation failed"
-			return False
+			raise DelphosError, "\nProject creation failed"
 		
 		self.current_project = proj
 		self.current_project_name = name
@@ -52,21 +51,16 @@ class ProjectManager:
 		"""		
 		if self.current_project:
 			self.close_current_project()
-		
-		if not path:
-			path = self.default_project_path
 
-		#Verify DB already exists
-		db_path = path+os.sep+name+self.default_file_extension
+		#Verify DB exists
+		db_path = path+os.sep+name
 		if not os.path.exists(db_path):
-			print "\nProject named "+name+" doesn't exist at "+path
-			return False
+			raise DelphosError, "Project named "+name+" doesn't exist at "+path
 		
 		#Create Project
 		proj = Project(name, path)
 		if not proj:
-			print "\nProject open failed"
-			return False
+			raise DelphosError, "Project open failed"
 		
 		self.current_project = proj
 		self.current_project_name = name

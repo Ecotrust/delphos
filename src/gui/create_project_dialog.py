@@ -43,12 +43,12 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 
 		if path.isfile(full_name):
 			try:
-				print "got here"
 				os.remove(full_name)
 			except OSError, e:
 				QMessageBox.critical(self,"File Error", "Error while overwriting the existing project "+e)
 
 		#Put path & filename into textbox
+		
 		self.project_path_edit.setText(full_name)
 
 	def process_accept(self):
@@ -72,30 +72,10 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 			QMessageBox.critical(self,"Delphos",self.errorMsg)
 			self.isError = False
 		else:
-			self.gui_manager.finish_project_creation()
+			#self.gui_manager.finish_project_creation()
+			self.emit(SIGNAL("create_project_info_collected"), self.filename, self.project_path, self.project_type, self.default_altern_check.checkState(), self.default_crit_check.checkState())
 			
 	def process_reject(self):
 		"""Processes clicking of Cancel button in dialog
 		"""
 		self.hide()
-
-	def get_project_type(self):
-		"""Get project type selected by user
-		"""
-		return self.project_type
-		
-	def get_project_path(self):
-		"""Get project path and name selected by user
-		"""
-		return self.project_path
-	
-	def get_project_filename(self):
-		"""Get project filename entered by user
-		"""
-		return self.filename
-	
-	def do_load_default_altern(self):
-		return self.default_altern_check.checkState()
-	
-	def do_load_default_crit(self):
-		return self.default_crit_check.checkState()
