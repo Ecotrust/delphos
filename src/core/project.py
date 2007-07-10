@@ -5,6 +5,7 @@ import sys
 import csv
 from sqlalchemy import *
 
+from project_data import *
 from alternative_set import *
 from criteria_set import *
 from input_matrix import *
@@ -29,10 +30,12 @@ class Project:
 		self.path = path
 		self.type = type
 		self.db_driver = 'sqlite'
-		self.db_file_ext = 'del'
+		self.db_file_ext = '.del'
 		self.status_ok = False 	#1-OK, 0-Error
 		self.error = ""		#Error message
 		
+		self.project_table_name = 'project_data'
+		self.project_data = None	#General ProjectData
 		self.altern_table_name = 'alternatives'
 		self.altern_default_file = 'india1_alternatives.csv'
 		self.altern_set = None	#Primary AlternativeSet
@@ -47,6 +50,7 @@ class Project:
 		
 		self.__create_project_db()
 		if self.status_ok:
+			self.__create_project_data()
 			self.__create_alternative_set(load_default_altern)
 			self.__create_criteria_set(load_default_crit)
 		
@@ -59,6 +63,10 @@ class Project:
 		if self.debug:
 			self.meta.engine.echo = True
 		self.status_ok = True
+
+	def __create_project_data(self):
+		project_name = self.name[:-4]
+		self.project_data = ProjectData(self.meta, self.project_table_name, project_name, self.type)
 
 	def __create_alternative_set(self, load_default_altern=False):
 		"""Create an AlternativeSet for the given project.
@@ -99,6 +107,9 @@ class Project:
 			self.crit_set.add_criteria(crit_data[i][0],crit_data[i][1],crit_data[i][2])
 
 		self.crit_set.display_table()
+
+	def get_project_data(self):
+		return self.project_data.get_project_data()
 
 	def add_alternative(self, name):
 		"""Add alternative to the project AlternativeSet

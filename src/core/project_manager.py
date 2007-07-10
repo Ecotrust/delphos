@@ -50,7 +50,7 @@ class ProjectManager:
 		path (string) - path, relative or absolute, that DB is stored
 		"""		
 		if self.current_project:
-			self.close_current_project()
+			self.__close_current_project()
 
 		#Verify DB exists
 		db_path = path+os.sep+name
@@ -66,7 +66,9 @@ class ProjectManager:
 		self.current_project_name = name
 		return True
 
-	def close_current_project(self):
+	def __close_current_project(self):
+		"""Clear everything out for opening another project
+		"""
 		self.current_project = None
 		self.current_project_name = ""
 		self.current_project_path = ""

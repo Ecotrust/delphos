@@ -36,7 +36,6 @@ class AlternativeSet(object):
 	def __get_alternative_table_object(self):
 		"""Create alternative Table object (SQLAlchemy)
 		"""
-		print "returning table object"
 		return Table(self.name, self.metadata,
 			Column('alternative_id', Integer, Sequence('altern_id_seq'), primary_key=True),
 			Column('name', String(200))
