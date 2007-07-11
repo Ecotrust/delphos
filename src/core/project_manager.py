@@ -10,6 +10,7 @@ class ProjectManager:
 	def __init__(self):
 		self.current_project_name = ""
 		self.current_project_path = ""
+		self.analysis_type = ""
 		self.current_project = None
 		self.default_project_path = "db"
 		self.default_file_extension = "del"
@@ -81,6 +82,15 @@ class ProjectManager:
 			return self.current_project
 		else:
 			return False
+
+	def set_analysis_type(self, type):
+		if not type:
+			return False
+		else:
+			self.analysis_type = type
+	
+	def get_analysis_type(self):
+		return self.analysis_type
 
 	def get_current_project_name(self):
 		"""Returns name of current project

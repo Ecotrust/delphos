@@ -4,6 +4,9 @@ from PyQt4.QtGui import *
 
 from main_window_ui import Ui_MainWindow
 
+import os
+
+
 class DelphosWindow(QMainWindow):
 	"""Manages the main Delphos window interface (Ui_MainWindow)
 	"""

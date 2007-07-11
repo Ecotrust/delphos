@@ -1,5 +1,6 @@
 import os
 import sys
+import webbrowser
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
@@ -7,7 +8,8 @@ from PyQt4.QtGui import *
 
 from delphos_exceptions import *
 from delphos_window import DelphosWindow
-from start_dialog import StartDialog
+from select_type_dialog import SelectTypeDialog
+from main_menu_dialog import MainMenuDialog
 from create_project_dialog import CreateProjectDialog
 from open_project_dialog import OpenProjectDialog
 from project_view import ProjectView
@@ -23,6 +25,8 @@ class GuiManager(QObject):
 		self.qapp = QApplication(sys.argv)
 		#Create main delphos window
 		self.win = DelphosWindow()
+		#Hide the docked widget initially
+		self.win.ui.dock_doc.hide()
 
 	def start_gui(self):
 		"""Displays the main window and additional startup dialog
@@ -30,12 +34,48 @@ class GuiManager(QObject):
 		#Show main window
 		self.win.show()
 		#Create startup dialog
-		self.start_dialog = StartDialog(self, self.win)
+		self.select_type_dialog = SelectTypeDialog(self, self.win)
+		#Connect handler for type selection
+		self.connect(self.select_type_dialog, SIGNAL("type_selected"), self.handle_type_selection)
 		#Show startup dialog
-		self.start_dialog.show()
+		self.select_type_dialog.show()
 		#Start main loop
 		sys.exit(self.qapp.exec_())
 
+	def handle_type_selection(self, type):
+		self.project_manager.set_analysis_type(type)
+		self.select_type_dialog.hide()
+		del self.select_type_dialog
+		
+		self.main_menu_dialog = MainMenuDialog(self, self.win)
+		#Connect handlers to process main menu selections
+		self.connect(self.main_menu_dialog, SIGNAL("intro_selected"), self.handle_intro_selection)
+		self.connect(self.main_menu_dialog, SIGNAL("design_new_selected"), self.handle_design_new_selection)
+		self.connect(self.main_menu_dialog, SIGNAL("open_existing_selected"), self.handle_open_existing_selection)
+		self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)		
+		self.main_menu_dialog.show()
+	
+	def handle_intro_selection(self):
+		self.win.ui.dock_doc.show()
+		self.main_menu_dialog.hide()
+
+	def handle_design_new_selection(self):
+		self.main_menu_dialog.hide()
+		del self.main_menu_dialog
+		self.start_project_creation()
+	
+	def handle_open_existing_selection(self):
+		self.main_menu_dialog.hide()
+		del self.main_menu_dialog
+		self.start_project_opening()
+	
+	def handle_full_doc_selection(self):
+		os.chdir('..'+os.sep+'docs')
+		file_path = "file://"+os.getcwd()+os.sep+"delphos_full_text_06_07.doc"
+		print file_path
+		webbrowser.open(file_path)
+		os.chdir('..'+os.sep+'src')
+	
 	def start_project_creation(self):
 		"""Create widget for new project creation, gets the process started
 		"""
@@ -61,7 +101,6 @@ class GuiManager(QObject):
 			QMessageBox.critical(self,"Project Creation Error", e)
 		self.start_project_display()
 			
-
 	def start_project_opening(self):
 		"""Create dialog for opening an existing project
 		"""
