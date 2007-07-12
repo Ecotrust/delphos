@@ -1,6 +1,6 @@
 import os
 import sys
-import webbrowser
+import urllib
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
@@ -23,6 +23,15 @@ class GuiManager(QObject):
 		self.project_manager = project_manager
 		#Create new QT application object
 		self.qapp = QApplication(sys.argv)
+
+		#Create DesktopService for accessing services provided by desktop (eg. web browser) 
+		self.desktop_services = QDesktopServices()
+		#Assign URL handler for help: links which can be placed in widgets and load appropriate help documentation
+		self.desktop_services.setUrlHandler("help", self, SLOT("showHelp(QUrl)"))
+		#Assign URL handler for app: links, which can be placed in documentation and load appropriate widgets
+		self.desktop_services.setUrlHandler("app", self, SLOT("showApp(QUrl)"))
+		self.desktop_services.openUrl(QUrl('help://me/now'))
+			
 		#Create main delphos window
 		self.win = DelphosWindow()
 		#Hide the docked widget initially
@@ -43,6 +52,8 @@ class GuiManager(QObject):
 		sys.exit(self.qapp.exec_())
 
 	def handle_type_selection(self, type):
+		"""Stores the analaysis type selected and loads the main menu
+		"""
 		self.project_manager.set_analysis_type(type)
 		self.select_type_dialog.hide()
 		del self.select_type_dialog
@@ -56,25 +67,35 @@ class GuiManager(QObject):
 		self.main_menu_dialog.show()
 	
 	def handle_intro_selection(self):
+		"""Loads up the documentation in the dock window, displays the intro page
+		"""
 		self.win.ui.dock_doc.show()
 		self.main_menu_dialog.hide()
+		sizeDock = self.win.ui.dock_doc.size() 
+		
+		self.win.ui.dock_doc.setMinimumSize(self.get_window_width(),0)
+		#self.win.ui.dock_doc.resize(self.win.ui.dock_doc.width()-200, self.win.ui.dock_doc.height())
 
 	def handle_design_new_selection(self):
+		"""Start the process of designing a new project
+		"""
 		self.main_menu_dialog.hide()
 		del self.main_menu_dialog
 		self.start_project_creation()
 	
 	def handle_open_existing_selection(self):
+		"""Start the process of opening an existing project
+		"""
 		self.main_menu_dialog.hide()
 		del self.main_menu_dialog
 		self.start_project_opening()
 	
 	def handle_full_doc_selection(self):
-		os.chdir('..'+os.sep+'docs')
-		file_path = "file://"+os.getcwd()+os.sep+"delphos_full_text_06_07.doc"
-		print file_path
-		webbrowser.open(file_path)
-		os.chdir('..'+os.sep+'src')
+		doc_path = os.getcwd()+os.sep+"documentation"+os.sep+"delphos_full_text_06_07.doc"
+		#print doc_path
+		doc_url = "file://"+urllib.pathname2url(doc_path)
+		#print doc_url
+		self.desktop_services.openUrl(QUrl(doc_url))
 	
 	def start_project_creation(self):
 		"""Create widget for new project creation, gets the process started
@@ -126,6 +147,36 @@ class GuiManager(QObject):
 		self.project_view = ProjectView(self, self.project_manager.get_current_project())
 		self.win.setCentralWidget(self.project_view)
 		self.project_view.show()
+		
+	def get_screen_dimension(self):
+		"""Return (width, height) tuple in pixels of the screen containing the delphos window
+		"""
+		desktop = self.qapp.desktop()
+		desktop_size = desktop.screenGeometry(self.win)
+		return (desktop_size.width(), desktop_size.height())
+	
+	def get_screen_height(self):
+		"""Return height in pixels of the screen containing the delphos window
+		"""
+		desktop = self.qapp.desktop()
+		desktop_size = desktop.screenGeometry(self.win)
+		return desktop_size.height()
+
+	def get_screen_width(self):
+		"""Return width in pixels of the screen containing the delphos window
+		"""
+		desktop = self.qapp.desktop()
+		desktop_size = desktop.screenGeometry(self.win)
+		return desktop_size.width()
+	
+	def get_window_width(self):
+		return self.win.width()
+
+	def showHelp(self, url):
+		print "Help!"
+
+	def showApp(self, url):
+		print "App!"
 		
 #Testing purposes
 if __name__ == '__main__':

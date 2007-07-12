@@ -5,9 +5,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>792</width>
-    <height>897</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="windowTitle" >
    <string>Delphos</string>
@@ -18,7 +24,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>792</width>
+     <width>800</width>
      <height>22</height>
     </rect>
    </property>
@@ -50,7 +56,7 @@
   <widget class="QDockWidget" name="dock_doc" >
    <property name="minimumSize" >
     <size>
-     <width>300</width>
+     <width>200</width>
      <height>0</height>
     </size>
    </property>
@@ -75,10 +81,16 @@
        </property>
        <item>
         <widget class="QGroupBox" name="groupBox_5" >
+         <property name="minimumSize" >
+          <size>
+           <width>0</width>
+           <height>100</height>
+          </size>
+         </property>
          <property name="maximumSize" >
           <size>
            <width>16777215</width>
-           <height>150</height>
+           <height>200</height>
           </size>
          </property>
          <property name="title" >
@@ -90,7 +102,13 @@
             <property name="minimumSize" >
              <size>
               <width>0</width>
-              <height>100</height>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize" >
+             <size>
+              <width>400</width>
+              <height>16777215</height>
              </size>
             </property>
             <column>
@@ -129,6 +147,22 @@
              </item>
             </item>
            </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>0</width>
+              <height>169</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
@@ -174,9 +208,12 @@
                 <property name="orientation" >
                  <enum>Qt::Horizontal</enum>
                 </property>
+                <property name="sizeType" >
+                 <enum>QSizePolicy::Expanding</enum>
+                </property>
                 <property name="sizeHint" >
                  <size>
-                  <width>251</width>
+                  <width>0</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -186,11 +223,17 @@
             </item>
             <item>
              <widget class="QTextBrowser" name="textBrowser" >
+              <property name="minimumSize" >
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="html" >
                <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=" font-family:'Lucida Grande'; font-size:13pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:16pt;">This is some sample documentation text.&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;a href="app://blort/blort">&lt;span style=" font-size:16pt; text-decoration: underline; color:#0000ff;">App Link&lt;/span>&lt;/a>&lt;span style=" font-size:16pt;">&lt;br />&lt;/span>&lt;a href="help://help/me">&lt;span style=" font-size:16pt; text-decoration: underline; color:#0000ff;">Help Link&lt;/span>&lt;/a>&lt;span style=" font-size:16pt;">&lt;br />This is some sample documentation text.&lt;/span>&lt;/p>
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Ultimately there would be a table of contents and various other kinds of information taking one throught the steps of using Delphos.&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">If there is a lot of text here then hopefully a nice scrollbar will magically appear and allow one to scroll down throught the remaining content which they can't see initially.&lt;/p>

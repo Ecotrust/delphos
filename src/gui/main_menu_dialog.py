@@ -33,5 +33,4 @@ class MainMenuDialog(QDialog, Ui_MainMenuDialog):
 		self.emit(SIGNAL("open_existing_selected"))
 		
 	def full_doc_selection(self):
-		print "got here 1"
 		self.emit(SIGNAL("full_doc_selected"))

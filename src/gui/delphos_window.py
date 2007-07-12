@@ -15,6 +15,8 @@ class DelphosWindow(QMainWindow):
 		QWidget.__init__(self, parent)	#Initialize myself as a widget
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)			#Create the components of the window
+		
+		#self.ui.dock_doc.setMinimumSize(,0))
  
  	def startup(self):
 	 	"""Loads the initial start dialog window
