@@ -19,6 +19,7 @@ class GuiManager(QObject):
 	"""
 	def __init__(self, project_manager):
 		QObject.__init__(self)
+		
 		#Store reference to proj manager for use by GUI
 		self.project_manager = project_manager
 		#Create new QT application object
@@ -37,6 +38,17 @@ class GuiManager(QObject):
 		#Hide the docked widget initially
 		self.win.ui.dock_doc.hide()
 
+		#Load doc browser with intro page		
+		self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/delphos_full_text_intro.html'))
+		
+		#Signal to capture qrc link clicks in text browsers or labels
+		#QObject.connect(self.win.ui.doc_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
+		#Signal to capture doc browser changes so we can handle special cases
+		#QObject.connect(self.win.ui.doc_browser, SIGNAL("sourceChanged(QUrl)"), self.source_changed_handler)		
+
+		#Flag indicating whether dock_doc widget is currently full screen
+		self.dock_doc_is_full_screen = False
+        
 	def start_gui(self):
 		"""Displays the main window and additional startup dialog
 		"""
@@ -70,11 +82,8 @@ class GuiManager(QObject):
 		"""Loads up the documentation in the dock window, displays the intro page
 		"""
 		self.win.ui.dock_doc.show()
-		self.main_menu_dialog.hide()
-		sizeDock = self.win.ui.dock_doc.size() 
-		
-		self.win.ui.dock_doc.setMinimumSize(self.get_window_width(),0)
-		#self.win.ui.dock_doc.resize(self.win.ui.dock_doc.width()-200, self.win.ui.dock_doc.height())
+		self.main_menu_dialog.hide()		
+		#self.win.toggle_dock()
 
 	def handle_design_new_selection(self):
 		"""Start the process of designing a new project
@@ -169,14 +178,48 @@ class GuiManager(QObject):
 		desktop_size = desktop.screenGeometry(self.win)
 		return desktop_size.width()
 	
+	def get_window_height(self):
+		"""Returns the height in pixels of the main window
+		"""
+		return self.win.height()
+
 	def get_window_width(self):
+		"""Returns the width in pixels of the main window
+		"""
 		return self.win.width()
+	
+	def anchor_click_handler(self, url):
+		"""Called when any anchor link is clicked.  This method used to process special application
+		requests
+		
+		Special application requests are simply link URL's in the form qrc:/app/action.  An example 
+		is a link that when clicked should load the 'new project' dialog.  This link
+		might look like 'qrc:/app/create_new_project'
+		"""
+		list = url.path().split('/')
+		
+		#If less than 3 elements it's not a URL we care about
+		if len(list) < 3:
+			return
+		#Extract 'keywords' from path
+		type = list[1]
+		action = list[2]
 
-	def showHelp(self, url):
-		print "Help!"
+		if type == 'app':
+			if action == 'create_project':
+				self.start_project_creation()
+	
+	def source_changed_handler(self, url):
+		list = url.path().split('/')
+		
+		#If less than 3 elements it's not a URL we care about
+		if len(list) < 3:
+			return
 
-	def showApp(self, url):
-		print "App!"
+		type = list[1]
+		print type
+		if type == 'app':
+			self.win.ui.doc_browser.backward()
 		
 #Testing purposes
 if __name__ == '__main__':

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>documentation/another_page.html</file>
+        <file>documentation/delphos_full_text_intro.html</file>
+    </qresource>
+</RCC>
