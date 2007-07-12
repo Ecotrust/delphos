@@ -93,7 +93,7 @@ class GuiManager(QObject):
 	def handle_full_doc_selection(self):
 		doc_path = os.getcwd()+os.sep+"documentation"+os.sep+"delphos_full_text_06_07.doc"
 		#print doc_path
-		doc_url = "file://"+urllib.pathname2url(doc_path)
+		doc_url = "file:"+urllib.pathname2url(doc_path)
 		#print doc_url
 		self.desktop_services.openUrl(QUrl(doc_url))
 	
