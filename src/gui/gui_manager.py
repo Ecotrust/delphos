@@ -42,7 +42,7 @@ class GuiManager(QObject):
 		self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/delphos_full_text_intro.html'))
 		
 		#Signal to capture qrc link clicks in text browsers or labels
-		#QObject.connect(self.win.ui.doc_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
+		QObject.connect(self.win.ui.doc_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
 		#Signal to capture doc browser changes so we can handle special cases
 		#QObject.connect(self.win.ui.doc_browser, SIGNAL("sourceChanged(QUrl)"), self.source_changed_handler)		
 
@@ -197,6 +197,8 @@ class GuiManager(QObject):
 		might look like 'qrc:/app/create_new_project'
 		"""
 		list = url.path().split('/')
+		
+		print "handleing click!"
 		
 		#If less than 3 elements it's not a URL we care about
 		if len(list) < 3:
