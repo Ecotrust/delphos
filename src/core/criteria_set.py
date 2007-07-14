@@ -57,6 +57,11 @@ class CriteriaSet(object):
 		result = self.table.delete(self.table.c.criteria_id==criteria_id).execute()
 		#TODO : verify this is True
 		return True
+		
+	def get_all_criteria(self):
+		"""Returns criteria as a list
+		"""
+		return list(self.table.select(order_by=self.table.c.criteria_id).execute())
 
 	def get_criteria_ids(self):
 		"""Returns list of IDs of criteria currently loaded

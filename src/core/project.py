@@ -131,6 +131,11 @@ class Project:
 		else:
 			return False
 
+	def get_all_alternatives(self):
+		"""Returns a list of alternatives in the current project
+		"""
+		return self.altern_set.get_all_alternatives()
+
 	def has_alternatives(self):
 		"""Returns true if the current project has alternatives loaded
 		"""
@@ -161,7 +166,12 @@ class Project:
 			return self.crit_set.to_string()
 		else:
 			return False
-			
+	
+	def get_all_criteria(self):
+		"""Returns a list of criteria in the current project
+		"""
+		return self.crit_set.get_all_criteria()
+		
 	def has_criteria(self):
 		"""Returns true if the current project has criteria defined
 		"""

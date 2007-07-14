@@ -16,7 +16,7 @@
    <item>
     <widget class="QTabWidget" name="tabProject" >
      <property name="currentIndex" >
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
@@ -276,111 +276,94 @@
       </attribute>
       <layout class="QHBoxLayout" >
        <item>
-        <layout class="QHBoxLayout" >
+        <layout class="QVBoxLayout" >
          <item>
-          <layout class="QVBoxLayout" >
-           <item>
-            <widget class="QGroupBox" name="groupBox_2" >
-             <property name="title" >
-              <string/>
-             </property>
-             <layout class="QVBoxLayout" >
-              <property name="spacing" >
-               <number>2</number>
+          <widget class="QGroupBox" name="groupBox_2" >
+           <property name="title" >
+            <string/>
+           </property>
+           <layout class="QVBoxLayout" >
+            <property name="spacing" >
+             <number>2</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="pushButton" >
+              <property name="text" >
+               <string>Add</string>
               </property>
-              <item>
-               <widget class="QPushButton" name="pushButton" >
-                <property name="text" >
-                 <string>Add</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_7" >
-                <property name="text" >
-                 <string>Edit</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_4" >
-                <property name="text" >
-                 <string>Remove</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <spacer>
-             <property name="orientation" >
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" >
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QTableWidget" name="tableWidget_2" >
-           <property name="minimumSize" >
-            <size>
-             <width>300</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="editTriggers" >
-            <set>QAbstractItemView::NoEditTriggers</set>
-           </property>
-           <property name="alternatingRowColors" >
-            <bool>true</bool>
-           </property>
-           <property name="horizontalScrollMode" >
-            <enum>QAbstractItemView::ScrollPerPixel</enum>
-           </property>
-           <property name="rowCount" >
-            <number>0</number>
-           </property>
-           <property name="columnCount" >
-            <number>3</number>
-           </property>
-           <column>
-            <property name="text" >
-             <string>Name</string>
-            </property>
-           </column>
-           <column>
-            <property name="text" >
-             <string>Type</string>
-            </property>
-           </column>
-           <column>
-            <property name="text" >
-             <string>Cost/Benefit</string>
-            </property>
-           </column>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_7" >
+              <property name="text" >
+               <string>Edit</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_4" >
+              <property name="text" >
+               <string>Remove</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
          <item>
           <spacer>
            <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Vertical</enum>
            </property>
            <property name="sizeHint" >
             <size>
-             <width>40</width>
-             <height>20</height>
+             <width>20</width>
+             <height>40</height>
             </size>
            </property>
           </spacer>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="crit_table" >
+         <property name="minimumSize" >
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="editTriggers" >
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="horizontalScrollMode" >
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="rowCount" >
+          <number>0</number>
+         </property>
+         <property name="columnCount" >
+          <number>3</number>
+         </property>
+         <column>
+          <property name="text" >
+           <string>Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Cost/Benefit</string>
+          </property>
+         </column>
+        </widget>
        </item>
       </layout>
      </widget>

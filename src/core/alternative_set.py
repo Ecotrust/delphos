@@ -55,6 +55,11 @@ class AlternativeSet(object):
 		#TODO : verify this is True
 		return True
 
+	def get_all_alternatives(self):
+		"""Returns all alternatives in set in list structure [[id, name], ...]
+		"""
+		return list(self.table.select(order_by=self.table.c.alternative_id).execute())
+
 	def get_alternative_ids(self):
 		"""Returns list of IDs of alternatives currently loaded
 		"""

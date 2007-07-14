@@ -41,12 +41,38 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 	def load_alternative_table(self):
 		"""Loads the table in the alternatives tab with the existing project alternatives
 		"""
-		pass
+		alternative_recs = self.project.get_all_alternatives()
+		self.altern_table.setColumnCount(1)
+		self.altern_table.setRowCount(len(alternative_recs))
+		
+		for i in range(len(alternative_recs)):
+			item = QTableWidgetItem()
+			item.setText(str(alternative_recs[i][1]))
+			self.altern_table.setItem(i, 0, item)
+		self.altern_table.resizeColumnsToContents()
 	
 	def load_criteria_table(self):
 		"""Loads the table in the criteria tab with the existing project criteria
 		"""
-		pass
+		criteria_recs = self.project.get_all_criteria()
+		print criteria_recs
+		self.crit_table.setColumnCount(3)
+		self.crit_table.setRowCount(len(criteria_recs))
+		
+		for i in range(len(criteria_recs)):
+			name_item = QTableWidgetItem()
+			name_item.setText(str(criteria_recs[i][1]))
+			self.crit_table.setItem(i, 0, name_item)
+
+			type_item = QTableWidgetItem()
+			type_item.setText(str(criteria_recs[i][2]))
+			self.crit_table.setItem(i, 1, type_item)
+
+			cb_item = QTableWidgetItem()
+			cb_item.setText(str(criteria_recs[i][3]))
+			self.crit_table.setItem(i, 2, cb_item)
+
+		self.crit_table.resizeColumnsToContents()
 	
 	def start_add_alternative(self):
 		"""Create dialog for adding an alternative
