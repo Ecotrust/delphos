@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>653</height>
+    <width>834</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -24,7 +24,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>834</width>
      <height>22</height>
     </rect>
    </property>
@@ -56,7 +56,7 @@
   <widget class="QDockWidget" name="dock_doc" >
    <property name="minimumSize" >
     <size>
-     <width>200</width>
+     <width>300</width>
      <height>0</height>
     </size>
    </property>
@@ -90,7 +90,7 @@
          <property name="maximumSize" >
           <size>
            <width>16777215</width>
-           <height>200</height>
+           <height>180</height>
           </size>
          </property>
          <property name="title" >
@@ -108,7 +108,7 @@
             <property name="maximumSize" >
              <size>
               <width>400</width>
-              <height>16777215</height>
+              <height>167775</height>
              </size>
             </property>
             <column>
@@ -118,51 +118,30 @@
             </column>
             <item>
              <property name="text" >
-              <string>Item 1</string>
+              <string>Introduction</string>
              </property>
-             <item>
-              <property name="text" >
-               <string>1.1</string>
-              </property>
-             </item>
             </item>
             <item>
              <property name="text" >
-              <string>Item 2</string>
+              <string>Background</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Multicriteria Analysis/Evamix</string>
              </property>
              <item>
               <property name="text" >
-               <string>2.1</string>
+               <string>References</string>
               </property>
              </item>
              <item>
               <property name="text" >
-               <string>2.2</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>2.3</string>
+               <string>Algorithm</string>
               </property>
              </item>
             </item>
            </widget>
-          </item>
-          <item>
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Expanding</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>0</width>
-              <height>169</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>

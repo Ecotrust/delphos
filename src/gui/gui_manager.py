@@ -12,7 +12,7 @@ from select_type_dialog import SelectTypeDialog
 from main_menu_dialog import MainMenuDialog
 from create_project_dialog import CreateProjectDialog
 from open_project_dialog import OpenProjectDialog
-from project_view import ProjectView
+from project_view_dialog import ProjectViewDialog
 
 class GuiManager(QObject):
 	"""Provides access to, handles and maintins the Delphos GUI interface
@@ -29,9 +29,11 @@ class GuiManager(QObject):
 		self.desktop_services = QDesktopServices()
 		#Assign URL handler for help: links which can be placed in widgets and load appropriate help documentation
 		self.desktop_services.setUrlHandler("help", self, SLOT("showHelp(QUrl)"))
+
 		#Assign URL handler for app: links, which can be placed in documentation and load appropriate widgets
-		self.desktop_services.setUrlHandler("app", self, SLOT("showApp(QUrl)"))
-		self.desktop_services.openUrl(QUrl('help://me/now'))
+		#self.desktop_services.setUrlHandler("help", self, SLOT("showApp(QUrl)"))
+		#Test URL handler
+		#self.desktop_services.openUrl(QUrl('help:/me/now'))
 			
 		#Create main delphos window
 		self.win = DelphosWindow()
@@ -39,12 +41,10 @@ class GuiManager(QObject):
 		self.win.ui.dock_doc.hide()
 
 		#Load doc browser with intro page		
-		self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/delphos_full_text_intro.html'))
+		self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/fisheries_documentation.html'))
 		
 		#Signal to capture qrc link clicks in text browsers or labels
 		QObject.connect(self.win.ui.doc_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
-		#Signal to capture doc browser changes so we can handle special cases
-		#QObject.connect(self.win.ui.doc_browser, SIGNAL("sourceChanged(QUrl)"), self.source_changed_handler)		
 
 		#Flag indicating whether dock_doc widget is currently full screen
 		self.dock_doc_is_full_screen = False
@@ -81,8 +81,8 @@ class GuiManager(QObject):
 	def handle_intro_selection(self):
 		"""Loads up the documentation in the dock window, displays the intro page
 		"""
-		self.win.ui.dock_doc.show()
-		self.main_menu_dialog.hide()		
+		self.main_menu_dialog.hide()
+		self.win.ui.dock_doc.show()		
 		#self.win.toggle_dock()
 
 	def handle_design_new_selection(self):
@@ -153,9 +153,10 @@ class GuiManager(QObject):
 	def start_project_display(self):
 		"""Create widget displaying project
 		"""
-		self.project_view = ProjectView(self, self.project_manager.get_current_project())
+		self.project_view = ProjectViewDialog(self, self.project_manager.get_current_project())
 		self.win.setCentralWidget(self.project_view)
 		self.project_view.show()
+		self.win.ui.dock_doc.show()		
 		
 	def get_screen_dimension(self):
 		"""Return (width, height) tuple in pixels of the screen containing the delphos window
@@ -197,8 +198,6 @@ class GuiManager(QObject):
 		might look like 'qrc:/app/create_new_project'
 		"""
 		list = url.path().split('/')
-		
-		print "handleing click!"
 		
 		#If less than 3 elements it's not a URL we care about
 		if len(list) < 3:

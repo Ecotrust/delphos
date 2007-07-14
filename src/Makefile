@@ -11,5 +11,10 @@ clean:
 	cd gui; $(MAKE) clean
 	cd core; $(MAKE) clean
 
+cleandoc:
+	rm -f resources_rc.py
+
+doc: resources_rc.py
+
 resources_rc.py: resources.qrc
 	pyrcc4 -o resources_rc.py resources.qrc

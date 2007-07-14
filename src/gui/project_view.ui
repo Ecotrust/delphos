@@ -16,139 +16,149 @@
    <item>
     <widget class="QTabWidget" name="tabProject" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
        <string>Project Info</string>
       </attribute>
-      <widget class="QGroupBox" name="groupBox_3" >
-       <property name="geometry" >
-        <rect>
-         <x>10</x>
-         <y>5</y>
-         <width>291</width>
-         <height>86</height>
-        </rect>
-       </property>
-       <property name="title" >
-        <string/>
-       </property>
-       <widget class="QLabel" name="label" >
-        <property name="geometry" >
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>94</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="font" >
-         <font>
-          <pointsize>14</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text" >
-         <string>Project Name:</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_2" >
-        <property name="geometry" >
-         <rect>
-          <x>10</x>
-          <y>35</y>
-          <width>96</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="font" >
-         <font>
-          <pointsize>14</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text" >
-         <string>Project Type:</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_3" >
-        <property name="geometry" >
-         <rect>
-          <x>10</x>
-          <y>60</y>
-          <width>101</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="font" >
-         <font>
-          <pointsize>14</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text" >
-         <string>Created (UTC):</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="project_name" >
-        <property name="geometry" >
-         <rect>
-          <x>120</x>
-          <y>10</y>
-          <width>156</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="font" >
-         <font>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="project_type" >
-        <property name="geometry" >
-         <rect>
-          <x>120</x>
-          <y>35</y>
-          <width>156</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="font" >
-         <font>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="project_created" >
-        <property name="geometry" >
-         <rect>
-          <x>120</x>
-          <y>60</y>
-          <width>161</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="font" >
-         <font>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-       </widget>
-      </widget>
+      <layout class="QHBoxLayout" >
+       <item>
+        <layout class="QHBoxLayout" >
+         <item>
+          <layout class="QVBoxLayout" >
+           <item>
+            <widget class="QGroupBox" name="groupBox_3" >
+             <property name="title" >
+              <string/>
+             </property>
+             <layout class="QHBoxLayout" >
+              <item>
+               <layout class="QVBoxLayout" >
+                <item>
+                 <widget class="QLabel" name="label" >
+                  <property name="font" >
+                   <font>
+                    <pointsize>14</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Project Name:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_2" >
+                  <property name="font" >
+                   <font>
+                    <pointsize>14</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Project Type:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_3" >
+                  <property name="font" >
+                   <font>
+                    <pointsize>14</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string>Created (UTC):</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" >
+                <item>
+                 <widget class="QLabel" name="project_name" >
+                  <property name="minimumSize" >
+                   <size>
+                    <width>200</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="font" >
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="project_type" >
+                  <property name="font" >
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="project_created" >
+                  <property name="font" >
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="text" >
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tab" >
       <attribute name="title" >
@@ -156,7 +166,7 @@
       </attribute>
       <layout class="QHBoxLayout" >
        <item>
-        <layout class="QHBoxLayout" >
+        <layout class="QVBoxLayout" >
          <item>
           <widget class="QGroupBox" name="groupBox" >
            <property name="minimumSize" >
@@ -168,38 +178,237 @@
            <property name="title" >
             <string/>
            </property>
-           <widget class="QPushButton" name="add_altern_button" >
-            <property name="geometry" >
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>113</width>
-              <height>32</height>
-             </rect>
+           <layout class="QVBoxLayout" >
+            <property name="spacing" >
+             <number>2</number>
             </property>
-            <property name="text" >
-             <string>Add</string>
-            </property>
-           </widget>
-           <widget class="QPushButton" name="remove_altern_button" >
-            <property name="geometry" >
-             <rect>
-              <x>0</x>
-              <y>25</y>
-              <width>113</width>
-              <height>32</height>
-             </rect>
-            </property>
-            <property name="text" >
-             <string>Remove</string>
-            </property>
-           </widget>
+            <item>
+             <widget class="QPushButton" name="add_altern_button" >
+              <property name="text" >
+               <string>Add</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="remove_altern_button" >
+              <property name="text" >
+               <string>Remove</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
          <item>
-          <widget class="QTableWidget" name="altern_table" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="altern_table" >
+         <property name="enabled" >
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize" >
+          <size>
+           <width>120</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="mouseTracking" >
+          <bool>false</bool>
+         </property>
+         <property name="editTriggers" >
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="horizontalScrollMode" >
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="rowCount" >
+          <number>1</number>
+         </property>
+         <property name="columnCount" >
+          <number>1</number>
+         </property>
+         <row>
+          <property name="text" >
+           <string>1</string>
+          </property>
+         </row>
+         <column>
+          <property name="text" >
+           <string>Name</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <attribute name="title" >
+       <string>Criteria</string>
+      </attribute>
+      <layout class="QHBoxLayout" >
+       <item>
+        <layout class="QHBoxLayout" >
+         <item>
+          <layout class="QVBoxLayout" >
+           <item>
+            <widget class="QGroupBox" name="groupBox_2" >
+             <property name="title" >
+              <string/>
+             </property>
+             <layout class="QVBoxLayout" >
+              <property name="spacing" >
+               <number>2</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="pushButton" >
+                <property name="text" >
+                 <string>Add</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_7" >
+                <property name="text" >
+                 <string>Edit</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_4" >
+                <property name="text" >
+                 <string>Remove</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="tableWidget_2" >
+           <property name="minimumSize" >
+            <size>
+             <width>300</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="editTriggers" >
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+           <property name="alternatingRowColors" >
+            <bool>true</bool>
+           </property>
+           <property name="horizontalScrollMode" >
+            <enum>QAbstractItemView::ScrollPerPixel</enum>
+           </property>
+           <property name="rowCount" >
+            <number>0</number>
+           </property>
+           <property name="columnCount" >
+            <number>3</number>
+           </property>
+           <column>
+            <property name="text" >
+             <string>Name</string>
+            </property>
+           </column>
+           <column>
+            <property name="text" >
+             <string>Type</string>
+            </property>
+           </column>
+           <column>
+            <property name="text" >
+             <string>Cost/Benefit</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4" >
+      <attribute name="title" >
+       <string>MCA</string>
+      </attribute>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="QTabWidget" name="tabWidget" >
+         <property name="currentIndex" >
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="tab_7" >
+          <attribute name="title" >
+           <string>Select Alternatives</string>
+          </attribute>
+          <widget class="QTableWidget" name="tableWidget_4" >
            <property name="enabled" >
             <bool>true</bool>
+           </property>
+           <property name="geometry" >
+            <rect>
+             <x>15</x>
+             <y>10</y>
+             <width>206</width>
+             <height>331</height>
+            </rect>
            </property>
            <property name="mouseTracking" >
             <bool>false</bool>
@@ -271,262 +480,75 @@
             </property>
            </item>
           </widget>
-         </item>
-        </layout>
+         </widget>
+         <widget class="QWidget" name="tab_8" >
+          <attribute name="title" >
+           <string>Select Criteria</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tab_5" >
+          <attribute name="title" >
+           <string>Import Data</string>
+          </attribute>
+          <widget class="QTableWidget" name="FisheryDataTable_2" >
+           <property name="geometry" >
+            <rect>
+             <x>5</x>
+             <y>20</y>
+             <width>751</width>
+             <height>119</height>
+            </rect>
+           </property>
+           <row>
+            <property name="text" >
+             <string>Fisher's current interest to start a certificate program</string>
+            </property>
+           </row>
+           <row>
+            <property name="text" >
+             <string>Level of understanding of population dynamics</string>
+            </property>
+           </row>
+           <row>
+            <property name="text" >
+             <string>Level of communication in fishery management</string>
+            </property>
+           </row>
+           <column>
+            <property name="text" >
+             <string>Hilsa Fishery</string>
+            </property>
+           </column>
+           <column>
+            <property name="text" >
+             <string>Shark Fishery</string>
+            </property>
+           </column>
+           <column>
+            <property name="text" >
+             <string>Kerala Mussels</string>
+            </property>
+           </column>
+           <column>
+            <property name="text" >
+             <string>Babylonia Snail</string>
+            </property>
+           </column>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_6" >
+          <attribute name="title" >
+           <string>Assign Weighting</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tab_9" >
+          <attribute name="title" >
+           <string>Run Analysis</string>
+          </attribute>
+         </widget>
+        </widget>
        </item>
       </layout>
-     </widget>
-     <widget class="QWidget" name="tab_2" >
-      <attribute name="title" >
-       <string>Criteria</string>
-      </attribute>
-      <widget class="QPushButton" name="pushButton" >
-       <property name="geometry" >
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>113</width>
-         <height>32</height>
-        </rect>
-       </property>
-       <property name="text" >
-        <string>Add</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_4" >
-       <property name="geometry" >
-        <rect>
-         <x>10</x>
-         <y>60</y>
-         <width>113</width>
-         <height>32</height>
-        </rect>
-       </property>
-       <property name="text" >
-        <string>Remove</string>
-       </property>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_2" >
-       <property name="geometry" >
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>111</width>
-         <height>81</height>
-        </rect>
-       </property>
-       <property name="title" >
-        <string/>
-       </property>
-       <widget class="QPushButton" name="pushButton_7" >
-        <property name="geometry" >
-         <rect>
-          <x>0</x>
-          <y>25</y>
-          <width>113</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="text" >
-         <string>Edit</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QTableWidget" name="tableWidget_2" >
-       <property name="geometry" >
-        <rect>
-         <x>135</x>
-         <y>10</y>
-         <width>371</width>
-         <height>331</height>
-        </rect>
-       </property>
-       <property name="editTriggers" >
-        <set>QAbstractItemView::NoEditTriggers</set>
-       </property>
-       <property name="alternatingRowColors" >
-        <bool>true</bool>
-       </property>
-       <property name="horizontalScrollMode" >
-        <enum>QAbstractItemView::ScrollPerPixel</enum>
-       </property>
-       <property name="rowCount" >
-        <number>0</number>
-       </property>
-       <property name="columnCount" >
-        <number>0</number>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="tab_4" >
-      <attribute name="title" >
-       <string>MCA</string>
-      </attribute>
-      <widget class="QTabWidget" name="tabWidget" >
-       <property name="geometry" >
-        <rect>
-         <x>25</x>
-         <y>20</y>
-         <width>601</width>
-         <height>396</height>
-        </rect>
-       </property>
-       <property name="currentIndex" >
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="tab_7" >
-        <attribute name="title" >
-         <string>Select Alternatives</string>
-        </attribute>
-        <widget class="QTableWidget" name="tableWidget_4" >
-         <property name="enabled" >
-          <bool>true</bool>
-         </property>
-         <property name="geometry" >
-          <rect>
-           <x>15</x>
-           <y>10</y>
-           <width>206</width>
-           <height>331</height>
-          </rect>
-         </property>
-         <property name="mouseTracking" >
-          <bool>false</bool>
-         </property>
-         <property name="editTriggers" >
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
-         <property name="alternatingRowColors" >
-          <bool>true</bool>
-         </property>
-         <property name="horizontalScrollMode" >
-          <enum>QAbstractItemView::ScrollPerPixel</enum>
-         </property>
-         <property name="rowCount" >
-          <number>10</number>
-         </property>
-         <property name="columnCount" >
-          <number>1</number>
-         </property>
-         <row>
-          <property name="text" >
-           <string>1</string>
-          </property>
-         </row>
-         <row>
-          <property name="text" >
-           <string>2</string>
-          </property>
-         </row>
-         <row>
-          <property name="text" >
-           <string>3</string>
-          </property>
-         </row>
-         <row>
-          <property name="text" >
-           <string>4</string>
-          </property>
-         </row>
-         <row/>
-         <row/>
-         <row/>
-         <row/>
-         <row/>
-         <row/>
-         <column>
-          <property name="text" >
-           <string>Name</string>
-          </property>
-         </column>
-         <item row="0" column="0" >
-          <property name="text" >
-           <string>Hilsa Fishery</string>
-          </property>
-         </item>
-         <item row="1" column="0" >
-          <property name="text" >
-           <string>Shark Fishery</string>
-          </property>
-         </item>
-         <item row="2" column="0" >
-          <property name="text" >
-           <string>Kerala Mussels</string>
-          </property>
-         </item>
-         <item row="3" column="0" >
-          <property name="text" >
-           <string>Babylonia Snail</string>
-          </property>
-         </item>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="tab_8" >
-        <attribute name="title" >
-         <string>Select Criteria</string>
-        </attribute>
-       </widget>
-       <widget class="QWidget" name="tab_5" >
-        <attribute name="title" >
-         <string>Import Data</string>
-        </attribute>
-        <widget class="QTableWidget" name="FisheryDataTable_2" >
-         <property name="geometry" >
-          <rect>
-           <x>5</x>
-           <y>20</y>
-           <width>751</width>
-           <height>119</height>
-          </rect>
-         </property>
-         <row>
-          <property name="text" >
-           <string>Fisher's current interest to start a certificate program</string>
-          </property>
-         </row>
-         <row>
-          <property name="text" >
-           <string>Level of understanding of population dynamics</string>
-          </property>
-         </row>
-         <row>
-          <property name="text" >
-           <string>Level of communication in fishery management</string>
-          </property>
-         </row>
-         <column>
-          <property name="text" >
-           <string>Hilsa Fishery</string>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string>Shark Fishery</string>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string>Kerala Mussels</string>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string>Babylonia Snail</string>
-          </property>
-         </column>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="tab_6" >
-        <attribute name="title" >
-         <string>Assign Weighting</string>
-        </attribute>
-       </widget>
-       <widget class="QWidget" name="tab_9" >
-        <attribute name="title" >
-         <string>Run Analysis</string>
-        </attribute>
-       </widget>
-      </widget>
      </widget>
     </widget>
    </item>

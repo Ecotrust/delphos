@@ -88,7 +88,7 @@
               <item>
                <widget class="QPushButton" name="but_introduction" >
                 <property name="text" >
-                 <string>Introduction</string>
+                 <string>Step-by-step Instructions</string>
                 </property>
                </widget>
               </item>

@@ -72,7 +72,6 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 			QMessageBox.critical(self,"Delphos",self.errorMsg)
 			self.isError = False
 		else:
-			#self.gui_manager.finish_project_creation()
 			self.emit(SIGNAL("create_project_info_collected"), self.filename, self.project_path, self.project_type, self.default_altern_check.checkState(), self.default_crit_check.checkState())
 			
 	def process_reject(self):
