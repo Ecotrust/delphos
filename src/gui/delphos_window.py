@@ -39,20 +39,73 @@ class DelphosWindow(QMainWindow):
 	def load_toc(self):
 		"""Loads the table of contents within the dock widget
 		"""
-		pass
-		introduction = 'qrc:/documentation/fisheries_documentation.html#fisheries_introduction'
-		background = 'qrc:/documentation/fisheries_documentation.html#fisheries_background'
+		base_url = 'qrc:/documentation/fisheries_documentation.html#'
+		fisheries_toc = [
+			"Introduction",
+			"Background", 
+			{"Multicriteria Analaysis/Evamix": [
+				"References", 
+				"Algorithm"
+			]},
+			{"The Delphos Process": [
+				"1. Define Your Goals",
+				"2. Define Your Timeline",
+				"3. Define the Region",
+				{"4. Identify Experts": [
+					"Examples from the Field"
+				]}, 
+				{"5. Consult the Experts": [
+					"Sample Letter to the Experts",
+					"General Questionnaire",
+					"'Data-Driven' Questionnaire",
+					"'Data-Limited' Questionnaire"
+				]},
+				{"6. Review Recommendations": [
+					"Fishery Profile"
+				]},
+				{"7. Design Your Database": [
+					"Launch Program"
+				]},
+				{"8. Define Criteria": [
+					"Criteria Guidance"
+				]},
+				"9. Input Data",
+				"10. Select Fisheries and Criteria",
+				"11. Weight Criteria",
+				"12. Run the Analaysis"
+			]},
+			"Evaluating Your Results",
+			"Next Steps",
+			{"Conclusion": [
+				"Contact Information"
+			]}
+		]
 		
-		references = {'References':'qrc:/documentation/fisheries_documentation.html#fisheries_references'}
-		algorithm = {'Algorithm':'qrc:/documentation/fisheries_background.html#fisheries_algorithm'}
-		evamix = [references, algorithm]
-		toc = {'Introduction':introduction, 'Background':background,  'Evamix':evamix}
+		self.process_toc(fisheries_toc, base_url)
+		
+	def process_toc(self, toc, base_url):
+		self.ui.toc_tree.clear()
+		for heading in toc:
+			root_item = self.ui.toc_tree.invisibleRootItem()
+			self.process_heading(heading, root_item, '')
+	
+	def process_heading(self, heading, parent, pre):
+		#print type(heading)
+		if type(heading) == str:
+			tree_item = QTreeWidgetItem(parent)
+			tree_item.setText(0, heading)
+		if type(heading) == dict:
+			(heading_name, subheadings) = heading.popitem()
+			tree_item = QTreeWidgetItem(parent)
+			tree_item.setText(0, heading_name)
+			for subheading in subheadings:
+				self.process_heading(subheading, tree_item, pre+'--')
+		                               
 		
 	def dock_full_screen(self):
 		return self.dock_full_screen
  
  	def toggle_dock(self):
- 		print "toggleing"
  		if self.dock_full_screen:
  			
   			self.ui.dock_doc.setMinimumSize(self.min_doc_dock_width, 0)

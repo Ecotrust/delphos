@@ -40,7 +40,7 @@ class GuiManager(QObject):
 		#Hide the docked widget initially
 		self.win.ui.dock_doc.hide()
 
-		#Load doc browser with intro page		
+		#Load doc browser with correct documentation
 		self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/fisheries_documentation.html'))
 		
 		#Signal to capture qrc link clicks in text browsers or labels
