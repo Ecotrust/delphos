@@ -6,7 +6,6 @@ from main_window_ui import Ui_MainWindow
 
 import os
 
-
 class DelphosWindow(QMainWindow):
 	"""Manages the main Delphos window interface (Ui_MainWindow)
 	"""
@@ -16,11 +15,14 @@ class DelphosWindow(QMainWindow):
 		self.ui.setupUi(self)			#Create the components of the window
 		self.dock_full_screen = False
 		self.min_doc_dock_width = 200
+
+		self.base_fishery_url = 'qrc:/documentation/fisheries_documentation.html#'
+		self.base_mpa_url = 'qrc:/documentation/mpa_documentation.html#'
 		
 		#TODO: make this work
 		QObject.connect(self.ui.prev_button, SIGNAL("backwardAvailable(bool)"), self.toggle_prev_button)
 		QObject.connect(self.ui.next_button, SIGNAL("forwardAvailable(bool)"), self.toggle_next_button)
-		
+
 		#self.ui.dock_doc.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.load_toc()
 
@@ -39,11 +41,10 @@ class DelphosWindow(QMainWindow):
 	def load_toc(self):
 		"""Loads the table of contents within the dock widget
 		"""
-		base_url = 'qrc:/documentation/fisheries_documentation.html#'
 		fisheries_toc = [
 			"Introduction",
 			"Background", 
-			{"Multicriteria Analaysis/Evamix": [
+			{"Multicriteria Analysis/Evamix": [
 				"References", 
 				"Algorithm"
 			]},
@@ -81,15 +82,15 @@ class DelphosWindow(QMainWindow):
 			]}
 		]
 		
-		self.process_toc(fisheries_toc, base_url)
+		self.process_toc(fisheries_toc)
 		
-	def process_toc(self, toc, base_url):
+	def process_toc(self, toc):
 		self.ui.toc_tree.clear()
 		for heading in toc:
 			root_item = self.ui.toc_tree.invisibleRootItem()
-			self.process_heading(heading, root_item, '')
+			self.process_heading(heading, root_item)
 	
-	def process_heading(self, heading, parent, pre):
+	def process_heading(self, heading, parent):
 		#print type(heading)
 		if type(heading) == str:
 			tree_item = QTreeWidgetItem(parent)
@@ -99,9 +100,22 @@ class DelphosWindow(QMainWindow):
 			tree_item = QTreeWidgetItem(parent)
 			tree_item.setText(0, heading_name)
 			for subheading in subheadings:
-				self.process_heading(subheading, tree_item, pre+'--')
-		                               
-		
+				self.process_heading(subheading, tree_item)                               
+
+	def process_toc_click(self, item, column):
+		"""Builds URL from toc heading name and reloads doc editor
+		"""
+		heading = item.text(column)
+		#Morph heading name into anchor label name
+		label = heading.replace(' ', '_')
+		label = heading.replace('/', '_')
+		label = label.toLower()
+		#Build URL
+		url = self.base_fishery_url+label
+		print url
+		#Reload doc editor with new url
+		self.ui.doc_browser.setSource(QUrl(url))
+
 	def dock_full_screen(self):
 		return self.dock_full_screen
  
@@ -123,7 +137,3 @@ class DelphosWindow(QMainWindow):
  		else:
 	 		self.ui.dock_doc.setMinimumSize(self.width(), 0)
  			self.dock_full_screen = True
- 
- 	def startup(self):
-	 	"""Loads the initial start dialog window
- 		"""

@@ -27,9 +27,9 @@ class GuiManager(QObject):
 
 		#Create DesktopService for accessing services provided by desktop (eg. web browser) 
 		self.desktop_services = QDesktopServices()
-		#Assign URL handler for help: links which can be placed in widgets and load appropriate help documentation
-		self.desktop_services.setUrlHandler("help", self, SLOT("showHelp(QUrl)"))
 
+		#Assign URL handler for help: links which can be placed in widgets and load appropriate help documentation
+		#self.desktop_services.setUrlHandler("help", self, SLOT("showHelp(QUrl)"))
 		#Assign URL handler for app: links, which can be placed in documentation and load appropriate widgets
 		#self.desktop_services.setUrlHandler("help", self, SLOT("showApp(QUrl)"))
 		#Test URL handler
@@ -45,6 +45,8 @@ class GuiManager(QObject):
 		
 		#Signal to capture qrc link clicks in text browsers or labels
 		QObject.connect(self.win.ui.doc_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
+		QObject.connect(self.win.ui.toc_tree, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
+		QObject.connect(self.win.ui.toc_tree, SIGNAL("itemClicked(QTreeWidgetItem*,int)"), self.win.process_toc_click)
 
 		#Flag indicating whether dock_doc widget is currently full screen
 		self.dock_doc_is_full_screen = False
@@ -75,7 +77,7 @@ class GuiManager(QObject):
 		self.connect(self.main_menu_dialog, SIGNAL("intro_selected"), self.handle_intro_selection)
 		self.connect(self.main_menu_dialog, SIGNAL("design_new_selected"), self.handle_design_new_selection)
 		self.connect(self.main_menu_dialog, SIGNAL("open_existing_selected"), self.handle_open_existing_selection)
-		self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)		
+		self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)
 		self.main_menu_dialog.show()
 	
 	def handle_intro_selection(self):

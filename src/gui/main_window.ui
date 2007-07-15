@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>834</width>
-    <height>650</height>
+    <width>800</width>
+    <height>638</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -24,7 +24,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>834</width>
+     <width>800</width>
      <height>22</height>
     </rect>
    </property>
@@ -90,7 +90,7 @@
          <property name="maximumSize" >
           <size>
            <width>16777215</width>
-           <height>180</height>
+           <height>150</height>
           </size>
          </property>
          <property name="title" >
@@ -116,31 +116,6 @@
               <string>Table of Contents</string>
              </property>
             </column>
-            <item>
-             <property name="text" >
-              <string>Introduction</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Background</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Multicriteria Analysis/Evamix</string>
-             </property>
-             <item>
-              <property name="text" >
-               <string>References</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>Algorithm</string>
-              </property>
-             </item>
-            </item>
            </widget>
           </item>
          </layout>
