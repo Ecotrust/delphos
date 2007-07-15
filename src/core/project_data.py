@@ -17,6 +17,7 @@ class ProjectData(object):
 		self.db_name = db_name
 		self.project_name = project_name
 		self.project_type = type
+		self.project_created = ""
 		
 		self.table = None
 		self.mapper = None
@@ -57,6 +58,9 @@ class ProjectData(object):
 		self.table.insert().execute({'name':self.project_name, 'type':self.project_type, 'created':func.current_timestamp()})
 
 	def get_project_data(self):
+		if not self.project_created:
+			self.load_project_data()
+			
 		return (self.project_name, self.project_type, self.project_created)
 
 	def __unicode__(self):

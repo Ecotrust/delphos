@@ -4,7 +4,7 @@ from distutils.core import setup
 opts = {
     "py2exe": {
         "includes": [],
-        "packages": ["sqlalchemy"],
+        "packages": ["sqlalchemy", "pyExcelerator"],
         "dist_dir": "bin",
     }
 }

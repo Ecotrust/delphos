@@ -109,10 +109,10 @@ class DelphosWindow(QMainWindow):
 		#Morph heading name into anchor label name
 		label = heading.replace(' ', '_')
 		label = heading.replace('/', '_')
+		label = heading.replace('.', '')
 		label = label.toLower()
 		#Build URL
 		url = self.base_fishery_url+label
-		print url
 		#Reload doc editor with new url
 		self.ui.doc_browser.setSource(QUrl(url))
 
