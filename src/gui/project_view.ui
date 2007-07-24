@@ -215,7 +215,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="altern_table" >
+        <widget class="AlternativeTableWidget" name="altern_table" >
          <property name="enabled" >
           <bool>true</bool>
          </property>
@@ -326,7 +326,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="crit_table" >
+        <widget class="CriteriaTableWidget" name="crit_table" >
          <property name="minimumSize" >
           <size>
            <width>300</width>
@@ -537,6 +537,18 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>AlternativeTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>AlternativeTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CriteriaTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>CriteriaTableWidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
