@@ -56,4 +56,4 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 		else:
 			self.add_altern_dialog.close()
 			del self.add_altern_dialog
-			self.start_project_display()
+			self.altern_table.load(self.project.get_all_alternatives())

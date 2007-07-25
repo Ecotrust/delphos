@@ -11,6 +11,7 @@ class AlternativeTableWidget(QTableWidget):
     def load(self, alternative_recs):
         """Loads the table with alternatives, given an array of records
         """
+        self.clear()
         self.setColumnCount(1)
         self.setRowCount(len(alternative_recs))
         

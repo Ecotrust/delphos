@@ -1,4 +1,5 @@
 from sqlalchemy import *
+from delphos_exceptions import *
 import os
 import sys
 
@@ -41,12 +42,16 @@ class AlternativeSet(object):
 			Column('name', String(200))
 		)
 		
-	def add_alternative(self, name):
+	def add_alternative(self, altern_name):
 		"""Add alternative to the AlternativeSet
 		
-		name (string) - name of the alternative
+		altern_name (string) - name of the alternative
 		"""
-		self.table.insert().execute({'name':name})
+		same_list = list(self.table.select(self.table.c.name==altern_name).execute())
+		if len(same_list) > 0:
+			raise DelphosError, "An alternative named "+altern_name+" already exists in this project."
+		else:
+			self.table.insert().execute({'name':altern_name})
 	
 	def remove_alternative(self, alternative_id):
 		"""Remove alternative from AlternativeSet given its unique alternative id
