@@ -57,7 +57,7 @@
                  </size>
                 </property>
                 <property name="focusPolicy" >
-                 <enum>Qt::ClickFocus</enum>
+                 <enum>Qt::StrongFocus</enum>
                 </property>
                 <property name="readOnly" >
                  <bool>false</bool>

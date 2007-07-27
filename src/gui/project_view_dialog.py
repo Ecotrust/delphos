@@ -23,6 +23,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 		self.project = project
 
 		QObject.connect(self.add_altern_button,QtCore.SIGNAL("clicked()"), self.start_add_alternative)
+		QObject.connect(self.remove_altern_button,QtCore.SIGNAL("clicked()"), self.start_remove_alternative)
 		self.load_project_data_tab()
 		self.altern_table.load(self.project.get_all_alternatives())
 		self.crit_table.load(self.project.get_all_criteria())
@@ -57,3 +58,14 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 			self.add_altern_dialog.close()
 			del self.add_altern_dialog
 			self.altern_table.load(self.project.get_all_alternatives())
+	
+	def start_remove_alternative(self):
+		cur_item = self.altern_table.get_current_item()
+		if cur_item:
+			success = self.project.remove_alternative_by_name(str(cur_item.text()))
+			if not success:
+				QMessageBox.critical(self,"Remove Alternative Error", "Failed to remove alternative.")
+			else:
+				self.altern_table.load(self.project.get_all_alternatives())
+		else:
+			QMessageBox.critical(self,"Remove Alternative Error", "You must first select an alternative.")

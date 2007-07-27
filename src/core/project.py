@@ -118,10 +118,15 @@ class Project:
 		"""
 		self.altern_set.add_alternative(name)
 
-	def remove_alternative(self, alternative_id):
+	def remove_alternative_by_id(self, alternative_id):
 		"""Remove alternative from the project AlternativeSet given its unique alternative id
 		"""
 		return self.altern_set.remove_alternative(alternative_id)
+	
+	def remove_alternative_by_name(self, alternative_name):
+		"""Remove alternative from the project AlternativeSet given its unique alternative name
+		"""
+		return self.altern_set.remove_alternative_by_name(alternative_name)
 		
 	def get_alternatives_as_string(self):
 		"""Get a string representation of the projects AlternativeSet

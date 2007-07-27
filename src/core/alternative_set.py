@@ -53,10 +53,17 @@ class AlternativeSet(object):
 		else:
 			self.table.insert().execute({'name':altern_name})
 	
-	def remove_alternative(self, alternative_id):
+	def remove_alternative_by_id(self, alternative_id):
 		"""Remove alternative from AlternativeSet given its unique alternative id
 		"""
 		result = self.table.delete(self.table.c.alternative_id==alternative_id).execute()
+		#TODO : verify this is True
+		return True
+
+	def remove_alternative_by_name(self, alternative_name):
+		"""Remove alternative from AlternativeSet given its unique alternative id
+		"""
+		result = self.table.delete(self.table.c.name==alternative_name).execute()
 		#TODO : verify this is True
 		return True
 

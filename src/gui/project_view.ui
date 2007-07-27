@@ -184,6 +184,9 @@
             </property>
             <item>
              <widget class="QPushButton" name="add_altern_button" >
+              <property name="focusPolicy" >
+               <enum>Qt::StrongFocus</enum>
+              </property>
               <property name="text" >
                <string>Add</string>
               </property>
@@ -231,8 +234,14 @@
          <property name="editTriggers" >
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
+         <property name="dragDropOverwriteMode" >
+          <bool>false</bool>
+         </property>
          <property name="alternatingRowColors" >
           <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::SingleSelection</enum>
          </property>
          <property name="horizontalScrollMode" >
           <enum>QAbstractItemView::ScrollPerPixel</enum>
@@ -336,8 +345,17 @@
          <property name="editTriggers" >
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
+         <property name="dragDropOverwriteMode" >
+          <bool>false</bool>
+         </property>
          <property name="alternatingRowColors" >
           <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior" >
+          <enum>QAbstractItemView::SelectRows</enum>
          </property>
          <property name="horizontalScrollMode" >
           <enum>QAbstractItemView::ScrollPerPixel</enum>

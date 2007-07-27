@@ -82,6 +82,12 @@ class ProjectManager:
 			return self.current_project
 		else:
 			return False
+		
+	def has_project_loaded(self):
+		if self.current_project:
+			return True
+		else:
+			return False
 
 	def set_analysis_type(self, type):
 		if not type:
