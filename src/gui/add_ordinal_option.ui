@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>256</width>
+    <width>408</width>
     <height>170</height>
    </rect>
   </property>
@@ -43,7 +43,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit" >
+         <widget class="QLineEdit" name="option_description_edit" >
           <property name="minimumSize" >
            <size>
             <width>200</width>
@@ -73,7 +73,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_2" >
+         <widget class="QLineEdit" name="option_value_edit" >
           <property name="minimumSize" >
            <size>
             <width>100</width>
@@ -122,7 +122,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QDialogButtonBox" name="add_alternative_box" >
+      <widget class="QDialogButtonBox" name="add_ordinal_option_box" >
        <property name="standardButtons" >
         <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
        </property>
@@ -133,5 +133,22 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>add_ordinal_option_box</sender>
+   <signal>rejected()</signal>
+   <receiver>AddOrdinalOptionDialog</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>300</x>
+     <y>141</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>203</x>
+     <y>84</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -1,7 +1,7 @@
 # Default target executed when no arguments are given to make.
 default_target: all
 
-all: main_window_ui.py select_type_ui.py main_menu_ui.py create_project_ui.py open_project_ui.py project_view_ui.py add_alternative_ui.py
+all: main_window_ui.py select_type_ui.py main_menu_ui.py create_project_ui.py open_project_ui.py project_view_ui.py add_alternative_ui.py add_criteria_ui.py add_ordinal_option_ui.py
 
 clean:
 	rm -f *_ui.py
@@ -29,3 +29,9 @@ project_view_ui.py: project_view.ui
 
 add_alternative_ui.py: add_alternative.ui
 	pyuic4 -o add_alternative_ui.py add_alternative.ui
+
+add_criteria_ui.py: add_criteria.ui
+	pyuic4 -o add_criteria_ui.py add_criteria.ui
+
+add_ordinal_option_ui.py: add_ordinal_option.ui
+	pyuic4 -o add_ordinal_option_ui.py add_ordinal_option.ui

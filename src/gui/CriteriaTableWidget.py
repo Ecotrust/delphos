@@ -13,6 +13,7 @@ class CriteriaTableWidget(QTableWidget):
         """
         self.setColumnCount(3)
         self.setRowCount(len(criteria_recs))
+        print str(criteria_recs)
         
         for i in range(len(criteria_recs)):
             name_item = QTableWidgetItem()
@@ -24,7 +25,7 @@ class CriteriaTableWidget(QTableWidget):
             self.setItem(i, 1, type_item)
 
             cb_item = QTableWidgetItem()
-            cb_item.setText(str(criteria_recs[i][3]))
+            cb_item.setText(str(criteria_recs[i][4]))
             self.setItem(i, 2, cb_item)
 
         self.resizeColumnsToContents()

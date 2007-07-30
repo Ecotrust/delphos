@@ -41,7 +41,7 @@ class Project:
 		self.altern_set = None	#Primary AlternativeSet
 		
 		self.crit_table_name = 'criteria'
-		self.crit_default_file = 'india1_criteria.csv'
+		self.crit_default_file = 'default_criteria.csv'
 		self.crit_set = None	#Primary CriteriaSet
 		
 		self.input_matrix_name = 'input_matrix'
@@ -91,8 +91,8 @@ class Project:
 		"""
 		self.crit_set = CriteriaSet(self.crit_table_name, self.meta)
 		
-		if load_default_crit:
-			self.__load_default_criteria(self.crit_default_file)
+		#if load_default_crit:
+			#self.__load_default_criteria(self.crit_default_file)
 			
 	def __load_default_criteria(self, filename):
 		"""Load criteria from the given filename into the DB table.
@@ -150,14 +150,12 @@ class Project:
 		else:
 			return False
 		
-	def add_criteria(self, desc, type, cost_benefit):
+	def add_criteria(self, criteria_info):
 		"""Add criteria to the project CriteriaSet
 		
-		desc (string) - criteria description
-		type (int) - see criteria types table
-		cost_benefit (string 1) - 'C'=cost or 'B'=benefit
+		tuple of criteria data, see CriteriaSet.add_criteria for expected strucutre
 		"""
-		self.crit_set.add_criteria(desc, type, cost_benefit)
+		self.crit_set.add_criteria(criteria_info)
 
 	def remove_criteria(self, criteria_id):
 		"""Remove criteria from the project CriteriaSet given its unique criteria id

@@ -1,5 +1,8 @@
 from sqlalchemy import *
+import cPickle as pickle
 import sys
+
+from delphos_exceptions import *
 
 class CriteriaSet(object):
 	"""Represents a set of analysis criteria.
@@ -38,18 +41,33 @@ class CriteriaSet(object):
 		return Table(self.name, self.metadata,
 			Column('criteria_id', Integer, Sequence('crit_id_seq'), primary_key=True),
 			Column('description', String(200)),
-			Column('type', Integer),
+			Column('type', String(50)),
+			Column('type_options', PickleType),
 			Column('cost_benefit', String(1))
 		)
 		
-	def add_criteria(self, desc, type, cost_benefit):
+	def add_criteria(self, criteria_info):
 		"""Add criteria to the CriteriaSet
 		
+		Expected input tuple structure:
 		desc (string) - criteria description
-		type (int) - see criteria types table
-		cost_benefit (string 1) - 'C'=cost or 'B'=benefit
+		type (string) - Ratio, Binary or Ordinal
+		type_options (string or list depending on type):
+			Ratio (string description), Binary ([yes_desc, no_desc]), 
+			Ordinal (list of option lists [[description, value],...])
+			* Note type_data is simply pickled (serialized) and put into 
+			* the DB table as given. SQLA can only pickle strings and lists, not tuples
+		cost_benefit (string) - 'C'=cost or 'B'=benefit
 		"""
-		self.table.insert().execute({'description':desc, 'type':type, 'cost_benefit':cost_benefit})
+		print "info to add: "+unicode(criteria_info)
+		(desc, type, type_options, cost_benefit) = criteria_info
+		same_list = list(self.table.select(self.table.c.description==desc).execute())
+		print "same_list: "+unicode(same_list)
+		if len(same_list) > 0:
+			raise DelphosError, "A criterion with the description "+desc+" already exists in this project."
+		else:
+			print "inserting"
+			self.table.insert().execute({'description':desc, 'type':type, 'type_options':type_options, 'cost_benefit':cost_benefit})
 	
 	def remove_criteria(self, criteria_id):
 		"""Remove criteria from CriteriaSet given its unique criteria id

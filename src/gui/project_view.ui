@@ -296,21 +296,21 @@
              <number>2</number>
             </property>
             <item>
-             <widget class="QPushButton" name="pushButton" >
+             <widget class="QPushButton" name="add_criteria_button" >
               <property name="text" >
                <string>Add</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7" >
+             <widget class="QPushButton" name="edit_criteria_button" >
               <property name="text" >
                <string>Edit</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4" >
+             <widget class="QPushButton" name="remove_criteria_button" >
               <property name="text" >
                <string>Remove</string>
               </property>
