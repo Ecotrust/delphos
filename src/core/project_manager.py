@@ -10,12 +10,12 @@ class ProjectManager:
 	def __init__(self):
 		self.current_project_name = ""
 		self.current_project_path = ""
-		self.analysis_type = ""
+		self.current_project_type = ""
 		self.current_project = None
 		self.default_project_path = "db"
 		self.default_file_extension = "del"
 
-	def create_project(self, name, path, type, load_default_altern, load_default_crit):
+	def create_project(self, name, path, load_default_altern, load_default_crit):
 		"""Create a new delphos Project
 	
 		name (string) - name of the project
@@ -32,13 +32,16 @@ class ProjectManager:
 
 		#Check if DB already exists
 		db_path = path+os.sep+name
+		
 		if os.path.exists(db_path):
-			raise DelphosError, "\nProject named "+name+" already exists at "+path
+			raise DelphosError, "Project named "+name+" already exists at "+path
+		elif not self.current_project_type:
+			raise DelphosError, "Analysis type not found"
 		
 		#Create project
-		proj = Project(name, path, type, load_default_altern, load_default_crit)
+		proj = Project(name, path, self.current_project_type, load_default_altern, load_default_crit)
 		if not proj:
-			raise DelphosError, "\nProject creation failed"
+			raise DelphosError, "Project creation failed"
 		
 		self.current_project = proj
 		self.current_project_name = name
@@ -62,6 +65,17 @@ class ProjectManager:
 		proj = Project(name, path)
 		if not proj:
 			raise DelphosError, "Project open failed"
+		
+		#Check if project type changed
+		project_type = proj.get_project_type()
+		print "current project type: "+project_type 
+		if not project_type:
+			raise DelphosError, "Project type not found"
+		elif project_type != self.current_project_type:
+			print "type changed to "+project_type+", notify!"
+			self.current_project_type = project_type
+			#Notify to reload the documentation
+			self.emit(SIGNAL("project_type_changed"), project_type)
 		
 		self.current_project = proj
 		self.current_project_name = name
@@ -89,14 +103,14 @@ class ProjectManager:
 		else:
 			return False
 
-	def set_analysis_type(self, type):
+	def set_current_project_type(self, type):
 		if not type:
 			return False
 		else:
-			self.analysis_type = type
+			self.current_project_type = type
 	
-	def get_analysis_type(self):
-		return self.analysis_type
+	def get_current_project_type(self):
+		return self.current_project_type
 
 	def get_current_project_name(self):
 		"""Returns name of current project

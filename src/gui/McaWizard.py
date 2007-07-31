@@ -35,7 +35,7 @@ class McaWizard(QDialog, Ui_McaWizard):
 		self.altern_table.load(self.project.get_all_alternatives())
 	
 	def setup_criteria_table(self):
-		pass
+		self.criteria_table.load(self.project.get_all_criteria())
 	
 	def process_run(self):
 		"""Processes clicking of OK button in dialog

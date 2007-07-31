@@ -29,7 +29,7 @@
               </font>
              </property>
              <property name="title" >
-              <string>Select Analysis Type:</string>
+              <string>Select Project Type:</string>
              </property>
              <layout class="QVBoxLayout" >
               <item>

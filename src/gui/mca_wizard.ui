@@ -16,7 +16,7 @@
    <item>
     <widget class="QTabWidget" name="weight_table" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_7" >
       <attribute name="title" >
@@ -125,7 +125,7 @@
        <item>
         <layout class="QHBoxLayout" >
          <item>
-          <widget class="QTableWidget" name="criteria_table" >
+          <widget class="CriteriaMcaTableWidget" name="criteria_table" >
            <property name="enabled" >
             <bool>true</bool>
            </property>
@@ -147,7 +147,11 @@
            <property name="columnCount" >
             <number>5</number>
            </property>
-           <column/>
+           <column>
+            <property name="text" >
+             <string>Include?</string>
+            </property>
+           </column>
            <column>
             <property name="text" >
              <string>Description</string>
@@ -636,6 +640,11 @@
    <class>AlternativeMcaTableWidget</class>
    <extends>QTableWidget</extends>
    <header>AlternativeMcaTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CriteriaMcaTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>CriteriaMcaTableWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

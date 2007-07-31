@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>MainMenuDialog</class>
- <widget class="QWidget" name="MainMenuDialog" >
+ <class>MpaMainMenuDialog</class>
+ <widget class="QWidget" name="MpaMainMenuDialog" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -28,8 +28,8 @@
           </property>
           <property name="sizeHint" >
            <size>
-            <width>10</width>
-            <height>20</height>
+            <width>16</width>
+            <height>179</height>
            </size>
           </property>
          </spacer>
@@ -59,7 +59,7 @@
                </font>
               </property>
               <property name="text" >
-               <string>Main Menu</string>
+               <string>MPA Main Menu</string>
               </property>
              </widget>
             </item>
@@ -86,28 +86,28 @@
                <number>2</number>
               </property>
               <item>
-               <widget class="QPushButton" name="but_introduction" >
+               <widget class="QPushButton" name="mpa_intro_button" >
                 <property name="text" >
                  <string>Step-by-step Instructions</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="but_design_project" >
+               <widget class="QPushButton" name="mpa_new_project_button" >
                 <property name="text" >
                  <string>Design New Project</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="but_open_project" >
+               <widget class="QPushButton" name="mpa_open_project_button" >
                 <property name="text" >
                  <string>Open Existing Project</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="but_full_doc" >
+               <widget class="QPushButton" name="mpa_full_doc_button" >
                 <property name="text" >
                  <string>Full Documentation (Printable)</string>
                 </property>
@@ -142,8 +142,8 @@
           </property>
           <property name="sizeHint" >
            <size>
-            <width>10</width>
-            <height>20</height>
+            <width>16</width>
+            <height>179</height>
            </size>
           </property>
          </spacer>

@@ -63,6 +63,12 @@ class ProjectData(object):
 			
 		return (self.project_name, self.project_type, self.project_created)
 
+	def get_project_type(self):
+		if self.project_type:
+			return self.project_type
+		else:
+			return None
+
 	def __unicode__(self):
 		"""Description of object
 		"""

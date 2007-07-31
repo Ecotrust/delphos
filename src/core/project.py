@@ -107,6 +107,9 @@ class Project:
 	def get_project_data(self):
 		return self.project_data.get_project_data()
 
+	def get_project_type(self):
+		return self.project_data.get_project_type()
+
 	def add_alternative(self, name):
 		"""Add alternative to the project AlternativeSet
 		
@@ -190,6 +193,6 @@ class Project:
 		populates it with values from the existing table and then generates a new table
 		"""
 		self.input_matrix = InputMatrix(self.input_matrix_name, self.meta)
-	
+	 
 	def get_input_matrix_as_string(self):
 		print "Not Implemented"

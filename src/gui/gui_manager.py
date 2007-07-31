@@ -9,7 +9,8 @@ from PyQt4.QtGui import *
 from delphos_exceptions import *
 from delphos_window import DelphosWindow
 from select_type_dialog import SelectTypeDialog
-from main_menu_dialog import MainMenuDialog
+from fisheries_main_menu_dialog import FisheriesMainMenuDialog
+from mpa_main_menu_dialog import MpaMainMenuDialog
 from create_project_dialog import CreateProjectDialog
 from open_project_dialog import OpenProjectDialog
 from project_view_dialog import ProjectViewDialog
@@ -49,8 +50,13 @@ class GuiManager(QObject):
 		QObject.connect(self.win.ui.doc_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
 		QObject.connect(self.win.ui.toc_tree, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
 		QObject.connect(self.win.ui.toc_tree, SIGNAL("itemClicked(QTreeWidgetItem*,int)"), self.win.process_toc_click)
+		
+		#Top menu slots
 		QObject.connect(self.win.ui.menu_exit_delphos, SIGNAL("activated()"), self.stop_gui)
+		QObject.connect(self.win.ui.menu_main_menu, SIGNAL("activated()"), self.start_type_selection)
 		QObject.connect(self.win.ui.menu_open_project, SIGNAL("activated()"), self.handle_open_existing_selection)
+		QObject.connect(self.win.ui.menu_create_project, SIGNAL("activated()"), self.handle_design_new_selection)
+		
 		QObject.connect(self.win.ui.documentation_window_toggle, SIGNAL("activated()"), self.toggle_documentation_window)
 
 		#Flag indicating whether dock_doc widget is currently full screen
@@ -60,32 +66,45 @@ class GuiManager(QObject):
 		"""Displays the main window and additional startup dialog
 		"""
 		#Show main window
-		self.win.show()
+		self.win.show()		
+		#Display dialog for user to select project type
+		self.start_type_selection()
+		#Start main loop
+		sys.exit(self.qapp.exec_())
+
+	def stop_gui(self):
+		self.qapp.closeAllWindows()
+
+	def start_type_selection(self):
+		"""Loads dialog allowing user to select overall project type (eg. Fisheries, MPAs)
+		"""
 		#Create startup dialog
 		self.select_type_dialog = SelectTypeDialog(self, self.win)
 		#Connect handler for type selection
 		self.connect(self.select_type_dialog, SIGNAL("type_selected"), self.handle_type_selection)
 		#Show startup dialog
 		self.select_type_dialog.show()
-		#Start main loop
-		sys.exit(self.qapp.exec_())
-	
-	def stop_gui(self):
-		self.qapp.closeAllWindows()
 
 	def handle_type_selection(self, type):
 		"""Stores the analaysis type selected and loads the main menu
 		"""
-		self.project_manager.set_analysis_type(type)
+		self.project_manager.set_current_project_type(type)
 		self.select_type_dialog.hide()
-		del self.select_type_dialog
+		self.select_type_dialog.deleteLater()
 		
-		self.main_menu_dialog = MainMenuDialog(self, self.win)
-		#Connect handlers to process main menu selections
-		self.connect(self.main_menu_dialog, SIGNAL("intro_selected"), self.handle_intro_selection)
-		self.connect(self.main_menu_dialog, SIGNAL("design_new_selected"), self.handle_design_new_selection)
-		self.connect(self.main_menu_dialog, SIGNAL("open_existing_selected"), self.handle_open_existing_selection)
-		self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)
+		if type == "fisheries":
+			self.main_menu_dialog = FisheriesMainMenuDialog(self, self.win)
+			self.connect(self.main_menu_dialog, SIGNAL("intro_selected"), self.handle_intro_selection)
+			self.connect(self.main_menu_dialog, SIGNAL("design_new_selected"), self.handle_design_new_selection)
+			self.connect(self.main_menu_dialog, SIGNAL("open_existing_selected"), self.handle_open_existing_selection)
+			self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)
+		elif type == "mpa":
+			self.main_menu_dialog = MpaMainMenuDialog(self, self.win)
+			self.connect(self.main_menu_dialog, SIGNAL("intro_selected"), self.handle_intro_selection)
+			self.connect(self.main_menu_dialog, SIGNAL("design_new_selected"), self.handle_design_new_selection)
+			self.connect(self.main_menu_dialog, SIGNAL("open_existing_selected"), self.handle_open_existing_selection)
+			self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)		
+
 		self.main_menu_dialog.show()
 	
 	def handle_intro_selection(self):

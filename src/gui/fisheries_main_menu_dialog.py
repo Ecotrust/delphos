@@ -6,9 +6,9 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-from main_menu_ui import Ui_MainMenuDialog
+from fisheries_main_menu_ui import Ui_FisheriesMainMenuDialog
 
-class MainMenuDialog(QDialog, Ui_MainMenuDialog):
+class FisheriesMainMenuDialog(QDialog, Ui_FisheriesMainMenuDialog):
 	"""Dialog providing main menu of options
 	"""
 	def __init__(self, gui_manager, parent):
@@ -18,10 +18,10 @@ class MainMenuDialog(QDialog, Ui_MainMenuDialog):
 		self.gui_manager = gui_manager
 		
 		#Connect slots to signals
-		QObject.connect(self.but_introduction, QtCore.SIGNAL("clicked()"), self.intro_selection)
-		QObject.connect(self.but_design_project, QtCore.SIGNAL("clicked()"), self.design_new_selection)
-		QObject.connect(self.but_open_project, QtCore.SIGNAL("clicked()"), self.open_existing_selection)
-		QObject.connect(self.but_full_doc, QtCore.SIGNAL("clicked()"), self.full_doc_selection)
+		QObject.connect(self.fisheries_intro_button, QtCore.SIGNAL("clicked()"), self.intro_selection)
+		QObject.connect(self.fisheries_new_project_button, QtCore.SIGNAL("clicked()"), self.design_new_selection)
+		QObject.connect(self.fisheries_open_project_button, QtCore.SIGNAL("clicked()"), self.open_existing_selection)
+		QObject.connect(self.fisheries_full_doc_button, QtCore.SIGNAL("clicked()"), self.full_doc_selection)
 		
 	def intro_selection(self):
 		self.emit(SIGNAL("intro_selected"))
