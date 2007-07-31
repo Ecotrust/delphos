@@ -39,6 +39,8 @@ class GuiManager(QObject):
 		self.win = DelphosWindow()
 		#Hide the docked widget initially
 		self.hide_documentation_window()
+		#Resize to full screen
+		self.win.resize(self.get_screen_width(), self.get_screen_height())
 
 		#Load doc browser with correct documentation
 		self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/fisheries_documentation.html'))
@@ -166,7 +168,7 @@ class GuiManager(QObject):
 		self.project_view.show()
 		self.show_documentation_window()		
 		
-	def get_screen_dimension(self):
+	def get_screen_dimensions(self):
 		"""Return (width, height) tuple in pixels of the screen containing the delphos window
 		"""
 		desktop = self.qapp.desktop()

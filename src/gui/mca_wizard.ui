@@ -1,12 +1,12 @@
 <ui version="4.0" >
- <class>Form</class>
- <widget class="QWidget" name="Form" >
+ <class>McaWizard</class>
+ <widget class="QWidget" name="McaWizard" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>678</width>
-    <height>324</height>
+    <width>722</width>
+    <height>584</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -14,9 +14,9 @@
   </property>
   <layout class="QHBoxLayout" >
    <item>
-    <widget class="QTabWidget" name="tabWidget" >
+    <widget class="QTabWidget" name="weight_table" >
      <property name="currentIndex" >
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_7" >
       <attribute name="title" >
@@ -26,7 +26,7 @@
        <item>
         <layout class="QHBoxLayout" >
          <item>
-          <widget class="QTableWidget" name="tableWidget_4" >
+          <widget class="AlternativeMcaTableWidget" name="altern_table" >
            <property name="enabled" >
             <bool>true</bool>
            </property>
@@ -50,7 +50,7 @@
            </property>
            <column>
             <property name="text" >
-             <string/>
+             <string>Include?</string>
             </property>
            </column>
            <column>
@@ -95,14 +95,14 @@
              </property>
              <layout class="QVBoxLayout" >
               <item>
-               <widget class="QPushButton" name="pushButton_5" >
+               <widget class="QPushButton" name="altern_next_button" >
                 <property name="text" >
                  <string>Next</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton" >
+               <widget class="QPushButton" name="altern_cancel_button" >
                 <property name="text" >
                  <string>Cancel</string>
                 </property>
@@ -125,7 +125,7 @@
        <item>
         <layout class="QHBoxLayout" >
          <item>
-          <widget class="QTableWidget" name="tableWidget_5" >
+          <widget class="QTableWidget" name="criteria_table" >
            <property name="enabled" >
             <bool>true</bool>
            </property>
@@ -192,14 +192,14 @@
              </property>
              <layout class="QVBoxLayout" >
               <item>
-               <widget class="QPushButton" name="pushButton_6" >
+               <widget class="QPushButton" name="crit_next_button" >
                 <property name="text" >
                  <string>Next</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_2" >
+               <widget class="QPushButton" name="crit_cancel_button" >
                 <property name="text" >
                  <string>Cancel</string>
                 </property>
@@ -220,69 +220,106 @@
       </attribute>
       <layout class="QHBoxLayout" >
        <item>
-        <layout class="QHBoxLayout" >
+        <layout class="QVBoxLayout" >
          <item>
-          <widget class="QTableWidget" name="tableWidget_6" >
-           <property name="enabled" >
-            <bool>true</bool>
-           </property>
-           <property name="mouseTracking" >
-            <bool>false</bool>
-           </property>
-           <property name="editTriggers" >
-            <set>QAbstractItemView::NoEditTriggers</set>
-           </property>
-           <property name="alternatingRowColors" >
-            <bool>true</bool>
-           </property>
-           <property name="horizontalScrollMode" >
-            <enum>QAbstractItemView::ScrollPerPixel</enum>
-           </property>
-           <property name="rowCount" >
-            <number>0</number>
-           </property>
-           <property name="columnCount" >
-            <number>0</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" >
+          <layout class="QHBoxLayout" >
            <item>
-            <spacer>
-             <property name="orientation" >
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" >
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_3" >
+            <widget class="QGroupBox" name="groupBox_7" >
              <property name="title" >
               <string/>
              </property>
-             <layout class="QVBoxLayout" >
+             <layout class="QHBoxLayout" >
               <item>
-               <widget class="QPushButton" name="pushButton_7" >
+               <widget class="QPushButton" name="pushButton" >
                 <property name="text" >
-                 <string>Next</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_3" >
-                <property name="text" >
-                 <string>Cancel</string>
+                 <string>Input From File</string>
                 </property>
                </widget>
               </item>
              </layout>
             </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" >
+           <item>
+            <widget class="QTableWidget" name="input_table" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="mouseTracking" >
+              <bool>false</bool>
+             </property>
+             <property name="editTriggers" >
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <property name="alternatingRowColors" >
+              <bool>true</bool>
+             </property>
+             <property name="horizontalScrollMode" >
+              <enum>QAbstractItemView::ScrollPerPixel</enum>
+             </property>
+             <property name="rowCount" >
+              <number>0</number>
+             </property>
+             <property name="columnCount" >
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" >
+             <item>
+              <spacer>
+               <property name="orientation" >
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" >
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox_3" >
+               <property name="title" >
+                <string/>
+               </property>
+               <layout class="QVBoxLayout" >
+                <item>
+                 <widget class="QPushButton" name="input_next_button" >
+                  <property name="text" >
+                   <string>Next</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="input_cancel_button" >
+                  <property name="text" >
+                   <string>Cancel</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </item>
@@ -369,7 +406,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_4" >
+               <widget class="QPushButton" name="weight_cancel_button" >
                 <property name="text" >
                  <string>Cancel</string>
                 </property>
@@ -515,8 +552,34 @@
                 </item>
                </layout>
               </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
              </layout>
             </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
            <item>
             <layout class="QHBoxLayout" >
@@ -540,9 +603,16 @@
                </property>
                <layout class="QVBoxLayout" >
                 <item>
-                 <widget class="QPushButton" name="pushButton_9" >
+                 <widget class="QPushButton" name="run_analysis_button" >
                   <property name="text" >
                    <string>Run Analysis</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="run_cancel_button" >
+                  <property name="text" >
+                   <string>Cancel</string>
                   </property>
                  </widget>
                 </item>
@@ -551,33 +621,7 @@
              </item>
             </layout>
            </item>
-           <item>
-            <spacer>
-             <property name="orientation" >
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" >
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
           </layout>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </item>
@@ -587,6 +631,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>AlternativeMcaTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>AlternativeMcaTableWidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

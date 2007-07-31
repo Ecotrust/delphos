@@ -42,3 +42,4 @@ class AddAlternDialog(QDialog, Ui_AddAlternDialog):
 		"""Processes clicking of Cancel button in dialog
 		"""
 		self.hide()
+		self.deleteLater()

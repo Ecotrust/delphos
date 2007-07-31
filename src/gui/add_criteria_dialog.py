@@ -121,4 +121,5 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 	def process_reject(self):
 		"""Processes clicking of Cancel button in dialog
 		"""
+		self.deleteLater()
 		self.hide()

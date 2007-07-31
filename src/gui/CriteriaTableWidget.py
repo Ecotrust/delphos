@@ -12,6 +12,7 @@ class CriteriaTableWidget(QTableWidget):
         """Loads the table in the criteria tab with the existing project criteria
         """
         if criteria_recs:
+            self.clearContents()
             self.setRowCount(len(criteria_recs))
         
             for i in range(len(criteria_recs)):

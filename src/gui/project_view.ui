@@ -457,7 +457,7 @@
             <item>
              <widget class="QLabel" name="label_4" >
               <property name="text" >
-               <string>Name:</string>
+               <string>Description:</string>
               </property>
              </widget>
             </item>
@@ -484,7 +484,7 @@
             <item>
              <widget class="QPushButton" name="new_analysis_button" >
               <property name="text" >
-               <string>New Analysis</string>
+               <string>Start Analysis</string>
               </property>
              </widget>
             </item>
