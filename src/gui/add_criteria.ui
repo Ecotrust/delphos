@@ -39,7 +39,7 @@
    <item>
     <widget class="QTabWidget" name="criteria_type_tab" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab" >
       <attribute name="title" >
@@ -128,7 +128,7 @@
             </size>
            </property>
            <property name="text" >
-            <string>Description of quantitative value:</string>
+            <string>Description of quantitative value (units):</string>
            </property>
           </widget>
          </item>

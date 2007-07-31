@@ -27,6 +27,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QObject.connect(self.remove_altern_button,QtCore.SIGNAL("clicked()"), self.start_remove_alternative)
         QObject.connect(self.add_criteria_button,QtCore.SIGNAL("clicked()"), self.start_add_criteria)
         QObject.connect(self.remove_criteria_button,QtCore.SIGNAL("clicked()"), self.start_remove_criteria)
+        QObject.connect(self.view_analysis_button,QtCore.SIGNAL("clicked()"), self.start_view_analysis)
+        QObject.connect(self.new_analysis_button,QtCore.SIGNAL("clicked()"), self.start_new_analysis)
         self.load_project_data_tab()
         self.altern_table.load(self.project.get_all_alternatives())
         self.crit_table.load(self.project.get_all_criteria())
@@ -100,12 +102,18 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             self.crit_table.load(self.project.get_all_criteria())
 
     def start_remove_criteria(self):
-        cur_item = self.crit_table.get_current_item()
-#        if cur_item:
-#            success = self.project.remove_criteria_by_name(str(cur_item.text()))
-#            if not success:
-#                QMessageBox.critical(self,"Remove Criteria Error", "Failed to remove criteria.")
-#            else:
-#                self.criteria_table.load(self.project.get_all_criteria())
-#        else:
-#            QMessageBox.critical(self,"Remove Criteria Error", "You must first select one from the criteria table.")
+        cur_item = self.crit_table.get_current_row_items()
+        if cur_item:
+            success = self.project.remove_criteria_by_description(str(cur_item.text()))
+            if not success:
+                QMessageBox.critical(self,"Remove Criteria Error", "Failed to remove criteria.")
+            else:
+                self.crit_table.load(self.project.get_all_criteria())
+        else:
+            QMessageBox.critical(self,"Remove Criteria Error", "You must first select one from the criteria table.")
+
+    def start_view_analysis(self):
+        pass
+
+    def start_new_analysis(self):
+        pass

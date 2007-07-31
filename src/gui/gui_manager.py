@@ -130,12 +130,14 @@ class GuiManager(QObject):
 		load_default_crit (boolean) whether to load default criteries into new project DB
 		"""
 		project_filename, project_path, project_type, load_default_altern, load_default_crit = args
-		self.create_proj_dialog.close()
 		try:
 			self.project_manager.create_project(project_filename, project_path, project_type, load_default_altern, load_default_crit)
 		except DelphosError, e:
-			QMessageBox.critical(self,"Project Creation Error", e)
-		self.start_project_display()
+			QMessageBox.critical(self.create_proj_dialog, "Project Creation Error", str(e))
+		else:
+			self.create_proj_dialog.close()
+			self.create_proj_dialog.deleteLater()
+			self.start_project_display()
 			
 	def start_project_opening(self):
 		"""Create dialog for opening an existing project

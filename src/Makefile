@@ -10,6 +10,7 @@ clean:
 	rm -rf build
 	cd gui; $(MAKE) clean
 	cd core; $(MAKE) clean
+	cd data; $(MAKE) clean
 
 cleandoc:
 	rm -f resources_rc.py

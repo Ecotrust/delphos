@@ -1,5 +1,5 @@
 from sqlalchemy import *
-import cPickle as pickle
+import pickle
 import sys
 
 from delphos_exceptions import *
@@ -37,12 +37,15 @@ class CriteriaSet(object):
 	
 	def __get_criteria_table_object(self):
 		"""Create criteria Table object (SQLAlchemy)
+		
+		the type_options column is Binary so that it can store pickled strings and not make assumptions about
+		encoding etc. 
 		"""
 		return Table(self.name, self.metadata,
 			Column('criteria_id', Integer, Sequence('crit_id_seq'), primary_key=True),
 			Column('description', String(200)),
 			Column('type', String(50)),
-			Column('type_options', PickleType),
+			Column('type_options', Binary()),
 			Column('cost_benefit', String(1))
 		)
 		
@@ -61,6 +64,8 @@ class CriteriaSet(object):
 		"""
 		print "info to add: "+unicode(criteria_info)
 		(desc, type, type_options, cost_benefit) = criteria_info
+		#Pickle the type_options up
+		type_options = pickle.dumps(type_options)
 		same_list = list(self.table.select(self.table.c.description==desc).execute())
 		print "same_list: "+unicode(same_list)
 		if len(same_list) > 0:
@@ -75,12 +80,28 @@ class CriteriaSet(object):
 		result = self.table.delete(self.table.c.criteria_id==criteria_id).execute()
 		#TODO : verify this is True
 		return True
+
+	def remove_criteria_by_description(self, description):
+		"""Remove criteria from CriteriaSet given its unique description
+		"""
+		result = self.table.delete(self.table.c.description==description).execute()
+		#TODO : verify this is True
+		return True
 		
 	def get_all_criteria(self):
 		"""Returns criteria as a list
 		"""
-		return list(self.table.select(order_by=self.table.c.criteria_id).execute())
-
+		#return list(self.table.select(order_by=self.table.c.criteria_id).execute())
+		criteria_rows = self.table.select(order_by=self.table.c.criteria_id).execute().fetchall()
+		criteria_recs = []
+		for row in criteria_rows:
+			cur_row = list(row)
+			#unpickle the options
+			#TODO: find out why SQLA is not unpickleing for us!
+			cur_row[3] = pickle.loads(cur_row[3])
+			criteria_recs.append(cur_row)
+		return criteria_recs
+		
 	def get_criteria_ids(self):
 		"""Returns list of IDs of criteria currently loaded
 		"""

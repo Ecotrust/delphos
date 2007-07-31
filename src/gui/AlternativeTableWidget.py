@@ -23,7 +23,6 @@ class AlternativeTableWidget(QTableWidget):
     
     def get_current_row_items(self):
         selected_row = self.selectedItems()
-        print "selected_row: "+str(selected_row)
         if selected_row:
             return selected_row[0]
         else:
