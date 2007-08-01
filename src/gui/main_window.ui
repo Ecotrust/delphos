@@ -33,6 +33,7 @@
      <string>Options</string>
     </property>
     <addaction name="menu_main_menu" />
+    <addaction name="separator" />
     <addaction name="menu_open_project" />
     <addaction name="menu_create_project" />
     <addaction name="menu_exit_delphos" />

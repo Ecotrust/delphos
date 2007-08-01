@@ -117,11 +117,16 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QMessageBox.critical(self,"Not Implemented", "Not Implemented")
 
     def start_new_analysis(self):
-        #Load add alternative dialog form
-        self.mca_wizard = McaWizard(self.gui_manager, self, self.project)
-        #Register handler for signal that alternative info has been collected and can be added
-        self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
-        self.mca_wizard.show()
-        
+        description = self.analysis_name_edit.text()
+        if not description:
+            QMessageBox.critical(self,"Analysis Error", "You must enter a description of the analysis your performing")
+        else:
+            #Create mca object
+             
+            #Load mca wizard
+            self.mca_wizard = McaWizard(self.gui_manager, self, self.project)
+            self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
+            self.mca_wizard.show()
+            
     def finish_new_analysis(self, analysis_info):
         pass
