@@ -152,7 +152,7 @@ class GuiManager(QObject):
 		"""
 		project_filename, project_path, project_type, load_default_altern, load_default_crit = args
 		try:
-			self.project_manager.create_project(project_filename, project_path, project_type, load_default_altern, load_default_crit)
+			self.project_manager.create_project(project_filename, project_path, load_default_altern, load_default_crit)
 		except DelphosError, e:
 			QMessageBox.critical(self.create_proj_dialog, "Project Creation Error", str(e))
 		else:
