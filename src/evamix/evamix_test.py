@@ -41,8 +41,8 @@ class TestEvamix(unittest.TestCase):
         #number of alternatives and weightings don't match
 
     def test_weight_standardizing(self):
-        std_weights = self.evamix.standardize_weights(self.crit_weights)
-        self.assertAlmostEqual(sum(std_weights), 1.0, 6)
+        self.evamix.standardize_weights(self.crit_weights)
+        self.assertAlmostEqual(sum(self.crit_weights), 1.0, 6)
 
 if __name__ == '__main__':
     unittest.main()
