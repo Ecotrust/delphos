@@ -14,9 +14,9 @@
   </property>
   <layout class="QHBoxLayout" >
    <item>
-    <widget class="QTabWidget" name="weight_table" >
+    <widget class="QTabWidget" name="mca_tab_widget" >
      <property name="currentIndex" >
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_7" >
       <attribute name="title" >
@@ -125,7 +125,7 @@
        <item>
         <layout class="QHBoxLayout" >
          <item>
-          <widget class="CriteriaMcaTableWidget" name="criteria_table" >
+          <widget class="CriteriaMcaTableWidget" name="crit_table" >
            <property name="enabled" >
             <bool>true</bool>
            </property>
@@ -203,6 +203,13 @@
                </widget>
               </item>
               <item>
+               <widget class="QPushButton" name="crit_prev_button" >
+                <property name="text" >
+                 <string>Prev</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="crit_cancel_button" >
                 <property name="text" >
                  <string>Cancel</string>
@@ -261,7 +268,7 @@
          <item>
           <layout class="QHBoxLayout" >
            <item>
-            <widget class="QTableWidget" name="input_table" >
+            <widget class="InputMcaTableWidget" name="input_table" >
              <property name="enabled" >
               <bool>true</bool>
              </property>
@@ -310,6 +317,13 @@
                  <widget class="QPushButton" name="input_next_button" >
                   <property name="text" >
                    <string>Next</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="input_prev_button" >
+                  <property name="text" >
+                   <string>Prev</string>
                   </property>
                  </widget>
                 </item>
@@ -403,9 +417,16 @@
              </property>
              <layout class="QVBoxLayout" >
               <item>
-               <widget class="QPushButton" name="pushButton_8" >
+               <widget class="QPushButton" name="weight_next_button" >
                 <property name="text" >
                  <string>Next</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="weight_prev_button" >
+                <property name="text" >
+                 <string>Prev</string>
                 </property>
                </widget>
               </item>
@@ -614,6 +635,13 @@
                  </widget>
                 </item>
                 <item>
+                 <widget class="QPushButton" name="run_prev_button" >
+                  <property name="text" >
+                   <string>Prev</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QPushButton" name="run_cancel_button" >
                   <property name="text" >
                    <string>Cancel</string>
@@ -645,6 +673,11 @@
    <class>CriteriaMcaTableWidget</class>
    <extends>QTableWidget</extends>
    <header>CriteriaMcaTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>InputMcaTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>InputMcaTableWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

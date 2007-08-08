@@ -20,7 +20,10 @@ class AlternativeTableWidget(QTableWidget):
             item.setText(str(alternative_recs[i][self.altern_name_column]))
             self.setItem(i, 0, item)
         self.resizeColumnsToContents()
-    
+
+    def get_selected_ids(self):
+        return []
+
     def get_current_row_items(self):
         selected_row = self.selectedItems()
         if selected_row:

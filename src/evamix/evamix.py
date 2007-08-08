@@ -77,7 +77,9 @@ class Evamix(object):
         
         #Compute absolute sum of qualitative impace matrix
         qual_abs_sum = self.absolute_sum(qual_impact_matrix)
-        
+        print "\nAbsolute Sum of qualitative impact matrix:"
+        print qual_abs_sum
+               
         #Generate qualitative final matrix
         qual_final_matrix = self.gen_qual_final_matrix(qual_impact_matrix, qual_abs_sum)
         print "\nFinal qualitative matrix:"
