@@ -4,7 +4,7 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-class AlternativeMcaTableWidget(QTableWidget):
+class WeightMcaTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
         self.altern_id_column = 0
@@ -20,16 +20,12 @@ class AlternativeMcaTableWidget(QTableWidget):
         self.setRowCount(self.num_rows)
         
         for i in range(self.num_rows):
-            #Add checkbox widget to first column
-            check_box = QCheckBox(self)
-            #check_box.setValue(alternative_recs[i][self.altern_id_column])
-            self.setCellWidget(i, self.altern_check_display_column, check_box)      
-            
-            #Add alternative name to second column
-            item = QTableWidgetItem()
-            item.setText(str(alternative_recs[i][self.altern_name_column]))
-
-            self.setItem(i, self.altern_name_display_column, item)
+            (altern_id, altern_name) = alternative_recs[i]
+            #Add alternative name header 
+            header_item = QTableWidgetItem()
+            header_item.setText(altern_name)
+            header_item.setToolTip(altern_name)
+            self.setVerticalHeaderItem(i, header_item)
         self.resizeColumnsToContents()
     
     def get_selected_indexes(self):

@@ -1,4 +1,5 @@
 from delphos_exceptions import *
+from common_functions import *
 import csv
 from copy import deepcopy
 
@@ -278,12 +279,6 @@ class Evamix(object):
         for i in range(len(in_matrix)):
             col_vals.append(in_matrix[i][col])
         return col_vals
-
-    def initialize_float_array(self, rows, cols):
-        mat = []
-        for x in range(rows):
-            mat.append([0.0] * cols)
-        return mat
     
     def absolute_sum(self, matrix):
         abs_sum = 0.0

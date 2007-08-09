@@ -110,7 +110,7 @@ fisheries_default_criteria = [
     ],[
        "Coastal development", 
        "Ordinal", 
-       [["Highly developed and industrialized",4],["Developed",3],["Semi-rural",2],["Rural",1]], 
+       [["Highly developed and industrialized",1],["Developed",2],["Semi-rural",3],["Rural",4]], 
        "C"
     ],[
        "Socioeconomic level of fishing community", 

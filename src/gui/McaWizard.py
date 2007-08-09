@@ -59,11 +59,10 @@ class McaWizard(QDialog, Ui_McaWizard):
 
 	def setup_weight_input(self):
 		#Reuse selected altern ids from 
-		self.weight_table.load(self.altern_data)
+		self.weight_table.load(self.selected_altern_data)
 
 	def process_altern_select(self):
 		selected_altern_indexes = self.altern_table.get_selected_indexes()
-		print selected_altern_indexes
 		if len(selected_altern_indexes) < 2:
 			QMessageBox.critical(self,"Error", "You must select at least two alternatives")
 		else:
@@ -71,27 +70,29 @@ class McaWizard(QDialog, Ui_McaWizard):
 			self.selected_altern_data = []
 			for index in selected_altern_indexes:
 				self.selected_altern_data.append(self.altern_data[index])
-			print self.selected_altern_data  
 			self.next_click()
 		
 	def process_crit_select(self):
 		selected_crit_indexes = self.crit_table.get_selected_indexes()
-		print selected_crit_indexes
-		if len(selected_crit_indexes) < 2:
-			QMessageBox.critical(self,"Error", "You must select at least two criteria")
+		if len(selected_crit_indexes) < 1:
+			QMessageBox.critical(self,"Error", "You must select at least one criteria")
 		else:
 			#Build list of selected crit data
 			self.selected_crit_data = []
 			for index in selected_crit_indexes:
 				self.selected_crit_data.append(self.crit_data[index])
-			print self.selected_crit_data  
 			self.next_click()
 
 	def process_data_input(self):
-		self.next_click()
+		#Get data from table
+		input_data = self.input_table.get_input_data()
+		if input_data:
+			print input_data
+			self.next_click()
 
 	def process_weight_input(self):
-		self.next_click()
+		QMessageBox.critical(self,"Error", "Not Implemented")
+		#self.next_click()
 
 	def process_run(self):
 		"""Processes clicking of 'Run Analysis' button
@@ -104,10 +105,14 @@ class McaWizard(QDialog, Ui_McaWizard):
 			self.emit(SIGNAL("mca_analysis_info_collected"), analysis_info)
 
 	def next_click(self):
+		"""Shift stack forward one
+		"""
 		current_index = self.mca_stack.currentIndex()
 		self.mca_stack.setCurrentIndex(current_index+1)
 
 	def prev_click(self):
+		"""Shift stack back one
+		"""
 		current_index = self.mca_stack.currentIndex()
 		prev_widget = self.mca_stack.widget(current_index-1)
 		self.mca_stack.setCurrentWidget(prev_widget)	
@@ -119,8 +124,14 @@ class McaWizard(QDialog, Ui_McaWizard):
 		self.deleteLater()
 	
 	def process_current_change(self, index):
+		"""Loads the appropriate widget when the next button is clicked
+		"""
 		if self.cur_index < index:
 			if index is 2:
 				self.setup_data_input()
 			elif index is 3:
 				self.setup_weight_input()
+			elif index is 4:
+				self.setup_run()
+		self.cur_index = index
+			
