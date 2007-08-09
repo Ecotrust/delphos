@@ -19,12 +19,13 @@ class McaWizard(QDialog, Ui_McaWizard):
 		self.gui_manager = gui_manager
 		self.isError = False	#Error flag for form processing
 		self.errorMsg = ""
+		self.cur_index = 0
 		
 		#Button Signals
-		QObject.connect(self.altern_next_button,QtCore.SIGNAL("clicked()"), self.next_click)
-		QObject.connect(self.crit_next_button,QtCore.SIGNAL("clicked()"), self.next_click)
-		QObject.connect(self.input_next_button,QtCore.SIGNAL("clicked()"), self.next_click)
-		QObject.connect(self.weight_next_button,QtCore.SIGNAL("clicked()"), self.next_click)
+		QObject.connect(self.altern_next_button,QtCore.SIGNAL("clicked()"), self.process_altern_select)
+		QObject.connect(self.crit_next_button,QtCore.SIGNAL("clicked()"), self.process_crit_select)
+		QObject.connect(self.input_next_button,QtCore.SIGNAL("clicked()"), self.process_data_input)
+		QObject.connect(self.weight_next_button,QtCore.SIGNAL("clicked()"), self.process_weight_input)
 		
 		QObject.connect(self.crit_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
 		QObject.connect(self.input_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
@@ -40,30 +41,60 @@ class McaWizard(QDialog, Ui_McaWizard):
 		QObject.connect(self.run_analysis_button,QtCore.SIGNAL("clicked()"), self.process_run)
 		
 		#Other signals
-		QObject.connect(self.mca_tab_widget,QtCore.SIGNAL("currentChanged(int)"), self.process_tab_change)
-		QObject.connect(self, QtCore.SIGNAL("input_data_tab_displayed"), self.setup_input_tab)		
+		QObject.connect(self.mca_stack,QtCore.SIGNAL("currentChanged(int)"), self.process_current_change)
+		
+		self.setup_crit_select()		
+		self.setup_altern_select()
 
-		#Load tabs
-		self.setup_alternative_tab()
-		self.setup_criteria_tab()
-
-	def setup_alternative_tab(self):
+	def setup_altern_select(self):
 		self.altern_data = self.project.get_all_alternatives()
-		self.altern_table.load(self.altern_data)
-	
-	def setup_criteria_tab(self):
+		self.altern_table.load(self.altern_data)		
+
+	def setup_crit_select(self):
 		self.crit_data = self.project.get_all_criteria()
 		self.crit_table.load(self.crit_data)
 
-	def setup_input_tab(self):
-		selected_altern_ids = self.altern_table.get_selected_ids()
-		selected_crit_ids = self.crit_table.get_selected_ids()
-		if not selected_altern_ids or not selected_crit_ids:
-			QMessageBox.critical(self,"Input Error", "Reminder: before inputting data, you must first select alternatives and criteria to include.")
-		self.input_table.load(self.altern_data, self.crit_data, selected_altern_ids, selected_crit_ids)
+	def setup_data_input(self):
+		self.input_table.load(self.selected_altern_data, self.selected_crit_data)
+
+	def setup_weight_input(self):
+		#Reuse selected altern ids from 
+		self.weight_table.load(self.altern_data)
+
+	def process_altern_select(self):
+		selected_altern_indexes = self.altern_table.get_selected_indexes()
+		print selected_altern_indexes
+		if len(selected_altern_indexes) < 2:
+			QMessageBox.critical(self,"Error", "You must select at least two alternatives")
+		else:
+			#Build list of selected altern data
+			self.selected_altern_data = []
+			for index in selected_altern_indexes:
+				self.selected_altern_data.append(self.altern_data[index])
+			print self.selected_altern_data  
+			self.next_click()
+		
+	def process_crit_select(self):
+		selected_crit_indexes = self.crit_table.get_selected_indexes()
+		print selected_crit_indexes
+		if len(selected_crit_indexes) < 2:
+			QMessageBox.critical(self,"Error", "You must select at least two criteria")
+		else:
+			#Build list of selected crit data
+			self.selected_crit_data = []
+			for index in selected_crit_indexes:
+				self.selected_crit_data.append(self.crit_data[index])
+			print self.selected_crit_data  
+			self.next_click()
+
+	def process_data_input(self):
+		self.next_click()
+
+	def process_weight_input(self):
+		self.next_click()
 
 	def process_run(self):
-		"""Processes clicking of OK button in dialog
+		"""Processes clicking of 'Run Analysis' button
 		"""
 		analysis_info = []
 		
@@ -73,16 +104,13 @@ class McaWizard(QDialog, Ui_McaWizard):
 			self.emit(SIGNAL("mca_analysis_info_collected"), analysis_info)
 
 	def next_click(self):
-		current_index = self.mca_tab_widget.currentIndex()
-		print "current index: "+str(current_index)
-		next_widget = self.mca_tab_widget.widget(current_index+1)
-		self.mca_tab_widget.setCurrentWidget(next_widget)
+		current_index = self.mca_stack.currentIndex()
+		self.mca_stack.setCurrentIndex(current_index+1)
 
 	def prev_click(self):
-		current_index = self.mca_tab_widget.currentIndex()
-		print "current index: "+str(current_index)
-		prev_widget = self.mca_tab_widget.widget(current_index-1)
-		self.mca_tab_widget.setCurrentWidget(prev_widget)	
+		current_index = self.mca_stack.currentIndex()
+		prev_widget = self.mca_stack.widget(current_index-1)
+		self.mca_stack.setCurrentWidget(prev_widget)	
 
 	def process_reject(self):
 		"""Processes clicking of Cancel button in dialog
@@ -90,6 +118,9 @@ class McaWizard(QDialog, Ui_McaWizard):
 		self.hide()
 		self.deleteLater()
 	
-	def process_tab_change(self, new_tab):
-		if self.mca_tab_widget.tabText(new_tab) == "Input Data":
-			self.emit(SIGNAL("input_data_tab_displayed"))
+	def process_current_change(self, index):
+		if self.cur_index < index:
+			if index is 2:
+				self.setup_data_input()
+			elif index is 3:
+				self.setup_weight_input()

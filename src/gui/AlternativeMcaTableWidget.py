@@ -15,7 +15,7 @@ class AlternativeMcaTableWidget(QTableWidget):
         self.altern_name_display_column = 1
 
     def load(self, alternative_recs):
-        """Loads the table with alternatives, given an array of records
+        """Loads the table with alternatives, given a list of records
         """
         self.clearContents()
         self.num_rows = len(alternative_recs)
@@ -34,14 +34,18 @@ class AlternativeMcaTableWidget(QTableWidget):
             self.setItem(i, self.altern_name_display_column, item)
         self.resizeColumnsToContents()
     
-    def get_selected_ids(self):
-        selected_ids = []
+    def get_selected_indexes(self):
+        """Returns list of indexes of alternatives selected in table
+        
+        Can be used for lookup in list structure containing alternatives data
+        """
+        selected_indexes = []
         for row in range(self.num_rows):
             check_widget = self.cellWidget(row, self.altern_check_display_column)
             check_state = check_widget.checkState()
             if check_state == Qt.Checked:
-                selected_ids.append(check_widget.getValue())
-        return selected_ids
+                selected_indexes.append(row)
+        return selected_indexes
     
     def get_current_row_items(self):
         selected_row = self.selectedItems()

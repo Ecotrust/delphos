@@ -7,49 +7,50 @@ from PyQt4.QtGui import *
 class InputMcaTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
+        self.vertical_header_width = 300 #criteria descriptions are so freaking long!
 
-    def load(self, altern_data, crit_data, altern_ids, crit_ids):
-        print altern_data
-        print crit_data
-        print altern_ids
-        print crit_ids
-        
+    def load(self, selected_altern_data, selected_crit_data):        
         self.clear()
         self.hide()    #Force size recalculation and layout when shown again
-        self.num_rows = len(crit_ids)
-        self.num_cols = len(altern_ids)
+        self.num_rows = len(selected_crit_data)
+        self.num_cols = len(selected_altern_data)
         self.setRowCount(self.num_rows)
         self.setColumnCount(self.num_cols)
-
-        #Load top headers
-        horizontal_labels = []
-        for i in range(len(altern_ids)):
-            horizontal_labels.append("Altern "+str(i))
-        self.setHorizontalHeaderLabels(horizontal_labels)
-
-        #Load row headers
-        vertical_labels = []
-        for i in range(len(crit_ids)):
-            vertical_labels.append("Crit "+str(i))
-        self.setVerticalHeaderLabels(vertical_labels)
     
-        #Load input widgets
-        for i in range(len(crit_ids)):
-            (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = crit_data[i]
-            for j in range(len(altern_ids)):
-                if crit_type == "Ordinal":
-                    combo_item = QComboBox()
-                    text = crit_options_units[0]
-                    print combo_item
-                    print "inserting: "+text
-                    combo_item.insertItem(0, text)
-                    print "is it in?: "+combo_item.itemText(0)
-                    self.setCellWidget(i, j, combo_item)                    
-                #item = QTableWidgetItem()
-                #item.setText(str(crit_id))
-                #self.setItem(i, j, item)
-        
+        #Create input widgets for every combination of alternative and criteria given
+        crit_id = crit_name = crit_type = crit_options_units = cost_benefits = None
+        altern_id = altern_name = None
+        for i in range(len(selected_crit_data)):
+            (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = selected_crit_data[i]
+            for j in range(len(selected_altern_data)):
+                (altern_id, altern_name) = selected_altern_data[j]
+                #Insert row headers 
+                if i is 0:
+                    header_item = QTableWidgetItem()
+                    #header_item.setSizeHint(QSize(self.horizontal_header_width, header_item.sizeHint().height()))        
+                    header_item.setText(altern_name)
+                    header_item.setToolTip(altern_name)
+                    self.setHorizontalHeaderItem(j, header_item)
+                #Insert column headers
+                if j is 0: 
+                    header_item = QTableWidgetItem()
+                    header_item.setSizeHint(QSize(self.vertical_header_width, header_item.sizeHint().height()))
+                    header_item.setText(crit_name)
+                    header_item.setToolTip(crit_name)
+                    self.setVerticalHeaderItem(i, header_item)
+                #Create and insert combo box
+                if crit_type == "Ordinal" or crit_type == "Binary":
+                    combo_box = QComboBox(self)
+                    for option in crit_options_units:
+                        option_name = option[0]
+                        option_val = option[1]
+                        combo_box.addItem(option_name, QVariant(option_val))
+                    self.setCellWidget(i, j, combo_box)
+                                        
         self.show()       
+        
+    def get_input(self, row, column):
+        pass
     
     def get_current_row_items(self):
         pass
