@@ -96,6 +96,7 @@ class Evamix(object):
         print "\nFinal scores:"
         for i in range(len(final_scores)):
             print str(i)+": "+str(final_scores[i])
+        return final_scores
 
     def standardize_weights(self, weights):
         """Standardizes a set of criteria weights, modifies the list given, returns nothing
