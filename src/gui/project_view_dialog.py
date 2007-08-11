@@ -10,7 +10,7 @@ from delphos_exceptions import *
 from project_view_ui import Ui_ProjectView
 from add_alternative_dialog import AddAlternDialog
 from add_criteria_dialog import AddCriteriaDialog
-from McaWizard import McaWizard
+from McaWizard import McaWizard 
 
 class ProjectViewDialog(QDialog, Ui_ProjectView):
     """Manages interaction with the project interface and the underlying DB
@@ -128,5 +128,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
             self.mca_wizard.show()
             
-    def finish_new_analysis(self, analysis_info):
-        pass
+    def finish_new_analysis(self, input_data, input_weights, selected_crit_types):
+        self.mca_wizard.hide()
+        self.mca_wizard.deleteLater()
+        self.project.run_mca(input_data, input_weights, selected_crit_types)
+        

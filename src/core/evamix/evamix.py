@@ -141,7 +141,7 @@ class Evamix(object):
         
         Compares quantitative criteria for each alternative"""
         dim = len(in_matrix)
-        mat = self.initialize_float_array(dim, dim)
+        mat = initialize_float_array(dim, dim)
         #Pair-wise calculations
         for i in range(dim):
             for j in range(dim):
@@ -169,7 +169,7 @@ class Evamix(object):
         
         Compares qualitative criteria for each alternative"""
         dim = len(in_matrix)
-        impact_matrix = self.initialize_float_array(dim, dim)
+        impact_matrix = initialize_float_array(dim, dim)
         for i in range(dim):
             for j in range(dim):
                 #Don't compare alternative to itself
@@ -198,7 +198,7 @@ class Evamix(object):
 
     def gen_quant_final_matrix(self, quant_impact_matrix, quant_abs_sum):
         dim = len(quant_impact_matrix)
-        final_matrix = self.initialize_float_array(dim, dim)
+        final_matrix = initialize_float_array(dim, dim)
         for i in range(dim):
             for j in range(dim):
                 final_matrix[i][j] = quant_impact_matrix[i][j]/quant_abs_sum
@@ -206,7 +206,7 @@ class Evamix(object):
 
     def gen_qual_final_matrix(self, qual_impact_matrix, qual_abs_sum):
         dim = len(qual_impact_matrix)
-        final_matrix = self.initialize_float_array(dim, dim)
+        final_matrix = initialize_float_array(dim, dim)
         for i in range(dim):
             for j in range(dim):
                 final_matrix[i][j] = qual_impact_matrix[i][j]/qual_abs_sum
@@ -244,7 +244,7 @@ class Evamix(object):
         #print "sum quantitative weights: "+str(sum_quant_weights)
         #print "sum qualitative weights: "+str(sum_qual_weights)
          
-        final_matrix = self.initialize_float_array(quant_h, quant_h)
+        final_matrix = initialize_float_array(quant_h, quant_h)
         for i in range(quant_h):
             for j in range(quant_h):
                 final_matrix[i][j] = quant_matrix[i][j]*sum_quant_weights + qual_matrix[i][j]*sum_qual_weights

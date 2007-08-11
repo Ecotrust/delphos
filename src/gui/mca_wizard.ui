@@ -19,7 +19,7 @@
    <item>
     <widget class="QStackedWidget" name="mca_stack" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="select_altern_page" >
       <layout class="QHBoxLayout" >
@@ -490,6 +490,12 @@
            <property name="enabled" >
             <bool>true</bool>
            </property>
+           <property name="minimumSize" >
+            <size>
+             <width>400</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="mouseTracking" >
             <bool>false</bool>
            </property>
@@ -723,14 +729,14 @@
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="num_alternatives_label_2" >
+                 <widget class="QLabel" name="num_alternatives_label" >
                   <property name="text" >
                    <string/>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="num_criteria_label_2" >
+                 <widget class="QLabel" name="num_criteria_label" >
                   <property name="text" >
                    <string/>
                   </property>

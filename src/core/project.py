@@ -14,6 +14,7 @@ from csv_types import *
 
 from data import default_criteria
 from data import default_alternatives
+from evamix.evamix import *
 
 class Project:
 	"""Represents a delphos project.
@@ -196,3 +197,8 @@ class Project:
 	 
 	def get_input_matrix_as_string(self):
 		print "Not Implemented"
+		
+	def run_mca(self, input_data, input_weights, selected_crit_types):
+		evamix = Evamix()
+		final_scores = evamix.do_analysis(input_data, input_weights, selected_crit_types)
+		print final_scores

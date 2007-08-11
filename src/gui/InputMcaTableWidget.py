@@ -12,6 +12,10 @@ class InputMcaTableWidget(QTableWidget):
         self.vertical_header_width = 300 #criteria descriptions are so freaking long!
 
     def load(self, selected_altern_data, selected_crit_data):
+        """Given alternative and criteria data (w/ options), loads
+        a table widget with the necessary table widget items and
+        combo boxes
+        """ 
         self.selected_altern_data = selected_altern_data
         self.selected_crit_data = selected_crit_data  
         self.clear()
@@ -58,24 +62,29 @@ class InputMcaTableWidget(QTableWidget):
         
     def get_input_data(self):
         """Returns a 2D list of input values (integers) for use in MCA
+        
+        Note the resulting list is transposed as the input table is crit x altern and the
+        algorithm expects altern x crit
         """ 
-        input_data = initialize_int_array(self.num_rows, self.num_cols)
+        #Initialize with opposite dimensions, need to load transposed for input into algorithm
+        input_data = initialize_int_array(self.num_cols, self.num_rows)  #Note reversal, see note above
         for i in range(len(self.selected_crit_data)):
             (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = self.selected_crit_data[i]
             for j in range(len(self.selected_altern_data)):
                 (altern_id, altern_name) = self.selected_altern_data[j]
-                #print "i:"+str(i)+" j:"+str(j)
                 if crit_type == "Ordinal" or crit_type == "Binary":
                     #Get value from combo box
                     cell_widget = self.cellWidget(i,j)
                     #print cell_widget
+                    if not cell_widget:
+                        QMessageBox.critical(self,"Error", "Unable to access combo box in "+str(i+1)+", column "+str(j+1)+"\nExpected an integer, received '"+value+"'")
                     (value, ok) = cell_widget.itemData(cell_widget.currentIndex()).toInt()
                     if not ok:
                         QMessageBox.critical(self,"Error", "Unable to read input in row "+str(i+1)+", column "+str(j+1)+"\nExpected an integer, received '"+value+"'")
                     #print "value: "+str(value)
                     #print "ok: "+str(ok)   
-                    #Save the value                                     
-                    input_data[i][j] = value
+                    #Save the value from i,j to j,i
+                    input_data[j][i] = value
                 elif crit_type == "Ratio":
                     #Get value from table item
                     table_item = self.item(i,j) 
@@ -83,19 +92,18 @@ class InputMcaTableWidget(QTableWidget):
                     value = table_item.text()
                     #Check for no value
                     if not value:
-                        QMessageBox.critical(self,"Error", "Missing input. row "+str(i+1)+", column "+str(j+1))
+                        QMessageBox.critical(self,"Error", "Missing input in row "+str(i+1)+", column "+str(j+1))
                         return None                
                     #Check for non-integer
                     if not strIsInt(value):
                         QMessageBox.critical(self,"Error", "Invalid input in row "+str(i+1)+", column "+str(j+1)+"\nExpected an integer, received '"+value+"'")
                         return None                
-                    print "value: "+str(value)
-                    #Save the value
-                    input_data[i][j] = int(value)
+                    #print "value: "+str(value)
+                    #print "from i:"+str(i)+" j:"+str(j)
+                    #Save the value from i,j to j,i
+                    #print "into: i:"+str(j)+", j:"+str(i)
+                    input_data[j][i] = int(value)
         return input_data
-    
-    def get_current_row_items(self):
-        pass
 
 if __name__ == "__main__":
     arr = initialize_int_array(2,4)

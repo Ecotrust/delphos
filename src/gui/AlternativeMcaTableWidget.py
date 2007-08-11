@@ -22,7 +22,6 @@ class AlternativeMcaTableWidget(QTableWidget):
         for i in range(self.num_rows):
             #Add checkbox widget to first column
             check_box = QCheckBox(self)
-            #check_box.setValue(alternative_recs[i][self.altern_id_column])
             self.setCellWidget(i, self.altern_check_display_column, check_box)      
             
             #Add alternative name to second column

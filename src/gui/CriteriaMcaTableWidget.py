@@ -4,8 +4,6 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-from DelphosCheckBox import *
-
 class CriteriaMcaTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
@@ -26,8 +24,7 @@ class CriteriaMcaTableWidget(QTableWidget):
         
             for i in range(self.num_rows):
                 #Add checkbox widget to first column
-                check_box = DelphosCheckBox(self)
-                check_box.setValue(criteria_recs[i][self.id_column])
+                check_box = QCheckBox(self)
                 self.setCellWidget(i, self.check_column, check_box) 
                 #Add criteria description to 2nd column
                 name_item = QTableWidgetItem()

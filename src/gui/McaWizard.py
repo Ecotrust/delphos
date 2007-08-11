@@ -59,7 +59,11 @@ class McaWizard(QDialog, Ui_McaWizard):
 
 	def setup_weight_input(self):
 		#Reuse selected altern ids from 
-		self.weight_table.load(self.selected_altern_data)
+		self.weight_table.load(self.selected_crit_data)
+	
+	def setup_run(self):
+		self.num_alternatives_label.setText(str(self.num_selected_alternatives))
+		self.num_criteria_label.setText(str(self.num_selected_criteria))
 
 	def process_altern_select(self):
 		selected_altern_indexes = self.altern_table.get_selected_indexes()
@@ -71,6 +75,7 @@ class McaWizard(QDialog, Ui_McaWizard):
 			for index in selected_altern_indexes:
 				self.selected_altern_data.append(self.altern_data[index])
 			self.next_click()
+		self.num_selected_alternatives = len(self.selected_altern_data)
 		
 	def process_crit_select(self):
 		selected_crit_indexes = self.crit_table.get_selected_indexes()
@@ -79,30 +84,36 @@ class McaWizard(QDialog, Ui_McaWizard):
 		else:
 			#Build list of selected crit data
 			self.selected_crit_data = []
+			self.selected_crit_types = []
 			for index in selected_crit_indexes:
-				self.selected_crit_data.append(self.crit_data[index])
+				crit = self.crit_data[index]
+				crit_type = crit[2]
+				self.selected_crit_data.append(crit)
+				self.selected_crit_types.append(crit_type)
 			self.next_click()
+		self.num_selected_criteria = len(self.selected_crit_data)
 
 	def process_data_input(self):
 		#Get data from table
-		input_data = self.input_table.get_input_data()
-		if input_data:
-			print input_data
+		self.input_data = self.input_table.get_input_data()
+		if self.input_data:
+			#for row in self.input_data
+			#	print row
 			self.next_click()
 
 	def process_weight_input(self):
-		QMessageBox.critical(self,"Error", "Not Implemented")
-		#self.next_click()
+		self.input_weights = self.weight_table.get_input_weights()
+		if self.input_weights:
+			#print self.input_weights
+			self.next_click()
 
 	def process_run(self):
 		"""Processes clicking of 'Run Analysis' button
 		"""
-		analysis_info = []
-		
 		if self.isError:
 			self.isError = False
 		else:
-			self.emit(SIGNAL("mca_analysis_info_collected"), analysis_info)
+			self.emit(SIGNAL("mca_analysis_info_collected"), self.input_data, self.input_weights, self.selected_crit_types)
 
 	def next_click(self):
 		"""Shift stack forward one
