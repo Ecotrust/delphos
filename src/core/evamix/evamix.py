@@ -1,5 +1,5 @@
 from delphos_exceptions import *
-from common_functions import *
+from util.common_functions import *
 import csv
 from copy import deepcopy
 

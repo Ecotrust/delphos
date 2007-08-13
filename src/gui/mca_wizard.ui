@@ -19,7 +19,7 @@
    <item>
     <widget class="QStackedWidget" name="mca_stack" >
      <property name="currentIndex" >
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="select_altern_page" >
       <layout class="QHBoxLayout" >
@@ -337,14 +337,14 @@
               <item>
                <widget class="QPushButton" name="export_button" >
                 <property name="text" >
-                 <string>Export Template</string>
+                 <string>Export CSV Template</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="import_button" >
                 <property name="text" >
-                 <string>Import From Template</string>
+                 <string>Import From CSV</string>
                 </property>
                </widget>
               </item>

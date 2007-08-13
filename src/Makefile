@@ -12,6 +12,7 @@ clean:
 	cd core; $(MAKE) clean
 	cd data; $(MAKE) clean
 	cd core; cd evamix; $(MAKE) clean
+	cd util; $(MAKE) clean
 cleandoc:
 	rm -f resources_rc.py
 

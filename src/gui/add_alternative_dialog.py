@@ -36,7 +36,7 @@ class AddAlternDialog(QDialog, Ui_AddAlternDialog):
 		if self.isError:
 			self.isError = False
 		else:
-			self.emit(SIGNAL("add_alternative_info_collected"), str(alternative_name))
+			self.emit(SIGNAL("add_alternative_info_collected"), unicode(alternative_name))
 			
 	def process_reject(self):
 		"""Processes clicking of Cancel button in dialog

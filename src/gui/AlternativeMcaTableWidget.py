@@ -26,7 +26,7 @@ class AlternativeMcaTableWidget(QTableWidget):
             
             #Add alternative name to second column
             item = QTableWidgetItem()
-            item.setText(str(alternative_recs[i][self.altern_name_column]))
+            item.setText(unicode(alternative_recs[i][self.altern_name_column]))
 
             self.setItem(i, self.altern_name_display_column, item)
         self.resizeColumnsToContents()

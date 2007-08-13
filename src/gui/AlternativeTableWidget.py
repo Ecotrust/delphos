@@ -17,7 +17,7 @@ class AlternativeTableWidget(QTableWidget):
         
         for i in range(len(alternative_recs)):
             item = QTableWidgetItem()
-            item.setText(str(alternative_recs[i][self.altern_name_column]))
+            item.setText(unicode(alternative_recs[i][self.altern_name_column]))
             self.setItem(i, 0, item)
         self.resizeColumnsToContents()
 

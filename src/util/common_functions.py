@@ -22,3 +22,11 @@ def initialize_int_array(rows, cols):
     for x in range(rows):
         mat.append([0] * cols)
     return mat
+
+def initialize_str_array(rows, cols):
+    """Allocates a lists of lists of the given dimension with type int
+    """
+    mat = []
+    for x in range(rows):
+        mat.append([""] * cols)
+    return mat
