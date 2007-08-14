@@ -18,7 +18,7 @@ class OpenProjectDialog(QDialog, Ui_OpenProjectDialog):
 		self.gui_manager = gui_manager
 		self.isError = False	#Error flag for form processing
 		self.errorMsg = ""
-		self.default_file_extension = ".del"	#Also defined in accept regex below
+		self.default_file_extension = "del"	#Also defined in accept regex below
 		
 		self.filename = ""
 		self.project_path = ""
@@ -50,9 +50,9 @@ class OpenProjectDialog(QDialog, Ui_OpenProjectDialog):
 		if not self.filename:
 			self.isError = True
 			QMessageBox.critical(self,"Delphos", "Please select a project by clicking the browse button")
-		elif not re.search('[.]del$', self.filename):
+		elif not re.search('[.]'+self.default_file_extension+'$', self.filename):
 			self.isError = True
-			QMessageBox.critical(self,"Delphos", "You did not choose a valid Delphos project file.  A delphos project file should end in "+self.default_file_extension)
+			QMessageBox.critical(self,"Delphos", "You did not choose a valid Delphos project file.  A delphos project file should end in ."+self.default_file_extension)
 
 
 		if self.isError:

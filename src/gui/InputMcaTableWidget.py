@@ -11,10 +11,15 @@ class InputMcaTableWidget(QTableWidget):
         QTableWidget.__init__(self, parent)
         self.vertical_header_width = 300 #criteria descriptions are so freaking long!
 
-    def load(self, selected_altern_data, selected_crit_data):
+    def load(self, selected_altern_data, selected_crit_data, input_data=None):
         """Given alternative and criteria data (w/ options), loads
         a table widget with the necessary table widget items and
         combo boxes
+        
+        Optionally, takes a 2D list containing values to use in setting
+        up the widget (integer item value or integer drop down value).  
+        Can be used after importing external data.  Input is expected to be
+        legal, eg. drop down value given matches one of possible 
         """ 
         self.selected_altern_data = selected_altern_data
         self.selected_crit_data = selected_crit_data  
@@ -53,12 +58,27 @@ class InputMcaTableWidget(QTableWidget):
                         option_name = option[0]
                         option_val = option[1]
                         combo_box.addItem(option_name, QVariant(option_val))
+                        
+                    if input_data:
+                        #set to given input val
+                        input_val = input_data[i][j]
+                        #print "input val: "+str(input_val)
+                        option_num = combo_box.findData(QVariant(input_val))
+                        #print "option num: "+str(option_num)
+                        if option_num < 0:
+                            QMessageBox.critical(self,"Error", "Invalid option ("+str(input_val)+") given in row "+str(i+1)+", column "+str(j+1))
+                            return False
+                        else:
+                            combo_box.setCurrentIndex(option_num)
                     self.setCellWidget(i, j, combo_box)
                 elif crit_type == "Ratio":
                     table_item = QTableWidgetItem("")
+                    if input_data:
+                        table_item.setText(input_data[i][j])
                     self.setItem(i, j, table_item)
                                         
-        self.show()       
+        self.show()
+        return True      
         
     def get_input_data(self):
         """Returns a 2D list of input values (integers) for use in MCA

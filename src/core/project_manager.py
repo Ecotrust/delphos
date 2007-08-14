@@ -25,7 +25,7 @@ class ProjectManager:
 		
 		#If project already open then close it first
 		if self.current_project:
-			self.close_current_project()
+			self.__close_current_project()
 		
 		if not path:
 			path = self.default_project_path
