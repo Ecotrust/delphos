@@ -129,7 +129,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             self.mca_wizard.show()
             
     def finish_new_analysis(self, input_data, input_weights, selected_crit_types):
-        #self.mca_wizard.hide()
-        #self.mca_wizard.deleteLater()
         self.project.run_mca(input_data, input_weights, selected_crit_types)
+        self.mca_wizard.hide()
+        self.mca_wizard.deleteLater()
         

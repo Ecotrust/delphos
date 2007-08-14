@@ -13,7 +13,7 @@ from delphos_exceptions import *
 from csv_types import *
 
 #from data import default_criteria
-from data.india1_criteria import *
+from data.old_india1_criteria import *
 from data import default_alternatives
 from evamix.evamix import *
 

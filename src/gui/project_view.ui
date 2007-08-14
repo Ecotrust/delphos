@@ -303,13 +303,6 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="edit_criteria_button" >
-              <property name="text" >
-               <string>Edit</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QPushButton" name="remove_criteria_button" >
               <property name="text" >
                <string>Remove</string>
@@ -405,6 +398,12 @@
            <layout class="QVBoxLayout" >
             <item>
              <widget class="QTableWidget" name="view_analysis_table" >
+              <property name="minimumSize" >
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
               <column>
                <property name="text" >
                 <string>Name</string>
@@ -412,7 +411,12 @@
               </column>
               <column>
                <property name="text" >
-                <string>Date Performed</string>
+                <string>Description</string>
+               </property>
+              </column>
+              <column>
+               <property name="text" >
+                <string>Date</string>
                </property>
               </column>
              </widget>
@@ -455,14 +459,45 @@
           <item>
            <layout class="QHBoxLayout" >
             <item>
-             <widget class="QLabel" name="label_4" >
-              <property name="text" >
-               <string>Description:</string>
+             <layout class="QVBoxLayout" >
+              <property name="spacing" >
+               <number>2</number>
               </property>
-             </widget>
+              <item>
+               <widget class="QLabel" name="label_5" >
+                <property name="text" >
+                 <string>Name:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_4" >
+                <property name="text" >
+                 <string>Description:</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
-             <widget class="QLineEdit" name="analysis_name_edit" />
+             <layout class="QVBoxLayout" >
+              <property name="spacing" >
+               <number>2</number>
+              </property>
+              <item>
+               <widget class="QLineEdit" name="analysis_name_edit_2" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>150</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="analysis_name_edit" />
+              </item>
+             </layout>
             </item>
            </layout>
           </item>

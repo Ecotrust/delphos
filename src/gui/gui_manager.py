@@ -186,7 +186,7 @@ class GuiManager(QObject):
 		self.win.setCentralWidget(self.project_view)
 		self.project_view.show()
 		self.show_documentation_window()		
-		
+
 	def get_screen_dimensions(self):
 		"""Return (width, height) tuple in pixels of the screen containing the delphos window
 		"""

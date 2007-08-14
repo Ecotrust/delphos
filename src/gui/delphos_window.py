@@ -15,6 +15,8 @@ class DelphosWindow(QMainWindow):
 		self.ui.setupUi(self)			#Create the components of the window
 		self.dock_full_screen = False
 		self.min_doc_dock_width = 200
+		
+		self.showMaximized()
 
 		self.base_fishery_url = 'qrc:/documentation/fisheries_documentation.html#'
 		self.base_mpa_url = 'qrc:/documentation/mpa_documentation.html#'
