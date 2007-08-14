@@ -59,6 +59,11 @@ class McaWizard(QDialog, Ui_McaWizard):
 		QObject.connect(self.weight_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
 		QObject.connect(self.run_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
 
+		QObject.connect(self.check_all_altern_button,QtCore.SIGNAL("clicked()"), self.check_all_alternatives)
+		QObject.connect(self.check_all_criteria_button,QtCore.SIGNAL("clicked()"), self.check_all_criteria)
+		QObject.connect(self.uncheck_all_altern_button,QtCore.SIGNAL("clicked()"), self.uncheck_all_alternatives)
+		QObject.connect(self.uncheck_all_criteria_button,QtCore.SIGNAL("clicked()"), self.uncheck_all_criteria)
+		QObject.connect(self.equal_weight_button,QtCore.SIGNAL("clicked()"), self.assign_equal_weight)		
 		QObject.connect(self.export_button,QtCore.SIGNAL("clicked()"), self.process_template_export)
 		QObject.connect(self.import_button,QtCore.SIGNAL("clicked()"), self.process_template_import)		
 		QObject.connect(self.run_analysis_button,QtCore.SIGNAL("clicked()"), self.process_run)
@@ -118,6 +123,21 @@ class McaWizard(QDialog, Ui_McaWizard):
 			self.next_click()
 		self.num_selected_criteria = len(self.selected_crit_data)
 
+	def check_all_alternatives(self):
+		self.altern_table.check_all()
+	
+	def check_all_criteria(self):
+		self.crit_table.check_all()
+
+	def uncheck_all_alternatives(self):
+		self.altern_table.uncheck_all()
+	
+	def uncheck_all_criteria(self):
+		self.crit_table.uncheck_all()
+	
+	def assign_equal_weight(self):
+		self.weight_table.assign_equal_weight()
+	
 	def process_template_export(self):
 		"""Creates a unicode CSV containing alternatives and criteria for quickly inputting data
 		"""

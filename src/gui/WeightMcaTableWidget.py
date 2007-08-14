@@ -15,8 +15,9 @@ class WeightMcaTableWidget(QTableWidget):
     def load(self, criteria_recs):
         """Loads the table with criteria, given a list of records
         """
+
         self.clearContents()
-        self.num_rows = len(criteria_recs)
+        self.num_rows = len(criteria_recs)    
         self.setRowCount(self.num_rows)
         
         for i in range(self.num_rows):
@@ -27,7 +28,18 @@ class WeightMcaTableWidget(QTableWidget):
             header_item.setText(crit_name)
             header_item.setToolTip(crit_name)
             self.setVerticalHeaderItem(i, header_item)
+            weight_item = QTableWidgetItem()
+            self.setItem(i, 0, weight_item)
+            
         #self.resizeColumnsToContents()
+    
+    def assign_equal_weight(self):
+        for i in range(self.num_rows):
+            table_item = self.item(i, 0)
+            if not table_item:
+                QMessageBox.critical(self,"Error", "Error reading from row "+str(i+1))
+                return None 
+            table_item.setText("1")
     
     def get_input_weights(self):
         """Returns list of indexes of criterias selected in table
@@ -38,6 +50,9 @@ class WeightMcaTableWidget(QTableWidget):
         for i in range(self.num_rows):
             #Get value from table item
             table_item = self.item(i,0) 
+            if not table_item:
+                QMessageBox.critical(self,"Error", "Error reading from row "+str(i+1))
+                return None  
             #print table_item
             value = table_item.text()
             #Check for no value

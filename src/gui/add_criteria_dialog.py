@@ -69,7 +69,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 				self.isError = True
 				self.errorMsg += "* Please enter a \"No\" description\n"
 			if not self.isError:
-				type_info = [str(binary_yes_description), str(binary_no_description)]
+				type_info = [[str(binary_yes_description), 2],[str(binary_no_description), 1]]
 				
 		elif current_tab_name == "Ordinal":
 			type_info = self.ordinal_option_list

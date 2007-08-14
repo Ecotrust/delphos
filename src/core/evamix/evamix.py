@@ -3,11 +3,6 @@ from util.common_functions import *
 import csv
 from copy import deepcopy
 
-#dialect class defining structure of files we'll be parsing
-class TSV(csv.excel):
-    delimiter = "\t"
-csv.register_dialect("TSV",TSV)
-
 class Evamix(object):
     
     def __init__(self):
@@ -28,9 +23,19 @@ class Evamix(object):
             raise DelphosError, "No criteria types given"
         if type(crit_types) is not type([]):
             raise DelphosError, "No criteria types given"
-    
+
         if len(in_matrix) < 1:
             raise DelphosError, "in_matrix contains no data"
+
+        #print "in matrix:"
+        #for row in in_matrix:
+        #    print row
+        #print "crit weights:"
+        #for row in crit_weights:
+        #    print row
+        #print "crit types:"
+        #for row in crit_types:
+        #    print row
         
         num_alterns = len(in_matrix[0])
         num_crit_weights = len(crit_weights)
@@ -39,63 +44,63 @@ class Evamix(object):
         
         #Get lists describing which columns (criteria) in in_matrix are quantitative and which are qualitative
         (quant_cols, qual_cols) = self.gen_crit_type_lists(crit_types)
-        print "\nQuantitative columns:"
-        print quant_cols
-        print "\nQualitative columns:"
-        print qual_cols
+        #print "\nQuantitative columns:"
+        #print quant_cols
+        #print "\nQualitative columns:"
+        #print qual_cols
         
         #Standardize weights
         self.standardize_weights(crit_weights)
-        print "\nStandardized weights: "
-        print crit_weights
+        #print "\nStandardized weights: "
+        #print crit_weights
         in_matrix = self.standardize_quantitative_values(in_matrix, quant_cols)
-        print "\nStandardized quant values"
-        for row in in_matrix:
-            print row
+        #print "\nStandardized quant values"
+        #for row in in_matrix:
+        #    print row
     
         #Generate quantitative impact matrix
         quant_impact_matrix = self.gen_quant_impact_matrix(in_matrix, crit_weights, quant_cols)
-        print "\nQuantitative impact matrix:"
-        for row in quant_impact_matrix:
-            print row
+        #print "\nQuantitative impact matrix:"
+        #for row in quant_impact_matrix:
+        #    print row
 
         #Compute absolute value of quantitative impact matrix
         quant_abs_sum = self.absolute_sum(quant_impact_matrix)
-        print "\nAbsolute Sum of quantitative impact matrix:"
-        print quant_abs_sum
+        #print "\nAbsolute Sum of quantitative impact matrix:"
+        #print quant_abs_sum
         
         #Generate quantitative final matrix
         quant_final_matrix = self.gen_quant_final_matrix(quant_impact_matrix, quant_abs_sum)
-        print "\nFinal quantitative matrix"
-        for row in quant_final_matrix:
-            print row 
+        #print "\nFinal quantitative matrix"
+        #for row in quant_final_matrix:
+        #    print row 
         
         #Generate qualitative impact matrix
         qual_impact_matrix = self.gen_qual_impact_matrix(in_matrix, crit_weights, qual_cols)
-        print "\nQualitative impact matrix:"
-        for row in qual_impact_matrix:
-            print row
+        #print "\nQualitative impact matrix:"
+        #for row in qual_impact_matrix:
+        #    print row
         
         #Compute absolute sum of qualitative impace matrix
         qual_abs_sum = self.absolute_sum(qual_impact_matrix)
-        print "\nAbsolute Sum of qualitative impact matrix:"
-        print qual_abs_sum
+        #print "\nAbsolute Sum of qualitative impact matrix:"
+        #print qual_abs_sum
                
         #Generate qualitative final matrix
         qual_final_matrix = self.gen_qual_final_matrix(qual_impact_matrix, qual_abs_sum)
-        print "\nFinal qualitative matrix:"
-        for row in qual_final_matrix:
-            print row
+        #print "\nFinal qualitative matrix:"
+        #for row in qual_final_matrix:
+        #    print row
         
         final_matrix = self.gen_final_matrix(quant_final_matrix, qual_final_matrix, crit_weights, quant_cols, qual_cols)
-        print "\nFinal matrix:"
-        for row in final_matrix:
-            print row
+        #print "\nFinal matrix:"
+        #for row in final_matrix:
+        #    print row
         
         final_scores = self.gen_final_scores(final_matrix)
-        print "\nFinal scores:"
-        for i in range(len(final_scores)):
-            print str(i)+": "+str(final_scores[i])
+        #print "\nFinal scores:"
+        #for i in range(len(final_scores)):
+        #    print str(i)+": "+str(final_scores[i])
         return final_scores
 
     def standardize_weights(self, weights):
@@ -268,9 +273,9 @@ class Evamix(object):
         qual_list = []
         for i in range(len(crit_types)):
             cur_type = crit_types[i]
-            if cur_type is "Ratio":
+            if cur_type == "Ratio":
                 quant_list.append(i)
-            elif cur_type is "Ordinal" or cur_type is "Binary":
+            elif cur_type == "Ordinal" or cur_type == "Binary":
                 qual_list.append(i)
         return (quant_list, qual_list)
 

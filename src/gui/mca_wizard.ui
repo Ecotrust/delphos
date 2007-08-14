@@ -56,11 +56,35 @@
         </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="all_altern_checkbox" >
-         <property name="text" >
-          <string>Select All</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QPushButton" name="check_all_altern_button" >
+           <property name="text" >
+            <string>Check All</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="uncheck_all_altern_button" >
+           <property name="text" >
+            <string>Uncheck All</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
        <item>
         <layout class="QHBoxLayout" >
@@ -191,11 +215,35 @@
         </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="all_crit_checkbox" >
-         <property name="text" >
-          <string>Select All</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QPushButton" name="check_all_criteria_button" >
+           <property name="text" >
+            <string>Check All</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="uncheck_all_criteria_button" >
+           <property name="text" >
+            <string>Uncheck All</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
        <item>
         <layout class="QHBoxLayout" >
@@ -224,7 +272,7 @@
            </property>
            <column>
             <property name="text" >
-             <string>Include?</string>
+             <string>Select</string>
             </property>
            </column>
            <column>
@@ -475,6 +523,30 @@
            </property>
            <property name="text" >
             <string>Step 4: Assign Weights</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QPushButton" name="equal_weight_button" >
+           <property name="text" >
+            <string>Assign Equal Weighting</string>
            </property>
           </widget>
          </item>

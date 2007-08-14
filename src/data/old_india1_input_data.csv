@@ -1,0 +1,33 @@
+,,Hilsa Fishery,Shark Fishery,Tamil's Mussels,Kerala Mussels,Babylonia Snail,Croacker,Oil Sardines,Silver Pomfrets
+Fishers current interest to start a certification program,"(4 = Yes)(3 = Yes, but need more information)(2 = Not sure)(1 = No)",4,3,3,4,2,3,3,3
+Level of understanding of population dynamics,(4 = Good)(3 = Mediocre)(2 = Poor)(1 = None),3,2,3,4,2,3,3,2
+Level of community participation in fishery management,(4 = Good)(3 = Mediocre)(2 = Poor)(1 = None),4,3,3,3,3,3,2,3
+By catch level,(4 = None)(3 = Minimum)(2 = Moderate)(1 = High),2,3,4,4,4,2,2,2
+Gear ecosystem interactions,(4 = None)(3 = Minimum)(2 = Moderate)(1 = High),4,4,4,3,4,2,2,2
+Fishery interaction with endangered species,(4 = None)(3 = Minimum)(2 = Moderate)(1 = High),3,2,4,4,4,3,3,3
+Coastal development,(1 = Highly industrialized and developed)(2 = Developed)(3 = Semi-rural)(4 = Rural),3,3,3,3,3,1,2,1
+Local perception of fishery's impact on the ecosystem,(4 = None)(3 = Minimum)(2 = Moderate)(1 = High),2,2,4,4,4,2,2,2
+Fisheries management system,(3 = Co-management)(2 = National or Traditional)(1 = None),2,2,2,2,2,2,2,2
+Level of sophistication of the management system,(4 = Good)(3 = Mediocre)(2 = Poor)(1 = None),2,2,2,2,2,3,2,3
+Management system ability to cope with environmental fluctuations and natural catastrophes shifts,(4 = Good)(3 = Mediocre)(2 = Poor)(1 = None),3,3,2,2,2,3,2,3
+Management system resilience to political shifts,(4 = Good)(3 = Mediocre)(2 = Poor)(1 = None),4,4,4,4,4,4,4,4
+Enforcement of fisheries regulations,(4 = Good)(3 = Mediocre)(2 = Poor)(1 = None),2,3,4,4,4,2,3,3
+Compliance with international regulations for species conservation,"(2 = Species are listed in IUCN, CITES)(1 = Species are not listed)",1,2,1,1,1,1,1,1
+Steps of the market chain controlled by fishermen,"(3 = Catching, processing and marketing)(2 = Catching and processing)(1 = Catching only)",1,1,1,1,1,1,1,1
+National market,(3 = Existing)(2 = Potential)(1 = None),3,3,3,3,3,3,3,3
+International market of the species,(3 = Existing)(2 = Potential)(1 = None),2,3,2,2,3,3,2,3
+Fishers level of organization,(4 = Good)(3 = Mediocre)(2 = Poor)(1 = None),3,3,3,3,1,3,3,3
+Volume of production,(# ['tons/yr']),37900,3000,240,12231,25,19700,119648,14875
+Number of people involved in the fishery,(# ['# of people']),0,15000,256,5000,700,15700,300,15700
+
+
+
+*******************************************************************,,,,,,,,,
+* Use as input data for testing against old delphos and the evamix spreadsheet,,,,,,,,,
+*,,,,,,,,,
+****** File structure ******,,,,,,,,,
+*,,,,,,,,,
+* Row 1: alternative names (starting with column C),,,,,,,,,
+* Column A: criteria names,,,,,,,,,
+* Column B: criteria values with text description,,,,,,,,,
+*

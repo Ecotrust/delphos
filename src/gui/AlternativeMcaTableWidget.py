@@ -31,6 +31,16 @@ class AlternativeMcaTableWidget(QTableWidget):
             self.setItem(i, self.altern_name_display_column, item)
         self.resizeColumnsToContents()
     
+    def check_all(self):
+        for i in range(self.num_rows):
+            check_box = self.cellWidget(i, self.altern_check_display_column)
+            check_box.setCheckState(Qt.Checked)
+        
+    def uncheck_all(self):
+        for i in range(self.num_rows):
+            check_box = self.cellWidget(i, self.altern_check_display_column)
+            check_box.setCheckState(Qt.Unchecked)
+        
     def get_selected_indexes(self):
         """Returns list of indexes of alternatives selected in table
         

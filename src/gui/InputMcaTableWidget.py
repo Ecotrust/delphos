@@ -116,8 +116,7 @@ class InputMcaTableWidget(QTableWidget):
                         return None                
                     #Check for non-integer
                     if not strIsInt(value):
-                        QMessageBox.critical(self,"Error", "Invalid input in row "+str(i+1)+", column "+str(j+1)+"\nExpected an integer, received '"+value+"'")
-                        return None                
+                        QMessageBox.critical(self,"Error", "Invalid input in row "+str(i+1)+", column "+str(j+1)+"\nExpected an integer, received '"+value+"'")               
                     #print "value: "+str(value)
                     #print "from i:"+str(i)+" j:"+str(j)
                     #Save the value from i,j to j,i

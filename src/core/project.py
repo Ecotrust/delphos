@@ -12,7 +12,8 @@ from input_matrix import *
 from delphos_exceptions import *
 from csv_types import *
 
-from data import default_criteria
+#from data import default_criteria
+from data.india1_criteria import *
 from data import default_alternatives
 from evamix.evamix import *
 
@@ -45,7 +46,7 @@ class Project:
 		self.altern_set = None	#Primary AlternativeSet
 		
 		self.crit_table_name = 'criteria'
-		self.crit_default_file = 'default_criteria.csv'
+		#self.crit_default_file = 'default_criteria.csv'
 		self.crit_set = None	#Primary CriteriaSet
 		
 		self.input_matrix_name = 'input_matrix'
@@ -54,7 +55,7 @@ class Project:
 		
 		if self.type == "fisheries":
 			self.default_alternatives = default_alternatives.fisheries_default_alternatives
-			self.default_criteria = default_criteria.fisheries_default_criteria
+			self.default_criteria = fisheries_default_criteria
 		elif self.type == "mpa":
 			self.default_criteria = mpa_default_alternatives
 			self.default_criteria = mpa_default_criteria

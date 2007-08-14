@@ -45,6 +45,16 @@ class CriteriaMcaTableWidget(QTableWidget):
 
                 #self.resizeColumnsToContents()
 
+    def check_all(self):
+        for i in range(self.num_rows):
+            check_box = self.cellWidget(i, self.check_column)
+            check_box.setCheckState(Qt.Checked)
+        
+    def uncheck_all(self):
+        for i in range(self.num_rows):
+            check_box = self.cellWidget(i, self.check_column)
+            check_box.setCheckState(Qt.Unchecked)
+
     def get_selected_indexes(self):
         selected_indexes = []
         for row in range(self.num_rows):

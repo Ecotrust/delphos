@@ -73,7 +73,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             QMessageBox.critical(self,"Please select or add an alternative first.", str(e))
         else:
             if cur_row_item:
-                success = self.project.remove_alternative_by_name(str(cur_row_item.text()))
+                success = self.project.remove_alternative_by_name(unicode(cur_row_item.text()))
                 if not success:
                     QMessageBox.critical(self,"Remove Alternative Error", "Failed to remove alternative.")
                 else:
@@ -129,7 +129,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             self.mca_wizard.show()
             
     def finish_new_analysis(self, input_data, input_weights, selected_crit_types):
-        self.mca_wizard.hide()
-        self.mca_wizard.deleteLater()
+        #self.mca_wizard.hide()
+        #self.mca_wizard.deleteLater()
         self.project.run_mca(input_data, input_weights, selected_crit_types)
         
