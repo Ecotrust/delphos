@@ -39,7 +39,7 @@
    <item>
     <widget class="QTabWidget" name="criteria_type_tab" >
      <property name="currentIndex" >
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab" >
       <attribute name="title" >
@@ -233,12 +233,12 @@
          </column>
          <column>
           <property name="text" >
-           <string>          </string>
+           <string/>
           </property>
          </column>
          <column>
           <property name="text" >
-           <string>          </string>
+           <string/>
           </property>
          </column>
         </widget>
