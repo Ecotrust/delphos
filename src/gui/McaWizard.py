@@ -28,6 +28,7 @@ class McaWizard(QDialog, Ui_McaWizard):
 		#Contains field data for all alternatives selected, each row is a 
 		#list of [altern_id, altern_name]
 		self.selected_altern_data = []
+		self.selected_altern_ids = []
 		self.selected_altern_names = []
 		self.num_selected_alternatives = 0
 		self.altern_id_column = 0 # in altern_data type list
@@ -36,8 +37,10 @@ class McaWizard(QDialog, Ui_McaWizard):
 		#Contains field data for all criteria selected, each row is a
 		#list of [crit_id, crit_name, crit_type, crit_options, crit_cost_benefit]
 		self.selected_crit_data = []
+		self.selected_crit_ids = []
 		self.selected_crit_names = []
 		self.num_selected_criteria = 0
+		self.crit_id_column = 0
 		self.crit_name_column = 1
 		self.crit_type_column = 2
 		self.crit_options_column = 3
@@ -96,6 +99,7 @@ class McaWizard(QDialog, Ui_McaWizard):
 	def process_altern_select(self):
 		selected_altern_indexes = self.altern_table.get_selected_indexes()
 		self.selected_altern_data = []
+		self.selected_altern_ids = []
 		self.selected_altern_names = []
 		
 		if len(selected_altern_indexes) < 2:
@@ -103,6 +107,7 @@ class McaWizard(QDialog, Ui_McaWizard):
 		else:
 			for index in selected_altern_indexes:
 				self.selected_altern_data.append(self.altern_data[index])
+				self.selected_altern_ids.append(self.altern_data[index][self.altern_id_column])
 				self.selected_altern_names.append(self.altern_data[index][self.altern_name_column])
 			self.next_click()
 		self.num_selected_alternatives = len(self.selected_altern_data)
@@ -114,10 +119,13 @@ class McaWizard(QDialog, Ui_McaWizard):
 		else:
 			#Build list of selected crit data
 			self.selected_crit_data = []
+			self.selected_crit_ids = []
+			self.selected_crit_names = []
 			self.selected_crit_types = []
 			for index in selected_crit_indexes:
 				crit = self.crit_data[index]
 				self.selected_crit_data.append(crit)
+				self.selected_crit_ids.append(crit[self.crit_id_column])
 				self.selected_crit_names.append(crit[self.crit_name_column])
 				self.selected_crit_types.append(crit[self.crit_type_column])
 			self.next_click()
@@ -229,7 +237,7 @@ class McaWizard(QDialog, Ui_McaWizard):
 
 		if template_filename:
 			if not re.search('[.]'+self.default_template_extension+'$', template_filename):
-				QMessageBox.critical(self,"Error", "You did not select a CSV file (."+self.default_file_extension+" file extension)")
+				QMessageBox.critical(self,"Error", "You did not select a CSV file (."+self.default_template_extension+" file extension)")
 			else:
 				f = open(template_filename, "r")
 				reader = csv.reader(f, dialect=csv.excel)
@@ -279,7 +287,7 @@ class McaWizard(QDialog, Ui_McaWizard):
 		if self.isError:
 			self.isError = False
 		else:
-			self.emit(SIGNAL("mca_analysis_info_collected"), self.input_data, self.input_weights, self.selected_crit_types)
+			self.emit(SIGNAL("mca_analysis_info_collected"), self.selected_altern_data, self.selected_crit_data, self.input_data, self.input_weights, self.selected_crit_types)
 
 	def next_click(self):
 		"""Shift stack forward one

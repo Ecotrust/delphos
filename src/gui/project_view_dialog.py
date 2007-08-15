@@ -33,6 +33,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.load_project_data_tab()
         self.altern_table.load(self.project.get_all_alternatives())
         self.crit_table.load(self.project.get_all_criteria())
+        self.view_analysis_table.load(self.project.get_mca_runs_basic())
 
     def load_project_data_tab(self):
         try:
@@ -117,19 +118,23 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QMessageBox.critical(self,"Not Implemented", "Not Implemented")
 
     def start_new_analysis(self):
-        description = self.analysis_name_edit.text()
-        if not description:
-            QMessageBox.critical(self,"Analysis Error", "You must enter a description of the analysis your performing")
+        self.analysis_name = self.analysis_name_edit.text()
+        self.analysis_description = self.analysis_description_edit.text()
+        if not self.analysis_name:
+            QMessageBox.critical(self,"Analysis Error", "You must enter a name for this analysis")
         else:
-            #Create mca object
-             
             #Load mca wizard
             self.mca_wizard = McaWizard(self.gui_manager, self, self.project)
             self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
             self.mca_wizard.show()
             
-    def finish_new_analysis(self, input_data, input_weights, selected_crit_types):
-        self.project.run_mca(input_data, input_weights, selected_crit_types)
-        self.mca_wizard.hide()
-        self.mca_wizard.deleteLater()
+    def finish_new_analysis(self, altern_ids, crit_ids, input_data, input_weights, selected_crit_types):
+        mca_results = self.project.run_mca(input_data, input_weights, selected_crit_types)
+        print mca_results
+        if mca_results:
+            self.mca_wizard.hide()
+            self.mca_wizard.deleteLater()            
+            self.project.save_analysis(self.analysis_name, self.analysis_description, altern_ids, crit_ids, input_data, input_weights, mca_results)
+        else:
+            QMessageBox.critical(self,"Analysis Error", "MCA analysis failed.")
         

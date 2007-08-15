@@ -16,7 +16,7 @@
    <item>
     <widget class="QTabWidget" name="tabProject" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
@@ -397,12 +397,18 @@
           <item>
            <layout class="QVBoxLayout" >
             <item>
-             <widget class="QTableWidget" name="view_analysis_table" >
+             <widget class="McaRunsTableWidget" name="view_analysis_table" >
               <property name="minimumSize" >
                <size>
                 <width>300</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="editTriggers" >
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+              <property name="selectionBehavior" >
+               <enum>QAbstractItemView::SelectRows</enum>
               </property>
               <column>
                <property name="text" >
@@ -485,7 +491,7 @@
                <number>2</number>
               </property>
               <item>
-               <widget class="QLineEdit" name="analysis_name_edit_2" >
+               <widget class="QLineEdit" name="analysis_name_edit" >
                 <property name="minimumSize" >
                  <size>
                   <width>150</width>
@@ -495,7 +501,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="analysis_name_edit" />
+               <widget class="QLineEdit" name="analysis_description_edit" />
               </item>
              </layout>
             </item>
@@ -570,6 +576,11 @@
    <class>CriteriaTableWidget</class>
    <extends>QTableWidget</extends>
    <header>CriteriaTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>McaRunsTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>McaRunsTableWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

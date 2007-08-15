@@ -16,6 +16,7 @@ class DelphosWindow(QMainWindow):
 		self.dock_full_screen = False
 		self.min_doc_dock_width = 200
 		
+		#Maximize the display to full size
 		self.showMaximized()
 
 		self.base_fishery_url = 'qrc:/documentation/fisheries_documentation.html#'
