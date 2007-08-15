@@ -11,6 +11,7 @@ from project_view_ui import Ui_ProjectView
 from add_alternative_dialog import AddAlternDialog
 from add_criteria_dialog import AddCriteriaDialog
 from McaWizard import McaWizard 
+from McaResultView import McaResultView
 
 class ProjectViewDialog(QDialog, Ui_ProjectView):
     """Manages interaction with the project interface and the underlying DB
@@ -33,7 +34,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.load_project_data_tab()
         self.altern_table.load(self.project.get_all_alternatives())
         self.crit_table.load(self.project.get_all_criteria())
-        self.view_analysis_table.load(self.project.get_mca_runs_basic())
+        self.mca_runs_table.load(self.project.get_mca_runs_basic())
 
     def load_project_data_tab(self):
         try:
@@ -69,7 +70,6 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
     def start_remove_alternative(self):
         try:
             cur_row_item = self.altern_table.get_current_row_items()
-            print "cur_row: "+str(cur_row_item)
         except DelphosError, e:
             QMessageBox.critical(self,"Please select or add an alternative first.", str(e))
         else:
@@ -115,7 +115,9 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             QMessageBox.critical(self,"Remove Criteria Error", "You must first select one from the criteria table.")
 
     def start_view_analysis(self):
-        QMessageBox.critical(self,"Not Implemented", "Not Implemented")
+        selected_id = self.mca_runs_table.get_selected_id()
+        (id, name, description, altern_data, crit_data, input_data, input_weights, results, created) = self.project.get_mca_run_by_id(selected_id)
+        self.show_analysis_results(name, description, altern_data, crit_data, input_data, input_weights, results)
 
     def start_new_analysis(self):
         self.analysis_name = self.analysis_name_edit.text()
@@ -128,13 +130,18 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
             self.mca_wizard.show()
             
-    def finish_new_analysis(self, altern_ids, crit_ids, input_data, input_weights, selected_crit_types):
-        mca_results = self.project.run_mca(input_data, input_weights, selected_crit_types)
-        print mca_results
-        if mca_results:
+    def finish_new_analysis(self, altern_data, crit_data, input_data, input_weights, selected_crit_types):
+        results = self.project.run_mca(input_data, input_weights, selected_crit_types)
+        if results:
             self.mca_wizard.hide()
             self.mca_wizard.deleteLater()            
-            self.project.save_analysis(self.analysis_name, self.analysis_description, altern_ids, crit_ids, input_data, input_weights, mca_results)
+            self.project.save_analysis(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, results)
+            self.mca_runs_table.load(self.project.get_mca_runs_basic())
+            self.show_analysis_results(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, results)
         else:
             QMessageBox.critical(self,"Analysis Error", "MCA analysis failed.")
-        
+
+    def show_analysis_results(self, name, description, altern_data, crit_data, input_data, input_weights, results):
+        self.mca_result_view = McaResultView(self.gui_manager, self, self.project)
+        self.mca_result_view.load_results(name, description, altern_data, crit_data, input_data, input_weights, results)
+        self.mca_result_view.show()

@@ -397,7 +397,7 @@
           <item>
            <layout class="QVBoxLayout" >
             <item>
-             <widget class="McaRunsTableWidget" name="view_analysis_table" >
+             <widget class="McaRunsTableWidget" name="mca_runs_table" >
               <property name="minimumSize" >
                <size>
                 <width>300</width>

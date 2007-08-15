@@ -186,6 +186,9 @@ class Project:
     	"""Returns a list with basic info about all mca analysis runs for this project
     	"""
     	return self.mca_runs.get_basic()
+    
+    def get_mca_run_by_id(self, mca_result_id):
+    	return self.mca_runs.get_all_by_id(mca_result_id)
 
     def has_criteria(self):
         """Returns true if the current project has criteria defined

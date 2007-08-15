@@ -98,9 +98,9 @@ class Evamix(object):
         #    print row
         
         final_scores = self.gen_final_scores(final_matrix)
-        #print "\nFinal scores:"
-        #for i in range(len(final_scores)):
-        #    print str(i)+": "+str(final_scores[i])
+        print "\nFinal scores:"
+        for i in range(len(final_scores)):
+            print str(i)+": "+str(final_scores[i])
         return final_scores
 
     def standardize_weights(self, weights):
@@ -306,7 +306,8 @@ if __name__ == "__main__":
         [3,2,3,2,2,3,1,2,2,3,3,4,3,1,1,3,3,3,14875,15700]
     ]
     #India 1 data, matches evamix spreadsheet, old delphos uses same data in different order
-    crit_weights = [1,1,2,1,1,1,4,2,2,1,2,2,1,1,3,3,4,3,3,1]
+    #crit_weights = [1,1,2,1,1,1,4,2,2,1,2,2,1,1,3,3,4,3,3,1]
+    crit_weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     crit_types = ["Ordinal","Ordinal","Ordinal","Ordinal","Ordinal","Ordinal","Ordinal","Ordinal","Ordinal","Ordinal","Ordinal","Ordinal","Ordinal","Binary","Ordinal","Ordinal","Ordinal","Ordinal","Ratio","Ratio"]
      
     print "Input:"

@@ -90,8 +90,19 @@ class McaRuns(object):
         for row in rows:
             cur_row = list(row)
             #Append name, description and date
-            recs.append([cur_row[1], cur_row[2], cur_row[8]])
+            recs.append([cur_row[0], cur_row[1], cur_row[2], cur_row[8]])
         return recs
+
+    def get_all_by_id(self, id):
+        rows = self.table.select(self.table.c.id == id, order_by=self.table.c.id).execute().fetchall()
+        for row in rows:
+            cur_row = list(row)
+            cur_row[3] = pickle.loads(cur_row[3])
+            cur_row[4] = pickle.loads(cur_row[4])
+            cur_row[5] = pickle.loads(cur_row[5])
+            cur_row[6] = pickle.loads(cur_row[6])
+            cur_row[7] = pickle.loads(cur_row[7])
+            return cur_row
 
     def __unicode__(self):
         """Description of object
