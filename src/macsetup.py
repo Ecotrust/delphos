@@ -3,6 +3,14 @@ from distutils.core import setup
 import py2app
 import glob
 
+#In order to make matplotlib bundle correctly, need to add pytz 
+#package using easty_install or other, add empty __init__.py file 
+#to zoneinfo subdir, move aside pytz/zoneinfo/UTC and create an 
+#empty pytz/zoneinfo/UTC.py file Somewhere in your code add 
+#'import pytz.zoneinfo' so py2app will pick up the package.  
+#Very broken method but it works.  I have no intention of using 
+#the zoneinfo stuff
+
 # Build the .app file
 setup(
 	options=dict(

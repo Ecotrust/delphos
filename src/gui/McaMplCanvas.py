@@ -16,12 +16,8 @@ from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.font_manager import FontProperties
 from pylab import * #Keep
-#import matplotlib
-#import pytz
 import pytz.zoneinfo #Keep
-#To Build standalone, unzip pytz into site-packages, add __init__.py to zoneinfo, try to build and run & fail, remove pytz, try to build and run & succeed
-#from pytz.zoneinfo import *
-from pytz.zoneinfo import UTC
+from pytz.zoneinfo import UTC #Keep
 
 class MyMplCanvas(FigureCanvas):
     """Ultimately, this is a QWidget (as well as a FigureCanvasAgg, etc.)."""
