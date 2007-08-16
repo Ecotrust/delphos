@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>731</width>
-    <height>386</height>
+    <width>792</width>
+    <height>451</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -15,6 +15,18 @@
   <layout class="QHBoxLayout" >
    <item>
     <widget class="FinalScoreTableWidget" name="final_table" >
+     <property name="minimumSize" >
+      <size>
+       <width>200</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize" >
+      <size>
+       <width>200</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="editTriggers" >
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>
@@ -74,21 +86,18 @@
       </layout>
      </item>
      <item>
-      <widget class="QLabel" name="plot_label" >
+      <widget class="McaMplCanvas" native="1" name="mca_plot_canvas" >
        <property name="minimumSize" >
-        <size>
-         <width>300</width>
-         <height>300</height>
-        </size>
-       </property>
-       <property name="maximumSize" >
         <size>
          <width>500</width>
          <height>300</height>
         </size>
        </property>
-       <property name="text" >
-        <string/>
+       <property name="maximumSize" >
+        <size>
+         <width>980</width>
+         <height>800</height>
+        </size>
        </property>
       </widget>
      </item>
@@ -107,19 +116,6 @@
      </item>
     </layout>
    </item>
-   <item>
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -127,6 +123,12 @@
    <class>FinalScoreTableWidget</class>
    <extends>QTableWidget</extends>
    <header>FinalScoreTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>McaMplCanvas</class>
+   <extends>QWidget</extends>
+   <header>McaMplCanvas.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -10,9 +10,9 @@ setup(
 			argv_emulation=1,
 			optimize=2,
 			site_packages=True,
-			includes="sqlalchemy,sqlalchemy.*,sqlalchemy.mods.*,sqlalchemy.databases.*,sqlalchemy.engine.*,sqlalchemy.ext.*,sqlalchemy.orm.*"
+			includes="FileDialog, Tkinter, numpy, sqlalchemy,sqlalchemy.*,sqlalchemy.mods.*,sqlalchemy.databases.*,sqlalchemy.engine.*,sqlalchemy.ext.*,sqlalchemy.orm.*"
 		),
 	),
 	app=[ 'start_gui.py' ],
-	install_requires=['py2app','SQLAlchemy']
+	install_requires=['py2app','SQLAlchemy','numpy']
 )
