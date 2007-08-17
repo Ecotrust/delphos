@@ -18,7 +18,7 @@ class HelpTextBrowser(QTextBrowser):
 		type = list[1]
 		
 		#Don't change the browsers source if its an 'app' link.
-		if type == 'app':
+		if type == 'app' or type == 'doc':
 			return
 		else:
 			#change the browser source as normal

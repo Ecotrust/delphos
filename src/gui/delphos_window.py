@@ -55,28 +55,23 @@ class DelphosWindow(QMainWindow):
 				"1. Define Your Goals",
 				"2. Define Your Timeline",
 				"3. Define the Region",
-				{"4. Identify Experts": [
-					"Examples from the Field"
-				]}, 
+				"4. Identify Experts",
 				{"5. Consult the Experts": [
-					"Sample Letter to the Experts",
-					"General Questionnaire",
-					"'Data-Driven' Questionnaire",
-					"'Data-Limited' Questionnaire"
+					"Pre-Analysis Workshop",
+					"The Questionnaire"
 				]},
-				{"6. Review Recommendations": [
-					"Fishery Profile"
-				]},
+				"6. Review Recommendations",
 				{"7. Design Your Database": [
-					"Launch Program"
+					"Define Alternatives",
+					"Define Criteria"
 				]},
-				{"8. Define Criteria": [
-					"Criteria Guidance"
-				]},
-				"9. Input Data",
-				"10. Select Fisheries and Criteria",
-				"11. Weight Criteria",
-				"12. Run the Analaysis"
+				{"8. Run Analysis":[
+					"Select Alternatives",
+					"Select Criteria",
+					"Input Data",
+					"Weight Criteria",
+					"Run the Program"
+				]}
 			]},
 			"Evaluating Your Results",
 			"Next Steps",

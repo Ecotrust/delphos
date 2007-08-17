@@ -306,7 +306,7 @@ class McaWizard(QDialog, Ui_McaWizard):
                     if self.input_data[i][j] != first_val:
                         same = False
             if same:
-                QMessageBox.critical(self,"Input Error", "Your rows with ordinal or binary all have the same value.  At least one of those rows must have a cell with a value different from the rest.")
+                QMessageBox.critical(self,"Input Error", "Your rows with ordinal/binary criteria all have the same value.  At least one of those rows must have a cell with a value different from the rest.")
                 return False
         return True
             

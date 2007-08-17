@@ -18,7 +18,7 @@ class OpenProjectDialog(QDialog, Ui_OpenProjectDialog):
 		self.gui_manager = gui_manager
 		self.isError = False	#Error flag for form processing
 		self.errorMsg = ""
-		self.default_file_extension = "del"	#Also defined in accept regex below
+		self.default_file_extension = "dlp"	#Also defined in accept regex below
 		
 		self.filename = ""
 		self.project_path = ""
@@ -33,7 +33,7 @@ class OpenProjectDialog(QDialog, Ui_OpenProjectDialog):
 		"""
 		fd = QtGui.QFileDialog(self)
 		fd.setFileMode(QFileDialog.ExistingFile)
-		fd.setFilter("*.del")
+		fd.setFilter("*.dlp")
 		full_name = fd.getOpenFileName()
 
 		self.filename = path.basename(str(full_name))

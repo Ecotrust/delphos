@@ -17,7 +17,7 @@
     <widget class="FinalScoreTableWidget" name="final_table" >
      <property name="minimumSize" >
       <size>
-       <width>200</width>
+       <width>300</width>
        <height>0</height>
       </size>
      </property>
@@ -34,7 +34,7 @@
       <bool>true</bool>
      </property>
      <property name="selectionMode" >
-      <enum>QAbstractItemView::NoSelection</enum>
+      <enum>QAbstractItemView::ExtendedSelection</enum>
      </property>
      <property name="sortingEnabled" >
       <bool>false</bool>
@@ -42,6 +42,11 @@
      <column>
       <property name="text" >
        <string>Final Score</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Rank</string>
       </property>
      </column>
     </widget>

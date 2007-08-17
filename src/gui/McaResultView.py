@@ -18,9 +18,20 @@ class McaResultView(QDialog, Ui_McaResultView):
         self.isError = False    #Error flag for form processing
         self.errorMsg = ""
         
-    def load_results(self, name, description, altern_data, crit_data, input_data, input_weights, results):
-        #round results
-        results = [round(x, 4) for x in results]
-        self.final_table.load(altern_data, results)
+    def load_results(self, name, description, altern_data, crit_data, input_data, input_weights, results):        
+        final_results = {}
+        #Build results dictionary using altern id as key
+        for i in range(len(results)):
+            (altern_id, altern_name) = altern_data[i]
+            score = results[i]
+            final_results[altern_id] = score
+            
+        from operator import itemgetter
+        sorted_results = sorted(final_results.items(), key=itemgetter(1), reverse=True)
+        
+        #for row in final_results:
+        #    print row
+        
+        self.final_table.load(altern_data, sorted_results)
         self.mca_plot_canvas.draw_bar_chart(altern_data, results)
         #self.mca_plot_canvas.compute_initial_figure()

@@ -18,7 +18,7 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 		self.gui_manager = gui_manager
 		self.isError = False	#Error flag for form processing
 		self.errorMsg = ""
-		self.default_file_extension = ".del"
+		self.default_file_extension = ".dlp"
 		
 		#Connect slots to signals
 		QObject.connect(self.project_browse_button,QtCore.SIGNAL("clicked()"), self.process_browse)
@@ -36,7 +36,7 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 		self.project_path = path.dirname(str(full_name))
 
 		#Check if filename and if extension already added
-		if self.filename and not re.search('[.]del$', self.filename):
+		if self.filename and not re.search('[.]dlp$', self.filename):
 			self.filename += self.default_file_extension
 
 		full_name = self.project_path + os.sep + self.filename

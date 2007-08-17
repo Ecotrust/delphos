@@ -140,6 +140,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
                 self.mca_wizard.hide()
                 self.mca_wizard.deleteLater()            
                 self.project.save_analysis(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, results)
+
                 self.mca_runs_table.load(self.project.get_mca_runs_basic())
                 self.show_analysis_results(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, results)
             else:

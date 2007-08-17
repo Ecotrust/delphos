@@ -2,5 +2,10 @@
     <qresource prefix="/" >
         <file>documentation/fisheries_documentation.html</file>
         <file>documentation/fisheries_letter_to_experts.doc</file>
+        <file>documentation/fisheries_general_questionnaire.doc</file>
+        <file>documentation/fisheries_data_driven_questionnaire.doc</file>
+        <file>documentation/fisheries_data_limited_questionnaire.doc</file>
+        <file>documentation/fisheries_criteria_and_guidance.doc</file>
+        <file>documentation/fisheries_examples_from_the_field.doc</file>
     </qresource>
 </RCC>

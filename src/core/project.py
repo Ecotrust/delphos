@@ -36,7 +36,7 @@ class Project:
         self.path = path
         self.type = type    #Fisheries or MPA
         self.db_driver = 'sqlite'
-        self.db_file_ext = '.del'
+        self.db_file_ext = '.dlp'
         self.status_ok = False     #1-OK, 0-Error
         self.error = ""        #Error message
         

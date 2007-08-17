@@ -15,7 +15,7 @@ class WeightMcaTableWidget(QTableWidget):
     def load(self, criteria_recs):
         """Loads the table with criteria, given a list of records
         """
-
+        self.hide()
         self.clearContents()
         self.num_rows = len(criteria_recs)    
         self.setRowCount(self.num_rows)
@@ -32,6 +32,7 @@ class WeightMcaTableWidget(QTableWidget):
             self.setItem(i, 0, weight_item)
             
         #self.resizeColumnsToContents()
+        self.show()
     
     def assign_equal_weight(self):
         for i in range(self.num_rows):

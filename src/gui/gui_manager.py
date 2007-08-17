@@ -228,6 +228,7 @@ class GuiManager(QObject):
 		is a link that when clicked should load the 'new project' dialog.  This link
 		might look like 'qrc:/app/create_new_project'
 		"""
+		
 		list = url.path().split('/')
 		
 		#If less than 3 elements it's not a URL we care about
@@ -240,18 +241,15 @@ class GuiManager(QObject):
 		if type == 'app':
 			if action == 'create_project':
 				self.start_project_creation()
-	
-	def source_changed_handler(self, url):
-		list = url.path().split('/')
 		
-		#If less than 3 elements it's not a URL we care about
-		if len(list) < 3:
-			return
+		elif type == 'doc':
+			doc_path = os.getcwd()+os.sep+"documentation"+os.sep+action
+			print doc_path
+			doc_url = "file:"+urllib.pathname2url(unicode(doc_path))
+			print doc_url
+			self.desktop_services.openUrl(QUrl(doc_url))
 
-		type = list[1]
-		print type
-		if type == 'app':
-			self.win.ui.doc_browser.backward()
+
 	
 	def toggle_documentation_window(self):
 		if self.win.ui.dock_doc.isVisible():
