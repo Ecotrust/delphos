@@ -6,7 +6,7 @@ from copy import deepcopy
 class Evamix(object):
     
     def __init__(self):
-        self.debug = False
+        self.debug = True
 
     def do_analysis(self, in_matrix, crit_weights, crit_types):
         """Performs multicriteria analysis using the Evamix algorithm
@@ -63,7 +63,7 @@ class Evamix(object):
                     if in_matrix[i][j] != first_val:
                         same = False
                 if same:
-                    raise DelphosError, "The quantitative values in row "+str(j)+ " are all the same.  This is not supported, please change"
+                    raise DelphosError, "The quantitative values in row "+str(j)+ " are all the same.  This is not supported.  At least one of the values must differ from the rest for each row."
 
         #Check if for any qualitative criteria, the values are the same for all alternatives
         if self.num_qual_criteria > 0:
@@ -74,7 +74,7 @@ class Evamix(object):
                     if in_matrix[i][j] != first_val:
                         same = False
             if same:
-                raise DelphosError, "The qualitative values in row "+str(j)+ " are all the same.  This is not supported, please change"
+                raise DelphosError, "The criteria values are the same for each alternative.  This is not supported.  The values on at least one row must differ in their value."
         
         #Standardize weights
         self.standardize_weights(crit_weights)

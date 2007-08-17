@@ -80,7 +80,7 @@ class InputMcaTableWidget(QTableWidget):
         self.show()
         return True      
         
-    def get_input_data(self):
+    def get_input_data(self, altern_names, crit_names):
         """Returns a 2D list of input values (integers) for use in MCA
         
         Note the resulting list is transposed as the input table is crit x altern and the
@@ -97,10 +97,10 @@ class InputMcaTableWidget(QTableWidget):
                     cell_widget = self.cellWidget(i,j)
                     #print cell_widget
                     if not cell_widget:
-                        QMessageBox.critical(self,"Error", "Unable to access combo box in "+str(i+1)+", column "+str(j+1)+"\nExpected an integer, received '"+value+"'")
+                        QMessageBox.critical(self,"Error", "Unable to access combo box for criteria row'"+unicode(crit_names[i])+"', alternative column '"+altern_names[j]+"'")
                     (value, ok) = cell_widget.itemData(cell_widget.currentIndex()).toInt()
                     if not ok:
-                        QMessageBox.critical(self,"Error", "Unable to read input in row "+str(i+1)+", column "+str(j+1)+"\nExpected an integer, received '"+value+"'")
+                        QMessageBox.critical(self,"Error", "Unable to read input for criteria row'"+unicode(crit_names[i])+"', alternative column '"+altern_names[j]+"'\nExpected an integer, received '"+value+"'")
                     #print "value: "+str(value)
                     #print "ok: "+str(ok)   
                     #Save the value from i,j to j,i
@@ -112,11 +112,15 @@ class InputMcaTableWidget(QTableWidget):
                     value = table_item.text()
                     #Check for no value
                     if not value:
-                        QMessageBox.critical(self,"Error", "Missing input in row "+str(i+1)+", column "+str(j+1))
+                        print i
+                        print j
+                        print crit_names
+                        print altern_names
+                        QMessageBox.critical(self,"Error", "Missing input for alternative '"+unicode(altern_names[j])+"', criteria '"+crit_names[i]+"'")
                         return None                
                     #Check for non-integer
                     if not strIsInt(value):
-                        QMessageBox.critical(self,"Error", "Invalid input in row "+str(i+1)+", column "+str(j+1)+"\nExpected an integer, received '"+value+"'")               
+                        QMessageBox.critical(self,"Error", "Invalid input for alternative '"+unicode(altern_names[j])+"', criteria '"+crit_names(i)+"'\nExpected an integer, received '"+value+"'")               
                     #print "value: "+str(value)
                     #print "from i:"+str(i)+" j:"+str(j)
                     #Save the value from i,j to j,i
