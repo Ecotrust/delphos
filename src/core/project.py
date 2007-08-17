@@ -72,7 +72,7 @@ class Project:
         db = create_engine(self.db_driver+':///'+self.path+os.sep+self.name)
         self.meta = BoundMetaData(db)            #Basically a schema, or table collection
         if self.debug:
-            self.meta.engine.echo = True
+            self.meta.engine.echo = False
         self.status_ok = True
 
     def __create_project_data(self):

@@ -264,7 +264,7 @@ class McaWizard(QDialog, Ui_McaWizard):
                 
                 success = self.input_table.load(self.selected_altern_data, self.selected_crit_data, import_list)
                 if success:
-                    QMessageBox.critical(self,"Success", "The data was successfully loaded from the CSV file")
+                    QMessageBox.information(self,"Success", "CSV loaded successfully")
                 else :
                     QMessageBox.critical(self,"Error", "Due to error, table may only be partially loaded")
         
@@ -306,7 +306,7 @@ class McaWizard(QDialog, Ui_McaWizard):
                     if self.input_data[i][j] != first_val:
                         same = False
             if same:
-                QMessageBox.critical(self,"Input Error", "Your rows with qualitative criteria (Ordinal, Binary) all have the same value.  At least one qualitative row must have a cell with a value different from the rest.")
+                QMessageBox.critical(self,"Input Error", "Your rows with ordinal or binary all have the same value.  At least one of those rows must have a cell with a value different from the rest.")
                 return False
         return True
             
