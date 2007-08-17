@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/" >
         <file>documentation/fisheries_documentation.html</file>
+        <file>documentation/fisheries_letter_to_experts.doc</file>
     </qresource>
 </RCC>

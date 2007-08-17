@@ -225,8 +225,14 @@
    </property>
   </action>
   <action name="menu_open_project" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="text" >
     <string>Open Project</string>
+   </property>
+   <property name="visible" >
+    <bool>false</bool>
    </property>
   </action>
   <action name="actionExit_Delphos" >
@@ -235,6 +241,9 @@
    </property>
   </action>
   <action name="actionAbout_Delphos" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="text" >
     <string>About Delphos</string>
    </property>
@@ -253,6 +262,9 @@
    </property>
   </action>
   <action name="actionOpen_Documentation_Externally" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="text" >
     <string>Load External Documentation</string>
    </property>
@@ -264,13 +276,22 @@
    <property name="checked" >
     <bool>false</bool>
    </property>
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="text" >
     <string>Documentation Window</string>
    </property>
   </action>
   <action name="menu_create_project" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="text" >
     <string>Create Project</string>
+   </property>
+   <property name="visible" >
+    <bool>false</bool>
    </property>
   </action>
   <action name="menu_main_menu" >

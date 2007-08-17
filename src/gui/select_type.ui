@@ -10,7 +10,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Form</string>
+   <string/>
   </property>
   <layout class="QHBoxLayout" >
    <item>
@@ -51,7 +51,7 @@
           <item>
            <widget class="QLabel" name="label_2" >
             <property name="text" >
-             <string>A decision-making tool for community-based marine conservation. Developed by World Wildlife Fun, Ecotrust and Comunidad y Biodiversidad (COBI).</string>
+             <string>A decision-making tool for community-based marine conservation. Developed by Comunidad y Biodiversidad, World Wildlife Fund and Ecotrust.</string>
             </property>
             <property name="alignment" >
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

@@ -89,8 +89,6 @@ class GuiManager(QObject):
 		"""Stores the analaysis type selected and loads the main menu
 		"""
 		self.project_manager.set_current_project_type(type)
-		self.select_type_dialog.hide()
-		self.select_type_dialog.deleteLater()
 		
 		if type == "fisheries":
 			self.main_menu_dialog = FisheriesMainMenuDialog(self, self.win)
@@ -98,14 +96,18 @@ class GuiManager(QObject):
 			self.connect(self.main_menu_dialog, SIGNAL("design_new_selected"), self.handle_design_new_selection)
 			self.connect(self.main_menu_dialog, SIGNAL("open_existing_selected"), self.handle_open_existing_selection)
 			self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)
+			self.select_type_dialog.hide()
+			self.select_type_dialog.deleteLater()
+			self.main_menu_dialog.show()
 		elif type == "mpa":
-			self.main_menu_dialog = MpaMainMenuDialog(self, self.win)
-			self.connect(self.main_menu_dialog, SIGNAL("intro_selected"), self.handle_intro_selection)
-			self.connect(self.main_menu_dialog, SIGNAL("design_new_selected"), self.handle_design_new_selection)
-			self.connect(self.main_menu_dialog, SIGNAL("open_existing_selected"), self.handle_open_existing_selection)
-			self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)		
+			QMessageBox.critical(self.select_type_dialog, "Not Implemented", "Not Implemented")
+			#self.main_menu_dialog = MpaMainMenuDialog(self, self.win)
+			#self.connect(self.main_menu_dialog, SIGNAL("intro_selected"), self.handle_intro_selection)
+			#self.connect(self.main_menu_dialog, SIGNAL("design_new_selected"), self.handle_design_new_selection)
+			#self.connect(self.main_menu_dialog, SIGNAL("open_existing_selected"), self.handle_open_existing_selection)
+			#self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)		
 
-		self.main_menu_dialog.show()
+		
 	
 	def handle_intro_selection(self):
 		"""Loads up the documentation in the dock window, displays the intro page
