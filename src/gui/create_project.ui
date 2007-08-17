@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>475</width>
-    <height>256</height>
+    <height>226</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -25,7 +25,10 @@
             <widget class="QGroupBox" name="groupBox_2" >
              <property name="font" >
               <font>
-               <pointsize>14</pointsize>
+               <family>Arial</family>
+               <pointsize>13</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
               </font>
              </property>
              <property name="title" >
@@ -34,6 +37,13 @@
              <layout class="QVBoxLayout" >
               <item>
                <widget class="QRadioButton" name="fisheries_type_button" >
+                <property name="font" >
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Fisheries</string>
                 </property>
@@ -41,6 +51,13 @@
               </item>
               <item>
                <widget class="QRadioButton" name="mpa_type_button" >
+                <property name="font" >
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Marine Protected Areas</string>
                 </property>
@@ -53,7 +70,10 @@
             <widget class="QGroupBox" name="groupBox_3" >
              <property name="font" >
               <font>
-               <pointsize>14</pointsize>
+               <family>Arial</family>
+               <pointsize>13</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
               </font>
              </property>
              <property name="title" >
@@ -62,6 +82,13 @@
              <layout class="QVBoxLayout" >
               <item>
                <widget class="QCheckBox" name="default_altern_check" >
+                <property name="font" >
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Load Sample Alternatives</string>
                 </property>
@@ -72,6 +99,13 @@
               </item>
               <item>
                <widget class="QCheckBox" name="default_crit_check" >
+                <property name="font" >
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Load Default Criteria</string>
                 </property>
@@ -89,7 +123,10 @@
           <widget class="QGroupBox" name="groupBox_4" >
            <property name="font" >
             <font>
-             <pointsize>14</pointsize>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
             </font>
            </property>
            <property name="title" >
@@ -98,6 +135,13 @@
            <layout class="QHBoxLayout" >
             <item>
              <widget class="QPushButton" name="project_browse_button" >
+              <property name="font" >
+               <font>
+                <pointsize>11</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
               <property name="text" >
                <string>Browse...</string>
               </property>
@@ -105,6 +149,16 @@
             </item>
             <item>
              <widget class="QLineEdit" name="project_path_edit" >
+              <property name="font" >
+               <font>
+                <pointsize>11</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text" >
+               <string/>
+              </property>
               <property name="readOnly" >
                <bool>true</bool>
               </property>

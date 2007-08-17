@@ -5,9 +5,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>522</width>
-    <height>245</height>
+    <width>497</width>
+    <height>180</height>
    </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize" >
+   <size>
+    <width>16777215</width>
+    <height>1677777</height>
+   </size>
   </property>
   <property name="windowTitle" >
    <string/>
@@ -38,6 +50,7 @@
            <widget class="QLabel" name="label_3" >
             <property name="font" >
              <font>
+              <family>Arial</family>
               <pointsize>18</pointsize>
               <weight>75</weight>
               <bold>true</bold>
@@ -50,6 +63,11 @@
           </item>
           <item>
            <widget class="QLabel" name="label_2" >
+            <property name="font" >
+             <font>
+              <family>Arial</family>
+             </font>
+            </property>
             <property name="text" >
              <string>A decision-making tool for community-based marine conservation. Developed by Comunidad y Biodiversidad, World Wildlife Fund and Ecotrust.</string>
             </property>
@@ -103,6 +121,9 @@
           </item>
           <item>
            <layout class="QVBoxLayout" >
+            <property name="spacing" >
+             <number>10</number>
+            </property>
             <item>
              <spacer>
               <property name="orientation" >
@@ -120,6 +141,13 @@
              <layout class="QHBoxLayout" >
               <item>
                <widget class="QLabel" name="label" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Select Analysis Type:</string>
                 </property>
@@ -147,6 +175,12 @@
               </property>
               <item>
                <widget class="QPushButton" name="fisheries_type_button" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <pointsize>11</pointsize>
+                 </font>
+                </property>
                 <property name="toolTip" >
                  <string>For selecting suitable candidates for MSC certification</string>
                 </property>
@@ -160,6 +194,12 @@
               </item>
               <item>
                <widget class="QPushButton" name="mpa_type_button" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <pointsize>11</pointsize>
+                 </font>
+                </property>
                 <property name="toolTip" >
                  <string>For selecting suitable regions as Marine Protected Areas</string>
                 </property>

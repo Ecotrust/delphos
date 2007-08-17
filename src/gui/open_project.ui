@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>456</width>
-    <height>144</height>
+    <height>135</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -24,32 +24,57 @@
         <widget class="QGroupBox" name="groupBox_4" >
          <property name="font" >
           <font>
+           <family>Arial</family>
            <pointsize>14</pointsize>
           </font>
          </property>
          <property name="title" >
-          <string>Select Project:</string>
+          <string/>
          </property>
-         <layout class="QHBoxLayout" >
+         <layout class="QVBoxLayout" >
           <item>
-           <widget class="QPushButton" name="project_browse_button" >
+           <widget class="QLabel" name="label" >
+            <property name="font" >
+             <font>
+              <pointsize>13</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text" >
-             <string>Browse...</string>
+             <string>Select Project:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="project_path_edit" >
-            <property name="minimumSize" >
-             <size>
-              <width>300</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="readOnly" >
-             <bool>true</bool>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QPushButton" name="project_browse_button" >
+              <property name="font" >
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text" >
+               <string>Browse...</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="project_path_edit" >
+              <property name="minimumSize" >
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="readOnly" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>

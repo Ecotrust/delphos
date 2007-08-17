@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>325</width>
-    <height>235</height>
+    <height>219</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -55,6 +55,7 @@
              <widget class="QLabel" name="label" >
               <property name="font" >
                <font>
+                <family>Arial</family>
                 <pointsize>18</pointsize>
                 <weight>75</weight>
                 <bold>true</bold>
@@ -83,12 +84,31 @@
           <item>
            <layout class="QVBoxLayout" >
             <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <layout class="QVBoxLayout" >
               <property name="spacing" >
                <number>2</number>
               </property>
               <item>
                <widget class="QPushButton" name="fisheries_intro_button" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Step-by-step Instructions</string>
                 </property>
@@ -96,6 +116,12 @@
               </item>
               <item>
                <widget class="QPushButton" name="fisheries_new_project_button" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Design New Project</string>
                 </property>
@@ -103,6 +129,12 @@
               </item>
               <item>
                <widget class="QPushButton" name="fisheries_open_project_button" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Open Existing Project</string>
                 </property>
@@ -110,28 +142,18 @@
               </item>
               <item>
                <widget class="QPushButton" name="fisheries_full_doc_button" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Full Documentation (Printable)</string>
                 </property>
                </widget>
               </item>
              </layout>
-            </item>
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType" >
-               <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>178</width>
-                <height>22</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </item>

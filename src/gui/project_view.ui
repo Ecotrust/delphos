@@ -39,7 +39,8 @@
                  <widget class="QLabel" name="label" >
                   <property name="font" >
                    <font>
-                    <pointsize>14</pointsize>
+                    <family>Arial</family>
+                    <pointsize>12</pointsize>
                     <weight>75</weight>
                     <bold>true</bold>
                    </font>
@@ -53,7 +54,8 @@
                  <widget class="QLabel" name="label_2" >
                   <property name="font" >
                    <font>
-                    <pointsize>14</pointsize>
+                    <family>Arial</family>
+                    <pointsize>12</pointsize>
                     <weight>75</weight>
                     <bold>true</bold>
                    </font>
@@ -67,7 +69,8 @@
                  <widget class="QLabel" name="label_3" >
                   <property name="font" >
                    <font>
-                    <pointsize>14</pointsize>
+                    <family>Arial</family>
+                    <pointsize>12</pointsize>
                     <weight>75</weight>
                     <bold>true</bold>
                    </font>
@@ -91,7 +94,8 @@
                   </property>
                   <property name="font" >
                    <font>
-                    <pointsize>14</pointsize>
+                    <family>Arial</family>
+                    <pointsize>12</pointsize>
                    </font>
                   </property>
                   <property name="text" >
@@ -103,7 +107,8 @@
                  <widget class="QLabel" name="project_type" >
                   <property name="font" >
                    <font>
-                    <pointsize>14</pointsize>
+                    <family>Arial</family>
+                    <pointsize>12</pointsize>
                    </font>
                   </property>
                   <property name="text" >
@@ -115,7 +120,8 @@
                  <widget class="QLabel" name="project_created" >
                   <property name="font" >
                    <font>
-                    <pointsize>14</pointsize>
+                    <family>Arial</family>
+                    <pointsize>12</pointsize>
                    </font>
                   </property>
                   <property name="text" >
