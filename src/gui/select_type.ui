@@ -125,6 +125,11 @@
              <layout class="QHBoxLayout" >
               <item>
                <widget class="QLabel" name="label" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Select Analysis Type:</string>
                 </property>
@@ -152,6 +157,12 @@
               </property>
               <item>
                <widget class="QPushButton" name="fisheries_type_button" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <pointsize>11</pointsize>
+                 </font>
+                </property>
                 <property name="toolTip" >
                  <string>For selecting suitable candidates for MSC certification</string>
                 </property>
@@ -165,6 +176,12 @@
               </item>
               <item>
                <widget class="QPushButton" name="mpa_type_button" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <pointsize>11</pointsize>
+                 </font>
+                </property>
                 <property name="toolTip" >
                  <string>For selecting suitable regions as Marine Protected Areas</string>
                 </property>
