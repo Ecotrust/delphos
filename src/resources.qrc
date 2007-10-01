@@ -7,5 +7,6 @@
         <file>documentation/fisheries_data_limited_questionnaire.doc</file>
         <file>documentation/fisheries_criteria_and_guidance.doc</file>
         <file>documentation/fisheries_examples_from_the_field.doc</file>
+        <file>qss/main_style.css</file>
     </qresource>
 </RCC>

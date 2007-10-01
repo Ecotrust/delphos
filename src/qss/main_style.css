@@ -1,0 +1,15 @@
+QLineEdit { 
+	background-color: #e1edf5; 
+}
+
+QPushButton {
+	background-color: rgb(172,201,198);
+}
+
+QPushButton:pressed, QPushButton:hover {
+	background-color: orange;
+}
+
+QWidget#MainWindow {
+	background-color: #003366;
+}

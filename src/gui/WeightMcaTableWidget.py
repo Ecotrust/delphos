@@ -12,16 +12,17 @@ class WeightMcaTableWidget(QTableWidget):
         self.weight_column = 0
         self.vertical_header_width = 300 #criteria descriptions are so freaking long!
         
-    def load(self, criteria_recs):
-        """Loads the table with criteria, given a list of records
+    def load(self, input_weight_set):
+        """Loads the table with criteria, given a set of input weight data
         """
+        weight_recs = input_weight_set.get_weight_data()
         self.hide()
         self.clearContents()
-        self.num_rows = len(criteria_recs)    
+        self.num_rows = len(weight_recs)    
         self.setRowCount(self.num_rows)
         
         for i in range(self.num_rows):
-            (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = criteria_recs[i]
+            (crit_id, crit_name, crit_weight) = weight_recs[i]
             #Add criteria name header 
             header_item = QTableWidgetItem()
             header_item.setSizeHint(QSize(self.vertical_header_width, header_item.sizeHint().height()))
@@ -29,6 +30,8 @@ class WeightMcaTableWidget(QTableWidget):
             header_item.setToolTip(crit_name)
             self.setVerticalHeaderItem(i, header_item)
             weight_item = QTableWidgetItem()
+            if crit_weight:
+                weight_item.setText(str(crit_weight))
             self.setItem(i, 0, weight_item)
             
         #self.resizeColumnsToContents()
@@ -42,7 +45,7 @@ class WeightMcaTableWidget(QTableWidget):
                 return None 
             table_item.setText("1")
     
-    def get_input_weights(self):
+    def get_input_weights(self, input_required):
         """Returns list of indexes of criterias selected in table
         
         Can be used for lookup in list structure containing criterias data
@@ -57,17 +60,20 @@ class WeightMcaTableWidget(QTableWidget):
             #print table_item
             value = table_item.text()
             #Check for no value
-            if not value:
+            if not value and input_required:
                 QMessageBox.critical(self,"Error", "Missing input in row "+str(i+1))
                 return None                
             #Check for non-integer
-            if not strIsInt(value):
-                QMessageBox.critical(self,"Error", "Invalid input in row "+str(i+1)+"\nExpected an integer, received '")
+            if value and not strIsInt(value):
+                QMessageBox.critical(self,"Error", "Invalid input in row "+str(i+1)+"\nExpected an integer, received "+str(value))
                 return None                
             #print "value: "+str(value)
             #print "from i:"+str(i)+" j:"+str(j)
             #Save the value from i,j to j,i
             #print "into: i:"+str(j)+", j:"+str(i)
-            input_weights[i] = int(value)
+            if value:
+                input_weights[i] = int(value)
+            else:
+                input_weights[i] = None
         return input_weights
         

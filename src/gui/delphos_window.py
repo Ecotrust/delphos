@@ -26,6 +26,12 @@ class DelphosWindow(QMainWindow):
 		QObject.connect(self.ui.prev_button, SIGNAL("backwardAvailable(bool)"), self.toggle_prev_button)
 		QObject.connect(self.ui.next_button, SIGNAL("forwardAvailable(bool)"), self.toggle_next_button)
 
+		QObject.connect(self.ui.menu_dock_visible, SIGNAL("triggered()"), self.toggle_documentation_window)
+		QObject.connect(self.ui.dock_doc, SIGNAL("visibilityChanged(bool)"), self.toggle_dock_visible_menu)
+
+		QObject.connect(self.ui.menu_dock_floating, SIGNAL("triggered()"), self.toggle_dock_float)
+		QObject.connect(self.ui.dock_doc, SIGNAL("topLevelChanged(bool)"), self.toggle_dock_floating_menu)
+		
 		#self.ui.dock_doc.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.load_toc()
 
@@ -135,3 +141,29 @@ class DelphosWindow(QMainWindow):
  		else:
 	 		self.ui.dock_doc.setMinimumSize(self.width(), 0)
  			self.dock_full_screen = True
+
+	def toggle_documentation_window(self):
+		if self.ui.dock_doc.isVisible():
+			self.ui.dock_doc.hide()
+		else:			
+			self.ui.dock_doc.show()
+
+	def toggle_dock_visible_menu(self):
+		if self.ui.dock_doc.isVisible():
+			self.ui.menu_dock_visible.setChecked(True)
+		else:			
+			self.ui.menu_dock_visible.setChecked(False)
+ 
+ 	def toggle_dock_float(self):
+		if self.ui.dock_doc.isFloating():
+			self.ui.dock_doc.setFloating(False)
+		else:			
+			self.ui.dock_doc.setFloating(True)
+
+	def toggle_dock_floating_menu(self, isFloating):
+		print "got here"
+		print isFloating
+		if isFloating:
+			self.ui.menu_dock_floating.setChecked(False)
+		else:			
+			self.ui.menu_dock_floating.setChecked(True)

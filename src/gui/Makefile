@@ -1,7 +1,7 @@
 # Default target executed when no arguments are given to make.
 default_target: all
 
-all: main_window_ui.py select_type_ui.py fisheries_main_menu_ui.py mpa_main_menu_ui.py create_project_ui.py open_project_ui.py project_view_ui.py add_alternative_ui.py add_criteria_ui.py add_ordinal_option_ui.py mca_wizard_ui.py mca_result_view_ui.py
+all: main_window_ui.py select_type_ui.py create_project_ui.py open_project_ui.py project_view_ui.py add_alternative_ui.py add_criteria_ui.py add_ordinal_option_ui.py mca_wizard_ui.py mca_wizard2_ui.py mca_result_view_ui.py
 
 clean:
 	rm -f *_ui.py
@@ -14,12 +14,6 @@ main_window_ui.py: main_window.ui
 
 select_type_ui.py: select_type.ui
 	pyuic4 -o select_type_ui.py select_type.ui
-
-fisheries_main_menu_ui.py: fisheries_main_menu.ui
-	pyuic4 -o fisheries_main_menu_ui.py fisheries_main_menu.ui
-
-mpa_main_menu_ui.py: mpa_main_menu.ui
-	pyuic4 -o mpa_main_menu_ui.py mpa_main_menu.ui
 
 create_project_ui.py: create_project.ui
 	pyuic4 -o create_project_ui.py create_project.ui
@@ -41,6 +35,9 @@ add_ordinal_option_ui.py: add_ordinal_option.ui
 
 mca_wizard_ui.py: mca_wizard.ui
 	pyuic4 -o mca_wizard_ui.py mca_wizard.ui
+
+mca_wizard2_ui.py: mca_wizard2.ui
+	pyuic4 -o mca_wizard2_ui.py mca_wizard2.ui
 	
 mca_result_view_ui.py: mca_result_view.ui
 	pyuic4 -o mca_result_view_ui.py mca_result_view.ui

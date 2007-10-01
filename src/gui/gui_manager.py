@@ -9,8 +9,6 @@ from PyQt4.QtGui import *
 from delphos_exceptions import *
 from delphos_window import DelphosWindow
 from select_type_dialog import SelectTypeDialog
-from fisheries_main_menu_dialog import FisheriesMainMenuDialog
-from mpa_main_menu_dialog import MpaMainMenuDialog
 from create_project_dialog import CreateProjectDialog
 from open_project_dialog import OpenProjectDialog
 from project_view_dialog import ProjectViewDialog
@@ -26,6 +24,14 @@ class GuiManager(QObject):
 		#Create new QT application object
 		self.qapp = QApplication(sys.argv)
 
+		qss = QFile(":/qss/main_style.css")
+		qss.open(QIODevice.ReadOnly)
+		stylesheet = str(qss.readAll())
+		qss.close()
+		print "stylesheet: "
+		print stylesheet
+		self.qapp.setStyleSheet(stylesheet)
+
 		#Create DesktopService for accessing services provided by desktop (eg. web browser) 
 		self.desktop_services = QDesktopServices()
 
@@ -39,7 +45,7 @@ class GuiManager(QObject):
 		#Create main delphos window
 		self.win = DelphosWindow()
 		#Hide the docked widget initially
-		self.hide_documentation_window()
+		self.win.ui.dock_doc.hide()
 		#Resize to full screen
 		self.win.resize(self.get_screen_width(), self.get_screen_height())
 
@@ -52,12 +58,9 @@ class GuiManager(QObject):
 		QObject.connect(self.win.ui.toc_tree, SIGNAL("itemClicked(QTreeWidgetItem*,int)"), self.win.process_toc_click)
 		
 		#Top menu slots
-		QObject.connect(self.win.ui.menu_exit_delphos, SIGNAL("activated()"), self.stop_gui)
-		QObject.connect(self.win.ui.menu_main_menu, SIGNAL("activated()"), self.start_type_selection)
-		QObject.connect(self.win.ui.menu_open_project, SIGNAL("activated()"), self.handle_open_existing_selection)
-		QObject.connect(self.win.ui.menu_create_project, SIGNAL("activated()"), self.handle_design_new_selection)
-		
-		QObject.connect(self.win.ui.documentation_window_toggle, SIGNAL("activated()"), self.toggle_documentation_window)
+		QObject.connect(self.win.ui.menu_exit_delphos, SIGNAL("triggered()"), self.stop_gui)
+		QObject.connect(self.win.ui.menu_open_project, SIGNAL("triggered()"), self.handle_open_existing_selection)
+		QObject.connect(self.win.ui.menu_create_project, SIGNAL("triggered()"), self.handle_design_new_selection)
 
 		#Flag indicating whether dock_doc widget is currently full screen
 		self.dock_doc_is_full_screen = False
@@ -86,46 +89,26 @@ class GuiManager(QObject):
 		self.select_type_dialog.show()
 
 	def handle_type_selection(self, type):
-		"""Stores the analaysis type selected and loads the main menu
+		"""Stores the analaysis type selected and loads the documentation window
 		"""
 		self.project_manager.set_current_project_type(type)
-		
-		if type == "fisheries":
-			self.main_menu_dialog = FisheriesMainMenuDialog(self, self.win)
-			self.connect(self.main_menu_dialog, SIGNAL("intro_selected"), self.handle_intro_selection)
-			self.connect(self.main_menu_dialog, SIGNAL("design_new_selected"), self.handle_design_new_selection)
-			self.connect(self.main_menu_dialog, SIGNAL("open_existing_selected"), self.handle_open_existing_selection)
-			self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)
-			self.select_type_dialog.hide()
-			self.select_type_dialog.deleteLater()
-			self.main_menu_dialog.show()
-		elif type == "mpa":
-			QMessageBox.critical(self.select_type_dialog, "Not Implemented", "Not Implemented")
-			#self.main_menu_dialog = MpaMainMenuDialog(self, self.win)
-			#self.connect(self.main_menu_dialog, SIGNAL("intro_selected"), self.handle_intro_selection)
-			#self.connect(self.main_menu_dialog, SIGNAL("design_new_selected"), self.handle_design_new_selection)
-			#self.connect(self.main_menu_dialog, SIGNAL("open_existing_selected"), self.handle_open_existing_selection)
-			#self.connect(self.main_menu_dialog, SIGNAL("full_doc_selected"), self.handle_full_doc_selection)		
-
-		
+		self.select_type_dialog.hide()
+		self.select_type_dialog.deleteLater()
+		self.win.ui.dock_doc.show()
 	
 	def handle_intro_selection(self):
 		"""Loads up the documentation in the dock window, displays the intro page
 		"""
-		self.main_menu_dialog.hide()
 		self.show_documentation_window()		
 
 	def handle_design_new_selection(self):
 		"""Start the process of designing a new project
 		"""
-		self.main_menu_dialog.hide()
 		self.start_project_creation()
 	
 	def handle_open_existing_selection(self):
 		"""Start the process of opening an existing project
 		"""
-		if self.main_menu_dialog and self.main_menu_dialog.isVisible():
-			self.main_menu_dialog.hide()
 		self.start_project_opening()
 	
 	def handle_full_doc_selection(self):
@@ -187,7 +170,6 @@ class GuiManager(QObject):
 		self.project_view = ProjectViewDialog(self, self.project_manager.get_current_project())
 		self.win.setCentralWidget(self.project_view)
 		self.project_view.show()
-		self.show_documentation_window()		
 
 	def get_screen_dimensions(self):
 		"""Return (width, height) tuple in pixels of the screen containing the delphos window
@@ -248,28 +230,7 @@ class GuiManager(QObject):
 			doc_url = "file:"+urllib.pathname2url(unicode(doc_path))
 			print doc_url
 			self.desktop_services.openUrl(QUrl(doc_url))
-
-
 	
-	def toggle_documentation_window(self):
-		if self.win.ui.dock_doc.isVisible():
-			self.win.ui.dock_doc.hide()
-			self.win.ui.documentation_window_toggle.setChecked(False)
-		elif self.project_manager.has_project_loaded():
-			self.win.ui.dock_doc.show()
-			self.win.ui.documentation_window_toggle.setChecked(True)
-		else:			
-			#Make sure menu option isn't checked 
-			self.win.ui.documentation_window_toggle.setChecked(False)
-	
-	def show_documentation_window(self):
-		self.win.ui.dock_doc.show()
-		self.win.ui.documentation_window_toggle.setChecked(True)
-
-	def hide_documentation_window(self):
-		self.win.ui.dock_doc.hide()
-		self.win.ui.documentation_window_toggle.setChecked(False)
-		
 #Testing purposes
 if __name__ == '__main__':
 	os.chdir('..')	#Go to top-level directory

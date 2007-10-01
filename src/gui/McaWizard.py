@@ -26,6 +26,8 @@ class McaWizard(QDialog, Ui_McaWizard):
         self.output_encoding = 'latin-1'
         self.cur_index = 0
         
+        self.input_weights = None
+        
         #Contains field data for all alternatives selected, each row is a 
         #list of [altern_id, altern_name]
         self.selected_altern_data = []
@@ -50,13 +52,13 @@ class McaWizard(QDialog, Ui_McaWizard):
         QObject.connect(self.altern_next_button,QtCore.SIGNAL("clicked()"), self.process_altern_select)
         QObject.connect(self.crit_next_button,QtCore.SIGNAL("clicked()"), self.process_crit_select)
         QObject.connect(self.input_next_button,QtCore.SIGNAL("clicked()"), self.process_data_input)
-        QObject.connect(self.weight_next_button,QtCore.SIGNAL("clicked()"), self.process_weight_input)
+        QObject.connect(self.weight_next_button,QtCore.SIGNAL("clicked()"), self.weight_next_click)
         
         QObject.connect(self.crit_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
         QObject.connect(self.input_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
-        QObject.connect(self.weight_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
         QObject.connect(self.run_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
-            
+        QObject.connect(self.weight_prev_button,QtCore.SIGNAL("clicked()"), self.weight_prev_click)
+                    
         QObject.connect(self.altern_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
         QObject.connect(self.crit_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
         QObject.connect(self.input_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
@@ -78,25 +80,12 @@ class McaWizard(QDialog, Ui_McaWizard):
         self.setup_crit_select()        
         self.setup_altern_select()
 
+    #################################### Alternatives #####################
+
     def setup_altern_select(self):
         self.altern_data = self.project.get_all_alternatives()
         self.altern_table.load(self.altern_data)    
-
-    def setup_crit_select(self):
-        self.crit_data = self.project.get_all_criteria()
-        self.crit_table.load(self.crit_data)
-
-    def setup_data_input(self):
-        self.input_table.load(self.selected_altern_data, self.selected_crit_data)
-
-    def setup_weight_input(self):
-        #Reuse selected altern ids from 
-        self.weight_table.load(self.selected_crit_data)
-    
-    def setup_run(self):
-        self.num_alternatives_label.setText(str(self.num_selected_alternatives))
-        self.num_criteria_label.setText(str(self.num_selected_criteria))
-
+        
     def process_altern_select(self):
         selected_altern_indexes = self.altern_table.get_selected_indexes()
         self.selected_altern_data = []
@@ -113,6 +102,18 @@ class McaWizard(QDialog, Ui_McaWizard):
             self.next_click()
         self.num_selected_alternatives = len(self.selected_altern_data)
         
+    def check_all_alternatives(self):
+        self.altern_table.check_all()
+    
+    def uncheck_all_alternatives(self):
+        self.altern_table.uncheck_all()
+    
+    ################################ Criteria #################################
+
+    def setup_crit_select(self):
+        self.crit_data = self.project.get_all_criteria()
+        self.crit_table.load(self.crit_data)
+
     def process_crit_select(self):
         selected_crit_indexes = self.crit_table.get_selected_indexes()
         if len(selected_crit_indexes) < 1:
@@ -132,21 +133,34 @@ class McaWizard(QDialog, Ui_McaWizard):
             self.next_click()
         self.num_selected_criteria = len(self.selected_crit_data)
 
-    def check_all_alternatives(self):
-        self.altern_table.check_all()
-    
     def check_all_criteria(self):
         self.crit_table.check_all()
 
-    def uncheck_all_alternatives(self):
-        self.altern_table.uncheck_all()
-    
     def uncheck_all_criteria(self):
         self.crit_table.uncheck_all()
-    
-    def assign_equal_weight(self):
-        self.weight_table.assign_equal_weight()
-    
+               
+    def gen_crit_type_lists(self, crit_types):
+        """Given a list of criteria types (eg. "Binary", "Ordinal", "Ratio"), 
+        returns a tuple containing two lists. 1 of indices of quantitative 
+        criteria and 1 of indices of qualitative criteria.  These are indices 
+        into the crit_types (or in_matrix) list allowing for quick retrieval 
+        of criteria of one type or the other during the analysis process.
+        """   
+        quant_list = []
+        qual_list = []
+        for i in range(len(crit_types)):
+            cur_type = crit_types[i]
+            if cur_type == "Ratio":
+                quant_list.append(i)
+            elif cur_type == "Ordinal" or cur_type == "Binary":
+                qual_list.append(i)
+        return (quant_list, qual_list)
+
+    ################################# Input Data ##############################
+
+    def setup_data_input(self):
+        self.input_table.load(self.selected_altern_data, self.selected_crit_data)
+
     def process_template_export(self):
         """Creates a unicode CSV containing alternatives and criteria for quickly inputting data
         """
@@ -309,38 +323,56 @@ class McaWizard(QDialog, Ui_McaWizard):
                 QMessageBox.critical(self,"Input Error", "Your rows with ordinal/binary criteria all have the same value.  At least one of those rows must have a cell with a value different from the rest.")
                 return False
         return True
-            
-    def gen_crit_type_lists(self, crit_types):
-        """Given a list of criteria types (eg. "Binary", "Ordinal", "Ratio"), 
-        returns a tuple containing two lists. 1 of indices of quantitative 
-        criteria and 1 of indices of qualitative criteria.  These are indices 
-        into the crit_types (or in_matrix) list allowing for quick retrieval 
-        of criteria of one type or the other during the analysis process.
-        """   
-        quant_list = []
-        qual_list = []
-        for i in range(len(crit_types)):
-            cur_type = crit_types[i]
-            if cur_type == "Ratio":
-                quant_list.append(i)
-            elif cur_type == "Ordinal" or cur_type == "Binary":
-                qual_list.append(i)
-        return (quant_list, qual_list)
 
+    ########################## Input Weights #########################
 
-    def process_weight_input(self):
-        self.input_weights = self.weight_table.get_input_weights()
-        if self.input_weights:
-            #print self.input_weights
+    def weight_next_click(self):
+        ok = self.process_weight_input("forward")
+        if ok:
             self.next_click()
 
-    def process_run(self):
-        """Processes clicking of 'Run Analysis' button
-        """
-        if self.isError:
-            self.isError = False
+    def weight_prev_click(self):
+        ok = self.process_weight_input("backward")
+        if ok:
+            self.prev_click()
+
+    def setup_weight_input(self):
+        if not self.input_weights:
+            self.input_weights = InputWeightSet(self.selected_crit_data)
         else:
-            self.emit(SIGNAL("mca_analysis_info_collected"), self.selected_altern_data, self.selected_crit_data, self.input_data, self.input_weights, self.selected_crit_types)
+            self.input_weights.update_crits(self.selected_crit_data)
+        self.weight_table.load(self.input_weights)
+
+    def process_weight_input(self, direction):
+        input_required = True
+        if direction == "backward":
+            input_required = False
+            
+        new_input_weights = self.weight_table.get_input_weights(input_required)
+        self.input_weights.update_weights(new_input_weights)            
+        if self.input_weights:
+            return True
+        else:
+            return False
+
+    def assign_equal_weight(self):
+        self.weight_table.assign_equal_weight()
+
+    ############################### Run #################################
+    
+    def setup_run(self):
+        self.num_alternatives_label.setText(str(self.num_selected_alternatives))
+        self.num_criteria_label.setText(str(self.num_selected_criteria))
+
+    def process_run(self):
+            """Processes clicking of 'Run Analysis' button
+            """
+            if self.isError:
+                self.isError = False
+            else:
+                self.emit(SIGNAL("mca_analysis_info_collected"), self.selected_altern_data, self.selected_crit_data, self.input_data, self.input_weights, self.selected_crit_types)
+
+    ############################# General ###############################
 
     def next_click(self):
         """Shift stack forward one
@@ -364,6 +396,7 @@ class McaWizard(QDialog, Ui_McaWizard):
     def process_current_change(self, index):
         """Loads the appropriate widget when the next button is clicked
         """
+        ok = False
         if self.cur_index < index:
             if index is 2:
                 self.setup_data_input()
@@ -371,5 +404,78 @@ class McaWizard(QDialog, Ui_McaWizard):
                 self.setup_weight_input()
             elif index is 4:
                 self.setup_run()
+                
         self.cur_index = index
+       
+class InputWeightSet():
+    """Maintains weights input by the user.
+    
+    Ties weight values input by user to their associated criterion so
+    that the user can go back and change the criteria without losing
+    the data that they already input.  It also separates data from 
+    presentation.
+    """
+    def __init__(self, crit_data):
+        #TODO: Really we should only be keeping the id, name and weight
+        self.crit_id_column = 0
+        self.crit_name_column = 1
+        self.weight_column = 2        
+
+        self.weight_data = self.create_weight_data(crit_data)
+
+        print "Creating weight set"
+        print self.weight_data
+
+    def create_weight_data(self, crit_data):
+        """Given a critieria set, create an empty weight set
+        """
+        weight_data = []
+        for crit in crit_data:
+            id = crit[self.crit_id_column]
+            name = crit[self.crit_name_column]
+            weight_data.append([id, name, None])
+        return weight_data
             
+    def update_weights(self, new_weights):
+        
+        if not new_weights or len(new_weights) != len(self.weight_data):
+            raise Exception, "Error updating weights"
+
+        print "Weights before: "
+        print self.get_weight_data()
+
+        print "New weights: "
+        print new_weights
+
+        for i in range(len(new_weights)):
+            self.weight_data[i][self.weight_column] = new_weights[i]
+                  
+        print "Update weights"
+        print self.get_weight_data()
+
+    def update_crits(self, new_crit_data):
+        print "New crit data"
+        print new_crit_data
+    
+        #Create new weight data
+        new_weight_data = self.create_weight_data(new_crit_data)
+        #Transfer weight values
+        for i in range(len(self.weight_data)):    
+            for j in range(len(new_weight_data)):
+                if new_weight_data[j][self.crit_id_column] == self.weight_data[i][self.crit_id_column]:
+                    new_weight_data[j][self.weight_column] = self.weight_data[i][self.weight_column]                
+        
+        #Drop the old weight data
+        self.weight_data = new_weight_data
+        
+        print "Updated crit data"
+        print self.weight_data
+    
+    def get_weight_data(self):
+        return self.weight_data
+    
+    def get_weights(self):
+        weights = []
+        for item in self.weight_data:
+            weights.append(item[self.weight_column])
+        return weights
