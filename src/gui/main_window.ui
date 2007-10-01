@@ -192,6 +192,11 @@
             </item>
             <item>
              <widget class="HelpTextBrowser" name="doc_browser" >
+              <property name="font" >
+               <font>
+                <family>Arial</family>
+               </font>
+              </property>
               <property name="openExternalLinks" >
                <bool>true</bool>
               </property>

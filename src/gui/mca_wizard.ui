@@ -319,16 +319,16 @@
              </property>
              <layout class="QVBoxLayout" >
               <item>
-               <widget class="QPushButton" name="crit_prev_button" >
+               <widget class="QPushButton" name="crit_next_button" >
                 <property name="text" >
-                 <string>Prev</string>
+                 <string>Next</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="crit_next_button" >
+               <widget class="QPushButton" name="crit_prev_button" >
                 <property name="text" >
-                 <string>Next</string>
+                 <string>Prev</string>
                 </property>
                </widget>
               </item>
@@ -476,16 +476,16 @@
                </property>
                <layout class="QVBoxLayout" >
                 <item>
-                 <widget class="QPushButton" name="input_prev_button" >
+                 <widget class="QPushButton" name="input_next_button" >
                   <property name="text" >
-                   <string>Prev</string>
+                   <string>Next</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="input_next_button" >
+                 <widget class="QPushButton" name="input_prev_button" >
                   <property name="text" >
-                   <string>Next</string>
+                   <string>Prev</string>
                   </property>
                  </widget>
                 </item>
@@ -641,16 +641,16 @@
              </property>
              <layout class="QVBoxLayout" >
               <item>
-               <widget class="QPushButton" name="weight_prev_button" >
+               <widget class="QPushButton" name="weight_next_button" >
                 <property name="text" >
-                 <string>Prev</string>
+                 <string>Next</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="weight_next_button" >
+               <widget class="QPushButton" name="weight_prev_button" >
                 <property name="text" >
-                 <string>Next</string>
+                 <string>Prev</string>
                 </property>
                </widget>
               </item>
