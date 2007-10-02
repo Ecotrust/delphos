@@ -62,16 +62,16 @@ class CriteriaSet(object):
 			* the DB table as given. SQLA can only pickle strings and lists, not tuples
 		cost_benefit (string) - 'C'=cost or 'B'=benefit
 		"""
-		print "info to add: "+unicode(criteria_info)
+		#print "info to add: "+unicode(criteria_info)
 		(desc, type, type_options, cost_benefit) = criteria_info
 		#Pickle the type_options up
 		type_options = pickle.dumps(type_options)
 		same_list = list(self.table.select(self.table.c.description==desc).execute())
-		print "same_list: "+unicode(same_list)
+		#print "same_list: "+unicode(same_list)
 		if len(same_list) > 0:
 			raise DelphosError, "A criterion with the description "+desc+" already exists in this project."
 		else:
-			print "inserting"
+			#print "inserting"
 			self.table.insert().execute({'description':desc, 'type':type, 'type_options':type_options, 'cost_benefit':cost_benefit})
 	
 	def remove_criteria(self, criteria_id):

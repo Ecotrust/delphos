@@ -17,6 +17,7 @@ class Evamix(object):
             raise DelphosError, "Bad in_matrix matrix"
         if not crit_weights:
             raise DelphosError, "No criteria weights given"
+        print "crit weights: "+str(crit_weights)
         if type(crit_weights) is not type([]):
             raise DelphosError, "Expected list of crit_weights"
         if not crit_types:

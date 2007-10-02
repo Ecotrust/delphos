@@ -27,6 +27,35 @@ class AlternativeSet(object):
 		self.mapper = mapper(Alternative, self.table)
 		
 		#print list(self.table.columns)
+		
+		#Cross-platform compatible colors taken from 
+		#http://www.tbtf.com/resource/20colors.html
+		self.default_altern_colors = [
+							   	'#ff0000',
+							   	'#00ff00',
+							   	'#0000ff',
+							   	'#ffff00',
+							   	'#ff00ff',
+							   	'#00ffff',
+							   	
+								'#000000', 
+							   	'#800000', 
+							   	'#008000', 
+							   	'#808000',
+							   	'#000080',
+							   	'#800080',
+							   	'#008080',
+							   	'#c0c0c0',
+
+							   	'#c0dcc0',
+							   	'#a6caf0',
+							   	'#fffbf0',
+							   	'#a0a0a4',
+							   	'#808080',
+							   	
+							   	'#ffffff'
+							   	]
+		self.extra_color = '#ffffff'
 
 	def __create_alternative_table(self):
 		"""Create a new alternative table in the DB
@@ -39,7 +68,8 @@ class AlternativeSet(object):
 		"""
 		return Table(self.name, self.metadata,
 			Column('alternative_id', Integer, Sequence('altern_id_seq'), primary_key=True),
-			Column('name', String(200))
+			Column('name', String(200)),
+			Column('color', String(7))
 		)
 		
 	def add_alternative(self, altern_name):
@@ -47,11 +77,19 @@ class AlternativeSet(object):
 		
 		altern_name (string) - name of the alternative
 		"""
+		#Verify not given duplicate alternative name
 		same_list = list(self.table.select(self.table.c.name==altern_name).execute())
 		if len(same_list) > 0:
-			raise DelphosError, "An alternative named "+altern_name+" already exists in this project."
+			raise DelphosError, "An alternative named "+str(altern_name)+" already exists in this project."
 		else:
-			self.table.insert().execute({'name':altern_name})
+			#Get default color
+			num_alterns = self.get_num()
+			if num_alterns < 20:
+				cur_color = self.default_altern_colors[num_alterns]
+			else:
+				cur_color = self.extra_color
+			
+			self.table.insert().execute({'name':altern_name, 'color':cur_color})
 	
 	def remove_alternative_by_id(self, alternative_id):
 		"""Remove alternative from AlternativeSet given its unique alternative id

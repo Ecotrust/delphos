@@ -68,7 +68,7 @@ class ProjectManager:
 		
 		#Check if project type changed
 		project_type = proj.get_project_type()
-		print "current project type: "+project_type 
+ 
 		if not project_type:
 			raise DelphosError, "Project type not found"
 		elif project_type != self.current_project_type:

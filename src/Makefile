@@ -3,9 +3,6 @@ all: resources_rc.py
 
 clean:
 	rm -f resources_rc.py
-	rm -f *.pyc
-	rm -f *~
-	rm -f *#
 	rm -rf dist
 	rm -rf build
 	cd gui; $(MAKE) clean
