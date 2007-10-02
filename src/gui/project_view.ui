@@ -16,7 +16,7 @@
    <item>
     <widget class="QTabWidget" name="tabProject" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
@@ -256,7 +256,7 @@
           <number>1</number>
          </property>
          <property name="columnCount" >
-          <number>1</number>
+          <number>2</number>
          </property>
          <row>
           <property name="text" >
@@ -266,6 +266,11 @@
          <column>
           <property name="text" >
            <string>Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Color</string>
           </property>
          </column>
         </widget>

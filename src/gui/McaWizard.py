@@ -370,7 +370,7 @@ class McaWizard(QDialog, Ui_McaWizard):
             if self.isError:
                 self.isError = False
             else:
-                self.emit(SIGNAL("mca_analysis_info_collected"), self.selected_altern_data, self.selected_crit_data, self.input_data, self.input_weights, self.selected_crit_types)
+                self.emit(SIGNAL("mca_analysis_info_collected"), self.selected_altern_data, self.selected_crit_data, self.input_data, self.input_weights.get_weights(), self.selected_crit_types)
 
     ############################# General ###############################
 

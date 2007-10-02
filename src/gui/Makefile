@@ -6,8 +6,6 @@ all: main_window_ui.py select_type_ui.py create_project_ui.py open_project_ui.py
 clean:
 	rm -f *_ui.py
 	rm -f *.pyc
-	rm -f *~
-	rm -f *#
 
 main_window_ui.py: main_window.ui
 	pyuic4 -o main_window_ui.py main_window.ui

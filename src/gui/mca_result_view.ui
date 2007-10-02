@@ -17,13 +17,13 @@
     <widget class="FinalScoreTableWidget" name="final_table" >
      <property name="minimumSize" >
       <size>
-       <width>300</width>
+       <width>250</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize" >
       <size>
-       <width>200</width>
+       <width>250</width>
        <height>16777215</height>
       </size>
      </property>
@@ -47,6 +47,11 @@
      <column>
       <property name="text" >
        <string>Rank</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Color</string>
       </property>
      </column>
     </widget>

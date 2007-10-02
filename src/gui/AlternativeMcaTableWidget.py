@@ -7,10 +7,15 @@ from PyQt4.QtGui import *
 class AlternativeMcaTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
+        #Index into alternative DB table
         self.altern_id_column = 0
         self.altern_name_column = 1
+        self.altern_color_column = 2
+        
+        #Index into alternative table widget
         self.altern_check_display_column = 0
         self.altern_name_display_column = 1
+        self.altern_color_display_column = 2
 
     def load(self, alternative_recs):
         """Loads the table with alternatives, given a list of records
@@ -27,8 +32,14 @@ class AlternativeMcaTableWidget(QTableWidget):
             #Add alternative name to second column
             item = QTableWidgetItem()
             item.setText(unicode(alternative_recs[i][self.altern_name_column]))
-
             self.setItem(i, self.altern_name_display_column, item)
+            
+            #Add alternative color to third column
+            altern_color = alternative_recs[i][self.altern_color_column]
+            color_item = QTableWidgetItem()
+            color_item.setBackgroundColor(QColor(altern_color))
+            self.setItem(i, self.altern_color_display_column, color_item)
+            
         self.resizeColumnsToContents()
     
     def check_all(self):

@@ -109,7 +109,7 @@
             <number>0</number>
            </property>
            <property name="columnCount" >
-            <number>2</number>
+            <number>3</number>
            </property>
            <column>
             <property name="text" >
@@ -119,6 +119,11 @@
            <column>
             <property name="text" >
              <string>Name</string>
+            </property>
+           </column>
+           <column>
+            <property name="text" >
+             <string>Color</string>
             </property>
            </column>
           </widget>

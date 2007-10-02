@@ -10,6 +10,8 @@ class FinalScoreTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
         self.weight_column = 0
+        self.altern_color_column = 2
+        self.altern_color_display_column = 2
         #self.vertical_header_width = 300 #criteria descriptions are so freaking long!
         
     def load(self, altern_recs, sorted_results):
@@ -23,12 +25,15 @@ class FinalScoreTableWidget(QTableWidget):
         print sorted_results
         
         #Make altern recs a dict using altern_id as key
-        altern_recs = dict(altern_recs)
+        altern_dict = {}
+        for altern in altern_recs:
+            altern_dict[altern[0]] = altern[1]
+        #altern_recs = dict(altern_recs)
         
         for i in range(len(sorted_results)):
             (altern_id, score) = sorted_results[i]
             score = round(score, 4)
-            altern_name = altern_recs[altern_id]
+            altern_name = altern_dict[altern_id]
             
             header_item = QTableWidgetItem()
             #header_item.setSizeHint(QSize(self.vertical_header_width, header_item.sizeHint().height()))
@@ -43,5 +48,11 @@ class FinalScoreTableWidget(QTableWidget):
             rank_item = QTableWidgetItem()
             rank_item.setText(unicode(i+1))
             self.setItem(i, 1, rank_item)
+            
+            #Add alternative color to third column
+            altern_color = altern_recs[i][self.altern_color_column]
+            color_item = QTableWidgetItem()
+            color_item.setBackgroundColor(QColor(altern_color))
+            self.setItem(i, self.altern_color_display_column, color_item)            
             
         self.resizeColumnsToContents()

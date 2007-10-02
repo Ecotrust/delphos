@@ -22,7 +22,7 @@ class McaResultView(QDialog, Ui_McaResultView):
         final_results = {}
         #Build results dictionary using altern id as key
         for i in range(len(results)):
-            (altern_id, altern_name) = altern_data[i]
+            (altern_id, altern_name, altern_color) = altern_data[i]
             score = results[i]
             final_results[altern_id] = score
             

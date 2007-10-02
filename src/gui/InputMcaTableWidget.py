@@ -36,7 +36,7 @@ class InputMcaTableWidget(QTableWidget):
         for i in range(len(selected_crit_data)):
             (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = selected_crit_data[i]
             for j in range(len(selected_altern_data)):
-                (altern_id, altern_name) = selected_altern_data[j]
+                (altern_id, altern_name, altern_color) = selected_altern_data[j]
                 #Insert row headers 
                 if i is 0:
                     header_item = QTableWidgetItem()
@@ -91,7 +91,7 @@ class InputMcaTableWidget(QTableWidget):
         for i in range(len(self.selected_crit_data)):
             (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = self.selected_crit_data[i]
             for j in range(len(self.selected_altern_data)):
-                (altern_id, altern_name) = self.selected_altern_data[j]
+                (altern_id, altern_name, altern_color) = self.selected_altern_data[j]
                 if crit_type == "Ordinal" or crit_type == "Binary":
                     #Get value from combo box
                     cell_widget = self.cellWidget(i,j)

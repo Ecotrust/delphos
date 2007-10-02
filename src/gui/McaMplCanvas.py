@@ -46,8 +46,10 @@ class McaMplCanvas(MyMplCanvas):
     
     def draw_bar_chart(self, altern_data, scores):
         altern_names = []
+        altern_colors = []
         for row in altern_data:
             altern_names.append(row[1])    #append alternative name
+            altern_colors.append(row[2])
         
         N = len(scores)
         nums = range(1, N+1)
@@ -55,13 +57,14 @@ class McaMplCanvas(MyMplCanvas):
         width = 0.35       # the width of the bars
 
         #Random array of RGB tuples
-        colors = range(len(scores))
-        colors = [rand(3) for x in colors]
+        
+        #colors = range(len(scores))
+        #colors = [rand(3) for x in colors]
 
         #pure matplotlib figure
-        p1 = bar(ind, scores, width, color=colors, edgecolor='k')
+        p1 = bar(ind, scores, width, color=altern_colors, edgecolor='k')
         #pyqt matplotlib widget
-        self.axes.bar(ind, scores, width, color=colors)
+        self.axes.bar(ind, scores, width, color=altern_colors)
         self.axes.legend(p1, altern_names, loc='best', pad=0.1, prop=FontProperties(size='small'))
         
         ylabel('Scores')

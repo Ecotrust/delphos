@@ -53,7 +53,6 @@ class GuiManager(QObject):
 
 		#Load doc browser with correct documentation
 		self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/fisheries_documentation.html'))
-		print self.win.ui.doc_browser.fontInfo()
 		#Signal to capture qrc link clicks in text browsers or labels
 		QObject.connect(self.win.ui.doc_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
 		QObject.connect(self.win.ui.toc_tree, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
