@@ -3,6 +3,7 @@ import sys
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+from delphos_exceptions import *
 
 class McaRunsTableWidget(QTableWidget):
     def __init__(self, parent=None):
@@ -19,7 +20,7 @@ class McaRunsTableWidget(QTableWidget):
     def load(self, mca_recs):
         """Loads the table with info on past analysis runs
         """
-        if mca_recs:
+        if mca_recs is not None:
             self.mca_recs = mca_recs
             self.clearContents()
             self.num_rows = len(mca_recs)
@@ -39,16 +40,17 @@ class McaRunsTableWidget(QTableWidget):
 
     def get_selected_id(self):
         index = self.get_current_index()
-        return self.mca_recs[index][self.id_column]
+        if index is not None:
+            return self.mca_recs[index][self.id_column]
+        else:
+            return None
 
     def get_current_index(self):
-        try:
-            cur_row_item = self.get_current_row_items()
-        except DelphosError, e:
-            QMessageBox.critical(self,"Please select an analysis record first.")
+        cur_row_item = self.get_current_row_items()
+        if cur_row_item is not None:
+            return cur_row_item.row()
         else:
-            if cur_row_item:
-                return cur_row_item.row()
+            return None
 
     def get_current_row_items(self):
         selected_row = self.selectedItems()
@@ -56,5 +58,5 @@ class McaRunsTableWidget(QTableWidget):
             #Return the unique criteria description
             return selected_row[0]
         else:
-            raise DelphosError
+            return None
         

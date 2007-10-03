@@ -1,35 +1,38 @@
 <ui version="4.0" >
  <class>AddOrdinalOptionDialog</class>
  <widget class="QWidget" name="AddOrdinalOptionDialog" >
+  <property name="windowModality" >
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>408</width>
-    <height>170</height>
+    <width>277</width>
+    <height>172</height>
    </rect>
+  </property>
+  <property name="font" >
+   <font>
+    <family>Arial</family>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle" >
    <string>Add Ordinal Option</string>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="spacing" >
-    <number>0</number>
-   </property>
    <item>
     <widget class="QGroupBox" name="groupBox_4" >
      <property name="font" >
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>10</pointsize>
       </font>
      </property>
      <property name="title" >
       <string/>
      </property>
      <layout class="QVBoxLayout" >
-      <property name="spacing" >
-       <number>0</number>
-      </property>
       <item>
        <layout class="QVBoxLayout" >
         <property name="spacing" >
@@ -37,6 +40,11 @@
         </property>
         <item>
          <widget class="QLabel" name="label_4" >
+          <property name="font" >
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text" >
            <string>Option Description:</string>
           </property>
@@ -56,6 +64,11 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="font" >
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
          </widget>
         </item>
        </layout>
@@ -67,6 +80,11 @@
         </property>
         <item>
          <widget class="QLabel" name="label_6" >
+          <property name="font" >
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text" >
            <string>Option Value:</string>
           </property>
@@ -86,49 +104,63 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="font" >
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
          </widget>
         </item>
        </layout>
       </item>
       <item>
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>20</width>
-          <height>0</height>
-         </size>
-        </property>
-       </spacer>
+       <layout class="QVBoxLayout" >
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" >
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>81</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QDialogButtonBox" name="add_ordinal_option_box" >
+            <property name="font" >
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="standardButtons" >
+             <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" >
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>81</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QDialogButtonBox" name="add_ordinal_option_box" >
-       <property name="standardButtons" >
-        <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </item>
   </layout>
  </widget>

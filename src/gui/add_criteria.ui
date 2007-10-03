@@ -1,13 +1,22 @@
 <ui version="4.0" >
  <class>AddCriteriaDialog</class>
  <widget class="QDialog" name="AddCriteriaDialog" >
+  <property name="windowModality" >
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
     <width>379</width>
-    <height>387</height>
+    <height>354</height>
    </rect>
+  </property>
+  <property name="font" >
+   <font>
+    <family>Arial</family>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle" >
    <string>Add Criteria</string>
@@ -23,6 +32,11 @@
        <layout class="QHBoxLayout" >
         <item>
          <widget class="QLabel" name="label" >
+          <property name="font" >
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text" >
            <string>Criteria description:</string>
           </property>
@@ -53,6 +67,11 @@
          </property>
          <item>
           <widget class="QLabel" name="label_2" >
+           <property name="font" >
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="text" >
             <string>Yes description:</string>
            </property>
@@ -77,6 +96,11 @@
          </property>
          <item>
           <widget class="QLabel" name="label_3" >
+           <property name="font" >
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="text" >
             <string>No description:</string>
            </property>
@@ -126,6 +150,11 @@
              <width>16777215</width>
              <height>26</height>
             </size>
+           </property>
+           <property name="font" >
+            <font>
+             <pointsize>10</pointsize>
+            </font>
            </property>
            <property name="text" >
             <string>Description of quantitative value (units):</string>
@@ -257,6 +286,11 @@
        <layout class="QHBoxLayout" >
         <item>
          <widget class="QRadioButton" name="benefit_button" >
+          <property name="font" >
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text" >
            <string>Benefit</string>
           </property>
@@ -264,6 +298,11 @@
         </item>
         <item>
          <widget class="QRadioButton" name="cost_button" >
+          <property name="font" >
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text" >
            <string>Cost</string>
           </property>

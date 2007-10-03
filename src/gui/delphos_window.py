@@ -22,10 +22,6 @@ class DelphosWindow(QMainWindow):
 		self.base_fishery_url = 'qrc:/documentation/fisheries_documentation.html#'
 		self.base_mpa_url = 'qrc:/documentation/mpa_documentation.html#'
 		
-		#TODO: make this work
-		QObject.connect(self.ui.prev_button, SIGNAL("backwardAvailable(bool)"), self.toggle_prev_button)
-		QObject.connect(self.ui.next_button, SIGNAL("forwardAvailable(bool)"), self.toggle_next_button)
-
 		QObject.connect(self.ui.menu_dock_visible, SIGNAL("triggered()"), self.toggle_documentation_window)
 		QObject.connect(self.ui.dock_doc, SIGNAL("visibilityChanged(bool)"), self.toggle_dock_visible_menu)
 

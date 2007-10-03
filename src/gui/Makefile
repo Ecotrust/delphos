@@ -1,7 +1,7 @@
 # Default target executed when no arguments are given to make.
 default_target: all
 
-all: main_window_ui.py select_type_ui.py create_project_ui.py open_project_ui.py project_view_ui.py add_alternative_ui.py add_criteria_ui.py add_ordinal_option_ui.py mca_wizard_ui.py mca_wizard2_ui.py mca_result_view_ui.py
+all: main_window_ui.py select_type_ui.py create_project_ui.py open_project_ui.py project_view_ui.py add_alternative_ui.py add_criteria_ui.py add_ordinal_option_ui.py mca_wizard_ui.py mca_wizard2_ui.py mca_result_view_ui.py yes_no_ui.py
 
 clean:
 	rm -f *_ui.py
@@ -39,3 +39,6 @@ mca_wizard2_ui.py: mca_wizard2.ui
 	
 mca_result_view_ui.py: mca_result_view.ui
 	pyuic4 -o mca_result_view_ui.py mca_result_view.ui
+	
+yes_no_ui.py: yes_no.ui
+	pyuic4 -o yes_no_ui.py yes_no.ui

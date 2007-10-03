@@ -1,0 +1,46 @@
+<ui version="4.0" >
+ <class>YesNoDialog</class>
+ <widget class="QWidget" name="YesNoDialog" >
+  <property name="windowModality" >
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>324</width>
+    <height>64</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QLabel" name="message_label" >
+     <property name="windowModality" >
+      <enum>Qt::NonModal</enum>
+     </property>
+     <property name="text" >
+      <string>Are you sure?</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="confirm_box" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::No|QDialogButtonBox::NoButton|QDialogButtonBox::Yes</set>
+     </property>
+     <property name="centerButtons" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

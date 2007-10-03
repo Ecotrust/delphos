@@ -52,18 +52,15 @@ class McaWizard(QDialog, Ui_McaWizard):
         QObject.connect(self.altern_next_button,QtCore.SIGNAL("clicked()"), self.process_altern_select)
         QObject.connect(self.crit_next_button,QtCore.SIGNAL("clicked()"), self.process_crit_select)
         QObject.connect(self.input_next_button,QtCore.SIGNAL("clicked()"), self.process_data_input)
-        QObject.connect(self.weight_next_button,QtCore.SIGNAL("clicked()"), self.weight_next_click)
         
         QObject.connect(self.crit_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
         QObject.connect(self.input_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
-        QObject.connect(self.run_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
         QObject.connect(self.weight_prev_button,QtCore.SIGNAL("clicked()"), self.weight_prev_click)
                     
         QObject.connect(self.altern_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
         QObject.connect(self.crit_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
         QObject.connect(self.input_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
         QObject.connect(self.weight_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
-        QObject.connect(self.run_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
 
         QObject.connect(self.check_all_altern_button,QtCore.SIGNAL("clicked()"), self.check_all_alternatives)
         QObject.connect(self.check_all_criteria_button,QtCore.SIGNAL("clicked()"), self.check_all_criteria)
@@ -326,11 +323,6 @@ class McaWizard(QDialog, Ui_McaWizard):
 
     ########################## Input Weights #########################
 
-    def weight_next_click(self):
-        ok = self.process_weight_input("forward")
-        if ok:
-            self.next_click()
-
     def weight_prev_click(self):
         ok = self.process_weight_input("backward")
         if ok:
@@ -360,13 +352,10 @@ class McaWizard(QDialog, Ui_McaWizard):
 
     ############################### Run #################################
     
-    def setup_run(self):
-        self.num_alternatives_label.setText(str(self.num_selected_alternatives))
-        self.num_criteria_label.setText(str(self.num_selected_criteria))
-
     def process_run(self):
             """Processes clicking of 'Run Analysis' button
             """
+            self.process_weight_input("forward")
             if self.isError:
                 self.isError = False
             else:

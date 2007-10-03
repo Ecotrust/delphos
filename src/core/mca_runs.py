@@ -66,6 +66,11 @@ class McaRuns(object):
         results = pickle.dumps(results)
         self.table.insert().execute({'name':unicode(name), 'description':unicode(description), 'altern_data':altern_data, 'crit_data':crit_data, 'input_data':input_data, 'input_weights':input_weights, 'results':results, 'created':func.current_timestamp()})
 
+    def delete(self, id):
+        """Remove mca run given its unique run ID
+        """
+        result = self.table.delete(self.table.c.id==id).execute()        
+
     def get_all(self):
         """Returns list of mca runs
         """

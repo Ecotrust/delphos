@@ -1,13 +1,22 @@
 <ui version="4.0" >
  <class>ProjectView</class>
  <widget class="QWidget" name="ProjectView" >
+  <property name="windowModality" >
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
     <width>849</width>
-    <height>378</height>
+    <height>381</height>
    </rect>
+  </property>
+  <property name="font" >
+   <font>
+    <family>Arial</family>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
@@ -15,8 +24,14 @@
   <layout class="QHBoxLayout" >
    <item>
     <widget class="QTabWidget" name="tabProject" >
+     <property name="font" >
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
      <property name="currentIndex" >
-      <number>1</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
@@ -29,6 +44,11 @@
           <layout class="QVBoxLayout" >
            <item>
             <widget class="QGroupBox" name="groupBox_3" >
+             <property name="font" >
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
              <property name="title" >
               <string/>
              </property>
@@ -40,9 +60,7 @@
                   <property name="font" >
                    <font>
                     <family>Arial</family>
-                    <pointsize>12</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
+                    <pointsize>10</pointsize>
                    </font>
                   </property>
                   <property name="text" >
@@ -55,9 +73,7 @@
                   <property name="font" >
                    <font>
                     <family>Arial</family>
-                    <pointsize>12</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
+                    <pointsize>10</pointsize>
                    </font>
                   </property>
                   <property name="text" >
@@ -70,9 +86,7 @@
                   <property name="font" >
                    <font>
                     <family>Arial</family>
-                    <pointsize>12</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
+                    <pointsize>10</pointsize>
                    </font>
                   </property>
                   <property name="text" >
@@ -95,7 +109,7 @@
                   <property name="font" >
                    <font>
                     <family>Arial</family>
-                    <pointsize>12</pointsize>
+                    <pointsize>10</pointsize>
                    </font>
                   </property>
                   <property name="text" >
@@ -108,7 +122,7 @@
                   <property name="font" >
                    <font>
                     <family>Arial</family>
-                    <pointsize>12</pointsize>
+                    <pointsize>10</pointsize>
                    </font>
                   </property>
                   <property name="text" >
@@ -121,7 +135,7 @@
                   <property name="font" >
                    <font>
                     <family>Arial</family>
-                    <pointsize>12</pointsize>
+                    <pointsize>10</pointsize>
                    </font>
                   </property>
                   <property name="text" >
@@ -400,7 +414,139 @@
       </attribute>
       <layout class="QHBoxLayout" >
        <item>
+        <layout class="QVBoxLayout" >
+         <item>
+          <widget class="QGroupBox" name="groupBox_4" >
+           <property name="font" >
+            <font>
+             <family>Arial</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="title" >
+            <string>New Analysis:</string>
+           </property>
+           <layout class="QVBoxLayout" >
+            <item>
+             <layout class="QHBoxLayout" >
+              <item>
+               <layout class="QVBoxLayout" >
+                <property name="spacing" >
+                 <number>2</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_5" >
+                  <property name="text" >
+                   <string>Name:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_4" >
+                  <property name="text" >
+                   <string>Description:</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" >
+                <property name="spacing" >
+                 <number>2</number>
+                </property>
+                <item>
+                 <widget class="QLineEdit" name="analysis_name_edit" >
+                  <property name="minimumSize" >
+                   <size>
+                    <width>150</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="analysis_description_edit" >
+                  <property name="minimumSize" >
+                   <size>
+                    <width>150</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" >
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="new_analysis_button" >
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Start Analysis</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>30</width>
+           <height>315</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <widget class="QGroupBox" name="groupBox_5" >
+         <property name="font" >
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="title" >
           <string>Previous Analysis:</string>
          </property>
@@ -414,6 +560,11 @@
                 <width>300</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="font" >
+               <font>
+                <pointsize>9</pointsize>
+               </font>
               </property>
               <property name="editTriggers" >
                <set>QAbstractItemView::NoEditTriggers</set>
@@ -455,105 +606,43 @@
               </item>
               <item>
                <widget class="QPushButton" name="view_analysis_button" >
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
                 <property name="text" >
-                 <string>View Analysis Results</string>
+                 <string>View Summary</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="rerun_analysis_button" >
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Re-run With Modifications</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delete_analysis_button" >
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Delete</string>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
            </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_4" >
-         <property name="title" >
-          <string>New Analysis:</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <item>
-           <layout class="QHBoxLayout" >
-            <item>
-             <layout class="QVBoxLayout" >
-              <property name="spacing" >
-               <number>2</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_5" >
-                <property name="text" >
-                 <string>Name:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_4" >
-                <property name="text" >
-                 <string>Description:</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" >
-              <property name="spacing" >
-               <number>2</number>
-              </property>
-              <item>
-               <widget class="QLineEdit" name="analysis_name_edit" >
-                <property name="minimumSize" >
-                 <size>
-                  <width>150</width>
-                  <height>0</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="analysis_description_edit" />
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" >
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="new_analysis_button" >
-              <property name="text" >
-               <string>Start Analysis</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>

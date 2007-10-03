@@ -15,6 +15,12 @@
     <height>600</height>
    </size>
   </property>
+  <property name="font" >
+   <font>
+    <family>Arial</family>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
   <property name="windowTitle" >
    <string>Delphos</string>
   </property>
@@ -74,6 +80,11 @@
      <width>300</width>
      <height>0</height>
     </size>
+   </property>
+   <property name="font" >
+    <font>
+     <pointsize>9</pointsize>
+    </font>
    </property>
    <property name="features" >
     <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable|QDockWidget::NoDockWidgetFeatures</set>
@@ -144,52 +155,6 @@
          <layout class="QHBoxLayout" >
           <item>
            <layout class="QVBoxLayout" >
-            <item>
-             <layout class="QHBoxLayout" >
-              <item>
-               <widget class="QPushButton" name="prev_button" >
-                <property name="maximumSize" >
-                 <size>
-                  <width>100</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text" >
-                 <string>Prev</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="next_button" >
-                <property name="maximumSize" >
-                 <size>
-                  <width>100</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text" >
-                 <string>Next</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer>
-                <property name="orientation" >
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType" >
-                 <enum>QSizePolicy::Expanding</enum>
-                </property>
-                <property name="sizeHint" >
-                 <size>
-                  <width>51</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
             <item>
              <widget class="HelpTextBrowser" name="doc_browser" >
               <property name="font" >
@@ -326,38 +291,5 @@
  <resources>
   <include location="../resources.qrc" />
  </resources>
- <connections>
-  <connection>
-   <sender>prev_button</sender>
-   <signal>clicked()</signal>
-   <receiver>doc_browser</receiver>
-   <slot>backward()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>96</x>
-     <y>245</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>160</x>
-     <y>437</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>next_button</sender>
-   <signal>clicked()</signal>
-   <receiver>doc_browser</receiver>
-   <slot>forward()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>177</x>
-     <y>245</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>160</x>
-     <y>437</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -22,7 +22,8 @@ class Project:
     """Represents a delphos project.
     
     Provides functionality to maintain a project including alternatives, criteria and multicriteria 
-    analysis results.
+    analysis results.  In most cases GUI widgets should invoke operations through this object instead of accessing
+    lower level core objects directly
     """
     
     def __init__(self, name, path, type=None, load_default_altern=False, load_default_crit=False):
@@ -215,4 +216,6 @@ class Project:
 
     def save_analysis(self, name, description, altern_data, crit_data, input_data, input_weights, results):        
         self.mca_runs.insert(name, description, altern_data, crit_data, input_data, input_weights, results)
-        
+
+    def delete_analysis(self, id):
+        self.mca_runs.delete(id)

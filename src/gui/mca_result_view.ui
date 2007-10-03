@@ -1,13 +1,22 @@
 <ui version="4.0" >
  <class>McaResultView</class>
  <widget class="QWidget" name="McaResultView" >
+  <property name="windowModality" >
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
     <width>792</width>
-    <height>451</height>
+    <height>449</height>
    </rect>
+  </property>
+  <property name="font" >
+   <font>
+    <family>Arial</family>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle" >
    <string>Form</string>

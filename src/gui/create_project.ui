@@ -1,13 +1,21 @@
 <ui version="4.0" >
  <class>CreateProjectDialog</class>
  <widget class="QWidget" name="CreateProjectDialog" >
+  <property name="windowModality" >
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>475</width>
-    <height>244</height>
+    <width>391</width>
+    <height>215</height>
    </rect>
+  </property>
+  <property name="font" >
+   <font>
+    <family>Arial</family>
+   </font>
   </property>
   <property name="windowTitle" >
    <string>Create New Project</string>
@@ -26,9 +34,9 @@
              <property name="font" >
               <font>
                <family>Arial</family>
-               <pointsize>13</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <bold>false</bold>
               </font>
              </property>
              <property name="title" >
@@ -39,7 +47,7 @@
                <widget class="QRadioButton" name="fisheries_type_button" >
                 <property name="font" >
                  <font>
-                  <pointsize>11</pointsize>
+                  <pointsize>9</pointsize>
                   <weight>50</weight>
                   <bold>false</bold>
                  </font>
@@ -56,7 +64,7 @@
                 </property>
                 <property name="font" >
                  <font>
-                  <pointsize>11</pointsize>
+                  <pointsize>9</pointsize>
                   <weight>50</weight>
                   <bold>false</bold>
                  </font>
@@ -77,9 +85,9 @@
              <property name="font" >
               <font>
                <family>Arial</family>
-               <pointsize>13</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <bold>false</bold>
               </font>
              </property>
              <property name="title" >
@@ -90,7 +98,7 @@
                <widget class="QCheckBox" name="default_altern_check" >
                 <property name="font" >
                  <font>
-                  <pointsize>11</pointsize>
+                  <pointsize>9</pointsize>
                   <weight>50</weight>
                   <bold>false</bold>
                  </font>
@@ -107,7 +115,7 @@
                <widget class="QCheckBox" name="default_crit_check" >
                 <property name="font" >
                  <font>
-                  <pointsize>11</pointsize>
+                  <pointsize>9</pointsize>
                   <weight>50</weight>
                   <bold>false</bold>
                  </font>
@@ -127,12 +135,15 @@
          </item>
          <item>
           <widget class="QGroupBox" name="groupBox_4" >
+           <property name="windowModality" >
+            <enum>Qt::ApplicationModal</enum>
+           </property>
            <property name="font" >
             <font>
              <family>Arial</family>
-             <pointsize>13</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
             </font>
            </property>
            <property name="title" >
@@ -143,7 +154,7 @@
              <widget class="QPushButton" name="project_browse_button" >
               <property name="font" >
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>9</pointsize>
                 <weight>50</weight>
                 <bold>false</bold>
                </font>
@@ -157,7 +168,7 @@
              <widget class="QLineEdit" name="project_path_edit" >
               <property name="font" >
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>9</pointsize>
                 <weight>50</weight>
                 <bold>false</bold>
                </font>

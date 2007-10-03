@@ -1,6 +1,7 @@
 import os
 import re
 from os import path
+import sys
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
@@ -12,6 +13,7 @@ from add_alternative_dialog import AddAlternDialog
 from add_criteria_dialog import AddCriteriaDialog
 from McaWizard import McaWizard 
 from McaResultView import McaResultView
+from yes_no_dialog import YesNoDialog
 
 class ProjectViewDialog(QDialog, Ui_ProjectView):
     """Manages interaction with the project interface and the underlying DB
@@ -30,6 +32,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QObject.connect(self.add_criteria_button,QtCore.SIGNAL("clicked()"), self.start_add_criteria)
         QObject.connect(self.remove_criteria_button,QtCore.SIGNAL("clicked()"), self.start_remove_criteria)
         QObject.connect(self.view_analysis_button,QtCore.SIGNAL("clicked()"), self.start_view_analysis)
+        QObject.connect(self.rerun_analysis_button,QtCore.SIGNAL("clicked()"), self.start_rerun_analysis)        
+        QObject.connect(self.delete_analysis_button,QtCore.SIGNAL("clicked()"), self.start_delete_analysis)
         QObject.connect(self.new_analysis_button,QtCore.SIGNAL("clicked()"), self.start_new_analysis)
         self.load_project_data_tab()
         self.altern_table.load(self.project.get_all_alternatives())
@@ -114,11 +118,6 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         else:
             QMessageBox.critical(self,"Remove Criteria Error", "You must first select one from the criteria table.")
 
-    def start_view_analysis(self):
-        selected_id = self.mca_runs_table.get_selected_id()
-        (id, name, description, altern_data, crit_data, input_data, input_weights, results, created) = self.project.get_mca_run_by_id(selected_id)
-        self.show_analysis_results(name, description, altern_data, crit_data, input_data, input_weights, results)
-
     def start_new_analysis(self):
         self.analysis_name = self.analysis_name_edit.text()
         self.analysis_description = self.analysis_description_edit.text()
@@ -146,6 +145,37 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             else:
                 QMessageBox.critical(self,"Analysis Error", "MCA analysis failed.")
 
+
+    def start_view_analysis(self):
+        selected_id = self.mca_runs_table.get_selected_id()
+        (id, name, description, altern_data, crit_data, input_data, input_weights, results, created) = self.project.get_mca_run_by_id(selected_id)
+        self.show_analysis_results(name, description, altern_data, crit_data, input_data, input_weights, results)
+
+    def start_rerun_analysis(self):
+        pass
+    
+    def start_delete_analysis(self):
+        selected_id = self.mca_runs_table.get_selected_id()
+        if not selected_id:
+            QMessageBox.critical(self,"Selection Error", "No analysis runs have been selected")
+            return
+        self.yes_no_dialog = YesNoDialog(self, "Are you sure you want to delete this analysis run?")
+        self.connect(self.yes_no_dialog, SIGNAL("delete_confirm"), self.finish_delete_analysis)
+        self.yes_no_dialog.show()
+
+    def finish_delete_analysis(self, confirm):
+        if confirm is True:
+            selected_id = self.mca_runs_table.get_selected_id()        
+            try:
+                self.project.delete_analysis(selected_id)
+            except DelphosError, e:
+                QMessageBox.critical(self,"Analysis Delete Error", str(e))
+            else:
+                self.mca_runs_table.load(self.project.get_mca_runs_basic())
+        
+        self.yes_no_dialog.hide()
+        self.yes_no_dialog.deleteLater()
+            
     def show_analysis_results(self, name, description, altern_data, crit_data, input_data, input_weights, results):
         self.mca_result_view = McaResultView(self.gui_manager, self, self.project)
         self.mca_result_view.load_results(name, description, altern_data, crit_data, input_data, input_weights, results)

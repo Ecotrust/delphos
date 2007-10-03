@@ -32,7 +32,7 @@ class GuiManager(QObject):
 		#print "stylesheet: "
 		#print stylesheet
 		
-		self.qapp.setStyleSheet(stylesheet)
+		#self.qapp.setStyleSheet(stylesheet)
 
 		#Create DesktopService for accessing services provided by desktop (eg. web browser) 
 		self.desktop_services = QDesktopServices()
