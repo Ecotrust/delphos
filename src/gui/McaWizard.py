@@ -26,6 +26,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         self.output_encoding = 'latin-1'
         self.cur_index = 0
         
+        self.input_data = None
         self.input_weights = None
         
         #Contains field data for all alternatives selected, each row is a 
@@ -156,7 +157,15 @@ class McaWizard(QDialog, Ui_McaWizard):
     ################################# Input Data ##############################
 
     def setup_data_input(self):
-        self.input_table.load(self.selected_altern_data, self.selected_crit_data)
+        #self.input_table.load(self.selected_altern_data, self.selected_crit_data)
+        if not self.input_data:
+            #Create input set
+            self.input_data = InputDataSet(self.selected_altern_data, self.selected_crit_data)
+        else:
+            #Update input set with any changes in criteria/alternatives
+            self.input_data.update_headings(self.selected_altern_data, self.selected_crit_data)
+        #Load the weight input table
+        self.input_table.load(self.input_data)
 
     def process_template_export(self):
         """Creates a unicode CSV containing alternatives and criteria for quickly inputting data
@@ -279,9 +288,15 @@ class McaWizard(QDialog, Ui_McaWizard):
                 else :
                     QMessageBox.critical(self,"Error", "Due to error, table may only be partially loaded")
         
-    def process_data_input(self):
-        #Get data from table
-        self.input_data = self.input_table.get_input_data(self.selected_altern_names, self.selected_crit_names)
+    def process_data_input(self, direction='forward'):
+        input_required = True
+        if direction and direction == "backward":
+            input_required = False
+            
+        #Get data from table widget
+        new_input_data = self.input_table.get_input_data(input_required)
+        #Update input data set
+        self.input_data.update_data(new_input_data)
         
         #Get lists describing which columns (criteria) in in_matrix are quantitative and which are qualitative
         (quant_cols, qual_cols) = self.gen_crit_type_lists(self.selected_crit_types)
@@ -294,6 +309,18 @@ class McaWizard(QDialog, Ui_McaWizard):
                     #for row in self.input_data
                     #    print row
                     self.next_click()
+
+    def process_weight_input(self, direction):
+        input_required = True
+        if direction == "backward":
+            input_required = False
+            
+        new_input_weights = self.weight_table.get_input_weights(input_required)
+        self.input_weights.update_weights(new_input_weights)            
+        if self.input_weights:
+            return True
+        else:
+            return False
 
     def input_data_checks(self, num_quant_criteria, num_qual_criteria, quant_cols, qual_cols):
         #Check if for any quant criteria, the values are the same for all alternatives
@@ -330,9 +357,12 @@ class McaWizard(QDialog, Ui_McaWizard):
 
     def setup_weight_input(self):
         if not self.input_weights:
+            #Create weight set
             self.input_weights = InputWeightSet(self.selected_crit_data)
         else:
+            #Update weight set with any changes in alternatives
             self.input_weights.update_crits(self.selected_crit_data)
+        #Load the weight input table
         self.weight_table.load(self.input_weights)
 
     def process_weight_input(self, direction):
@@ -395,7 +425,38 @@ class McaWizard(QDialog, Ui_McaWizard):
                 self.setup_run()
                 
         self.cur_index = index
-       
+
+class InputDataSet():
+    """Maintains altern/crit grid input data by the user.
+    
+    Ties input values to their associated altern/criteria pair so
+    that the user can go back and change the altern and crit without losing
+    the data that they already input.  It also separates data from 
+    presentation.
+    """
+    def __init__(self, altern_data, crit_data):      
+        self.input_data = self.create_input_data(altern_data, crit_data)
+    
+    def create_input_data(self, altern_data, crit_data):
+        input_data = []
+        self.num_alterns = len(altern_data)
+        self.num_crits = len(crit_data)
+        for i in range(self.num_crits):
+            for j in range(self.num_alterns):
+                #Append associated alter and crit data to each 'cell'.  
+                #Append row and column to put in
+                #Append space for input value
+                input_data.append([altern_data[j], crit_data[i], i, j, None])
+        print "input data:"
+        print input_data
+        return input_data
+    
+    def update_headings(self, altern_data, crit_data):
+        pass
+    
+    def get_input_data(self):
+        return self.input_data
+        
 class InputWeightSet():
     """Maintains weights input by the user.
     
@@ -412,9 +473,6 @@ class InputWeightSet():
 
         self.weight_data = self.create_weight_data(crit_data)
 
-        print "Creating weight set"
-        print self.weight_data
-
     def create_weight_data(self, crit_data):
         """Given a critieria set, create an empty weight set
         """
@@ -430,21 +488,21 @@ class InputWeightSet():
         if not new_weights or len(new_weights) != len(self.weight_data):
             raise Exception, "Error updating weights"
 
-        print "Weights before: "
-        print self.get_weight_data()
+        #print "Weights before: "
+        #print self.get_weight_data()
 
-        print "New weights: "
-        print new_weights
+        #print "New weights: "
+        #print new_weights
 
         for i in range(len(new_weights)):
             self.weight_data[i][self.weight_column] = new_weights[i]
                   
-        print "Update weights"
-        print self.get_weight_data()
+        #print "Update weights"
+        #print self.get_weight_data()
 
     def update_crits(self, new_crit_data):
-        print "New crit data"
-        print new_crit_data
+        #print "New crit data"
+        #print new_crit_data
     
         #Create new weight data
         new_weight_data = self.create_weight_data(new_crit_data)
@@ -457,8 +515,8 @@ class InputWeightSet():
         #Drop the old weight data
         self.weight_data = new_weight_data
         
-        print "Updated crit data"
-        print self.weight_data
+        #print "Updated crit data"
+        #print self.weight_data
     
     def get_weight_data(self):
         return self.weight_data
