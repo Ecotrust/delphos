@@ -1,5 +1,6 @@
 import os
 import re
+import copy
 from os import path
 
 from PyQt4 import QtCore, QtGui
@@ -259,44 +260,62 @@ class McaWizard(QDialog, Ui_McaWizard):
         if template_filename:
             if not re.search('[.]'+self.default_template_extension+'$', template_filename):
                 QMessageBox.critical(self,"Error", "You did not select a CSV file (."+self.default_template_extension+" file extension)")
-            else:
-                f = open(template_filename, "r")
-                reader = csv.reader(f, dialect=csv.excel)
-                
-                #Load part of input we care about into 2D list, the pair-wise matrix
-                import_list = []
-                for i in range(self.num_selected_criteria+1):
-                    row = reader.next()
-                    if i is not 0:
-                        #append all but first two columns
-                        import_list.append(row[2:])
+                return None
             
-                #i = imported value, e = expected value
-                for i in range(self.num_selected_criteria):
-                    for j in range(self.num_selected_alternatives):
-                        #print "i: "+str(i)+"j: "+str(j)
-                        i_crit_name = self.crit_data[i][self.crit_name_column]
-                        #print "i_crit name: "+unicode(i_crit_name)
-                        i_altern_name = self.selected_altern_data[j][self.altern_name_column]
-                        #print "i_altern name: "+unicode(i_altern_name)
-                        i_value = import_list[i][j]
-                        #print  "i_value: "+unicode(i_value)
+            f = open(template_filename, "r")
+            reader = csv.reader(f, dialect=csv.excel)
+            
+            #Load value into one long list
+            import_list = []
+            for i in range(self.num_selected_criteria+1):
+                try:
+                    row = reader.next()
+                except csv.Error, e:
+                    QMessageBox.critical(self,"Import Error", "Missing or malformed values in CSV file, check all cells where input values are expected")                    
+                else:
+                    if i is not 0:
+                        #append all but first two columns to end of existing list
+                        import_list += row[2:]
+            
+            #Check for missing or malformed data
+            new_input_data = self.input_data.make_copy()
+            input_data = self.input_data.get_input_data()
+            for i in range(len(import_list)):
+                new_value = import_list[i]
+                print new_value
+                print type(new_value)
+                if not strIsInt(new_value):
+                    row = self.input_data.get_row(i)+2
+                    crit_name = self.input_data.get_crit_name(i)
+                    col = self.input_data.get_col(i)+3
+                    altern_name = self.input_data.get_altern_name(i)
+                    QMessageBox.critical(self,"ImportError", "Malformed input in row "+str(row)+": '"+crit_name+"', column "+str(col)+": '"+altern_name+"'")
+                    return None
                 
-                success = self.input_table.load(self.selected_altern_data, self.selected_crit_data, import_list)
-                if success:
-                    QMessageBox.information(self,"Success", "CSV loaded successfully")
-                else :
-                    QMessageBox.critical(self,"Error", "Due to error, table may only be partially loaded")
+                self.input_data.set_value(i, import_list[i])
+            
+            success = self.input_table.load(self.input_data)
+            if success:
+                QMessageBox.information(self,"Success", "CSV loaded successfully")
+            else :
+                QMessageBox.critical(self,"Error", "Due to error, table may only be partially loaded")
         
     def process_data_input(self, direction='forward'):
         input_required = True
         if direction and direction == "backward":
             input_required = False
-            
+        
+        new_input_data = self.input_data.make_copy()
+        
+        
+        print new_input_data
+        print self.input_data
+        
+        
         #Get data from table widget
-        new_input_data = self.input_table.get_input_data(input_required)
+        self.input_table.get_input_data(input_required, new_input_data)
         #Update input data set
-        self.input_data.update_data(new_input_data)
+        self.input_data.update_values(new_input_data)
         
         #Get lists describing which columns (criteria) in in_matrix are quantitative and which are qualitative
         (quant_cols, qual_cols) = self.gen_crit_type_lists(self.selected_crit_types)
@@ -309,18 +328,6 @@ class McaWizard(QDialog, Ui_McaWizard):
                     #for row in self.input_data
                     #    print row
                     self.next_click()
-
-    def process_weight_input(self, direction):
-        input_required = True
-        if direction == "backward":
-            input_required = False
-            
-        new_input_weights = self.weight_table.get_input_weights(input_required)
-        self.input_weights.update_weights(new_input_weights)            
-        if self.input_weights:
-            return True
-        else:
-            return False
 
     def input_data_checks(self, num_quant_criteria, num_qual_criteria, quant_cols, qual_cols):
         #Check if for any quant criteria, the values are the same for all alternatives
@@ -433,9 +440,22 @@ class InputDataSet():
     that the user can go back and change the altern and crit without losing
     the data that they already input.  It also separates data from 
     presentation.
+    
+    input_data: [[[altern_data][crit_data][row][col][value]], ...]
+    altern_data: (altern_id, altern_name, altern_color)
+    crit_data: (crit_id, crit_name, crit_type, crit_options_units, cost_benefit)
     """
-    def __init__(self, altern_data, crit_data):      
-        self.input_data = self.create_input_data(altern_data, crit_data)
+    
+    def __init__(self, altern_data=None, crit_data=None):
+        if altern_data and crit_data:      
+            self.input_data = self.create_input_data(altern_data, crit_data)
+ 
+    def make_copy(self):
+        new_set = InputDataSet()
+        new_set.input_data = copy.copy(self.input_data)
+        new_set.num_alterns = self.num_alterns
+        new_set.num_crits = self.num_crits
+        return new_set
     
     def create_input_data(self, altern_data, crit_data):
         input_data = []
@@ -451,11 +471,29 @@ class InputDataSet():
         print input_data
         return input_data
     
+    def update_values(self, new_values):
+        pass
+    
     def update_headings(self, altern_data, crit_data):
         pass
     
     def get_input_data(self):
         return self.input_data
+    
+    def set_value(self, index, value):
+        self.input_data[index][4] = value
+        
+    def get_row(self, index):
+        return self.input_data[index][2]
+        
+    def get_col(self, index):
+        return self.input_data[index][3]
+    
+    def get_crit_name(self, index):
+        return self.input_data[index][1][1]
+    
+    def get_altern_name(self, index):
+        return self.input_data[index][0][1]
         
 class InputWeightSet():
     """Maintains weights input by the user.

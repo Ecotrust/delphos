@@ -1,4 +1,5 @@
 import sys
+import copy
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
@@ -17,6 +18,7 @@ class InputMcaTableWidget(QTableWidget):
         
         input values are qualitative (current option) or quantitative. Input is expected 
         to be legal, eg. drop down value given matches one of possible 
+        [[altern_data][crit_data][row][col][value]]
         """ 
          
         self.clear()
@@ -64,7 +66,7 @@ class InputMcaTableWidget(QTableWidget):
  
                 if input_value:
                     #print "input value: "+str(input_value)
-                    option_num = combo_box.findData(QVariant(input_val))
+                    option_num = combo_box.findData(QVariant(input_value))
                     #print "option num: "+str(option_num)
                     if option_num < 0:
                         QMessageBox.critical(self,"Error", "Invalid option ("+str(input_value)+") given in row "+str(row+1)+", column "+str(column+1))
@@ -81,57 +83,66 @@ class InputMcaTableWidget(QTableWidget):
         self.show()
         return True      
         
-    def get_input_data(self, input_required):
-        """Returns a 2D list of input values (integers) for use in MCA
-        
-        Note the resulting list is transposed as the input table is crit x altern and the
-        algorithm expects altern x crit
-        """ 
-        #Initialize with opposite dimensions, need to load transposed for input into algorithm
-        input_data = initialize_int_array(self.num_cols, self.num_rows)  #Note reversal, see note above
-        for i in range(self.num_rows):
-            (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = self.selected_crit_data[i]
-            for j in range(self.num_cols):
-                (altern_id, altern_name, altern_color) = self.selected_altern_data[j]
+    def get_input_data(self, input_required, new_input_data=None):
+        """Returns a new InputDataSet with updated values
+        """
+        #input_data = initialize_int_array(self.num_rows, self.num_cols)  #Note reversal, see note above
+        input_data = new_input_data.get_input_data()
+        for i in range(len(input_data)):
+            #Unpack input data set row
+            (altern_data, crit_data, row, column, input_value) = input_data[i]
+            #Unpack altern data
+            (altern_id, altern_name, altern_color) = altern_data       
+            #Unpack crit data
+            (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = crit_data  
                 
-                if crit_type == "Ordinal" or crit_type == "Binary":
-                    #Get value from combo box
-                    cell_widget = self.cellWidget(i,j)
-                    #print cell_widget
-                    if not cell_widget:
-                        QMessageBox.critical(self,"Error", "Unable to access combo box for criteria row'"+unicode(crit_name)+"', alternative column '"+altern_name+"'")
-                    (value, ok) = cell_widget.itemData(cell_widget.currentIndex()).toInt()
-                    if not value and input_required:
-                        QMessageBox.critical(self,"Input Error", "Missing input in row "+str(i+1)+", column "+str(j+1))
-                        return None 
-                    if not ok:
-                        QMessageBox.critical(self,"Error", "Unable to read input for criteria row'"+unicode(crit_name)+"', alternative column '"+altern_name+"'\nExpected an integer, received '"+value+"'")
-                    #print "value: "+str(value)
-                    #print "ok: "+str(ok)   
-                    #Save the value from i,j to j,i
-                    input_data[j][i] = value
-                elif crit_type == "Ratio":
-                    #Get value from table item
-                    table_item = self.item(i,j) 
-                    #print table_item
-                    value = table_item.text()
-                    #Check for no value
-                    if not value:
-                        #print i
-                        #print j
-                        #print crit_names
-                        #print altern_names
-                        QMessageBox.critical(self,"Error", "Missing input for alternative '"+unicode(crit_name)+"', criteria '"+crit_name+"'")
-                        return None                
-                    #Check for non-integer
-                    if not strIsInt(value):
-                        QMessageBox.critical(self,"Error", "Invalid input for alternative '"+unicode(altern_name)+"', criteria '"+crit_name+"'\nExpected an integer, received '"+value+"'")               
-                    #print "value: "+str(value)
-                    #print "from i:"+str(i)+" j:"+str(j)
-                    #Save the value from i,j to j,i
-                    #print "into: i:"+str(j)+", j:"+str(i)
-                    input_data[j][i] = int(value)
-        return input_data
+            value = 0
+            if crit_type == "Ordinal" or crit_type == "Binary":
+                value = self.get_combo_value(row, column)
+            elif crit_type == "Ratio":
+                value = self.get_cell_value(row, column)
+            new_input_data.set_value(i, value)
+            print new_input_data
+        return new_input_data
+
+    def get_combo_value(self, row, column):
+        #Get value from combo box
+        cell_widget = self.cellWidget(row, column)
+        #print cell_widget
+        if not cell_widget:
+            QMessageBox.critical(self,"Error", "Unable to access combo box for criteria row'"+unicode(crit_name)+"', alternative column '"+altern_name+"'")
+        (value, ok) = cell_widget.itemData(cell_widget.currentIndex()).toInt()
+        if not value and input_required:
+            QMessageBox.critical(self,"Input Error", "Missing input in row "+str(row+1)+", column "+str(column+1))
+            return None 
+        if not ok:
+            QMessageBox.critical(self,"Error", "Unable to read input for criteria row'"+unicode(crit_name)+"', alternative column '"+altern_name+"'\nExpected an integer, received '"+value+"'")
+        #print "value: "+str(value)
+        #print "ok: "+str(ok)   
+        #Save the value from i,j to j,i
+        return value
+    
+    def get_cell_value(self, row, column):
+        #Get value from table item
+        table_item = self.item(row,column) 
+        #print table_item
+        value = table_item.text()
+        #Check for no value
+        if not value:
+            #print i
+            #print j
+            #print crit_names
+            #print altern_names
+            QMessageBox.critical(self,"Error", "Missing input for alternative '"+unicode(crit_name)+"', criteria '"+crit_name+"'")
+            return None                
+        #Check for non-integer
+        if not strIsInt(value):
+            QMessageBox.critical(self,"Error", "Invalid input for alternative '"+unicode(altern_name)+"', criteria '"+crit_name+"'\nExpected an integer, received '"+value+"'")               
+        #print "value: "+str(value)
+        #print "from i:"+str(i)+" j:"+str(j)
+        #Save the value from i,j to j,i
+        #print "into: i:"+str(j)+", j:"+str(i)
+        return int(value)
 
 if __name__ == "__main__":
     arr = initialize_int_array(2,4)
