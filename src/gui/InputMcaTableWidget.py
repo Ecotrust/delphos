@@ -6,6 +6,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 from util.common_functions import *
+from delphos_exceptions import *
 
 class InputMcaTableWidget(QTableWidget):
     def __init__(self, parent=None):
@@ -31,11 +32,11 @@ class InputMcaTableWidget(QTableWidget):
         #Create input widgets for every combination of alternative and criteria given
         crit_id = crit_name = crit_type = crit_options_units = cost_benefits = None
         altern_id = altern_name = None
-        self.input_data = input_data_set.get_input_data()
-        
-        for i in range(len(self.input_data)):
+        self.cell_data = input_data_set.get_cell_data()
+                  
+        for i in range(len(self.cell_data)):
             #Unpack input data set row
-            (altern_data, crit_data, row, column, input_value) = self.input_data[i]
+            (altern_data, crit_data, row, column, input_value) = self.cell_data[i]
             #Unpack altern data
             (altern_id, altern_name, altern_color) = altern_data            
             #Unpack crit data
@@ -58,27 +59,15 @@ class InputMcaTableWidget(QTableWidget):
 
             #Create and insert combo box
             if crit_type == "Ordinal" or crit_type == "Binary":
-                combo_box = QComboBox(self)
-                for option in crit_options_units:
-                    option_name = option[0]
-                    option_val = option[1]
-                    combo_box.addItem(option_name, QVariant(option_val))
- 
-                if input_value:
-                    #print "input value: "+str(input_value)
-                    option_num = combo_box.findData(QVariant(input_value))
-                    #print "option num: "+str(option_num)
-                    if option_num < 0:
-                        QMessageBox.critical(self,"Error", "Invalid option ("+str(input_value)+") given in row "+str(row+1)+", column "+str(column+1))
-                        return False
-                    else:
-                        combo_box.setCurrentIndex(option_num)
-                self.setCellWidget(row, column, combo_box)
+                try:
+                    self.set_combo_value(row, column, crit_options_units, input_value)
+                except InputError, e:
+                    QMessageBox.critical(self, "Combo Box Error", tr(str(e)+" Row"+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'"))
             elif crit_type == "Ratio":
-                table_item = QTableWidgetItem("")
-                if input_value:
-                    table_item.setText(input_value)
-                self.setItem(row, column, table_item)
+                try:
+                    self.set_cell_value(row, column, input_value)
+                except InputError, e:
+                    QMessageBox.critical(self, "Input Error", tr(str(e)+" Row "+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'"))
                                         
         self.show()
         return True      
@@ -86,23 +75,33 @@ class InputMcaTableWidget(QTableWidget):
     def get_input_data(self, input_required, new_input_data=None):
         """Returns a new InputDataSet with updated values
         """
-        #input_data = initialize_int_array(self.num_rows, self.num_cols)  #Note reversal, see note above
-        input_data = new_input_data.get_input_data()
-        for i in range(len(input_data)):
+        #Get and traverse input data
+        cell_data = new_input_data.get_cell_data()
+        for i in range(len(cell_data)):
             #Unpack input data set row
-            (altern_data, crit_data, row, column, input_value) = input_data[i]
+            (altern_data, crit_data, row, column, input_value) = cell_data[i]
             #Unpack altern data
             (altern_id, altern_name, altern_color) = altern_data       
             #Unpack crit data
             (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = crit_data  
-                
+        
             value = 0
             if crit_type == "Ordinal" or crit_type == "Binary":
-                value = self.get_combo_value(row, column)
+                try:
+                    value = self.get_combo_value(row, column)
+                except InputError, e:
+                    QMessageBox.critical(self, "Combo Box Error", tr(str(e)+" Row"+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'"))
+
             elif crit_type == "Ratio":
-                value = self.get_cell_value(row, column)
+                try:                    
+                    value = self.get_cell_value(row, column)
+                except InputError, e:
+                    QMessageBox.critical(self, "Input Error", tr(str(e)+" Row"+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'"))
+
+            if value == None and input_required:
+                raise DelphosError, "Missing input for row "+str(row)+" '"+str(crit_name)+"', column "+str(column)+" '"+str(altern_name)+"'"
+
             new_input_data.set_value(i, value)
-            print new_input_data
         return new_input_data
 
     def get_combo_value(self, row, column):
@@ -110,17 +109,34 @@ class InputMcaTableWidget(QTableWidget):
         cell_widget = self.cellWidget(row, column)
         #print cell_widget
         if not cell_widget:
-            QMessageBox.critical(self,"Error", "Unable to access combo box for criteria row'"+unicode(crit_name)+"', alternative column '"+altern_name+"'")
+            raise InputError, "Unable to access combo box."
         (value, ok) = cell_widget.itemData(cell_widget.currentIndex()).toInt()
         if not value and input_required:
-            QMessageBox.critical(self,"Input Error", "Missing input in row "+str(row+1)+", column "+str(column+1))
-            return None 
+            raise InputError, "Missing input."
         if not ok:
-            QMessageBox.critical(self,"Error", "Unable to read input for criteria row'"+unicode(crit_name)+"', alternative column '"+altern_name+"'\nExpected an integer, received '"+value+"'")
+            raise InputError, "Unable to read input. Expected an integer, received '"+str(value)+"'."
         #print "value: "+str(value)
         #print "ok: "+str(ok)   
         #Save the value from i,j to j,i
         return value
+    
+    def set_combo_value(self, row, column, crit_options_units, input_value):
+        combo_box = QComboBox(self)
+        for option in crit_options_units:
+            option_name = option[0]
+            option_val = option[1]
+            combo_box.addItem(option_name, QVariant(option_val))
+ 
+        if input_value:
+            #print "input value: "+str(input_value)
+            option_num = combo_box.findData(QVariant(input_value))
+            #print "option num: "+str(option_num)
+            if option_num < 0:
+                raise InputError, "Invalid option ("+str(input_value)+")."
+            else:
+                combo_box.setCurrentIndex(option_num)
+        self.setCellWidget(row, column, combo_box)
+    
     
     def get_cell_value(self, row, column):
         #Get value from table item
@@ -133,16 +149,21 @@ class InputMcaTableWidget(QTableWidget):
             #print j
             #print crit_names
             #print altern_names
-            QMessageBox.critical(self,"Error", "Missing input for alternative '"+unicode(crit_name)+"', criteria '"+crit_name+"'")
-            return None                
+            return None       
         #Check for non-integer
         if not strIsInt(value):
-            QMessageBox.critical(self,"Error", "Invalid input for alternative '"+unicode(altern_name)+"', criteria '"+crit_name+"'\nExpected an integer, received '"+value+"'")               
+            raise InputError, "Invalid input. Expected an integer, received '"+str(value)+"'."           
         #print "value: "+str(value)
         #print "from i:"+str(i)+" j:"+str(j)
         #Save the value from i,j to j,i
         #print "into: i:"+str(j)+", j:"+str(i)
         return int(value)
+
+    def set_cell_value(self, row, column, value=None):
+        table_item = QTableWidgetItem("")
+        if strIsInt(value):
+            table_item.setText(str(value))
+        self.setItem(row, column, table_item)
 
 if __name__ == "__main__":
     arr = initialize_int_array(2,4)

@@ -6,6 +6,11 @@ class DelphosError(Exception):
 	def __str__(self):
 		return repr(self.value)
 
+class InputError(DelphosError):
+	"""General purpose exception used for all errors relating to user input
+	"""
+	pass
+
 class DataImportError(DelphosError):
 	"""Exception used for handling errors when inputting alternative/criteria data
 	

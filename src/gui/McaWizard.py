@@ -1,6 +1,7 @@
 import os
 import re
 import copy
+from sets import Set
 from os import path
 
 from PyQt4 import QtCore, QtGui
@@ -56,7 +57,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         QObject.connect(self.input_next_button,QtCore.SIGNAL("clicked()"), self.process_data_input)
         
         QObject.connect(self.crit_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
-        QObject.connect(self.input_prev_button,QtCore.SIGNAL("clicked()"), self.prev_click)
+        QObject.connect(self.input_prev_button,QtCore.SIGNAL("clicked()"), self.input_prev_click)
         QObject.connect(self.weight_prev_button,QtCore.SIGNAL("clicked()"), self.weight_prev_click)
                     
         QObject.connect(self.altern_cancel_button,QtCore.SIGNAL("clicked()"), self.process_reject)
@@ -137,25 +138,13 @@ class McaWizard(QDialog, Ui_McaWizard):
 
     def uncheck_all_criteria(self):
         self.crit_table.uncheck_all()
-               
-    def gen_crit_type_lists(self, crit_types):
-        """Given a list of criteria types (eg. "Binary", "Ordinal", "Ratio"), 
-        returns a tuple containing two lists. 1 of indices of quantitative 
-        criteria and 1 of indices of qualitative criteria.  These are indices 
-        into the crit_types (or in_matrix) list allowing for quick retrieval 
-        of criteria of one type or the other during the analysis process.
-        """   
-        quant_list = []
-        qual_list = []
-        for i in range(len(crit_types)):
-            cur_type = crit_types[i]
-            if cur_type == "Ratio":
-                quant_list.append(i)
-            elif cur_type == "Ordinal" or cur_type == "Binary":
-                qual_list.append(i)
-        return (quant_list, qual_list)
 
     ################################# Input Data ##############################
+
+    def input_prev_click(self):
+        ok = self.process_data_input("backward")
+        if ok:
+            self.prev_click()
 
     def setup_data_input(self):
         #self.input_table.load(self.selected_altern_data, self.selected_crit_data)
@@ -277,23 +266,28 @@ class McaWizard(QDialog, Ui_McaWizard):
                         #append all but first two columns to end of existing list
                         import_list += row[2:]
             
-            #Check for missing or malformed data
+            #Make a copy, we don't want to overwrite the current input data 
+            #until we know all the data from the CSV is kosher
             new_input_data = self.input_data.make_copy()
-            input_data = self.input_data.get_input_data()
+            
+            #Check for missing or malformed data
+            cell_data = new_input_data.get_cell_data()
             for i in range(len(import_list)):
                 new_value = import_list[i]
-                print new_value
-                print type(new_value)
                 if not strIsInt(new_value):
-                    row = self.input_data.get_row(i)+2
-                    crit_name = self.input_data.get_crit_name(i)
-                    col = self.input_data.get_col(i)+3
-                    altern_name = self.input_data.get_altern_name(i)
+                    row = new_input_data.get_row(i)+2
+                    crit_name = new_input_data.get_crit_name(i)
+                    col = new_input_data.get_col(i)+3
+                    altern_name = new_input_data.get_altern_name(i)
                     QMessageBox.critical(self,"ImportError", "Malformed input in row "+str(row)+": '"+crit_name+"', column "+str(col)+": '"+altern_name+"'")
                     return None
                 
-                self.input_data.set_value(i, import_list[i])
+                new_input_data.set_value(i, import_list[i])
             
+            #Replace current input data with new known-good input data from CSV
+            self.input_data = new_input_data
+
+            #Reload the input_table
             success = self.input_table.load(self.input_data)
             if success:
                 QMessageBox.information(self,"Success", "CSV loaded successfully")
@@ -302,56 +296,51 @@ class McaWizard(QDialog, Ui_McaWizard):
         
     def process_data_input(self, direction='forward'):
         input_required = True
-        if direction and direction == "backward":
+        if direction == "backward":
             input_required = False
         
         new_input_data = self.input_data.make_copy()
         
-        
-        print new_input_data
-        print self.input_data
-        
+        #print new_input_data
+        #print self.input_data
         
         #Get data from table widget
-        self.input_table.get_input_data(input_required, new_input_data)
-        #Update input data set
-        self.input_data.update_values(new_input_data)
+        try:
+            self.input_table.get_input_data(input_required, new_input_data)
+        except DelphosError, e:
+            QMessageBox.critical(self,"Input Error", str(e))
+        else:
+            #Replace old input data with latest known good input data
+            self.input_data = new_input_data
         
-        #Get lists describing which columns (criteria) in in_matrix are quantitative and which are qualitative
-        (quant_cols, qual_cols) = self.gen_crit_type_lists(self.selected_crit_types)
-        num_qual_criteria = len(qual_cols)
-        num_quant_criteria = len(quant_cols)
+            if direction == "forward":  
+                #Get lists describing which columns (criteria) in in_matrix are quantitative and which are qualitative
+                #(quant_cols, qual_cols) = self.gen_crit_type_lists(self.selected_crit_types)
+                #num_qual_criteria = len(qual_cols)
+                #num_quant_criteria = len(quant_cols)
+                
+                if self.input_data:
+                        success = self.input_data_checks()
+                        if success:
+                            #for row in self.input_data
+                            #    print row
+                            self.next_click()
+            else:
+                return True
+
+    def input_data_checks(self):
+
+        get_rows = lambda input_set: list(Set([x[2] for x in input_set]))
+        get_row_cells = lambda row: [cell for cell in self.input_data.cell_data if cell[2] == row]
+        check_all_same = lambda row_cells: reduce(lambda x, y: x[0][4] == y[0][4], row_cells)
         
-        if self.input_data:
-                success = self.input_data_checks(num_quant_criteria, num_qual_criteria, quant_cols, qual_cols)
-                if success:
-                    #for row in self.input_data
-                    #    print row
-                    self.next_click()
-
-    def input_data_checks(self, num_quant_criteria, num_qual_criteria, quant_cols, qual_cols):
-        #Check if for any quant criteria, the values are the same for all alternatives
-        if num_quant_criteria > 0:
-            for j in quant_cols:
-                first_val = self.input_data[0][j]
-                same = True
-                for i in range(len(self.input_data)):
-                    if self.input_data[i][j] != first_val:
-                        same = False
-                if same:
-                    QMessageBox.critical(self,"Input Error", "Your quantitative values for '"+self.selected_crit_names[j]+"' (row "+str(j+1)+ ") are all the same.  At least one cell in this row must have a value different from the rest.")
-                    return False
-
-        #Check if for any qualitative criteria, the values are the same for all alternatives
-        if num_qual_criteria > 0:
-            same = True
-            for j in qual_cols:
-                first_val = self.input_data[0][j]
-                for i in range(len(self.input_data)):
-                    if self.input_data[i][j] != first_val:
-                        same = False
-            if same:
-                QMessageBox.critical(self,"Input Error", "Your rows with ordinal/binary criteria all have the same value.  At least one of those rows must have a cell with a value different from the rest.")
+        rows = get_rows(self.input_data.cell_data)
+        for row in rows:
+            row_cells = get_row_cells(row)
+            crit_name = row_cells[0][1][1]
+            all_same = check_all_same(row_cells)
+            if all_same:
+                QMessageBox.critical(self,"Input Error", "Your input for row for '"+str(row+1)+" '"+self.input_data.get_crit_name(i)+"' is all the same.  At least one cell in this row must have a value different from the rest.  This is a limitation of the Evamix algorithm")
                 return False
         return True
 
@@ -436,6 +425,10 @@ class McaWizard(QDialog, Ui_McaWizard):
 class InputDataSet():
     """Maintains altern/crit grid input data by the user.
     
+    The grid cells of data are represented in a linear list, not a 2D list or other
+    The row and column of each cell is stored within the cells structure
+    So an 8x8 grid, 8 alternatives, 8 criteria would have a 64 element cell_data list
+    
     Ties input values to their associated altern/criteria pair so
     that the user can go back and change the altern and crit without losing
     the data that they already input.  It also separates data from 
@@ -448,17 +441,17 @@ class InputDataSet():
     
     def __init__(self, altern_data=None, crit_data=None):
         if altern_data and crit_data:      
-            self.input_data = self.create_input_data(altern_data, crit_data)
+            self.cell_data = self.create_cell_data(altern_data, crit_data)
  
     def make_copy(self):
         new_set = InputDataSet()
-        new_set.input_data = copy.copy(self.input_data)
+        new_set.cell_data = copy.copy(self.cell_data)
         new_set.num_alterns = self.num_alterns
         new_set.num_crits = self.num_crits
         return new_set
     
-    def create_input_data(self, altern_data, crit_data):
-        input_data = []
+    def create_cell_data(self, altern_data, crit_data):
+        cell_data = []
         self.num_alterns = len(altern_data)
         self.num_crits = len(crit_data)
         for i in range(self.num_crits):
@@ -466,34 +459,43 @@ class InputDataSet():
                 #Append associated alter and crit data to each 'cell'.  
                 #Append row and column to put in
                 #Append space for input value
-                input_data.append([altern_data[j], crit_data[i], i, j, None])
-        print "input data:"
-        print input_data
-        return input_data
+                cell_data.append([altern_data[j], crit_data[i], i, j, None])
+        
+        #print "input data:"
+        #print input_data
+        
+        return cell_data
     
     def update_values(self, new_values):
-        pass
+        for i in range(len(self.cell_data)):
+            self.set_value(i, new_values.get_value(i))
     
     def update_headings(self, altern_data, crit_data):
         pass
     
-    def get_input_data(self):
-        return self.input_data
-    
-    def set_value(self, index, value):
-        self.input_data[index][4] = value
+    def get_cell_data(self):
+        return self.cell_data
         
     def get_row(self, index):
-        return self.input_data[index][2]
+        return self.cell_data[index][2]
         
     def get_col(self, index):
-        return self.input_data[index][3]
-    
+        return self.cell_data[index][3]
+
+    def get_value(self, index):
+        return self.cell_data[index][4]
+
+    def set_value(self, index, value):
+        self.cell_data[index][4] = value
+
     def get_crit_name(self, index):
-        return self.input_data[index][1][1]
+        return self.cell_data[index][1][1]
+    
+    def get_crit_type(self, index):
+        return self.cell_data[index][1][2]
     
     def get_altern_name(self, index):
-        return self.input_data[index][0][1]
+        return self.cell_data[index][0][1]
         
 class InputWeightSet():
     """Maintains weights input by the user.
