@@ -62,13 +62,15 @@ class InputMcaTableWidget(QTableWidget):
                 try:
                     self.set_combo_value(row, column, crit_options_units, input_value)
                 except InputError, e:
-                    QMessageBox.critical(self, "Combo Box Error", tr(str(e)+" Row"+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'"))
+                    QMessageBox.critical(self, "Combo Box Error", str(e)+" Row"+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'")
+                    return False
+                
             elif crit_type == "Ratio":
                 try:
                     self.set_cell_value(row, column, input_value)
                 except InputError, e:
-                    QMessageBox.critical(self, "Input Error", tr(str(e)+" Row "+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'"))
-                                        
+                    QMessageBox.critical(self, "Input Error", str(e)+" Row "+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'")
+                    return False        
         self.show()
         return True      
         
@@ -90,14 +92,16 @@ class InputMcaTableWidget(QTableWidget):
                 try:
                     value = self.get_combo_value(row, column)
                 except InputError, e:
-                    QMessageBox.critical(self, "Combo Box Error", tr(str(e)+" Row"+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'"))
-
+                    raise DelphosError, str(e)+" Row"+str(row+1)+": "+str(crit_name)+", Column "+str(column+1)+": "+str(altern_name)
+                    return False
+                
             elif crit_type == "Ratio":
                 try:                    
                     value = self.get_cell_value(row, column)
                 except InputError, e:
-                    QMessageBox.critical(self, "Input Error", tr(str(e)+" Row"+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'"))
-
+                    raise DelphosError, str(e)+" Row"+str(row+1)+": "+str(crit_name)+", Column "+str(column+1)+": "+str(altern_name)
+                    return False
+                
             if value == None and input_required:
                 raise DelphosError, "Missing input for row "+str(row)+" '"+str(crit_name)+"', column "+str(column)+" '"+str(altern_name)+"'"
 
@@ -114,7 +118,7 @@ class InputMcaTableWidget(QTableWidget):
         if not value and input_required:
             raise InputError, "Missing input."
         if not ok:
-            raise InputError, "Unable to read input. Expected an integer, received '"+str(value)+"'."
+            raise InputError, "Unable to read input. Expected an integer, received: "+str(value)+"."
         #print "value: "+str(value)
         #print "ok: "+str(ok)   
         #Save the value from i,j to j,i

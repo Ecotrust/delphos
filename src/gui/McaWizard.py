@@ -147,7 +147,6 @@ class McaWizard(QDialog, Ui_McaWizard):
             self.prev_click()
 
     def setup_data_input(self):
-        #self.input_table.load(self.selected_altern_data, self.selected_crit_data)
         if not self.input_data:
             #Create input set
             self.input_data = InputDataSet(self.selected_altern_data, self.selected_crit_data)
@@ -329,21 +328,22 @@ class McaWizard(QDialog, Ui_McaWizard):
                 return True
 
     def input_data_checks(self):
+        try:
+            self.input_data.check_quant_rows()
+        except InputError, e:
+            QMessageBox.critical(self,"Input Error", "Your inputs for a given quantitative criterion are all the same value.  This is a limitation of the Evamix algorithm, at least one value in a row must be difference."+str(e))
+            return False
+        else:
+            return True
 
-        get_rows = lambda input_set: list(Set([x[2] for x in input_set]))
-        get_row_cells = lambda row: [cell for cell in self.input_data.cell_data if cell[2] == row]
-        check_all_same = lambda row_cells: reduce(lambda x, y: x[0][4] == y[0][4], row_cells)
+        try:
+            self.input_data.check_qual_rows()
+        except InputError, e:
+            QMessageBox.critical(self,"Input Error", "Your inputs for all qualitative criteria (Ordinal/Binary) are the same value.  This is not valid input for the Evamix algorithm, at least one value in one qualitative criteria row must be different."+str(e))
+            return False
+        else:
+            return True
         
-        rows = get_rows(self.input_data.cell_data)
-        for row in rows:
-            row_cells = get_row_cells(row)
-            crit_name = row_cells[0][1][1]
-            all_same = check_all_same(row_cells)
-            if all_same:
-                QMessageBox.critical(self,"Input Error", "Your input for row for '"+str(row+1)+" '"+self.input_data.get_crit_name(i)+"' is all the same.  At least one cell in this row must have a value different from the rest.  This is a limitation of the Evamix algorithm")
-                return False
-        return True
-
     ########################## Input Weights #########################
 
     def weight_prev_click(self):
@@ -385,7 +385,7 @@ class McaWizard(QDialog, Ui_McaWizard):
             if self.isError:
                 self.isError = False
             else:
-                self.emit(SIGNAL("mca_analysis_info_collected"), self.selected_altern_data, self.selected_crit_data, self.input_data, self.input_weights.get_weights(), self.selected_crit_types)
+                self.emit(SIGNAL("mca_analysis_info_collected"), self.selected_altern_data, self.selected_crit_data, self.input_data.get_mca_input(), self.input_weights.get_weights(), self.selected_crit_types)
 
     ############################# General ###############################
 
@@ -470,9 +470,36 @@ class InputDataSet():
         for i in range(len(self.cell_data)):
             self.set_value(i, new_values.get_value(i))
     
-    def update_headings(self, altern_data, crit_data):
-        pass
+    def update_headings(self, new_altern_data, new_crit_data):
+        if not new_altern_data or not new_crit_data:
+            raise Exception, "Error updating input table"
     
+        #Create new empty input set
+        new_input_data = InputDataSet(new_altern_data, new_crit_data)
+        
+        #Load values from current input set into new input set where altern 
+        #and crit id match
+        for i in range(len(self.cell_data)):
+            for j in range(len(new_input_data.cell_data)):
+                cur_altern_id = self.cell_data[i][0][0]
+                cur_crit_id = self.cell_data[i][1][0]
+                new_altern_id = new_input_data.cell_data[j][0][0]
+                new_crit_id = new_input_data.cell_data[j][1][0]
+                if cur_altern_id == new_altern_id and cur_crit_id == new_crit_id:
+                    #Copy value
+                    new_input_data.cell_data[j][4] = self.cell_data[i][4]
+        
+        #Replace current input data set with new updated one
+        self.num_alterns = new_input_data.num_alterns
+        self.num_crits = new_input_data.num_crits
+        self.cell_data = new_input_data.cell_data
+
+    def get_num_alterns(self):
+        return self.num_alterns
+
+    def get_num_crits(self):
+        return self.num_crits
+  
     def get_cell_data(self):
         return self.cell_data
         
@@ -496,6 +523,64 @@ class InputDataSet():
     
     def get_altern_name(self, index):
         return self.cell_data[index][0][1]
+
+    def get_qual_rows(self):
+        return list(Set([x[2] for x in self.cell_data if x[1][2] == "Ordinal" or x[1][2] == "Binary"]))
+    
+    def get_quant_rows(self):
+        return list(Set([x[2] for x in self.cell_data if x[1][2] == "Ratio"]))
+
+    def check_quant_rows(self):
+        """Check if all rows with quantative criteria have the same values
+        within a given row"""
+        quant_rows = self.get_quant_rows()
+        for row in quant_rows:
+            if self.check_same_values_by_row(row):
+                crit_name = self.get_crit_name(row)
+                raise InputError, str(row+1)+" '"+str(crit_name)+"'"
+        
+    def check_qual_rows(self):
+        """Check if all rows with qualitative criteria have the same values
+        within a given row"""
+        qual_rows = self.get_qual_rows()       
+        row_same_list = []
+        for row in qual_rows:           
+            crit_name = self.get_crit_name(row)
+            row_same_list.append(self.check_same_values_by_row(row))
+             
+        all_same = reduce(lambda x,y: x and y, row_same_list) 
+        if all_same: 
+            raise InputError, str(row+1)+" '"+str(crit_name)+"'"
+            
+    def check_same_values_by_row(self, row):
+        """Check if the cells in any row all have the same values
+        """
+        row_cells = self.get_row_cells(row)            
+        same_bool_list = [x[4] == y[4] for x in [row_cells[0]] for y in row_cells]
+        same = reduce(lambda x, y: x and y, same_bool_list)
+        if same:
+            return True
+        else:
+            return False
+        
+    def get_num_rows(self):
+        """Return number of rows in input data
+        """
+        #return list(Set([x[2] for x in self.cell_data]))
+        return self.num_crits
+    
+    def get_row_cells(self, row):
+        return [cell for cell in self.cell_data if cell[2] == row]
+    
+    def get_mca_input(self):
+        """Generate in matrix for Evamix MCA
+        alterns down, criteria across, opposite of table widget"""
+        input = initialize_int_array(self.get_num_alterns(), self.get_num_crits())
+        for cell in self.cell_data:
+            col = cell[2] #Note pulling the row valu and using as column
+            row = cell[3] #Note pulling the column value and using as row
+            input[row][col] = cell[4]
+        return input
         
 class InputWeightSet():
     """Maintains weights input by the user.

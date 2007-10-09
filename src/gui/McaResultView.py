@@ -29,8 +29,21 @@ class McaResultView(QDialog, Ui_McaResultView):
         from operator import itemgetter
         sorted_results = sorted(final_results.items(), key=itemgetter(1), reverse=True)
         
-        #for row in final_results:
-        #    print row
+
+
+        #Make altern recs a dict using altern_id as key
+        altern_dict = {}
+        for altern in altern_recs:
+            altern_dict[altern[0]] = altern[1]
+
+
+        final_data = []
+        for i in range(len(sorted_results)):
+            (altern_id, score) = sorted_results[i]
+            score = round(score, 4)
+            altern_name = altern_dict[altern_id]
+            final_data.append([altern_id, altern_name, rank, score])
+
         
         self.final_table.load(altern_data, sorted_results)
         self.mca_plot_canvas.draw_bar_chart(altern_data, results)
