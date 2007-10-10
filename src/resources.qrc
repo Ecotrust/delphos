@@ -8,5 +8,6 @@
         <file>documentation/fisheries_criteria_and_guidance.doc</file>
         <file>documentation/fisheries_examples_from_the_field.doc</file>
         <file>qss/main_style.css</file>
+        <file>images/help2.png</file>
     </qresource>
 </RCC>
