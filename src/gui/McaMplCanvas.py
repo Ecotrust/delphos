@@ -44,13 +44,17 @@ class MyMplCanvas(FigureCanvas):
 
 class McaMplCanvas(MyMplCanvas):
     
-    def draw_bar_chart(self, altern_data, scores):
+    def draw_bar_chart(self, final_results):
         altern_names = []
         altern_colors = []
-        for row in altern_data:
+        scores = []
+        ranks = []
+        for row in final_results:
             altern_names.append(row[1])    #append alternative name
-            altern_colors.append(row[2])
-        
+            altern_colors.append(row[4])
+            scores.append(row[3])
+            ranks.append(row[2])
+            
         N = len(scores)
         nums = range(1, N+1)
         ind = arange(N)  # the x locations for the groups
@@ -63,10 +67,11 @@ class McaMplCanvas(MyMplCanvas):
 
         #pure matplotlib figure
         p1 = bar(ind, scores, width, color=altern_colors, edgecolor='k')
-        #pyqt matplotlib widget
-        self.axes.bar(ind, scores, width, color=altern_colors)
+
+        #pyqt matplotlib widget (subplot)
+        self.axes.bar(ind, ranks, width, color=altern_colors)
         self.axes.legend(p1, altern_names, loc='best', pad=0.1, prop=FontProperties(size='small'))
-        
-        ylabel('Scores')
-        title('MCA Results')
-        legend(p1, altern_names, loc='best', pad=0.1, prop=FontProperties(size='small'))
+        #self.axes.xlabel('Rank')
+        #self.axes.ylabel('Final Score')
+        #self.axes.bar.title = 'MCA Results'
+        #legend(p1, altern_names, loc='best', pad=0.1, prop=FontProperties(size='small'))
