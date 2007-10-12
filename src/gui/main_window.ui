@@ -36,26 +36,25 @@
    </property>
    <widget class="QMenu" name="menuFile" >
     <property name="title" >
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="menu_create_project" />
     <addaction name="menu_open_project" />
-    <addaction name="separator" />
     <addaction name="menu_exit_delphos" />
    </widget>
    <widget class="QMenu" name="menuAbout" >
     <property name="title" >
-     <string>About</string>
+     <string>&amp;About</string>
     </property>
     <addaction name="actionAbout_Delphos" />
    </widget>
    <widget class="QMenu" name="menuView" >
     <property name="title" >
-     <string>View</string>
+     <string>&amp;View</string>
     </property>
     <widget class="QMenu" name="menuDocumentation" >
      <property name="title" >
-      <string>Documentation Window</string>
+      <string>&amp;Documentation Window</string>
      </property>
      <addaction name="menu_dock_visible" />
      <addaction name="menu_dock_floating" />
@@ -64,7 +63,7 @@
    </widget>
    <widget class="QMenu" name="menuOptions" >
     <property name="title" >
-     <string>Options</string>
+     <string>&amp;Options</string>
     </property>
     <addaction name="actionOpen_Documentation_Externally" />
    </widget>
@@ -192,7 +191,10 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>Open Project</string>
+    <string>&amp;Open Project</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
    </property>
    <property name="visible" >
     <bool>true</bool>
@@ -208,7 +210,10 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>About Delphos</string>
+    <string>&amp;About Delphos</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+A</string>
    </property>
   </action>
   <action name="actionDelphos_Help" >
@@ -221,7 +226,10 @@
   </action>
   <action name="menu_exit_delphos" >
    <property name="text" >
-    <string>Exit Delphos</string>
+    <string>E&amp;xit Delphos</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+X</string>
    </property>
   </action>
   <action name="actionOpen_Documentation_Externally" >
@@ -229,7 +237,10 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>Load Printable Documentation</string>
+    <string>&amp;Load Printable Documentation</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+L</string>
    </property>
   </action>
   <action name="menu_create_project" >
@@ -237,7 +248,10 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>Create New Project</string>
+    <string>&amp;Create New Project</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+C</string>
    </property>
    <property name="visible" >
     <bool>true</bool>
@@ -266,7 +280,10 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>Visible</string>
+    <string>&amp;Visible</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+V</string>
    </property>
   </action>
   <action name="menu_dock_floating" >
