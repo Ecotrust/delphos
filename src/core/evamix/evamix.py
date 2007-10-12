@@ -1,10 +1,10 @@
 #===============================================================================
 # Delphos - a decision-making tool for community-based marine conservation.
 # 
-# @copyright    2007 Ecotrust
-# @author        Tim Welch
-# @contact        twelch at ecotrust dot org
-# @license        GNU GPL 2 
+# @copyright	2007 Ecotrust
+# @author		Tim Welch
+# @contact		twelch at ecotrust dot org
+# @license		GNU GPL 2 
 # 
 # This program is free software; you can redistribute it and/or 
 # modify it under the terms of the GNU General Public License as published by

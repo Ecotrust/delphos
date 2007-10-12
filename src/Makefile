@@ -5,6 +5,7 @@ clean:
 	rm -f resources_rc.py
 	rm -rf dist
 	rm -rf build
+	rm *.pyc
 	cd gui; $(MAKE) clean
 	cd core; $(MAKE) clean
 	cd data; $(MAKE) clean
