@@ -59,9 +59,5 @@ def initialize_str_array(rows, cols):
 def utc_to_local_time(x):
     """Given a UTC datetime object x set to GMT, convert it to the local time
     """
-    print "altzone: "+str(time.altzone)
     offset = datetime.timedelta( hours=(time.altzone/3600) )
-    print "offset: "+str(offset)
-    print "old: "+str(x)
-    print "new: "+str(x - offset)
     return x - offset

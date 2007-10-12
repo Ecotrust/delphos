@@ -19,7 +19,7 @@
    </font>
   </property>
   <property name="windowTitle" >
-   <string>Form</string>
+   <string>MCA Run Summary</string>
   </property>
   <layout class="QHBoxLayout" >
    <item>

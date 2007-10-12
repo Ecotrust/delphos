@@ -33,6 +33,7 @@ from add_criteria_dialog import AddCriteriaDialog
 from McaWizard import McaWizard 
 from McaResultView import McaResultView
 from yes_no_dialog import YesNoDialog
+from mca_rerun_dialog import McaRerunDialog
 
 class ProjectViewDialog(QDialog, Ui_ProjectView):
     """Manages interaction with the project interface and the underlying DB
@@ -178,14 +179,21 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
     def start_rerun_analysis(self):
         try:
             selected_id = self.mca_runs_table.get_selected_id()
+            self.mca_data = self.project.get_mca_run_by_id(selected_id)
         except InputError, e:
             QMessageBox.critical(self,"Run Error", str(e))
-        else:
-            mca_data = self.project.get_mca_run_by_id(selected_id)
-            self.mca_wizard = McaWizard(self.gui_manager, self, self.project, mca_data)
-            self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
-            self.mca_wizard.show()
-        
+        else:            
+            self.rerun_dialog = McaRerunDialog(self)
+            self.connect(self.rerun_dialog, SIGNAL("mca_rerun_info_collected"), self.finish_rerun_analysis)
+            self.rerun_dialog.show()
+    
+    def finish_rerun_analysis(self, name, description):
+        self.rerun_dialog.hide()
+        self.rerun_dialog.deleteLater()
+        self.mca_wizard = McaWizard(self.gui_manager, self, self.project, self.mca_data)
+        self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
+        self.mca_wizard.show()    
+    
     def start_delete_analysis(self):
         selected_id = self.mca_runs_table.get_selected_id()
         if not selected_id:
