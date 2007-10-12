@@ -1,3 +1,20 @@
+#===============================================================================
+# Delphos - a decision-making tool for community-based marine conservation.
+# 
+# @copyright    2007 Ecotrust
+# @author        Tim Welch
+# @contact        twelch at ecotrust dot org
+# @license        GNU GPL 2 
+# 
+# This program is free software; you can redistribute it and/or 
+# modify it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.  The full license for this distribution
+# has been made available in the file LICENSE.txt
+#
+# $Id$
+#===============================================================================
+
 import sqlalchemy
 import logging
 import os
@@ -8,7 +25,6 @@ from sqlalchemy import *
 from project_data import *
 from alternative_set import *
 from criteria_set import *
-from input_matrix import *
 from mca_runs import *
 from delphos_exceptions import *
 from csv_types import *
@@ -49,8 +65,6 @@ class Project:
         self.crit_set = None    #Primary CriteriaSet
         self.mca_runs_table_name = 'mca_runs'
         self.mca_runs = None	#Holds analysis runs for project
-        self.input_matrix_name = 'input_matrix'
-        self.input_matrix = None    #Primary input matrix
         
         if self.type == "fisheries":
             self.default_alternatives = default_alternatives.fisheries_default_alternatives
@@ -198,17 +212,6 @@ class Project:
             return True
         else:
             return False
-            
-    def create_input_matrix(self):
-        """Creates an input matrix from the currently defined alternatives and criteria
-        
-        If the main input table already exists, then creates a new representation in memory, 
-        populates it with values from the existing table and then generates a new table
-        """
-        self.input_matrix = InputMatrix(self.input_matrix_name, self.meta)
-     
-    def get_input_matrix_as_string(self):
-        print "Not Implemented"
         
     def run_mca(self, input_data, input_weights, selected_crit_types):
         evamix = Evamix()
