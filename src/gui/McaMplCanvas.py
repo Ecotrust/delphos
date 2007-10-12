@@ -1,13 +1,21 @@
-#!/usr/bin/env python
-
-# embedding_in_qt4.py --- Simple Qt4 application embedding matplotlib canvases
+#===============================================================================
+# Delphos - a decision-making tool for community-based marine conservation.
+# 
+# @copyright	2007 Ecotrust
+# @author		Tim Welch
+# @contact		twelch at ecotrust dot org
+# @license		GNU GPL 2 
+# 
+# This program is free software; you can redistribute it and/or 
+# modify it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.  The full license for this distribution
+# has been made available in the file LICENSE.txt
 #
-# Copyright (C) 2005 Florent Rougon
-#               2006 Darren Dale
+# $Id$
 #
-# This file is an example program for matplotlib. It may be used and
-# modified with no restriction; raw copies as well as modified versions
-# may be distributed without limitation.
+# @summary - 
+#===============================================================================
 
 import sys, os, random
 from PyQt4 import QtGui, QtCore
