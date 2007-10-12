@@ -67,7 +67,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         else:            
             self.project_name.setText(project_name)
             self.project_type.setText(project_type)
-            self.project_created.setText(str(project_created))
+            self.project_created.setText(unicode(project_created))
+            self.num_runs_label.setText(unicode(self.project.get_num_mca_runs()))
     
     def start_add_alternative(self):
         """Create dialog for adding an alternative
@@ -166,13 +167,25 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 
 
     def start_view_analysis(self):
-        selected_id = self.mca_runs_table.get_selected_id()
-        (id, name, description, altern_data, crit_data, input_data, input_weights, results, created) = self.project.get_mca_run_by_id(selected_id)
-        self.show_analysis_results(name, description, altern_data, crit_data, input_data, input_weights, results)
+        try:
+            selected_id = self.mca_runs_table.get_selected_id()
+        except InputError, e:
+            QMessageBox.critical(self,"View Error", str(e))
+        else:
+            (id, name, description, altern_data, crit_data, input_data, input_weights, results, created) = self.project.get_mca_run_by_id(selected_id)
+            self.show_analysis_results(name, description, altern_data, crit_data, input_data, input_weights, results)
 
     def start_rerun_analysis(self):
-        pass
-    
+        try:
+            selected_id = self.mca_runs_table.get_selected_id()
+        except InputError, e:
+            QMessageBox.critical(self,"Run Error", str(e))
+        else:
+            mca_data = self.project.get_mca_run_by_id(selected_id)
+            self.mca_wizard = McaWizard(self.gui_manager, self, self.project, mca_data)
+            self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
+            self.mca_wizard.show()
+        
     def start_delete_analysis(self):
         selected_id = self.mca_runs_table.get_selected_id()
         if not selected_id:

@@ -43,19 +43,20 @@ class InputMcaTableWidget(QTableWidget):
          
         self.clear()
         self.hide()    #Force size recalculation and layout when shown again
-        self.num_cols = input_data_set.num_alterns
-        self.num_rows = input_data_set.num_crits
+        self.num_cols = input_data_set.get_num_alterns()
+        self.num_rows = input_data_set.get_num_crits()
         self.setColumnCount(self.num_cols)
         self.setRowCount(self.num_rows)
-    
+        
         #Create input widgets for every combination of alternative and criteria given
         crit_id = crit_name = crit_type = crit_options_units = cost_benefits = None
         altern_id = altern_name = None
-        self.cell_data = input_data_set.get_cell_data()
+        self.input_data = input_data_set
+        #self.cell_data = input_data_set.get_cell_data()
                   
-        for i in range(len(self.cell_data)):
+        for i in range(self.input_data.get_num_cells()):
             #Unpack input data set row
-            (altern_data, crit_data, row, column, input_value) = self.cell_data[i]
+            (altern_data, crit_data, row, column, input_value) = self.input_data.get_cell_contents(i)
             #Unpack altern data
             (altern_id, altern_name, altern_color) = altern_data            
             #Unpack crit data

@@ -34,8 +34,10 @@ from util.latin_csv import *
 
 class McaWizard(QDialog, Ui_McaWizard):
     """Manages the collection of MCA analysis input
+    
+    Optionally takes input from a previous MCA analysis run
     """
-    def __init__(self, gui_manager, parent, project):
+    def __init__(self, gui_manager, parent, project, prev_run_data=None):
         QDialog.__init__(self, parent)
         self.setupUi(self)
         self.parent = parent
@@ -95,6 +97,11 @@ class McaWizard(QDialog, Ui_McaWizard):
         
         #Other signals
         QObject.connect(self.mca_stack,QtCore.SIGNAL("currentChanged(int)"), self.process_current_change)
+        
+        if prev_run_data:
+            pass
+            #Extract crit data
+            #Extract altern data
         
         self.setup_crit_select()        
         self.setup_altern_select()
@@ -459,6 +466,9 @@ class InputDataSet():
     """
     
     def __init__(self, altern_data=None, crit_data=None):
+        self.num_alterns = 0
+        self.num_crits = 0
+        self.cell_data = None
         if altern_data and crit_data:      
             self.cell_data = self.create_cell_data(altern_data, crit_data)
  
@@ -521,6 +531,12 @@ class InputDataSet():
   
     def get_cell_data(self):
         return self.cell_data
+    
+    def get_cell_contents(self, index):
+        return self.cell_data[index]
+    
+    def get_num_cells(self):
+        return len(self.cell_data)
         
     def get_row(self, index):
         return self.cell_data[index][2]

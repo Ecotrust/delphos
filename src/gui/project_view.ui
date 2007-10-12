@@ -31,7 +31,7 @@
       </font>
      </property>
      <property name="currentIndex" >
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
@@ -94,6 +94,13 @@
                   </property>
                  </widget>
                 </item>
+                <item>
+                 <widget class="QLabel" name="label_6" >
+                  <property name="text" >
+                   <string>Saved Analysis Runs:</string>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </item>
               <item>
@@ -138,6 +145,13 @@
                     <pointsize>10</pointsize>
                    </font>
                   </property>
+                  <property name="text" >
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="num_runs_label" >
                   <property name="text" >
                    <string/>
                   </property>
@@ -584,7 +598,7 @@
               </column>
               <column>
                <property name="text" >
-                <string>Date</string>
+                <string>Date (UTC)</string>
                </property>
               </column>
              </widget>

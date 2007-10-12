@@ -1,10 +1,10 @@
 #===============================================================================
 # Delphos - a decision-making tool for community-based marine conservation.
 # 
-# @copyright    2007 Ecotrust
-# @author        Tim Welch
-# @contact        twelch at ecotrust dot org
-# @license        GNU GPL 2 
+# @copyright	2007 Ecotrust
+# @author		Tim Welch
+# @contact		twelch at ecotrust dot org
+# @license		GNU GPL 2 
 # 
 # This program is free software; you can redistribute it and/or 
 # modify it under the terms of the GNU General Public License as published by
@@ -65,6 +65,9 @@ class Project:
         self.crit_set = None    #Primary CriteriaSet
         self.mca_runs_table_name = 'mca_runs'
         self.mca_runs = None	#Holds analysis runs for project
+        
+        #Calculate timezone offset from UTC (greenwich mean time)
+        self.utc_offset = time.altzone / 3600
         
         if self.type == "fisheries":
             self.default_alternatives = default_alternatives.fisheries_default_alternatives
@@ -204,6 +207,9 @@ class Project:
     
     def get_mca_run_by_id(self, mca_result_id):
     	return self.mca_runs.get_all_by_id(mca_result_id)
+ 
+    def get_num_mca_runs(self):
+        return self.mca_runs.get_num()
 
     def has_criteria(self):
         """Returns true if the current project has criteria defined

@@ -62,7 +62,7 @@ class McaRunsTableWidget(QTableWidget):
         if index is not None:
             return self.mca_recs[index][self.id_column]
         else:
-            return None
+            raise InputError, "You have not selected an analysis run"
 
     def get_current_index(self):
         cur_row_item = self.get_current_row_items()

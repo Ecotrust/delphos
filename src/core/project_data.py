@@ -19,6 +19,8 @@ from sqlalchemy import *
 import os
 import sys
 
+from util.common_functions import *
+
 class ProjectData(object):
 	"""Provides access to a projects info
 	"""
@@ -78,7 +80,7 @@ class ProjectData(object):
 		if not self.project_created:
 			self.load_project_data()
 			
-		return (self.project_name, self.project_type, self.project_created)
+		return (self.project_name, self.project_type, utc_to_local_time(self.project_created))
 
 	def get_project_type(self):
 		if self.project_type:

@@ -25,7 +25,7 @@
    <item>
     <widget class="QStackedWidget" name="mca_stack" >
      <property name="currentIndex" >
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="select_altern_page" >
       <layout class="QVBoxLayout" >

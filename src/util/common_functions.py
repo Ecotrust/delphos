@@ -17,6 +17,9 @@
 # @summary - defines common functions used throughout Delphos
 #===============================================================================
 
+import time
+import datetime
+
 def strIsInt(str):
     """Test given string is an integer
     """
@@ -52,3 +55,13 @@ def initialize_str_array(rows, cols):
     for x in range(rows):
         mat.append([""] * cols)
     return mat
+
+def utc_to_local_time(x):
+    """Given a UTC datetime object x set to GMT, convert it to the local time
+    """
+    print "altzone: "+str(time.altzone)
+    offset = datetime.timedelta( hours=(time.altzone/3600) )
+    print "offset: "+str(offset)
+    print "old: "+str(x)
+    print "new: "+str(x - offset)
+    return x - offset

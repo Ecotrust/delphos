@@ -19,6 +19,7 @@ from sqlalchemy import *
 import os
 import sys
 import pickle
+from util.common_functions import *
 
 class McaRuns(object):
     """Provides access to MCA input and result data for a given run
@@ -103,6 +104,11 @@ class McaRuns(object):
             cur_row[7] = pickle.loads(cur_row[7])
             recs.append(cur_row)
         return recs
+    
+    def get_num(self):
+        """Returns the number of analysis runs stored
+        """
+        return len(self.table.select(order_by=self.table.c.id).execute().fetchall())
 
     def get_basic(self):
         """Returns list with basic information about analysis runs that have been performed
@@ -111,8 +117,13 @@ class McaRuns(object):
         recs = []
         for row in rows:
             cur_row = list(row)
-            #Append name, description and date
-            recs.append([cur_row[0], cur_row[1], cur_row[2], cur_row[8]])
+            
+            #Append name, description and date(local time)
+            id = cur_row[0]
+            name = cur_row[1]
+            description = cur_row[2]
+            local_time = utc_to_local_time(cur_row[8])
+            recs.append([id, name, description, local_time])
         return recs
 
     def get_all_by_id(self, id):
