@@ -4,13 +4,17 @@
 # @copyright	2007 Ecotrust
 # @author		Tim Welch
 # @contact		twelch at ecotrust dot org
-#
-# @license - This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
+# @license		GNU GPL 2 
+# 
+# This program is free software; you can redistribute it and/or 
+# modify it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# (at your option) any later version.  The full license for this distribution
+# has been made available in the file LICENSE.txt
 #
 # $Id$
+#
+# @summary - Top level script used to start the delphos application
 #===============================================================================
 
 #Built-in modules
