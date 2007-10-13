@@ -52,7 +52,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QObject.connect(self.add_criteria_button,QtCore.SIGNAL("clicked()"), self.start_add_criteria)
         QObject.connect(self.remove_criteria_button,QtCore.SIGNAL("clicked()"), self.start_remove_criteria)
         QObject.connect(self.view_analysis_button,QtCore.SIGNAL("clicked()"), self.start_view_analysis)
-        QObject.connect(self.rerun_analysis_button,QtCore.SIGNAL("clicked()"), self.start_rerun_analysis)        
+        QObject.connect(self.rerun_analysis_button,QtCore.SIGNAL("clicked()"), self.start_rerun_analysis1)        
         QObject.connect(self.delete_analysis_button,QtCore.SIGNAL("clicked()"), self.start_delete_analysis)
         QObject.connect(self.new_analysis_button,QtCore.SIGNAL("clicked()"), self.start_new_analysis)
         self.load_project_data_tab()
@@ -176,7 +176,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             (id, name, description, altern_data, crit_data, input_data, input_weights, results, created) = self.project.get_mca_run_by_id(selected_id)
             self.show_analysis_results(name, description, altern_data, crit_data, input_data, input_weights, results)
 
-    def start_rerun_analysis(self):
+    def start_rerun_analysis1(self):
         try:
             selected_id = self.mca_runs_table.get_selected_id()
             self.mca_data = self.project.get_mca_run_by_id(selected_id)
@@ -184,10 +184,12 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             QMessageBox.critical(self,"Run Error", str(e))
         else:            
             self.rerun_dialog = McaRerunDialog(self)
-            self.connect(self.rerun_dialog, SIGNAL("mca_rerun_info_collected"), self.finish_rerun_analysis)
+            self.connect(self.rerun_dialog, SIGNAL("mca_rerun_info_collected"), self.start_rerun_analysis2)
             self.rerun_dialog.show()
     
-    def finish_rerun_analysis(self, name, description):
+    def start_rerun_analysis2(self, name, description):
+        self.analysis_name = name
+        self.analysis_description = description
         self.rerun_dialog.hide()
         self.rerun_dialog.deleteLater()
         self.mca_wizard = McaWizard(self.gui_manager, self, self.project, self.mca_data)
