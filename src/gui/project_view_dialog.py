@@ -27,6 +27,7 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+from util.latin_csv import *
 from delphos_exceptions import *
 from project_view_ui import Ui_ProjectView
 from add_alternative_dialog import AddAlternDialog
@@ -35,6 +36,7 @@ from McaWizard import McaWizard
 from McaResultView import McaResultView
 from yes_no_dialog import YesNoDialog
 from mca_rerun_dialog import McaRerunDialog
+from export_analysis_dialog import ExportAnalysisDialog
 
 class ProjectViewDialog(QDialog, Ui_ProjectView):
     """Manages interaction with the project interface and the underlying DB
@@ -53,7 +55,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QObject.connect(self.add_criteria_button,QtCore.SIGNAL("clicked()"), self.start_add_criteria)
         QObject.connect(self.remove_criteria_button,QtCore.SIGNAL("clicked()"), self.start_remove_criteria)
         QObject.connect(self.view_analysis_button,QtCore.SIGNAL("clicked()"), self.start_view_analysis)
-        QObject.connect(self.rerun_analysis_button,QtCore.SIGNAL("clicked()"), self.start_rerun_analysis1)        
+        QObject.connect(self.rerun_analysis_button,QtCore.SIGNAL("clicked()"), self.start_rerun_analysis1)
+        QObject.connect(self.export_analysis_button,QtCore.SIGNAL("clicked()"), self.start_export_analysis)
         QObject.connect(self.delete_analysis_button,QtCore.SIGNAL("clicked()"), self.start_delete_analysis)
         QObject.connect(self.new_analysis_button,QtCore.SIGNAL("clicked()"), self.start_new_analysis)
         self.load_project_data_tab()
@@ -154,17 +157,17 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
     def finish_new_analysis(self, altern_data, crit_data, input_data, input_weights, selected_crit_types):
         try:
             input_weights_copy = copy.deepcopy(input_weights)
-            results = self.project.run_mca(input_data, input_weights_copy, selected_crit_types)
+            [final_scores, int_data] = self.project.run_mca(input_data, input_weights_copy, selected_crit_types)
         except DelphosError, e:
             QMessageBox.critical(self,"Evamix Error", str(e))
         else:
-            if results:
+            if final_scores:
                 self.mca_wizard.hide()
                 self.mca_wizard.deleteLater()            
-                self.project.save_analysis(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, results)
+                self.project.save_analysis(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, final_scores, int_data)
 
                 self.mca_runs_table.load(self.project.get_mca_runs_basic())
-                self.show_analysis_results(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, results)
+                self.show_analysis_results(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, final_scores)
             else:
                 QMessageBox.critical(self,"Analysis Error", "MCA analysis failed.")
 
@@ -197,6 +200,28 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.mca_wizard = McaWizard(self.gui_manager, self, self.project, self.mca_data)
         self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
         self.mca_wizard.show()    
+    
+    def start_export_analysis(self):
+        selected_id = self.mca_runs_table.get_selected_id()
+        if not selected_id:
+            QMessageBox.critical(self,"Selection Error", "No analysis runs have been selected")
+            return
+        self.export_analysis_dialog = ExportAnalysisDialog(self)
+        self.connect(self.export_analysis_dialog, SIGNAL("export_analysis_info_collected"), self.finish_export_analysis)
+        self.export_analysis_dialog.show()
+    
+    def finish_export_analysis(self, filename):
+        export_arr = ["testy", "tuesday"]
+        
+        #output list to CSV.  Use latin1 encoding
+        writer = csv.writer(open(filename, "wb"), csv.excel)
+        writer.writerows(export_arr)
+        #writer.writerows(comments)
+        
+        QMessageBox.information(self,"Template Exported", "Analysis was successfully exported to "+filename)
+    
+        self.export_analysis_dialog.hide()
+        self.export_analysis_dialog.deleteLater()
     
     def start_delete_analysis(self):
         selected_id = self.mca_runs_table.get_selected_id()

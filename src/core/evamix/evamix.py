@@ -29,6 +29,10 @@ class Evamix(object):
 
     def do_analysis(self, in_matrix, crit_weights, crit_types):
         """Performs multicriteria analysis using the Evamix algorithm
+        
+        Returns a list containing a list of final scores and a list of
+        intermediate datasets generated during the analysis.
+        [final_scores, [quant_impact_matrix, qual_impact_matrix, final_matrix]]
         """
         if not in_matrix:
             raise DelphosError, "No in_matrix matrix"
@@ -160,7 +164,7 @@ class Evamix(object):
             for i in range(len(final_scores)):
                 print str(i)+": "+str(final_scores[i])
                 
-        return final_scores
+        return [final_scores, [quant_impact_matrix, qual_impact_matrix, final_matrix]]
 
     def standardize_weights(self, weights):
         """Standardizes a set of criteria weights, modifies the list given, returns nothing

@@ -223,8 +223,8 @@ class Project:
         evamix = Evamix()
         return evamix.do_analysis(input_data, input_weights, selected_crit_types)
 
-    def save_analysis(self, name, description, altern_data, crit_data, input_data, input_weights, results):        
-        self.mca_runs.insert(name, description, altern_data, crit_data, input_data, input_weights, results)
+    def save_analysis(self, name, description, altern_data, crit_data, input_data, input_weights, results, int_data):        
+        self.mca_runs.insert(name, description, altern_data, crit_data, input_data, input_weights, results, int_data)
 
     def delete_analysis(self, id):
         self.mca_runs.delete(id)

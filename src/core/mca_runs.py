@@ -54,6 +54,8 @@ class McaRuns(object):
     
     def __get_table_object(self):
         """Create mca runs Table object (SQLAlchemy)
+        
+        int_results are intermediate results generated during analysis
         """
         return Table(self.db_name, self.metadata,
             Column('id', Integer, Sequence('mca_run_seq'), primary_key=True),
@@ -64,10 +66,11 @@ class McaRuns(object):
             Column('input_data', Binary()),
             Column('input_weights', Binary()),
             Column('results', Binary()),
-            Column('created', DateTime(timezone=True))
+            Column('created', DateTime(timezone=True)),
+            Column('int_results', Binary())
         )
 
-    def insert(self, name, description, altern_data, crit_data, input_data, input_weights, results):
+    def insert(self, name, description, altern_data, crit_data, input_data, input_weights, results, int_results):
         print "name: "+name
         print "description: "+description
         
@@ -82,7 +85,8 @@ class McaRuns(object):
         input_data = pickle.dumps(input_data)
         input_weights = pickle.dumps(input_weights)
         results = pickle.dumps(results)
-        self.table.insert().execute({'name':unicode(name), 'description':unicode(description), 'altern_data':altern_data, 'crit_data':crit_data, 'input_data':input_data, 'input_weights':input_weights, 'results':results, 'created':func.current_timestamp()})
+        int_results = pickle.dumps(int_results)
+        self.table.insert().execute({'name':unicode(name), 'description':unicode(description), 'altern_data':altern_data, 'crit_data':crit_data, 'input_data':input_data, 'input_weights':input_weights, 'results':results, 'created':func.current_timestamp(), 'int_results':int_results})
 
     def delete(self, id):
         """Remove mca run given its unique run ID
@@ -102,6 +106,7 @@ class McaRuns(object):
             cur_row[5] = pickle.loads(cur_row[5])
             cur_row[6] = pickle.loads(cur_row[6])
             cur_row[7] = pickle.loads(cur_row[7])
+            cur_row[9] = pickle.loads(cur_row[9])
             recs.append(cur_row)
         return recs
     
@@ -136,6 +141,7 @@ class McaRuns(object):
             cur_row[5] = pickle.loads(cur_row[5])
             cur_row[6] = pickle.loads(cur_row[6])
             cur_row[7] = pickle.loads(cur_row[7])
+            cur_row[9] = pickle.loads(cur_row[9])
             return cur_row
 
     def __unicode__(self):

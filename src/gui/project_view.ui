@@ -643,6 +643,13 @@
                </widget>
               </item>
               <item>
+               <widget class="QPushButton" name="export_analysis_button" >
+                <property name="text" >
+                 <string>Export</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="delete_analysis_button" >
                 <property name="font" >
                  <font>
