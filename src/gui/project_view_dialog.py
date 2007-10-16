@@ -19,6 +19,7 @@
 
 import os
 import re
+import copy
 from os import path
 import sys
 
@@ -152,7 +153,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             
     def finish_new_analysis(self, altern_data, crit_data, input_data, input_weights, selected_crit_types):
         try:
-            results = self.project.run_mca(input_data, input_weights, selected_crit_types)
+            input_weights_copy = copy.deepcopy(input_weights)
+            results = self.project.run_mca(input_data, input_weights_copy, selected_crit_types)
         except DelphosError, e:
             QMessageBox.critical(self,"Evamix Error", str(e))
         else:

@@ -18,11 +18,11 @@
 #===============================================================================
 
 import os
-
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-
+from core.input_data_set import *
+from core.input_weight_set import *
 from mca_result_view_ui import Ui_McaResultView
 
 class McaResultView(QDialog, Ui_McaResultView):
@@ -40,6 +40,19 @@ class McaResultView(QDialog, Ui_McaResultView):
         self.altern_color_column = 2
         
     def load_results(self, name, description, altern_data, crit_data, input_data, input_weights, results):        
+
+        self.setWindowTitle(name)
+
+        self.altern_table.load(altern_data)
+        self.crit_table.load(crit_data)
+
+        input_weight_set = InputWeightSet(crit_data)
+        input_weight_set.update_weights(input_weights)
+        self.weight_table.load(input_weight_set)
+        
+        input_data_set = InputDataSet(altern_data, crit_data)
+        input_data_set.load_mca_input(input_data)
+        self.input_table.load(input_data_set)
 
         interm_results = {}
         #Build results dictionary using altern id as key

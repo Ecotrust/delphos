@@ -8,9 +8,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>792</width>
-    <height>449</height>
+    <width>500</width>
+    <height>370</height>
    </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>500</width>
+    <height>370</height>
+   </size>
   </property>
   <property name="font" >
    <font>
@@ -23,117 +29,288 @@
   </property>
   <layout class="QHBoxLayout" >
    <item>
-    <widget class="FinalScoreTableWidget" name="final_table" >
-     <property name="minimumSize" >
-      <size>
-       <width>250</width>
-       <height>0</height>
-      </size>
+    <widget class="QTabWidget" name="summary_tab" >
+     <property name="currentIndex" >
+      <number>0</number>
      </property>
-     <property name="maximumSize" >
-      <size>
-       <width>250</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="editTriggers" >
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="alternatingRowColors" >
-      <bool>true</bool>
-     </property>
-     <property name="selectionMode" >
-      <enum>QAbstractItemView::ExtendedSelection</enum>
-     </property>
-     <property name="sortingEnabled" >
-      <bool>false</bool>
-     </property>
-     <column>
-      <property name="text" >
-       <string>Final Score</string>
-      </property>
-     </column>
-     <column>
-      <property name="text" >
-       <string>Rank</string>
-      </property>
-     </column>
-     <column>
-      <property name="text" >
-       <string>Color</string>
-      </property>
-     </column>
-    </widget>
-   </item>
-   <item>
-    <layout class="QVBoxLayout" >
-     <item>
+     <widget class="QWidget" name="chart" >
+      <attribute name="title" >
+       <string>Chart</string>
+      </attribute>
       <layout class="QHBoxLayout" >
        <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" >
+        <widget class="McaMplCanvas" native="1" name="mca_plot_canvas" >
+         <property name="minimumSize" >
           <size>
-           <width>40</width>
-           <height>20</height>
+           <width>300</width>
+           <height>300</height>
           </size>
          </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="label" >
-         <property name="text" >
-          <string>Final Score Plot</string>
+         <property name="maximumSize" >
+          <size>
+           <width>980</width>
+           <height>800</height>
+          </size>
          </property>
         </widget>
        </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="alternatives" >
+      <attribute name="title" >
+       <string>Alternatives</string>
+      </attribute>
+      <layout class="QHBoxLayout" >
        <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
+        <widget class="AlternativeTableWidget" name="altern_table" >
+         <property name="enabled" >
+          <bool>true</bool>
          </property>
-         <property name="sizeHint" >
+         <property name="minimumSize" >
           <size>
-           <width>40</width>
-           <height>20</height>
+           <width>120</width>
+           <height>60</height>
           </size>
          </property>
-        </spacer>
+         <property name="mouseTracking" >
+          <bool>false</bool>
+         </property>
+         <property name="editTriggers" >
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="dragDropOverwriteMode" >
+          <bool>false</bool>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+         <property name="horizontalScrollMode" >
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="rowCount" >
+          <number>1</number>
+         </property>
+         <property name="columnCount" >
+          <number>2</number>
+         </property>
+         <row>
+          <property name="text" >
+           <string>1</string>
+          </property>
+         </row>
+         <column>
+          <property name="text" >
+           <string>Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Color</string>
+          </property>
+         </column>
+        </widget>
        </item>
       </layout>
-     </item>
-     <item>
-      <widget class="McaMplCanvas" native="1" name="mca_plot_canvas" >
-       <property name="minimumSize" >
-        <size>
-         <width>500</width>
-         <height>300</height>
-        </size>
-       </property>
-       <property name="maximumSize" >
-        <size>
-         <width>980</width>
-         <height>800</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
+     </widget>
+     <widget class="QWidget" name="criteria" >
+      <attribute name="title" >
+       <string>Criteria</string>
+      </attribute>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="CriteriaTableWidget" name="crit_table" >
+         <property name="minimumSize" >
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="editTriggers" >
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="dragDropOverwriteMode" >
+          <bool>false</bool>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+         <property name="selectionBehavior" >
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="horizontalScrollMode" >
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="rowCount" >
+          <number>0</number>
+         </property>
+         <property name="columnCount" >
+          <number>4</number>
+         </property>
+         <column>
+          <property name="text" >
+           <string>Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Options/Units</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Cost/Benefit</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="input" >
+      <attribute name="title" >
+       <string>Input</string>
+      </attribute>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="InputResultViewTableWidget" name="input_table" >
+         <property name="enabled" >
+          <bool>true</bool>
+         </property>
+         <property name="mouseTracking" >
+          <bool>false</bool>
+         </property>
+         <property name="editTriggers" >
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="dragDropOverwriteMode" >
+          <bool>false</bool>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+         <property name="horizontalScrollMode" >
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="rowCount" >
+          <number>0</number>
+         </property>
+         <property name="columnCount" >
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="weights" >
+      <attribute name="title" >
+       <string>Weights</string>
+      </attribute>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="WeightMcaTableWidget" name="weight_table" >
+         <property name="enabled" >
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize" >
+          <size>
+           <width>400</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="mouseTracking" >
+          <bool>false</bool>
+         </property>
+         <property name="editTriggers" >
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+         <property name="horizontalScrollMode" >
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="rowCount" >
+          <number>0</number>
+         </property>
+         <property name="columnCount" >
+          <number>1</number>
+         </property>
+         <column>
+          <property name="text" >
+           <string>Weight</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="results" >
+      <attribute name="title" >
+       <string>Results</string>
+      </attribute>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="FinalScoreTableWidget" name="final_table" >
+         <property name="minimumSize" >
+          <size>
+           <width>250</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize" >
+          <size>
+           <width>1677777</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="editTriggers" >
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+         <property name="sortingEnabled" >
+          <bool>false</bool>
+         </property>
+         <column>
+          <property name="text" >
+           <string>Final Score</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Rank</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Color</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -148,6 +325,26 @@
    <extends>QWidget</extends>
    <header>McaMplCanvas.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WeightMcaTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>WeightMcaTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>AlternativeTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>AlternativeTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CriteriaTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>CriteriaTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>InputResultViewTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header location="global" >InputResultViewTableWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

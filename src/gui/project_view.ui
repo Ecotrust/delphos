@@ -31,7 +31,7 @@
       </font>
      </property>
      <property name="currentIndex" >
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
@@ -598,7 +598,7 @@
               </column>
               <column>
                <property name="text" >
-                <string>Date (UTC)</string>
+                <string>Date</string>
                </property>
               </column>
              </widget>
