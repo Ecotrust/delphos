@@ -99,18 +99,37 @@ class McaWizard(QDialog, Ui_McaWizard):
         QObject.connect(self.mca_stack,QtCore.SIGNAL("currentChanged(int)"), self.process_current_change)
         
         if prev_run_data:
-            pass
-            #Extract crit data
-            #Extract altern data
-        
+            (prev_run_id, prev_run_name, prev_run_description, prev_altern_data, prev_crit_data, prev_input_data, prev_input_weights, prev_results, prev_creation_date) = prev_run_data
+            self.altern_data = prev_altern_data        
+            self.crit_data = prev_crit_data
+
         self.setup_crit_select()        
         self.setup_altern_select()
+        
+        if prev_run_data:
+        	#Load up the wizard dialogs
+            self.check_all_alternatives()
+            self.process_altern_select()
+            
+            self.check_all_criteria()
+            self.process_crit_select()
+            
+            self.setup_data_input()
+            self.input_data.load_mca_input(prev_input_data)
+            self.input_table.load(self.input_data)
+            self.process_data_input()
+            
+            self.setup_weight_input()
+            self.input_weights.update_weights(prev_input_weights)
+            self.weight_table.load(self.input_weights)
+            self.process_weight_input()
 
     #################################### Alternatives #####################
 
     def setup_altern_select(self):
-        self.altern_data = self.project.get_all_alternatives()
-        self.altern_table.load(self.altern_data)    
+        if not self.altern_data:
+            self.altern_data = self.project.get_all_alternatives()
+        self.altern_table.load(self.altern_data) 
         
     def process_altern_select(self):
         selected_altern_indexes = self.altern_table.get_selected_indexes()
@@ -137,7 +156,8 @@ class McaWizard(QDialog, Ui_McaWizard):
     ################################ Criteria #################################
 
     def setup_crit_select(self):
-        self.crit_data = self.project.get_all_criteria()
+        if not self.crit_data:
+            self.crit_data = self.project.get_all_criteria()
         self.crit_table.load(self.crit_data)
 
     def process_crit_select(self):
@@ -295,19 +315,8 @@ class McaWizard(QDialog, Ui_McaWizard):
             #until we know all the data from the CSV is kosher
             new_input_data = self.input_data.make_copy()
             
-            #Check for missing or malformed data
-            cell_data = new_input_data.get_cell_data()
-            for i in range(len(import_list)):
-                new_value = import_list[i]
-                if not strIsInt(new_value):
-                    row = new_input_data.get_row(i)+2
-                    crit_name = new_input_data.get_crit_name(i)
-                    col = new_input_data.get_col(i)+3
-                    altern_name = new_input_data.get_altern_name(i)
-                    QMessageBox.critical(self,"ImportError", "Malformed input in row "+str(row)+": '"+crit_name+"', column "+str(col)+": '"+altern_name+"'")
-                    return None
-                
-                new_input_data.set_value(i, import_list[i])
+            #Load it up
+            self.load_data_input_from_array(new_input_data, import_list)
             
             #Replace current input data with new known-good input data from CSV
             self.input_data = new_input_data
@@ -318,7 +327,23 @@ class McaWizard(QDialog, Ui_McaWizard):
                 QMessageBox.information(self,"Success", "CSV loaded successfully")
             else :
                 QMessageBox.critical(self,"Error", "Due to error, table may only be partially loaded")
-        
+
+    def load_data_input_from_array(self, input_data, input_values):
+        #Check for missing or malformed data
+        cell_data = input_data.get_cell_data()
+        for i in range(len(input_values)):
+            new_value = input_values[i]
+            if not strIsInt(new_value):
+                row = input_data.get_row(i)+2
+                crit_name = input_data.get_crit_name(i)
+                col = input_data.get_col(i)+3
+                altern_name = input_data.get_altern_name(i)
+                QMessageBox.critical(self,"ImportError", "Malformed input in row "+str(row)+": '"+crit_name+"', column "+str(col)+": '"+altern_name+"'")
+                return None
+            
+            input_data.set_value(i, input_values[i])
+        return input_data   
+
     def process_data_input(self, direction='forward'):
         input_required = True
         if direction == "backward":
@@ -387,7 +412,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         #Load the weight input table
         self.weight_table.load(self.input_weights)
 
-    def process_weight_input(self, direction):
+    def process_weight_input(self, direction="forward"):
         input_required = True
         if direction == "backward":
             input_required = False
@@ -616,6 +641,12 @@ class InputDataSet():
             row = cell[3] #Note pulling the column value and using as row
             input[row][col] = cell[4]
         return input
+    
+    def load_mca_input(self, input_matrix):
+    	for cell in self.cell_data:
+    		col = cell[2]
+    		row = cell[3]
+    		cell[4] = input_matrix[row][col]
         
 class InputWeightSet():
     """Maintains weights input by the user.

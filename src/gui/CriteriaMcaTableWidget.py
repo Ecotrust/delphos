@@ -54,9 +54,9 @@ class CriteriaMcaTableWidget(QTableWidget):
                 type_item.setText(str(criteria_recs[i][self.crit_type_column]))
                 self.setItem(i, self.crit_type_column, type_item)
                 #Add type options/units to 4th column
-                type_item = QTableWidgetItem()
-                type_item.setText(str(criteria_recs[i][self.crit_options_column]))
-                self.setItem(i, self.crit_options_column, type_item)
+                option_item = QTableWidgetItem()
+                option_item.setText(str(criteria_recs[i][self.crit_options_column]))
+                self.setItem(i, self.crit_options_column, option_item)
                 #Add cost/benefit to 5th column
                 cb_item = QTableWidgetItem()
                 cb_item.setText(str(criteria_recs[i][self.cost_benefit_column]))

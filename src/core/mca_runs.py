@@ -127,6 +127,7 @@ class McaRuns(object):
         return recs
 
     def get_all_by_id(self, id):
+        #(altern data, crit data, input data, input weights, results)
         rows = self.table.select(self.table.c.id == id, order_by=self.table.c.id).execute().fetchall()
         for row in rows:
             cur_row = list(row)
