@@ -31,15 +31,17 @@ from select_type_dialog import SelectTypeDialog
 from create_project_dialog import CreateProjectDialog
 from open_project_dialog import OpenProjectDialog
 from project_view_dialog import ProjectViewDialog
+from language_dialog import LanguageDialog
 
 class GuiManager(QObject):
 	"""Provides access to, handles and maintins the Delphos GUI interface
 	"""
-	def __init__(self, project_manager):
+	def __init__(self, project_manager, config_manager):
 		QObject.__init__(self)
 		
 		#Store reference to proj manager for use by GUI
 		self.project_manager = project_manager
+		self.config_manager = config_manager
 		#Create new QT application object
 		self.qapp = QApplication(sys.argv)
 
@@ -114,6 +116,17 @@ class GuiManager(QObject):
 		self.project_manager.set_current_project_type(type)
 		self.select_type_dialog.hide()
 		self.select_type_dialog.deleteLater()
+		self.start_language_selection()
+
+	def start_language_selection(self):
+		self.language_dialog = LanguageDialog(self, self.win)
+		self.connect(self.language_dialog, SIGNAL("language_selected"), self.finish_language_selection)
+		self.language_dialog.show()
+	
+	def finish_language_selection(self, language):
+		self.config_manager.set_language(language)
+		self.language_dialog.hide()
+		self.language_dialog.deleteLater()
 		self.win.ui.dock_doc.show()
 	
 	def handle_intro_selection(self):

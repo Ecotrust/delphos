@@ -28,9 +28,11 @@ from pyExcelerator import *
 
 #Delphos modules
 from core.project_manager import *
+from core.config_manager import *
 from gui.gui_manager import *
 
 if __name__ == "__main__":
 	project_manager = ProjectManager()
-	gui_manager = GuiManager(project_manager)
+	config_manager = ConfigManager()
+	gui_manager = GuiManager(project_manager, config_manager)
 	gui_manager.start_gui()
