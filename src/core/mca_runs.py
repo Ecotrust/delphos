@@ -106,6 +106,7 @@ class McaRuns(object):
             cur_row[5] = pickle.loads(cur_row[5])
             cur_row[6] = pickle.loads(cur_row[6])
             cur_row[7] = pickle.loads(cur_row[7])
+            cur_row[8] = utc_to_local_time(cur_row[8])
             cur_row[9] = pickle.loads(cur_row[9])
             recs.append(cur_row)
         return recs
@@ -141,6 +142,7 @@ class McaRuns(object):
             cur_row[5] = pickle.loads(cur_row[5])
             cur_row[6] = pickle.loads(cur_row[6])
             cur_row[7] = pickle.loads(cur_row[7])
+            cur_row[8] = utc_to_local_time(cur_row[8])
             cur_row[9] = pickle.loads(cur_row[9])
             return cur_row
 

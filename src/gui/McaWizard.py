@@ -102,7 +102,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         QObject.connect(self.mca_stack,QtCore.SIGNAL("currentChanged(int)"), self.process_current_change)
         
         if prev_run_data:
-            (prev_run_id, prev_run_name, prev_run_description, prev_altern_data, prev_crit_data, prev_input_data, prev_input_weights, prev_results, prev_creation_date) = prev_run_data
+            (prev_run_id, prev_run_name, prev_run_description, prev_altern_data, prev_crit_data, prev_input_data, prev_input_weights, prev_results, prev_creation_date, int_results) = prev_run_data
             self.altern_data = prev_altern_data        
             self.crit_data = prev_crit_data
 

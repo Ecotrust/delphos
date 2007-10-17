@@ -56,9 +56,10 @@ class ExportAnalysisDialog(QDialog, Ui_ExportAnalysisDialog):
 
 		if path.isfile(self.filename):
 			try:
-				os.remove(self.filename)
+				os.remove(str(self.filename))
 			except OSError, e:
-				QMessageBox.critical(self,"File Error", "Error while overwriting the existing project "+e)
+				QMessageBox.critical(self,"File Error", "Error while overwriting the existing project "+str(e))
+				return
 		
 		self.path_edit.setText(self.filename)
 

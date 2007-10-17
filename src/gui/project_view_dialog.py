@@ -28,6 +28,8 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 from util.latin_csv import *
+from util.common_functions import *
+
 from delphos_exceptions import *
 from project_view_ui import Ui_ProjectView
 from add_alternative_dialog import AddAlternDialog
@@ -178,7 +180,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         except InputError, e:
             QMessageBox.critical(self,"View Error", str(e))
         else:
-            (id, name, description, altern_data, crit_data, input_data, input_weights, results, created) = self.project.get_mca_run_by_id(selected_id)
+            (id, name, description, altern_data, crit_data, input_data, input_weights, results, created, int_data) = self.project.get_mca_run_by_id(selected_id)
             self.show_analysis_results(name, description, altern_data, crit_data, input_data, input_weights, results)
 
     def start_rerun_analysis1(self):
@@ -202,8 +204,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.mca_wizard.show()    
     
     def start_export_analysis(self):
-        selected_id = self.mca_runs_table.get_selected_id()
-        if not selected_id:
+        self.export_id = self.mca_runs_table.get_selected_id()
+        if not self.export_id:
             QMessageBox.critical(self,"Selection Error", "No analysis runs have been selected")
             return
         self.export_analysis_dialog = ExportAnalysisDialog(self)
@@ -211,17 +213,130 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.export_analysis_dialog.show()
     
     def finish_export_analysis(self, filename):
-        export_arr = ["testy", "tuesday"]
         
-        #output list to CSV.  Use latin1 encoding
+        (run_id, run_name, run_description, altern_data, crit_data, input_data, input_weights, results, creation_date, int_results) = self.project.get_mca_run_by_id(self.export_id) 
+        
+        num_crits = len(crit_data)
+        num_alterns = len(altern_data)
+        altern_names = [x[1] for x in altern_data]
+
+        cols = num_alterns+5
+        
+        #Blank row of right width for insertion into CSV
+        blank_row = [["" for col in range(cols)]]
+        #Build header row with given title of correct width
+        build_header_row = lambda cols, title: [[title]+["" for col in range(cols-1)]]
+
+        num_header_rows = 3
+        header_arr = initialize_str_array(num_header_rows, cols)
+        header_arr [0][0] = "Name: "
+        header_arr [0][1] = unicode(run_name)
+        header_arr [1][0] = "Description: "
+        header_arr [1][1] = unicode(run_description)
+        header_arr [2][0] = "Creation Date: "
+        header_arr [2][1] = unicode(creation_date)
+
+        #Input data
+        input_arr = initialize_str_array(num_crits+1, cols)
+        input_arr[0] = ["",""]+altern_names+["","Original Weight", "Standardized Weight"]          
+                
+        for i in range(num_crits):
+            (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = crit_data[i]
+            
+            #Add criteria name to first column
+            input_arr[i+1][0] = crit_name
+
+            #Build option/unit string and add to second column
+            crit_option_str = ""                
+            if crit_type == "Ordinal" or crit_type == "Binary":
+                for option in crit_options_units:
+                    (name, value) = option
+                    crit_option_str += "("+unicode(value)+" = "+unicode(name)+")"
+            elif crit_type == "Ratio":
+                crit_option_str += "("+unicode(crit_options_units)+")"    
+            input_arr[i+1][1] = crit_option_str
+            
+            #Fill in input values
+            for j in range(num_alterns):
+                #input data is transposed in the DB
+                input_arr[i+1][j+2] = input_data[j][i]
+            
+            #Add original weight
+            input_arr[i+1][-2] = input_weights[i]
+            #Add standardized weight 
+            input_arr[i+1][-1] = int_results[0][i]
+
+        #quantitative impact matrix
+        quant_impact_arr = initialize_str_array(num_alterns+1, cols)
+        quant_impact_arr[0] = [""]+altern_names+["","",""]
+        
+        #qualitative impact matrix
+        qual_impact_arr = initialize_str_array(num_alterns+1, cols)
+        qual_impact_arr[0] = [""]+altern_names+["","",""]  
+        
+        #final impact matrix
+        final_arr = initialize_str_array(num_alterns+1, cols)
+        final_arr[0] = [""]+altern_names+["","",""] 
+        
+        #final_score matrix
+        final_score_arr = initialize_str_array(num_alterns+1, cols)
+        final_score_arr[0] = ["Alternative", "Score (The higher the better, sort to get ranking)"]
+
+        for i in range(num_alterns):
+            #Add altern name to first column
+            quant_impact_arr[i+1][0] = altern_names[i]
+            #Fill in values
+            for j in range(num_alterns):
+                #data is transposed in the DB
+                quant_impact_arr[i+1][j+1] = int_results[1][j][i]
+            
+            #Add altern name to first column
+            qual_impact_arr[i+1][0] = altern_names[i]
+            #Fill in values
+            for j in range(num_alterns):
+                #data is transposed in the DB
+                qual_impact_arr[i+1][j+1] = int_results[2][j][i]
+                
+            #Add altern name to first column
+            final_arr[i+1][0] = altern_names[i]
+            #Fill in values
+            for j in range(num_alterns):
+                #data is transposed in the DB
+                final_arr[i+1][j+1] = int_results[3][j][i]   
+
+            #Add altern name to first column
+            final_score_arr[i+1][0] = altern_names[i]
+            #Fill in score
+            final_score_arr[i+1][1] = results[i] 
+        
+        #Output lists to CSV
         writer = csv.writer(open(filename, "wb"), csv.excel)
-        writer.writerows(export_arr)
+        writer.writerows(header_arr)
+        writer.writerows(blank_row)
+        writer.writerows(build_header_row(cols, "Input From Interview Process"))
+        writer.writerows(blank_row)
+        writer.writerows(input_arr)
+        writer.writerows(blank_row)
+        writer.writerows(build_header_row(cols, "Quantitative Impact Matrix"))
+        writer.writerows(blank_row)
+        writer.writerows(quant_impact_arr)
+        writer.writerows(blank_row)
+        writer.writerows(build_header_row(cols, "Qualitative Impact Matrix"))
+        writer.writerows(blank_row)
+        writer.writerows(qual_impact_arr)
+        writer.writerows(blank_row)
+        writer.writerows(build_header_row(cols, "Final Matrix"))
+        writer.writerows(blank_row)
+        writer.writerows(final_arr)
+        writer.writerows(blank_row)
+        writer.writerows(build_header_row(cols, "Final Alternative Scores"))
+        writer.writerows(blank_row)
+        writer.writerows(final_score_arr)
         #writer.writerows(comments)
         
-        QMessageBox.information(self,"Template Exported", "Analysis was successfully exported to "+filename)
-    
         self.export_analysis_dialog.hide()
         self.export_analysis_dialog.deleteLater()
+        QMessageBox.information(self,"Template Exported", "Analysis was successfully exported to "+filename)
     
     def start_delete_analysis(self):
         selected_id = self.mca_runs_table.get_selected_id()
