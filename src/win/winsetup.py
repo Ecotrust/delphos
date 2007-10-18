@@ -25,10 +25,10 @@ import matplotlib
 
 opts = {
 	"py2exe": {
-		"includes": [],
-	"excludes": ['backend_gtkagg', 'backend_wxagg'],
-	"dll_excludes": ['libgdk_pixbuf-2.0-0.dll', 'libgobject-2.0-0.dll', 'libgdk-win32-2.0-0.dll'],
-		"packages": ["sqlalchemy", "pyExcelerator", "matplotlib", "pytz"],
+		"includes": ['sip','matplotlib.numerix.random_array', 'matplotlib.backends.backend_tkagg', 'sqlalchemy.databases.sqlite'],
+		"excludes": ['backend_gtkagg', 'backend_wxagg'],
+		"dll_excludes": ['libgdk_pixbuf-2.0-0.dll', 'libgobject-2.0-0.dll', 'libgdk-win32-2.0-0.dll'],
+		"packages": ["sqlalchemy", "pyExcelerator", "matplotlib", "pytz", "PyQt4._qt"],
 		"dist_dir": "bin",
 	}
 }
