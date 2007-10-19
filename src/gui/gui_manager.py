@@ -66,7 +66,7 @@ class GuiManager(QObject):
 		#self.desktop_services.openUrl(QUrl('help:/me/now'))
 			
 		#Create main delphos window
-		self.win = DelphosWindow()
+		self.win = DelphosWindow(self)
 		#Hide the docked widget initially
 		self.win.ui.dock_doc.hide()
 		#Resize to full screen

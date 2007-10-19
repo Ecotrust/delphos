@@ -47,9 +47,10 @@ class HelpTextBrowser(QTextBrowser):
 		doc_name = self.get_doc_name(project_type, language)
 		self.setSource(QUrl(doc_name))
 	
-	def load_anchor(self, project_type, language, anchor):
-		pass
-	
+	def load_anchor(self, label, project_type, language):
+		doc_name = self.get_doc_name(project_type, language)
+		self.setSource(QUrl(doc_name+"#"+label))
+
 	def get_doc_name(self, project_type, language):
 		if project_type == 'fisheries':
 			if language == 'english':

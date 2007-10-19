@@ -29,7 +29,6 @@ from PyQt4.QtGui import *
 from delphos_exceptions import *
 from mca_wizard_ui import Ui_McaWizard
 from util.common_functions import *
-from util.latin_csv import *
 from core.input_data_set import *
 from core.input_weight_set import *
 

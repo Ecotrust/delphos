@@ -28,10 +28,13 @@ import os
 class DelphosWindow(QMainWindow):
 	"""Manages the main Delphos window interface (Ui_MainWindow)
 	"""
-	def __init__(self, parent=None):
-		QWidget.__init__(self, parent)	#Initialize myself as a widget
+	def __init__(self, gui_manager):
+		QWidget.__init__(self, None)	#Initialize myself as a widget
 		self.ui = Ui_MainWindow()
-		self.ui.setupUi(self)			#Create the components of the window
+		self.ui.setupUi(self)	#Create the components of the window
+		
+		self.gui_manager = gui_manager
+		
 		self.dock_full_screen = False
 		self.min_doc_dock_width = 200
 		
@@ -133,11 +136,11 @@ class DelphosWindow(QMainWindow):
 		label = heading.replace('.', '')
 		label = label.toLower()
 		
-		#self.ui.doc_browser.load_anchor(self.gui_manager.)
 		#Build URL
-		url = self.base_fishery_url+label
-		#Reload doc editor with new url
-		self.ui.doc_browser.setSource(QUrl(url))
+		project_type = self.gui_manager.project_manager.get_current_project_type()
+		language = self.gui_manager.config_manager.get_language()
+		#Load URL and go to anchor within it
+		self.ui.doc_browser.load_anchor(label, project_type, language)
 
 	def dock_full_screen(self):
 		return self.dock_full_screen
