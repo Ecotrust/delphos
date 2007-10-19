@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/" >
-        <file>documentation/fisheries_documentation.html</file>
+        <file>documentation/fisheries_documentation_english.html</file>
+        <file>documentation/fisheries_documentation_spanish.html</file>
         <file>documentation/fisheries_letter_to_experts.doc</file>
         <file>documentation/fisheries_general_questionnaire.doc</file>
         <file>documentation/fisheries_data_driven_questionnaire.doc</file>

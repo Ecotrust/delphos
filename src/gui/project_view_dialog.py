@@ -27,7 +27,7 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-from util.latin_csv import *
+from util.unicode_csv import *
 from util.common_functions import *
 
 from delphos_exceptions import *
@@ -259,12 +259,12 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             #Fill in input values
             for j in range(num_alterns):
                 #input data is transposed in the DB
-                input_arr[i+1][j+2] = input_data[j][i]
+                input_arr[i+1][j+2] = unicode(input_data[j][i])
             
             #Add original weight
-            input_arr[i+1][-2] = input_weights[i]
+            input_arr[i+1][-2] = unicode(input_weights[i])
             #Add standardized weight 
-            input_arr[i+1][-1] = int_results[0][i]
+            input_arr[i+1][-1] = unicode(int_results[0][i])
 
         #quantitative impact matrix
         quant_impact_arr = initialize_str_array(num_alterns+1, cols)
@@ -288,29 +288,30 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             #Fill in values
             for j in range(num_alterns):
                 #data is transposed in the DB
-                quant_impact_arr[i+1][j+1] = int_results[1][j][i]
+                quant_impact_arr[i+1][j+1] = unicode(int_results[1][j][i])
             
             #Add altern name to first column
             qual_impact_arr[i+1][0] = altern_names[i]
             #Fill in values
             for j in range(num_alterns):
                 #data is transposed in the DB
-                qual_impact_arr[i+1][j+1] = int_results[2][j][i]
+                qual_impact_arr[i+1][j+1] = unicode(int_results[2][j][i])
                 
             #Add altern name to first column
             final_arr[i+1][0] = altern_names[i]
             #Fill in values
             for j in range(num_alterns):
                 #data is transposed in the DB
-                final_arr[i+1][j+1] = int_results[3][j][i]   
+                final_arr[i+1][j+1] = unicode(int_results[3][j][i])
 
             #Add altern name to first column
             final_score_arr[i+1][0] = altern_names[i]
             #Fill in score
-            final_score_arr[i+1][1] = results[i] 
+            final_score_arr[i+1][1] = unicode(results[i]) 
         
         #Output lists to CSV
-        writer = csv.writer(open(filename, "wb"), csv.excel)
+        #writer = csv.writer(open(filename, "wb"), csv.excel)
+        writer = UnicodeWriter(open(filename, "wb"), csv.excel, 'utf-16')
         writer.writerows(header_arr)
         writer.writerows(blank_row)
         writer.writerows(build_header_row(cols, "Input From Interview Process"))

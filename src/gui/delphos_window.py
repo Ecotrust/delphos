@@ -38,8 +38,10 @@ class DelphosWindow(QMainWindow):
 		#Maximize the display to full size
 		self.showMaximized()
 
-		self.base_fishery_url = 'qrc:/documentation/fisheries_documentation.html#'
-		self.base_mpa_url = 'qrc:/documentation/mpa_documentation.html#'
+		self.base_fishery_url_english = 'qrc:/documentation/fisheries_documentation_english.html#'
+		self.base_fishery_url_spanish = 'qrc:/documentation/fisheries_documentation_spanish.html#'
+		self.base_mpa_url_english = 'qrc:/documentation/mpa_documentation_english.html#'
+		self.base_mpa_url_spanish = 'qrc:/documentation/mpa_documentation_spanish.html#'
 		
 		QObject.connect(self.ui.menu_dock_visible, SIGNAL("triggered()"), self.toggle_documentation_window)
 		QObject.connect(self.ui.dock_doc, SIGNAL("visibilityChanged(bool)"), self.toggle_dock_visible_menu)
@@ -130,6 +132,8 @@ class DelphosWindow(QMainWindow):
 		label = heading.replace('/', '_')
 		label = heading.replace('.', '')
 		label = label.toLower()
+		
+		#self.ui.doc_browser.load_anchor(self.gui_manager.)
 		#Build URL
 		url = self.base_fishery_url+label
 		#Reload doc editor with new url

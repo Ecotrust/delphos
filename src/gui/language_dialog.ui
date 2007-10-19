@@ -10,7 +10,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string/>
+   <string>Language Selection</string>
   </property>
   <layout class="QHBoxLayout" >
    <item>

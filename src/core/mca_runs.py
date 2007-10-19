@@ -71,8 +71,8 @@ class McaRuns(object):
         )
 
     def insert(self, name, description, altern_data, crit_data, input_data, input_weights, results, int_results):
-        print "name: "+name
-        print "description: "+description
+        #print "name: "+name
+        #print "description: "+description
         
         #TODO: fix altern data to not use a tuple, but lists which are pickleable
         real_altern_data = []

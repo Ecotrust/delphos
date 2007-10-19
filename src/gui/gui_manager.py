@@ -71,9 +71,9 @@ class GuiManager(QObject):
 		self.win.ui.dock_doc.hide()
 		#Resize to full screen
 		self.win.resize(self.get_screen_width(), self.get_screen_height())
-
-		#Load doc browser with correct documentation
-		self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/fisheries_documentation.html'))
+		
+		#self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/fisheries_documentation.html'))
+		
 		#Signal to capture qrc link clicks in text browsers or labels
 		QObject.connect(self.win.ui.doc_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
 		QObject.connect(self.win.ui.toc_tree, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
@@ -127,6 +127,8 @@ class GuiManager(QObject):
 		self.config_manager.set_language(language)
 		self.language_dialog.hide()
 		self.language_dialog.deleteLater()
+		#Load doc browser with correct documentation
+		self.win.ui.doc_browser.load_doc(self.project_manager.get_current_project_type(), language)
 		self.win.ui.dock_doc.show()
 	
 	def handle_intro_selection(self):

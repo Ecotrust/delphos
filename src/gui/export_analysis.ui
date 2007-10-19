@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>339</width>
-    <height>130</height>
+    <height>277</height>
    </rect>
   </property>
   <property name="font" >
@@ -20,108 +20,89 @@
   <property name="windowTitle" >
    <string>Export As CSV</string>
   </property>
-  <layout class="QHBoxLayout" >
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QGroupBox" name="groupBox_4" >
+     <property name="windowModality" >
+      <enum>Qt::ApplicationModal</enum>
+     </property>
+     <property name="font" >
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="title" >
+      <string>Save As:</string>
+     </property>
+     <layout class="QVBoxLayout" >
+      <item>
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QPushButton" name="browse_button" >
+          <property name="font" >
+           <font>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Browse...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="path_edit" >
+          <property name="font" >
+           <font>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+          <property name="readOnly" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2" >
+        <property name="maximumSize" >
+         <size>
+          <width>16777215</width>
+          <height>1677777</height>
+         </size>
+        </property>
+        <property name="font" >
+         <font>
+          <family>Arial</family>
+          <pointsize>8</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>* Note to users with input containing non-ASCII characters (for example ñ, ä, 字).  The resulting CSV file will be encoded as utf-8.  The OpenOffice.org Calc spreadsheet program, MS Notepad text editor and other programs know how to interpret these types of characters automatically, but MS Excel does not.  So, if you are seeing nonsense characters in their place in Excel you must re-save the CSV file (.csv) as a text file (.txt) using Notepad or other and then open the text file in Excel and specify the 'utf-8' encoding and 'comma' delimiter when asked.</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item>
     <layout class="QHBoxLayout" >
-     <item>
-      <layout class="QVBoxLayout" >
-       <item>
-        <layout class="QVBoxLayout" >
-         <item>
-          <layout class="QHBoxLayout" />
-         </item>
-         <item>
-          <widget class="QGroupBox" name="groupBox_4" >
-           <property name="windowModality" >
-            <enum>Qt::ApplicationModal</enum>
-           </property>
-           <property name="font" >
-            <font>
-             <family>Arial</family>
-             <pointsize>10</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="title" >
-            <string>Save As:</string>
-           </property>
-           <layout class="QHBoxLayout" >
-            <item>
-             <widget class="QPushButton" name="browse_button" >
-              <property name="font" >
-               <font>
-                <pointsize>9</pointsize>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="text" >
-               <string>Browse...</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="path_edit" >
-              <property name="font" >
-               <font>
-                <pointsize>9</pointsize>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="text" >
-               <string/>
-              </property>
-              <property name="readOnly" >
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" >
-           <item>
-            <spacer>
-             <property name="orientation" >
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" >
-              <size>
-               <width>246</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QDialogButtonBox" name="button_box" >
-             <property name="standardButtons" >
-              <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </item>
      <item>
       <spacer>
        <property name="orientation" >
@@ -129,13 +110,33 @@
        </property>
        <property name="sizeHint" >
         <size>
-         <width>40</width>
+         <width>246</width>
          <height>20</height>
         </size>
        </property>
       </spacer>
      </item>
+     <item>
+      <widget class="QDialogButtonBox" name="button_box" >
+       <property name="standardButtons" >
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
     </layout>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>311</width>
+       <height>16</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

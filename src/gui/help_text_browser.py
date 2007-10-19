@@ -42,7 +42,26 @@ class HelpTextBrowser(QTextBrowser):
 		else:
 			#change the browser source as normal
 			QTextBrowser.setSource(self, url)
-        
+
+	def load_doc(self, project_type, language):
+		doc_name = self.get_doc_name(project_type, language)
+		self.setSource(QUrl(doc_name))
+	
+	def load_anchor(self, project_type, language, anchor):
+		pass
+	
+	def get_doc_name(self, project_type, language):
+		if project_type == 'fisheries':
+			if language == 'english':
+				return 'qrc:/documentation/fisheries_documentation_english.html'
+			else:
+				return 'qrc:/documentation/fisheries_documentation_spanish.html'
+		else:
+			if language == 'english':
+				return 'qrc:/documentation/mpa_documentation_english.html'
+			else:
+				return 'qrc:/documentation/mpa_documentation_spanish.html'
+							
 if __name__ == "__main__":
 	class HelpLoader(QMainWindow):
 		def __init__(self, parent=None):
