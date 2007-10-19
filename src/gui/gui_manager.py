@@ -32,6 +32,7 @@ from create_project_dialog import CreateProjectDialog
 from open_project_dialog import OpenProjectDialog
 from project_view_dialog import ProjectViewDialog
 from language_dialog import LanguageDialog
+from credits_dialog import CreditsDialog
 
 class GuiManager(QObject):
 	"""Provides access to, handles and maintins the Delphos GUI interface
@@ -83,7 +84,8 @@ class GuiManager(QObject):
 		QObject.connect(self.win.ui.menu_exit_delphos, SIGNAL("triggered()"), self.stop_gui)
 		QObject.connect(self.win.ui.menu_open_project, SIGNAL("triggered()"), self.handle_open_existing_selection)
 		QObject.connect(self.win.ui.menu_create_project, SIGNAL("triggered()"), self.handle_design_new_selection)
-
+		QObject.connect(self.win.ui.menu_credits, SIGNAL("triggered()"), self.show_credits)
+		
 		#Flag indicating whether dock_doc widget is currently full screen
 		self.dock_doc_is_full_screen = False
         
@@ -205,6 +207,12 @@ class GuiManager(QObject):
 		self.project_view = ProjectViewDialog(self, self.project_manager.get_current_project())
 		self.win.setCentralWidget(self.project_view)
 		self.project_view.show()
+	
+	def show_credits(self):
+		"""Show credits dialog
+		"""
+		credits_dialog = CreditsDialog(self, self.win)
+		credits_dialog.show()
 
 	def get_screen_dimensions(self):
 		"""Return (width, height) tuple in pixels of the screen containing the delphos window
@@ -246,9 +254,13 @@ class GuiManager(QObject):
 		might look like 'qrc:/app/create_new_project'
 		"""
 		
+		print url.path()
 		list = url.path().split('/')
 		
 		#If less than 3 elements it's not a URL we care about
+		for item in list:
+			print item
+		print len(list)
 		if len(list) < 3:
 			return
 		#Extract 'keywords' from path

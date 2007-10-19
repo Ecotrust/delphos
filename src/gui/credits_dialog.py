@@ -25,28 +25,18 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-from select_type_ui import Ui_SelectTypeDialog
+from credits_dialog_ui import Ui_CreditsDialog
 
-class SelectTypeDialog(QDialog, Ui_SelectTypeDialog):
-	"""Dialog allowing user to select type of analysis to perform
+class CreditsDialog(QDialog, Ui_CreditsDialog):
+	"""Dialog allowing user to select language to use
 	"""
 	def __init__(self, gui_manager, parent):
 		QDialog.__init__(self, parent)
 		self.setupUi(self)
-		self.parent = parent
 		self.gui_manager = gui_manager
-		
-		#Connect slots to signals
-		QObject.connect(self.fisheries_type_button,QtCore.SIGNAL("clicked()"), self.fisheries_selection)
-		QObject.connect(self.mpa_type_button,QtCore.SIGNAL("clicked()"), self.mpa_selection)
-
-	def closeEvent(self, event):
-		"""Don't allow dialog to be closed without making a selection
-		"""
-		event.ignore()
-
-	def fisheries_selection(self):
-		self.emit(SIGNAL("type_selected"), "fisheries")
-		
-	def mpa_selection(self):
-		self.emit(SIGNAL("type_selected"), "mpa")
+		QObject.connect(self.wwf_label, SIGNAL("linkActivated(QString)"), self.anchor_click_handler)
+		QObject.connect(self.cobi_label, SIGNAL("linkActivated(QString)"), self.anchor_click_handler)
+		QObject.connect(self.ecotrust_label, SIGNAL("linkActivated(QString)"), self.anchor_click_handler)
+	
+	def anchor_click_handler(self, url):
+		self.gui_manager.desktop_services.openUrl(QUrl(url))

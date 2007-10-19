@@ -64,12 +64,41 @@ class HelpTextBrowser(QTextBrowser):
 				return 'qrc:/documentation/mpa_documentation_spanish.html'
 							
 if __name__ == "__main__":
+	from resources_rc import *
+
 	class HelpLoader(QMainWindow):
 		def __init__(self, parent=None):
 			QWidget.__init__(self, parent)
 			self.help_browser = HelpTextBrowser(self)
-			self.help_browser.setSource(QUrl('qrc:/blort/foo'))
+			#self.help_browser.setSource(QUrl('qrc:/documentation/fisheries_documentation_english.html'))
+			self.help_browser.setHtml("<a href='qrc:/doc/fisheries_general_questionnaire.doc'>link</a>")
+			QObject.connect(self.help_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
+
+		def anchor_click_handler(self, url):
+			print url.path()
+			list = url.path().split('/')
 			
+			#If less than 3 elements it's not a URL we care about
+			for item in list:
+				print item
+			print len(list)
+			if len(list) < 3:
+				return
+			#Extract 'keywords' from path
+			type = list[1]
+			action = list[2]
+	
+			if type == 'app':
+				if action == 'create_project':
+					self.start_project_creation()
+			
+			elif type == 'doc':
+				doc_path = os.getcwd()+os.sep+"documentation"+os.sep+action
+				print doc_path
+				doc_url = "file:"+urllib.pathname2url(unicode(doc_path))
+				print doc_url
+				self.desktop_services.openUrl(QUrl(doc_url))
+
 	a = QApplication(sys.argv)
 	app = HelpLoader()
 	app.show()

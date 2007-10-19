@@ -40,11 +40,6 @@ class DelphosWindow(QMainWindow):
 		
 		#Maximize the display to full size
 		self.showMaximized()
-
-		self.base_fishery_url_english = 'qrc:/documentation/fisheries_documentation_english.html#'
-		self.base_fishery_url_spanish = 'qrc:/documentation/fisheries_documentation_spanish.html#'
-		self.base_mpa_url_english = 'qrc:/documentation/mpa_documentation_english.html#'
-		self.base_mpa_url_spanish = 'qrc:/documentation/mpa_documentation_spanish.html#'
 		
 		QObject.connect(self.ui.menu_dock_visible, SIGNAL("triggered()"), self.toggle_documentation_window)
 		QObject.connect(self.ui.dock_doc, SIGNAL("visibilityChanged(bool)"), self.toggle_dock_visible_menu)
@@ -54,18 +49,6 @@ class DelphosWindow(QMainWindow):
 		
 		#self.ui.dock_doc.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.load_toc()
-
-	def toggle_prev_button(self, available):
-		#TODO: make this work
-		print "toggle prev!"
-		if available:
-			self.prev_button.isEnabled = available
-
-	def toggle_next_button(self, available):
-		#TODO: make this work
-		print "toggle next!"
-		if available:
-			self.next_button.isEnabled = available
 		
 	def load_toc(self):
 		"""Loads the table of contents within the dock widget

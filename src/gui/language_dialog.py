@@ -40,6 +40,11 @@ class LanguageDialog(QDialog, Ui_LanguageDialog):
 		QObject.connect(self.english_button,QtCore.SIGNAL("clicked()"), self.english_selection)
 		QObject.connect(self.spanish_button,QtCore.SIGNAL("clicked()"), self.spanish_selection)
 		
+	def closeEvent(self, event):
+		"""Don't allow dialog to be closed without making a selection
+		"""
+		event.ignore()
+		
 	def english_selection(self):
 		self.emit(SIGNAL("language_selected"), "english")
 		

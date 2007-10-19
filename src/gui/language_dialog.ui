@@ -5,12 +5,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>130</width>
-    <height>104</height>
+    <width>152</width>
+    <height>105</height>
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Language Selection</string>
+   <string>Language</string>
   </property>
   <layout class="QHBoxLayout" >
    <item>

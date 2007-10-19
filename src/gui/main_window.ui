@@ -16,10 +16,7 @@
    </size>
   </property>
   <property name="font" >
-   <font>
-    <family>Arial</family>
-    <pointsize>9</pointsize>
-   </font>
+   <font/>
   </property>
   <property name="windowTitle" >
    <string>Delphos</string>
@@ -44,9 +41,9 @@
    </widget>
    <widget class="QMenu" name="menuAbout" >
     <property name="title" >
-     <string>&amp;About</string>
+     <string>&amp;Credits</string>
     </property>
-    <addaction name="actionAbout_Delphos" />
+    <addaction name="menu_credits" />
    </widget>
    <widget class="QMenu" name="menuView" >
     <property name="title" >
@@ -69,8 +66,8 @@
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuView" />
-   <addaction name="menuAbout" />
    <addaction name="menuOptions" />
+   <addaction name="menuAbout" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
   <widget class="QDockWidget" name="dock_doc" >
@@ -81,9 +78,10 @@
     </size>
    </property>
    <property name="font" >
-    <font>
-     <pointsize>9</pointsize>
-    </font>
+    <font/>
+   </property>
+   <property name="styleSheet" >
+    <string/>
    </property>
    <property name="features" >
     <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable|QDockWidget::NoDockWidgetFeatures</set>
@@ -157,9 +155,7 @@
             <item>
              <widget class="HelpTextBrowser" name="doc_browser" >
               <property name="font" >
-               <font>
-                <family>Arial</family>
-               </font>
+               <font/>
               </property>
               <property name="openExternalLinks" >
                <bool>true</bool>
@@ -205,12 +201,12 @@
     <string>Print</string>
    </property>
   </action>
-  <action name="actionAbout_Delphos" >
+  <action name="menu_credits" >
    <property name="enabled" >
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>&amp;About Delphos</string>
+    <string>Delphos &amp;Credits</string>
    </property>
    <property name="shortcut" >
     <string>Ctrl+A</string>
@@ -248,10 +244,10 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>&amp;Create New Project</string>
+    <string>Create &amp;New Project</string>
    </property>
    <property name="shortcut" >
-    <string>Ctrl+C</string>
+    <string>Ctrl+N</string>
    </property>
    <property name="visible" >
     <bool>true</bool>
