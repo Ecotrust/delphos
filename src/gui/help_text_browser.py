@@ -54,14 +54,14 @@ class HelpTextBrowser(QTextBrowser):
 	def get_doc_name(self, project_type, language):
 		if project_type == 'fisheries':
 			if language == 'english':
-				return 'qrc:/documentation/fisheries_documentation_english.html'
+				return 'qrc:/documentation/fisheries/english/documentation.html'
 			else:
-				return 'qrc:/documentation/fisheries_documentation_spanish.html'
+				return 'qrc:/documentation/fisheries/spanish/documentation.html'
 		else:
 			if language == 'english':
-				return 'qrc:/documentation/mpa_documentation_english.html'
+				return 'qrc:/documentation/mpa/english/documentation.html'
 			else:
-				return 'qrc:/documentation/mpa_documentation_spanish.html'
+				return 'qrc:/documentation/mpa/spanish/documentation.html'
 							
 if __name__ == "__main__":
 	from resources_rc import *

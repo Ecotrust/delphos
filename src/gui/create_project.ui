@@ -136,7 +136,7 @@
          <item>
           <widget class="QGroupBox" name="groupBox_4" >
            <property name="windowModality" >
-            <enum>Qt::ApplicationModal</enum>
+            <enum>Qt::NonModal</enum>
            </property>
            <property name="font" >
             <font>

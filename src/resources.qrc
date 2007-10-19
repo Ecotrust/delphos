@@ -1,13 +1,13 @@
 <RCC>
     <qresource prefix="/" >
-        <file>documentation/fisheries_documentation_english.html</file>
-        <file>documentation/fisheries_documentation_spanish.html</file>
-        <file>documentation/fisheries_letter_to_experts.doc</file>
-        <file>documentation/fisheries_general_questionnaire.doc</file>
-        <file>documentation/fisheries_data_driven_questionnaire.doc</file>
-        <file>documentation/fisheries_data_limited_questionnaire.doc</file>
-        <file>documentation/fisheries_criteria_and_guidance.doc</file>
-        <file>documentation/fisheries_examples_from_the_field.doc</file>
+        <file>documentation/fisheries/english/documentation.html</file>
+        <file>documentation/fisheries/spanish/documentation.html</file>
+        <file>documentation/fisheries/english/letter_to_experts.doc</file>
+        <file>documentation/fisheries/english/general_questionnaire.doc</file>
+        <file>documentation/fisheries/english/data_driven_questionnaire.doc</file>
+        <file>documentation/fisheries/english/data_limited_questionnaire.doc</file>
+        <file>documentation/fisheries/english/criteria_and_guidance.doc</file>
+        <file>documentation/fisheries/english/examples_from_the_field.doc</file>
         <file>qss/main_style.css</file>
         <file>images/help.png</file>
         <file>images/ecotrust_logo.gif</file>
