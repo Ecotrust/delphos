@@ -273,9 +273,7 @@ class GuiManager(QObject):
 		
 		elif type == 'doc':
 			doc_path = os.getcwd()+os.sep+"documentation"+os.sep+action
-			print doc_path
 			doc_url = "file:"+urllib.pathname2url(unicode(doc_path))
-			print doc_url
 			self.desktop_services.openUrl(QUrl(doc_url))
 	
 #Testing purposes
