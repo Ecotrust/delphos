@@ -160,136 +160,135 @@ fisheries_english_default_criteria = [
 
 fisheries_spanish_default_criteria = [
     [
-        "Interés actual de la comunidad en la certificación del MSC",
-        "Ordinal",
-        [["Sí",4],["Sí, pero necesita más información",3],[" No está segura ",2],["No",1]], 
-        "B"
+        u"Interés actual de la comunidad en la certificación del MSC",
+        u"Ordinal",
+        [[u"Sí",4],[u"Sí, pero necesita más información",3],[u"No está segura",2],[u"No",1]], 
+        u"B"
     ],[
-        "Volumen de captura (toneladas/año)", 
-        "Ratio", 
-        "toneladas/año", 
-        "B"
+        u"Volumen de captura (toneladas/año)", 
+        u"Ratio", 
+        u"toneladas/año", 
+        u"B"
     ],[
-       "Número de años para los cuales hay datos disponibles sobre el esfuerzo por unidad", 
-       "Ratio", 
-       "años", 
-       "B"
+       u"Número de años para los cuales hay datos disponibles sobre el esfuerzo por unidad", 
+       u"Ratio", 
+       u"años", 
+       u"B"
     ],[
-       "Tendencia a largo plazo de la abundancia de la población", 
-       "Ordinal",
-
-       [["Al alza",4],["Estable",3],["Variable",2],["A la baja",1]], 
-       "B"
+       u"Tendencia a largo plazo de la abundancia de la población", 
+       u"Ordinal",
+       [[u"Al alza",4],[u"Estable",3],[u"Variable",2],[u"A la baja",1]], 
+       u"B"
     ],[
-       "Comprensión de la dinámica de la población", 
-       "Ordinal", 
-       [["Buena",4],["Mediocre",3],["Deficiente",2],["Ninguna",1]], 
-       "B"
+       u"Comprensión de la dinámica de la población", 
+       u"Ordinal", 
+       [[u"Buena",4],[u"Mediocre",3],[u"Deficiente",2],[u"Ninguna",1]], 
+       u"B"
     ],[
-       "Edad en la madurez o esperanza de vida", 
-       "Ordinal", 
-       [["Baja/corta",3],["Media/moderada",2],["Alta/larga",1]], 
-       "B"
+       u"Edad en la madurez o esperanza de vida", 
+       u"Ordinal", 
+       [[u"Baja/corta",3],[u"Media/moderada",2],[u"Alta/larga",1]], 
+       u"B"
     ],[
-       "Captura incidental", 
-       "Ordinal", 
-       [["Ninguna",4],["Mínima",3],["Moderate",2],["Alta",1]], 
-       "B"
+       u"Captura incidental", 
+       u"Ordinal", 
+       [[u"Ninguna",4],[u"Mínima",3],[u"Moderate",2],[u"Alta",1]], 
+       u"B"
     ],[
-       "Efecto de la pesquería en la cadena alimentaria", 
-       "Ordinal", 
-       [["Ninguna",4],["Mínima",3],["Moderate",2],["Alta",1]], 
-       "B"
+       u"Efecto de la pesquería en la cadena alimentaria", 
+       u"Ordinal", 
+       [[u"Ninguna",4],[u"Mínima",3],[u"Moderate",2],[u"Alta",1]], 
+       u"B"
     ],[
-        "Interacción del equipo de pesca con el ecosistema", 
-        "Ordinal", 
-        [["Ninguna",4],["Mínima",3],["Moderate",2],["Alta",1]], 
-        "B"
+        u"Interacción del equipo de pesca con el ecosistema", 
+        u"Ordinal", 
+        [[u"Ninguna",4],[u"Mínima",3],[u"Moderate",2],[u"Alta",1]], 
+        u"B"
     ],[
-        "Interacción con las especie en peligro de extinción", 
-        "Ordinal", 
-        [["Ninguna",4],["Mínima",3],["Moderada",2],["Alta",1]], 
-        "B"
+        u"Interacción con las especie en peligro de extinción", 
+        u"Ordinal", 
+        [[u"Ninguna",4],[u"Mínima",3],[u"Moderada",2],[u"Alta",1]], 
+        u"B"
     ],[
-       "Percepción local del efecto que tiene la pesquería en el ecosistema", 
-       "Ordinal", 
-       [["Sin problemas",4],["Desconocida",3],["Polémica",2],["Negativa",1]], 
-       "B"
+       u"Percepción local del efecto que tiene la pesquería en el ecosistema", 
+       u"Ordinal", 
+       [[u"Sin problemas",4],[u"Desconocida",3],[u"Polémica",2],[u"Negativa",1]], 
+       u"B"
     ],[
-       "Sistema de gestión de la pesquería", 
-       "Ordinal", 
-       [["Co-gerencia",3],["Nacional o tradicional",2],["Ninguna",1]], 
-       "B"
+       u"Sistema de gestión de la pesquería", 
+       u"Ordinal", 
+       [[u"Co-gerencia",3],[u"Nacional o tradicional",2],[u"Ninguna",1]], 
+       u"B"
     ],[
-       "Sofisticación del sistema de gestión", 
-       "Ordinal", 
-       [["Buena",4],["Mediocre",3],["Deficiente",2],["Ninguna",1]], 
-       "B"
+       u"Sofisticación del sistema de gestión", 
+       u"Ordinal", 
+       [[u"Buena",4],[u"Mediocre",3],[u"Deficiente",2],[u"Ninguna",1]], 
+       u"B"
        ],[
-        "Capacidad del sistema de gestión para hacer frente a las fluctuaciones ambientales y las catstrofes naturales", 
-        "Ordinal", 
-       [["Buena",4],["Mediocre",3],["Deficiente",2],["Ninguna",1]], 
-        "B"
+        u"Capacidad del sistema de gestión para hacer frente a las fluctuaciones ambientales y las catstrofes naturales", 
+        u"Ordinal", 
+       [[u"Buena",4],[u"Mediocre",3],[u"Deficiente",2],[u"Ninguna",1]], 
+        u"B"
     ],[
-       "Resistencia del sistema de gestión a los cambios políticos", 
-       "Ordinal", 
-       [["Buena",4],["Mediocre",3],["Deficiente",2],["Ninguna",1]], 
-       "B"
+       u"Resistencia del sistema de gestión a los cambios políticos", 
+       u"Ordinal", 
+       [[u"Buena",4],[u"Mediocre",3],[u"Deficiente",2],[u"Ninguna",1]], 
+       u"B"
     ],[
-       "Cumplimiento de las regulaciones internacionales para la conservación de las especies", 
-       "Binary", 
-       [["Las cumplen",1],["No las cumplen",0]], 
-       "B"
+       u"Cumplimiento de las regulaciones internacionales para la conservación de las especies", 
+       u"Binary", 
+       [[u"Las cumplen",1],[u"No las cumplen",0]], 
+       u"B"
     ],[
-       "Aplicación de las regulaciones de la pesquería", 
-       "Ordinal", 
-       [["Buena",4],["Mediocre",3],["Deficiente",2],["Ninguna",1]], 
-       "B"
+       u"Aplicación de las regulaciones de la pesquería", 
+       u"Ordinal", 
+       [[u"Buena",4],[u"Mediocre",3],[u"Deficiente",2],[u"Ninguna",1]], 
+       u"B"
     ],[
-       "Nivel de organización de los pescadores", 
-       "Ordinal", 
-       [["Buena",4],["Mediocre",3],["Deficiente",2],["Ninguna",1]], 
-       "B"
+       u"Nivel de organización de los pescadores", 
+       u"Ordinal", 
+       [[u"Buena",4],[u"Mediocre",3],[u"Deficiente",2],[u"Ninguna",1]], 
+       u"B"
     ],[
-       "Participación de la comunidad en la gestión de la pesquería", 
-       "Ordinal", 
-       [["Buena",4],["Mediocre",3],["Deficiente",2],["Ninguna",1]], 
-       "B"
+       u"Participación de la comunidad en la gestión de la pesquería", 
+       u"Ordinal", 
+       [[u"Buena",4],[u"Mediocre",3],[u"Deficiente",2],[u"Ninguna",1]], 
+       u"B"
     ],[
-       "Número de las personas implicadas en la pesquería", 
-       "Ratio", 
-       "personas", 
-       "B"
+       u"Número de las personas implicadas en la pesquería", 
+       u"Ratio", 
+       u"personas", 
+       u"B"
     ],[
-       "Porcentaje de la población humana dentro de la comunidad costera que depende de la pesquería para su alimento o sustento (eg. '.10', '.75')", 
-       "Ratio", 
-       "Porcentaje de la población", 
-       "B"
+       u"Porcentaje de la población humana dentro de la comunidad costera que depende de la pesquería para su alimento o sustento (eg. '.10', '.75')", 
+       u"Ratio", 
+       u"Porcentaje de la población", 
+       u"B"
     ],[
-       "Desarrollo costero", 
-       "Ordinal", 
-       [["Altamente desarrollado e industrializado",1],["Desarrollado",2],["Semi-rural",3],["Rural",4]], 
-       "C"
+       u"Desarrollo costero", 
+       u"Ordinal", 
+       [[u"Altamente desarrollado e industrializado",1],[u"Desarrollado",2],[u"Semi-rural",3],[u"Rural",4]], 
+       u"C"
     ],[
-       "Nivel socioeconómico de la comunidad de la pesca", 
-       "Ordinal", 
-       [["Rico",4],["Promedio",3],["Pobre",2],["Extremadamente pobre",1]], 
-       "B"
+       u"Nivel socioeconómico de la comunidad de la pesca", 
+       u"Ordinal", 
+       [[u"Rico",4],[u"Promedio",3],[u"Pobre",2],[u"Extremadamente pobre",1]], 
+       u"B"
     ],[
-       "Etapas de la cadena del mercado controlada por los pescadores", 
-       "Ordinal", 
-       [["Captura, procesamiento y comercialización",3],["Captura y procesamiento",2],["Captura solamente",1]], 
-       "B"
+       u"Etapas de la cadena del mercado controlada por los pescadores", 
+       u"Ordinal", 
+       [[u"Captura, procesamiento y comercialización",3],[u"Captura y procesamiento",2],[u"Captura solamente",1]], 
+       u"B"
     ],[
-       "Mercados nacionales", 
-       "Ordinal", 
-       [["Existentes",3],["Potenciales",2],["Ninguna",1]], 
-       "B"
+       u"Mercados nacionales", 
+       u"Ordinal", 
+       [[u"Existentes",3],[u"Potenciales",2],[u"Ninguna",1]], 
+       u"B"
     ],[
-       "Mercados internacionales", 
-       "Ordinal", 
-       [["Existentes",3],["Potenciales",2],["Ninguna",1]], 
-       "B"
+       u"Mercados internacionales", 
+       u"Ordinal", 
+       [[u"Existentes",3],[u"Potenciales",2],[u"Ninguna",1]], 
+       u"B"
     ]
 ]
 

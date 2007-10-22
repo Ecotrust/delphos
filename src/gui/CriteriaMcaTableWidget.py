@@ -45,24 +45,34 @@ class CriteriaMcaTableWidget(QTableWidget):
             self.setRowCount(self.num_rows)
         
             for i in range(self.num_rows):
+                name_val = unicode(criteria_recs[i][self.crit_name_column])
+                type_val = unicode(criteria_recs[i][self.crit_type_column])
+                
+                type_opt_val = u""
+                if type_val == 'Ordinal':
+                    for opt in criteria_recs[i][self.crit_options_column]:
+                        type_opt_val += u"("+opt[0]+u": "+unicode(opt[1])+u")"
+                
+                cb_val = unicode(criteria_recs[i][self.cost_benefit_column])
+                
                 #Add checkbox widget to first column
                 check_box = QCheckBox(self)
                 self.setCellWidget(i, self.check_column, check_box) 
                 #Add criteria description to 2nd column
                 name_item = QTableWidgetItem()
-                name_item.setText(unicode(criteria_recs[i][self.crit_name_column]))
+                name_item.setText(name_val)
                 self.setItem(i, self.crit_name_column, name_item)
                 #Add criteria type to 3rd column
                 type_item = QTableWidgetItem()
-                type_item.setText(unicode(criteria_recs[i][self.crit_type_column]))
+                type_item.setText(type_val)
                 self.setItem(i, self.crit_type_column, type_item)
                 #Add type options/units to 4th column
                 option_item = QTableWidgetItem()
-                option_item.setText(unicode(criteria_recs[i][self.crit_options_column]))
+                option_item.setText(type_opt_val)
                 self.setItem(i, self.crit_options_column, option_item)
                 #Add cost/benefit to 5th column
                 cb_item = QTableWidgetItem()
-                cb_item.setText(unicode(criteria_recs[i][self.cost_benefit_column]))
+                cb_item.setText(cb_val)
                 self.setItem(i, self.cost_benefit_column, cb_item)
 
                 #self.resizeColumnsToContents()

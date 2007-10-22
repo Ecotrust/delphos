@@ -37,14 +37,16 @@ class CriteriaTableWidget(QTableWidget):
             for i in range(len(criteria_recs)):
                 name_val = unicode(criteria_recs[i][1])
                 type_val = unicode(criteria_recs[i][2])
-                type_opt_val = unicode(criteria_recs[i][3])
-                type_opt_val = type_opt_val.decode('utf-8')
+                type_opt_val = u""
+                if type_val == 'Ordinal':
+                    for opt in criteria_recs[i][3]:
+                        type_opt_val += u"("+opt[0]+u": "+unicode(opt[1])+u")"
                 cb_val = unicode(criteria_recs[i][4])
                 
-                #print unicode(name_val)
-                #print unicode(type_val)
-                #print unicode(type_opt_val)
-                #print unicode(cb_val)
+                #print name_val
+                #print type_val
+                #print type_opt_val
+                #print cb_val
                 
                 name_item = QTableWidgetItem()
                 name_item.setText(name_val)

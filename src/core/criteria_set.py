@@ -70,8 +70,8 @@ class CriteriaSet(object):
 		"""Add criteria to the CriteriaSet
 		
 		Expected input tuple structure:
-		desc (string) - criteria description
-		type (string) - Ratio, Binary or Ordinal
+		desc (unicode) - criteria description
+		type (unicode) - Ratio, Binary or Ordinal
 		type_options (string or list depending on type):
 			Ratio (string description), Binary ([yes_desc, no_desc]), 
 			Ordinal (list of option lists [[description, value],...])
@@ -116,6 +116,8 @@ class CriteriaSet(object):
 			#unpickle the options
 			#TODO: find out why SQLA is not unpickleing for us!
 			cur_row[3] = pickle.loads(cur_row[3])
+			#for i in range(len(cur_row[3])):
+			#	cur_row[3][i][0] = unicode(cur_row[3][i][0])
 			criteria_recs.append(cur_row)
 		return criteria_recs
 		
