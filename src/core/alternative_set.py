@@ -85,8 +85,8 @@ class AlternativeSet(object):
 		"""
 		return Table(self.name, self.metadata,
 			Column('alternative_id', Integer, Sequence('altern_id_seq'), primary_key=True),
-			Column('name', String(200)),
-			Column('color', String(7))
+			Column('name', Unicode(200)),
+			Column('color', Unicode(7))
 		)
 		
 	def add_alternative(self, altern_name):
@@ -97,7 +97,7 @@ class AlternativeSet(object):
 		#Verify not given duplicate alternative name
 		same_list = list(self.table.select(self.table.c.name==altern_name).execute())
 		if len(same_list) > 0:
-			raise DelphosError, "An alternative named "+str(altern_name)+" already exists in this project."
+			raise DelphosError, "An alternative named "+unicode(altern_name)+" already exists in this project."
 		else:
 			#Get default color
 			num_alterns = self.get_num()

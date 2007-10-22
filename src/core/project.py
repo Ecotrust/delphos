@@ -29,9 +29,9 @@ from mca_runs import *
 from delphos_exceptions import *
 from csv_types import *
 
-#from data import default_criteria
-from data.old_india1_criteria import *
-from data import default_alternatives
+from data import default_alternative_data
+from data import default_criteria_data
+
 from evamix.evamix import *
 
 class Project:
@@ -42,7 +42,7 @@ class Project:
     lower level core objects directly
     """
     
-    def __init__(self, name, path, type=None, load_default_altern=False, load_default_crit=False):
+    def __init__(self, name, path, type=None, load_default_altern=False, load_default_crit=False, language=None):
         """new_project = Project(string, string, string, boolean, boolean)
         
         Default criteria are a predetermined set of criteria thought to be common to
@@ -70,11 +70,19 @@ class Project:
         self.utc_offset = time.altzone / 3600
         
         if self.type == "fisheries":
-            self.default_alternatives = default_alternatives.fisheries_default_alternatives
-            self.default_criteria = fisheries_default_criteria
+            if language == "english":
+                self.default_alternatives = default_alternative_data.fisheries_english_default_alternatives
+                self.default_criteria = default_criteria_data.fisheries_english_default_criteria
+            if language == "spanish":
+                self.default_alternatives = default_alternative_data.fisheries_spanish_default_alternatives
+                self.default_criteria = default_criteria_data.fisheries_spanish_default_criteria            
         elif self.type == "mpa":
-            self.default_criteria = mpa_default_alternatives
-            self.default_criteria = mpa_default_criteria
+            if language == "english":
+                self.default_alternatives = default_alternative_data.mpa_english_default_alternatives
+                self.default_criteria = default_criteria_data.mpa_english_default_criteria
+            if language == "spanish":
+                self.default_alternatives = default_alternative_data.mpa_spanish_default_alternatives
+                self.default_criteria = default_criteria_data.mpa_spanish_default_criteria 
         
         self.__create_project_db()
         if self.status_ok:
@@ -121,6 +129,7 @@ class Project:
         """Load criteria from the given filename into the DB table.
         """
         for row in self.default_criteria:
+            print row
             self.crit_set.add_criteria((row[0],row[1],row[2], row[3]))
 
     def __create_mca_runs_table(self):

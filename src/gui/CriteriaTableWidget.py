@@ -35,20 +35,31 @@ class CriteriaTableWidget(QTableWidget):
             self.setRowCount(len(criteria_recs))
         
             for i in range(len(criteria_recs)):
+                name_val = unicode(criteria_recs[i][1])
+                type_val = unicode(criteria_recs[i][2])
+                type_opt_val = unicode(criteria_recs[i][3])
+                type_opt_val = type_opt_val.decode('utf-8')
+                cb_val = unicode(criteria_recs[i][4])
+                
+                #print unicode(name_val)
+                #print unicode(type_val)
+                #print unicode(type_opt_val)
+                #print unicode(cb_val)
+                
                 name_item = QTableWidgetItem()
-                name_item.setText(str(criteria_recs[i][1]))
+                name_item.setText(name_val)
                 self.setItem(i, 0, name_item)
     
                 type_item = QTableWidgetItem()
-                type_item.setText(str(criteria_recs[i][2]))
+                type_item.setText(type_val)
                 self.setItem(i, 1, type_item)
     
-                type_item = QTableWidgetItem()
-                type_item.setText(str(criteria_recs[i][3]))
-                self.setItem(i, 2, type_item)
+                type_opt_item = QTableWidgetItem()
+                type_opt_item.setText(type_opt_val)
+                self.setItem(i, 2, type_opt_item)
     
                 cb_item = QTableWidgetItem()
-                cb_item.setText(str(criteria_recs[i][4]))
+                cb_item.setText(cb_val)
                 self.setItem(i, 3, cb_item)
 
                 self.resizeColumnsToContents()

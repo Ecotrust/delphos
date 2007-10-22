@@ -60,10 +60,10 @@ class CriteriaSet(object):
 		"""
 		return Table(self.name, self.metadata,
 			Column('criteria_id', Integer, Sequence('crit_id_seq'), primary_key=True),
-			Column('description', String(200)),
-			Column('type', String(50)),
+			Column('description', Unicode(200)),
+			Column('type', Unicode(50)),
 			Column('type_options', Binary()),
-			Column('cost_benefit', String(1))
+			Column('cost_benefit', Unicode(1))
 		)
 		
 	def add_criteria(self, criteria_info):

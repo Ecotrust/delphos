@@ -38,7 +38,10 @@ class CriteriaMcaTableWidget(QTableWidget):
         """
         if criteria_recs:
             self.clearContents()
+
             self.num_rows = len(criteria_recs)
+            if not self.num_rows:
+                self.num_rows = 0
             self.setRowCount(self.num_rows)
         
             for i in range(self.num_rows):
@@ -47,19 +50,19 @@ class CriteriaMcaTableWidget(QTableWidget):
                 self.setCellWidget(i, self.check_column, check_box) 
                 #Add criteria description to 2nd column
                 name_item = QTableWidgetItem()
-                name_item.setText(str(criteria_recs[i][self.crit_name_column]))
+                name_item.setText(unicode(criteria_recs[i][self.crit_name_column]))
                 self.setItem(i, self.crit_name_column, name_item)
                 #Add criteria type to 3rd column
                 type_item = QTableWidgetItem()
-                type_item.setText(str(criteria_recs[i][self.crit_type_column]))
+                type_item.setText(unicode(criteria_recs[i][self.crit_type_column]))
                 self.setItem(i, self.crit_type_column, type_item)
                 #Add type options/units to 4th column
                 option_item = QTableWidgetItem()
-                option_item.setText(str(criteria_recs[i][self.crit_options_column]))
+                option_item.setText(unicode(criteria_recs[i][self.crit_options_column]))
                 self.setItem(i, self.crit_options_column, option_item)
                 #Add cost/benefit to 5th column
                 cb_item = QTableWidgetItem()
-                cb_item.setText(str(criteria_recs[i][self.cost_benefit_column]))
+                cb_item.setText(unicode(criteria_recs[i][self.cost_benefit_column]))
                 self.setItem(i, self.cost_benefit_column, cb_item)
 
                 #self.resizeColumnsToContents()
@@ -75,13 +78,14 @@ class CriteriaMcaTableWidget(QTableWidget):
             check_box.setCheckState(Qt.Unchecked)
 
     def get_selected_indexes(self):
-        selected_indexes = []
-        for row in range(self.num_rows):
-            check_widget = self.cellWidget(row, 0)
-            check_state = check_widget.checkState()
-            if check_state == Qt.Checked:
-                selected_indexes.append(row)
-        return selected_indexes
+        if self.num_rows > 0:
+            selected_indexes = []
+            for row in range(self.num_rows):
+                check_widget = self.cellWidget(row, 0)
+                check_state = check_widget.checkState()
+                if check_state == Qt.Checked:
+                    selected_indexes.append(row)
+            return selected_indexes
 
     def get_current_row_items(self):
         selected_row = self.selectedItems()

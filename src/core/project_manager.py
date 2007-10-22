@@ -32,7 +32,7 @@ class ProjectManager:
 		self.default_project_path = "db"
 		self.default_file_extension = "del"
 
-	def create_project(self, name, path, load_default_altern, load_default_crit):
+	def create_project(self, name, path, load_default_altern, load_default_crit, language=None):
 		"""Create a new delphos Project
 	
 		name (string) - name of the project
@@ -56,7 +56,7 @@ class ProjectManager:
 			raise DelphosError, "Analysis type not found"
 		
 		#Create project
-		proj = Project(name, path, self.current_project_type, load_default_altern, load_default_crit)
+		proj = Project(name, path, self.current_project_type, load_default_altern, load_default_crit, language)
 		if not proj:
 			raise DelphosError, "Project creation failed"
 		
