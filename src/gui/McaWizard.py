@@ -287,7 +287,7 @@ class McaWizard(QDialog, Ui_McaWizard):
             writer.writerows(export_arr)
             writer.writerows(comments)
             
-            QMessageBox.information(self,"Template Exported", "CSV Template successfully exported to "+template_filename+"\n\nPopulate this template with data and import it back into Delphos")
+            QMessageBox.information(self,"CSV Template Exported", "A CSV file has been exported to "+template_filename+"\n\nOpen this file in a spreadsheet program like OpenOffice Calc or MS Excel.\n\nFollow the instructions at the bottom of the file.\n\nPopulate the template with data and import it back into Delphos")
 
     def process_template_import(self):
         """Reads in input from a template
@@ -302,8 +302,9 @@ class McaWizard(QDialog, Ui_McaWizard):
                 QMessageBox.critical(self,"Error", "You did not select a CSV file (."+self.default_template_extension+" file extension)")
                 return None
             
-            f = open(template_filename, "r")
-            reader = csv.reader(f, dialect=csv.excel)
+            #f = open(template_filename, "r")
+            reader = UnicodeReader(open(template_filename, "r"), csv.excel, 'utf-8')
+            #reader = csv.reader(f, dialect=csv.excel)
             
             #Load value into one long list
             import_list = []
