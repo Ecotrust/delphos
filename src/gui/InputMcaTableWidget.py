@@ -82,14 +82,14 @@ class InputMcaTableWidget(QTableWidget):
                 try:
                     self.set_combo_value(row, column, crit_options_units, input_value)
                 except InputError, e:
-                    QMessageBox.critical(self, "Combo Box Error", str(e)+" Row"+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'")
+                    QMessageBox.critical(self, "Combo Box Error", unicode(e)+" Row"+unicode(row+1)+" '"+unicode(crit_name)+"', Column "+unicode(column+1)+" '"+unicode(altern_name)+"'")
                     return False
                 
             elif crit_type == "Ratio":
                 try:
                     self.set_cell_value(row, column, input_value)
                 except InputError, e:
-                    QMessageBox.critical(self, "Input Error", str(e)+" Row "+str(row+1)+" '"+str(crit_name)+"', Column "+str(column+1)+" '"+str(altern_name)+"'")
+                    QMessageBox.critical(self, "Input Error", unicode(e)+" Row "+unicode(row+1)+" '"+unicode(crit_name)+"', Column "+unicode(column+1)+" '"+unicode(altern_name)+"'")
                     return False        
         self.show()
         return True      
@@ -112,18 +112,18 @@ class InputMcaTableWidget(QTableWidget):
                 try:
                     value = self.get_combo_value(row, column)
                 except InputError, e:
-                    raise DelphosError, str(e)+" Row"+str(row+1)+": "+str(crit_name)+", Column "+str(column+1)+": "+str(altern_name)
+                    raise DelphosError, unicode(e)+" Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
                     return False
                 
             elif crit_type == "Ratio":
                 try:                    
                     value = self.get_cell_value(row, column)
                 except InputError, e:
-                    raise DelphosError, str(e)+" Row"+str(row+1)+": "+str(crit_name)+", Column "+str(column+1)+": "+str(altern_name)
+                    raise DelphosError, unicode(e)+" Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
                     return False
                 
             if value == None and input_required:
-                raise DelphosError, "Missing input for row "+str(row)+" '"+str(crit_name)+"', column "+str(column)+" '"+str(altern_name)+"'"
+                raise DelphosError, "Missing input for row "+unicode(row)+" '"+unicode(crit_name)+"', column "+unicode(column)+" '"+unicode(altern_name)+"'"
 
             new_input_data.set_value(i, value)
         return new_input_data
@@ -138,9 +138,9 @@ class InputMcaTableWidget(QTableWidget):
         if not value and input_required:
             raise InputError, "Missing input."
         if not ok:
-            raise InputError, "Unable to read input. Expected an integer, received: "+str(value)+"."
-        #print "value: "+str(value)
-        #print "ok: "+str(ok)   
+            raise InputError, "Unable to read input. Expected an integer, received: "+unicode(value)+"."
+        #print "value: "+unicode(value)
+        #print "ok: "+unicode(ok)   
         #Save the value from i,j to j,i
         return value
     
@@ -152,11 +152,11 @@ class InputMcaTableWidget(QTableWidget):
             combo_box.addItem(option_name, QVariant(option_val))
  
         if input_value:
-            #print "input value: "+str(input_value)
+            #print "input value: "+unicode(input_value)
             option_num = combo_box.findData(QVariant(input_value))
-            #print "option num: "+str(option_num)
+            #print "option num: "+unicode(option_num)
             if option_num < 0:
-                raise InputError, "Invalid option ("+str(input_value)+")."
+                raise InputError, "Invalid option ("+unicode(input_value)+")."
             else:
                 combo_box.setCurrentIndex(option_num)
         self.setCellWidget(row, column, combo_box)
@@ -176,17 +176,17 @@ class InputMcaTableWidget(QTableWidget):
             return None       
         #Check for non-integer
         if not strIsInt(value):
-            raise InputError, "Invalid input. Expected an integer, received '"+str(value)+"'."           
-        #print "value: "+str(value)
-        #print "from i:"+str(i)+" j:"+str(j)
+            raise InputError, "Invalid input. Expected an integer, received '"+unicode(value)+"'."           
+        #print "value: "+unicode(value)
+        #print "from i:"+unicode(i)+" j:"+unicode(j)
         #Save the value from i,j to j,i
-        #print "into: i:"+str(j)+", j:"+str(i)
+        #print "into: i:"+unicode(j)+", j:"+unicode(i)
         return int(value)
 
     def set_cell_value(self, row, column, value=None):
         table_item = QTableWidgetItem("")
         if strIsInt(value):
-            table_item.setText(str(value))
+            table_item.setText(unicode(value))
         self.setItem(row, column, table_item)
 
 if __name__ == "__main__":

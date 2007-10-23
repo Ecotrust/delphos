@@ -49,7 +49,7 @@ class CriteriaMcaTableWidget(QTableWidget):
                 type_val = unicode(criteria_recs[i][self.crit_type_column])
                 
                 type_opt_val = u""
-                if type_val == 'Ordinal':
+                if type_val == 'Ordinal' or type_val == 'Binary':
                     for opt in criteria_recs[i][self.crit_options_column]:
                         type_opt_val += u"("+opt[0]+u": "+unicode(opt[1])+u")"
                 
