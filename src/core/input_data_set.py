@@ -20,6 +20,7 @@
 import copy
 from sets import Set
 from util.common_functions import *
+from delphos_exceptions import *
 
 class InputDataSet():
 	"""Maintains altern/crit grid input data by the user.
@@ -145,7 +146,7 @@ class InputDataSet():
 		for row in quant_rows:
 			if self.check_same_values_by_row(row):
 				crit_name = self.get_crit_name(row)
-				raise InputError, str(row+1)+" '"+str(crit_name)+"'"
+				raise InputError, unicode(row+1)+" '"+unicode(crit_name)+"'"
 		
 	def check_qual_rows(self):
 		"""Check if all rows with qualitative criteria have the same values
@@ -158,7 +159,7 @@ class InputDataSet():
 			 
 		all_same = reduce(lambda x,y: x and y, row_same_list) 
 		if all_same: 
-			raise InputError, str(row+1)+" '"+str(crit_name)+"'"
+			raise InputError, unicode(row+1)+" '"+unicode(crit_name)+"'"
 			
 	def check_same_values_by_row(self, row):
 		"""Check if the cells in any row all have the same values
