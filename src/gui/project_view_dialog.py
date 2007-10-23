@@ -311,7 +311,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         
         #Output lists to CSV
         #writer = csv.writer(open(filename, "wb"), csv.excel)
-        writer = UnicodeWriter(open(filename, "wb"), csv.excel, 'utf-16')
+        writer = UnicodeWriter(open(filename, "wb"), csv.excel, 'utf-8')
         writer.writerows(header_arr)
         writer.writerows(blank_row)
         writer.writerows(build_header_row(cols, "Input From Interview Process"))

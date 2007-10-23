@@ -29,6 +29,7 @@ from PyQt4.QtGui import *
 from delphos_exceptions import *
 from mca_wizard_ui import Ui_McaWizard
 from util.common_functions import *
+from util.unicode_csv import *
 from core.input_data_set import *
 from core.input_weight_set import *
 
@@ -281,11 +282,12 @@ class McaWizard(QDialog, Ui_McaWizard):
                         ]
                                 
             #output list to CSV.  Use latin1 encoding
-            writer = csv.writer(open(template_filename, "wb"), csv.excel)
+            writer = UnicodeWriter(open(template_filename, "wb"), csv.excel, 'utf-8')
+            #writer = csv.writer(open(template_filename, "wb"), csv.excel)
             writer.writerows(export_arr)
             writer.writerows(comments)
             
-            QMessageBox.critical(self,"Template Exported", "CSV Template successfully exported to "+template_filename+"\n\nPopulate this template with data and import it back into Delphos")
+            QMessageBox.information(self,"Template Exported", "CSV Template successfully exported to "+template_filename+"\n\nPopulate this template with data and import it back into Delphos")
 
     def process_template_import(self):
         """Reads in input from a template

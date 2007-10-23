@@ -35,7 +35,7 @@ fisheries_english_default_alternatives = [
 ]
 
 fisheries_spanish_default_alternatives = [
-    "Sí Hilsa Fishery",
+    "Hilsa Fishery",
     "Shark Fishery",
     "Tamil's Mussels",
     "Kerala Mussels",

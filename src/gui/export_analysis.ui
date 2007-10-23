@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>339</width>
-    <height>277</height>
+    <height>285</height>
    </rect>
   </property>
   <property name="font" >
@@ -24,7 +24,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox_4" >
      <property name="windowModality" >
-      <enum>Qt::ApplicationModal</enum>
+      <enum>Qt::NonModal</enum>
      </property>
      <property name="font" >
       <font>
@@ -88,7 +88,7 @@
          </font>
         </property>
         <property name="text" >
-         <string>* Note to users with input containing non-ASCII characters (for example ñ, ä, 字).  The resulting CSV file will be encoded as utf-8.  The OpenOffice.org Calc spreadsheet program, MS Notepad text editor and other programs know how to interpret these types of characters automatically, but MS Excel does not.  So, if you are seeing nonsense characters in their place in Excel you must re-save the CSV file (.csv) as a text file (.txt) using Notepad or other and then open the text file in Excel and specify the 'utf-8' encoding and 'comma' delimiter when asked.</string>
+         <string>* Note, the CSV file that is generated will use the 'utf-8' encoding scheme to allow for non-english characters (ñ, ä, 字, etc.).  If you have input non-english characters be sure and specify 'utf-8' encoding when you open the file (OpenOffice Calc, Notepad, etc.).  If you use MS Excel it is likely to choose the wrong encoding for you automatically and you will see odd characters.  To specify utf-8 encoding in Excel you must re-save the CSV file (.csv) as a text file (.txt) using Notepad or other and then open the text file in Excel.  Specify the 'utf-8' encoding and 'comma' delimiter when asked.</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
