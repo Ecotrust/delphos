@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>765</width>
-    <height>583</height>
+    <height>580</height>
    </rect>
   </property>
   <property name="font" >
@@ -51,9 +51,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="help_button" >
+          <widget class="HelpButton" name="help_select_alternatives" >
            <property name="text" >
-            <string>...</string>
+            <string/>
            </property>
            <property name="icon" >
             <iconset resource="../resources.qrc" >:/images/help.png</iconset>
@@ -64,7 +64,7 @@
              <height>24</height>
             </size>
            </property>
-           <property name="autoRaise" >
+           <property name="flat" >
             <bool>true</bool>
            </property>
           </widget>
@@ -253,9 +253,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="help_button_2" >
+          <widget class="HelpButton" name="help_select_criteria" >
            <property name="text" >
-            <string>...</string>
+            <string/>
            </property>
            <property name="icon" >
             <iconset resource="../resources.qrc" >:/images/help.png</iconset>
@@ -266,7 +266,7 @@
              <height>24</height>
             </size>
            </property>
-           <property name="autoRaise" >
+           <property name="flat" >
             <bool>true</bool>
            </property>
           </widget>
@@ -440,13 +440,32 @@
           </widget>
          </item>
          <item>
+          <widget class="HelpButton" name="help_input_data" >
+           <property name="text" >
+            <string/>
+           </property>
+           <property name="icon" >
+            <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+           </property>
+           <property name="iconSize" >
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="flat" >
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer>
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeHint" >
             <size>
-             <width>40</width>
+             <width>551</width>
              <height>20</height>
             </size>
            </property>
@@ -599,13 +618,32 @@
           </widget>
          </item>
          <item>
+          <widget class="HelpButton" name="help_weight_criteria" >
+           <property name="text" >
+            <string/>
+           </property>
+           <property name="icon" >
+            <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+           </property>
+           <property name="iconSize" >
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="flat" >
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer>
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeHint" >
             <size>
-             <width>40</width>
+             <width>501</width>
              <height>20</height>
             </size>
            </property>
@@ -745,6 +783,14 @@
     </widget>
    </item>
   </layout>
+  <action name="actionHelp_button2" >
+   <property name="icon" >
+    <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+   </property>
+   <property name="text" >
+    <string>help_button2</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -766,6 +812,11 @@
    <class>WeightMcaTableWidget</class>
    <extends>QTableWidget</extends>
    <header>WeightMcaTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>HelpButton</class>
+   <extends>QPushButton</extends>
+   <header location="global" >HelpButton.h</header>
   </customwidget>
  </customwidgets>
  <resources>

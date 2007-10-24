@@ -61,6 +61,12 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QObject.connect(self.export_analysis_button,QtCore.SIGNAL("clicked()"), self.start_export_analysis)
         QObject.connect(self.delete_analysis_button,QtCore.SIGNAL("clicked()"), self.start_delete_analysis)
         QObject.connect(self.new_analysis_button,QtCore.SIGNAL("clicked()"), self.start_new_analysis)
+
+        self.connect(self.help_define_alternatives, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        self.connect(self.help_define_criteria, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        self.connect(self.help_8_run_analysis, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        self.connect(self.help_prev_analysis, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        
         self.load_project_data_tab()
         self.altern_table.load(self.project.get_all_alternatives())
         self.crit_table.load(self.project.get_all_criteria())

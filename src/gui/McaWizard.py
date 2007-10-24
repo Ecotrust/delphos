@@ -97,7 +97,12 @@ class McaWizard(QDialog, Ui_McaWizard):
         QObject.connect(self.export_button,QtCore.SIGNAL("clicked()"), self.process_template_export)
         QObject.connect(self.import_button,QtCore.SIGNAL("clicked()"), self.process_template_import)        
         QObject.connect(self.run_analysis_button,QtCore.SIGNAL("clicked()"), self.process_run)
-        
+
+        self.connect(self.help_select_alternatives, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        self.connect(self.help_select_criteria, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        self.connect(self.help_input_data, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        self.connect(self.help_weight_criteria, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+                
         #Other signals
         QObject.connect(self.mca_stack,QtCore.SIGNAL("currentChanged(int)"), self.process_current_change)
         

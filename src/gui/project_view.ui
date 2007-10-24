@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>786</width>
-    <height>382</height>
+    <width>821</width>
+    <height>415</height>
    </rect>
   </property>
   <property name="font" >
@@ -173,56 +173,52 @@
            </property>
            <layout class="QHBoxLayout" >
             <item>
-             <layout class="QHBoxLayout" >
-              <item>
-               <widget class="QLabel" name="label_7" >
-                <property name="minimumSize" >
-                 <size>
-                  <width>0</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text" >
-                 <string>Use the help buttons, like the one to the right, to get more information.</string>
-                </property>
-                <property name="wordWrap" >
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer>
-                <property name="orientation" >
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" >
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QToolButton" name="help_button_6" >
-                <property name="text" >
-                 <string>...</string>
-                </property>
-                <property name="icon" >
-                 <iconset resource="../resources.qrc" >:/images/help.png</iconset>
-                </property>
-                <property name="iconSize" >
-                 <size>
-                  <width>24</width>
-                  <height>24</height>
-                 </size>
-                </property>
-                <property name="autoRaise" >
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QLabel" name="label_7" >
+              <property name="minimumSize" >
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text" >
+               <string>Click buttons, like the one to the right, to get detailed help.</string>
+              </property>
+              <property name="wordWrap" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="HelpButton" name="help_test" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="flat" >
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -282,9 +278,6 @@
             <string/>
            </property>
            <layout class="QVBoxLayout" >
-            <property name="spacing" >
-             <number>2</number>
-            </property>
             <item>
              <widget class="QPushButton" name="add_altern_button" >
               <property name="minimumSize" >
@@ -314,41 +307,67 @@
               </property>
              </widget>
             </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame" >
+           <property name="maximumSize" >
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="frameShape" >
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow" >
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" >
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
+            </property>
             <item>
-             <layout class="QHBoxLayout" >
-              <item>
-               <spacer>
-                <property name="orientation" >
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" >
-                 <size>
-                  <width>0</width>
-                  <height>10</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QToolButton" name="help_button" >
-                <property name="text" >
-                 <string>...</string>
-                </property>
-                <property name="icon" >
-                 <iconset resource="../resources.qrc" >:/images/help.png</iconset>
-                </property>
-                <property name="iconSize" >
-                 <size>
-                  <width>24</width>
-                  <height>24</height>
-                 </size>
-                </property>
-                <property name="autoRaise" >
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>61</width>
+                <height>16</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="HelpButton" name="help_define_alternatives" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="icon" >
+               <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="flat" >
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -361,7 +380,7 @@
            <property name="sizeHint" >
             <size>
              <width>40</width>
-             <height>201</height>
+             <height>101</height>
             </size>
            </property>
           </spacer>
@@ -466,48 +485,75 @@
        <item>
         <layout class="QVBoxLayout" >
          <item>
-          <widget class="QGroupBox" name="groupBox_2" >
-           <property name="maximumSize" >
-            <size>
-             <width>120</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="title" >
-            <string/>
-           </property>
-           <layout class="QVBoxLayout" >
-            <property name="spacing" >
-             <number>2</number>
-            </property>
-            <item>
-             <widget class="QPushButton" name="add_criteria_button" >
-              <property name="minimumSize" >
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="text" >
-               <string>Add</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="remove_criteria_button" >
-              <property name="minimumSize" >
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="text" >
-               <string>Remove</string>
-              </property>
-             </widget>
-            </item>
-            <item>
+          <layout class="QVBoxLayout" >
+           <item>
+            <widget class="QGroupBox" name="groupBox_2" >
+             <property name="maximumSize" >
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="title" >
+              <string/>
+             </property>
+             <layout class="QVBoxLayout" >
+              <item>
+               <widget class="QPushButton" name="add_criteria_button" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>100</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text" >
+                 <string>Add</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="remove_criteria_button" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>100</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text" >
+                 <string>Remove</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_2" >
+             <property name="maximumSize" >
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape" >
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow" >
+              <enum>QFrame::Raised</enum>
+             </property>
              <layout class="QHBoxLayout" >
+              <property name="leftMargin" >
+               <number>0</number>
+              </property>
+              <property name="topMargin" >
+               <number>0</number>
+              </property>
+              <property name="rightMargin" >
+               <number>0</number>
+              </property>
+              <property name="bottomMargin" >
+               <number>0</number>
+              </property>
               <item>
                <spacer>
                 <property name="orientation" >
@@ -515,16 +561,16 @@
                 </property>
                 <property name="sizeHint" >
                  <size>
-                  <width>10</width>
-                  <height>10</height>
+                  <width>21</width>
+                  <height>16</height>
                  </size>
                 </property>
                </spacer>
               </item>
               <item>
-               <widget class="QToolButton" name="help_button_2" >
+               <widget class="HelpButton" name="help_define_criteria" >
                 <property name="text" >
-                 <string>...</string>
+                 <string/>
                 </property>
                 <property name="icon" >
                  <iconset resource="../resources.qrc" >:/images/help.png</iconset>
@@ -535,15 +581,15 @@
                   <height>24</height>
                  </size>
                 </property>
-                <property name="autoRaise" >
+                <property name="flat" >
                  <bool>true</bool>
                 </property>
                </widget>
               </item>
              </layout>
-            </item>
-           </layout>
-          </widget>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
           <spacer>
@@ -553,7 +599,7 @@
            <property name="sizeHint" >
             <size>
              <width>95</width>
-             <height>211</height>
+             <height>111</height>
             </size>
            </property>
           </spacer>
@@ -625,6 +671,12 @@
         <layout class="QVBoxLayout" >
          <item>
           <widget class="QGroupBox" name="groupBox_4" >
+           <property name="maximumSize" >
+            <size>
+             <width>250</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="font" >
             <font>
              <family>Arial</family>
@@ -715,9 +767,9 @@
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="help_button_4" >
+               <widget class="HelpButton" name="help_8_run_analysis" >
                 <property name="text" >
-                 <string>...</string>
+                 <string/>
                 </property>
                 <property name="icon" >
                  <iconset resource="../resources.qrc" >:/images/help.png</iconset>
@@ -728,7 +780,7 @@
                   <height>24</height>
                  </size>
                 </property>
-                <property name="autoRaise" >
+                <property name="flat" >
                  <bool>true</bool>
                 </property>
                </widget>
@@ -754,19 +806,6 @@
         </layout>
        </item>
        <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>16</width>
-           <height>316</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
         <widget class="QGroupBox" name="groupBox_5" >
          <property name="font" >
           <font>
@@ -782,7 +821,7 @@
            <widget class="McaRunsTableWidget" name="mca_runs_table" >
             <property name="minimumSize" >
              <size>
-              <width>300</width>
+              <width>0</width>
               <height>200</height>
              </size>
             </property>
@@ -817,108 +856,117 @@
           <item>
            <layout class="QHBoxLayout" >
             <item>
+             <layout class="QHBoxLayout" >
+              <item>
+               <widget class="QPushButton" name="view_analysis_button" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>100</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>View Summary</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="rerun_analysis_button" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>150</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Re-run With Modifications</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="export_analysis_button" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>90</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Export</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delete_analysis_button" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>90</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Delete</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="HelpButton" name="help_prev_analysis" >
+                <property name="text" >
+                 <string/>
+                </property>
+                <property name="icon" >
+                 <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+                </property>
+                <property name="iconSize" >
+                 <size>
+                  <width>24</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="flat" >
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
              <spacer>
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
               <property name="sizeHint" >
                <size>
-                <width>16</width>
-                <height>25</height>
+                <width>40</width>
+                <height>20</height>
                </size>
               </property>
              </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="view_analysis_button" >
-              <property name="font" >
-               <font>
-                <pointsize>9</pointsize>
-               </font>
-              </property>
-              <property name="text" >
-               <string>View Summary</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="rerun_analysis_button" >
-              <property name="minimumSize" >
-               <size>
-                <width>150</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="font" >
-               <font>
-                <pointsize>9</pointsize>
-               </font>
-              </property>
-              <property name="text" >
-               <string>Re-run With Modifications</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="export_analysis_button" >
-              <property name="font" >
-               <font>
-                <pointsize>9</pointsize>
-               </font>
-              </property>
-              <property name="text" >
-               <string>Export</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="delete_analysis_button" >
-              <property name="font" >
-               <font>
-                <pointsize>9</pointsize>
-               </font>
-              </property>
-              <property name="text" >
-               <string>Delete</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="help_button_5" >
-              <property name="text" >
-               <string>...</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="../resources.qrc" >:/images/help.png</iconset>
-              </property>
-              <property name="iconSize" >
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-              <property name="autoRaise" >
-               <bool>true</bool>
-              </property>
-             </widget>
             </item>
            </layout>
           </item>
          </layout>
         </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>16</width>
-           <height>316</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
@@ -941,6 +989,11 @@
    <class>McaRunsTableWidget</class>
    <extends>QTableWidget</extends>
    <header>McaRunsTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>HelpButton</class>
+   <extends>QPushButton</extends>
+   <header location="global" >HelpButton.h</header>
   </customwidget>
  </customwidgets>
  <resources>

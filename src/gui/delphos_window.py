@@ -125,6 +125,21 @@ class DelphosWindow(QMainWindow):
 		#Load URL and go to anchor within it
 		self.ui.doc_browser.load_anchor(label, project_type, language)
 
+	def process_help_click(self, name):
+		"""Uses the help type given to load a section of the documentation
+		"""
+		label = name.replace('help_', '')
+		print label
+		#Build URL
+		project_type = self.gui_manager.project_manager.get_current_project_type()
+		language = self.gui_manager.config_manager.get_language()
+		#Load URL and go to anchor within it
+		self.ui.doc_browser.load_anchor(label, project_type, language)
+		#Show the documentation if its hidden		
+		if not self.ui.dock_doc.isVisible():
+			self.ui.menu_dock_visible.trigger()
+			
+
 	def dock_full_screen(self):
 		return self.dock_full_screen
  
@@ -135,8 +150,6 @@ class DelphosWindow(QMainWindow):
   			self.ui.dock_doc.resize(self.min_doc_dock_width, self.ui.dock_doc.height())
 
  			doc_dock_size = self.ui.dock_doc.sizeHint()
-			print doc_dock_size.width()
-			print doc_dock_size.height()
 
   			self.ui.toc_box.resize(100, self.ui.toc_box.height())
   			self.ui.toc_tree.resize(100, self.ui.toc_box.height())

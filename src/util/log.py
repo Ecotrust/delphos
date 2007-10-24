@@ -25,5 +25,5 @@ class DelphosLog():
         
     def write(self, text):
         time_str = time.strftime("%-%m-%d %H:%M:%S")
-        self.f.write(u'\n'+unicode(time_str))
+        self.f.write(u'\n'+unicode(time_str)+u"\n")
         self.f.write(unicode(text))
