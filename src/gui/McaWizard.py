@@ -328,7 +328,12 @@ class McaWizard(QDialog, Ui_McaWizard):
             new_input_data = self.input_data.make_copy()
             
             #Load it up
-            self.load_data_input_from_array(new_input_data, import_list)
+            try:
+                self.load_data_input_from_array(new_input_data, import_list)
+            except DataImportError, e:
+                print type(e)
+                QMessageBox.critical(self,"ImportError", unicode(e.value))
+                return
             
             #Replace current input data with new known-good input data from CSV
             self.input_data = new_input_data
@@ -350,8 +355,7 @@ class McaWizard(QDialog, Ui_McaWizard):
                 crit_name = input_data.get_crit_name(i)
                 col = input_data.get_col(i)+3
                 altern_name = input_data.get_altern_name(i)
-                QMessageBox.critical(self,"ImportError", "Malformed input in row "+str(row)+": '"+crit_name+"', column "+str(col)+": '"+altern_name+"'")
-                return None
+                raise DataImportError, "Malformed input in row "+unicode(row)+": '"+crit_name+"', column "+unicode(col)+": '"+altern_name+"'"
             
             input_data.set_value(i, input_values[i])
         return input_data   
@@ -370,7 +374,8 @@ class McaWizard(QDialog, Ui_McaWizard):
         try:
             self.input_table.get_input_data(input_required, new_input_data)
         except DelphosError, e:
-            QMessageBox.critical(self,"Input Error", str(e))
+            print "got here"
+            QMessageBox.critical(self,"Input Error", unicode(e.value))
         else:
             #Replace old input data with latest known good input data
             self.input_data = new_input_data
@@ -394,7 +399,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         try:
             self.input_data.check_quant_rows()
         except InputError, e:
-            QMessageBox.critical(self,"Input Error", "Your inputs for a given quantitative criterion are all the same value.  This is a limitation of the Evamix algorithm, at least one value in a row must be difference."+str(e))
+            QMessageBox.critical(self,"Input Error", "Your inputs for a given quantitative criterion are all the same value.  This is a limitation of the Evamix algorithm, at least one value in a row must be difference."+unicode(e.value))
             return False
         else:
             return True
@@ -402,7 +407,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         try:
             self.input_data.check_qual_rows()
         except InputError, e:
-            QMessageBox.critical(self,"Input Error", "Your inputs for all qualitative criteria (Ordinal/Binary) are the same value.  This is not valid input for the Evamix algorithm, at least one value in one qualitative criteria row must be different."+str(e))
+            QMessageBox.critical(self,"Input Error", "Your inputs for all qualitative criteria (Ordinal/Binary) are the same value.  This is not valid input for the Evamix algorithm, at least one value in one qualitative criteria row must be different."+unicode(e.value))
             return False
         else:
             return True

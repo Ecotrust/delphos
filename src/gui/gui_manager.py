@@ -45,6 +45,7 @@ class GuiManager(QObject):
 		self.config_manager = config_manager
 		#Create new QT application object
 		self.qapp = QApplication(sys.argv)
+		QTextCodec.setCodecForTr(QTextCodec.codecForName("utf-8"))
 
 		qss = QFile(":/qss/main_style.css")
 		qss.open(QIODevice.ReadOnly)

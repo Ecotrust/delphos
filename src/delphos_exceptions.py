@@ -22,8 +22,6 @@ class DelphosError(Exception):
 	"""
 	def __init__(self, value=""):
 		self.value = value
-	def __str__(self):
-		return repr(self.value)
 
 class InputError(DelphosError):
 	"""General purpose exception used for all errors relating to user input
