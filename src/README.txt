@@ -42,4 +42,3 @@ Building Open Delphos into a standalone application
   - executable will be in the dist directory
   - the db and data directories will need to be copied to where the 
 	executable is located (needs to be automated in future)
-
