@@ -19,6 +19,7 @@
 
 import time
 import datetime
+from random import choice
 
 def strIsInt(str):
     """Test given string is an integer
@@ -61,3 +62,11 @@ def utc_to_local_time(x):
     """
     offset = datetime.timedelta( hours=(time.altzone/3600) )
     return x - offset
+
+# Random hex-color generator
+def new_hex_color():
+    colorchoices = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F']
+    hexnum = '#'
+    for x in range(0,6):
+        hexnum += choice(colorchoices)
+    return hexnum

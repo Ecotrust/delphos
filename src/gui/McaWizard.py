@@ -4,7 +4,6 @@
 # @copyright	2007 Ecotrust
 # @author		Tim Welch
 # @contact		twelch at ecotrust dot org
-# @license		GNU GPL 2 
 # 
 # This program is free software; you can redistribute it and/or 
 # modify it under the terms of the GNU General Public License as published by
@@ -274,6 +273,8 @@ class McaWizard(QDialog, Ui_McaWizard):
                             ["    in column B."],
                             ["* - DO NOT add extra criteria or alternatives"],
                             ["    they will not be read."],
+                            ["* - If you alter the project alternatives or criteria"],
+                            ["    you will need to export a new updated template."],                            
                             ["* - DO NOT remove any alternatives or criteria"],                      
                             ["* - DO NOT re-arrange rows/columns as they are"],
                             ["    expected in the order they were exported."],

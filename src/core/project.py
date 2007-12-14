@@ -25,6 +25,7 @@ from sqlalchemy import *
 from project_data import *
 from alternative_set import *
 from criteria_set import *
+from input_set import *
 from mca_runs import *
 from delphos_exceptions import *
 from csv_types import *
@@ -63,6 +64,8 @@ class Project:
         self.altern_set = None    #Primary AlternativeSet
         self.crit_table_name = 'criteria'
         self.crit_set = None    #Primary CriteriaSet
+        self.input_table_name = 'input'
+        self.input_set = None
         self.mca_runs_table_name = 'mca_runs'
         self.mca_runs = None	#Holds analysis runs for project
         
@@ -89,6 +92,7 @@ class Project:
             self.__create_project_data()
             self.__create_alternative_set(load_default_altern)
             self.__create_criteria_set(load_default_crit)
+            self.__create_input_set()
             self.__create_mca_runs_table()
         
     def __create_project_db(self):
@@ -101,9 +105,19 @@ class Project:
             self.meta.engine.echo = False
         self.status_ok = True
 
+    ################################# Project Data ##############################
+
     def __create_project_data(self):
         project_name = self.name[:-4]
         self.project_data = ProjectData(self.meta, self.project_table_name, project_name, self.type)
+
+    def get_project_data(self):
+        return self.project_data.get_project_data()
+
+    def get_project_type(self):
+        return self.project_data.get_project_type()
+
+    ################################# Alternatives ##############################
 
     def __create_alternative_set(self, load_default_altern=False):
         """Create an AlternativeSet for the given project.
@@ -117,29 +131,6 @@ class Project:
         """
         for i in range(len(self.default_alternatives)):
             self.altern_set.add_alternative((self.default_alternatives[i]))
-
-    def __create_criteria_set(self, load_default_crit=False):
-        """Create a CriteriaSet for the given project.
-        """
-        self.crit_set = CriteriaSet(self.crit_table_name, self.meta)
-        if load_default_crit:
-            self.__load_default_criteria()
-            
-    def __load_default_criteria(self):
-        """Load criteria from the given filename into the DB table.
-        """
-        for row in self.default_criteria:
-            print row
-            self.crit_set.add_criteria((row[0],row[1],row[2], row[3]))
-
-    def __create_mca_runs_table(self):
-    	self.mca_runs = McaRuns(self.meta, self.mca_runs_table_name)
-
-    def get_project_data(self):
-        return self.project_data.get_project_data()
-
-    def get_project_type(self):
-        return self.project_data.get_project_type()
 
     def add_alternative(self, name):
         """Add alternative to the project AlternativeSet
@@ -178,7 +169,23 @@ class Project:
             return True
         else:
             return False
-        
+
+    ################################# Criteria ##############################
+
+    def __create_criteria_set(self, load_default_crit=False):
+        """Create a CriteriaSet for the given project.
+        """
+        self.crit_set = CriteriaSet(self.crit_table_name, self.meta)
+        if load_default_crit:
+            self.__load_default_criteria()
+            
+    def __load_default_criteria(self):
+        """Load criteria from the given filename into the DB table.
+        """
+        for row in self.default_criteria:
+            print row
+            self.crit_set.add_criteria((row[0],row[1],row[2], row[3]))
+
     def add_criteria(self, criteria_info):
         """Add criteria to the project CriteriaSet
         
@@ -209,17 +216,6 @@ class Project:
         """
         return self.crit_set.get_all_criteria()
 
-    def get_mca_runs_basic(self):
-    	"""Returns a list with basic info about all mca analysis runs for this project
-    	"""
-    	return self.mca_runs.get_basic()
-    
-    def get_mca_run_by_id(self, mca_result_id):
-    	return self.mca_runs.get_all_by_id(mca_result_id)
- 
-    def get_num_mca_runs(self):
-        return self.mca_runs.get_num()
-
     def has_criteria(self):
         """Returns true if the current project has criteria defined
         """
@@ -227,6 +223,41 @@ class Project:
             return True
         else:
             return False
+
+    ################################# Input ##############################
+
+    def __create_input_set(self):
+        """Create a global InputDataSet for the given project.
+        """
+        self.input_set = InputSet(self.input_table_name, self.meta)
+
+    def get_all_input(self):
+        """Returns a list of input for the current project
+        """
+        if self.input_set:
+            return self.input_set.get_all_input()
+        else:
+            return None
+
+    def update_input_value(self, altern_id, crit_id, value):
+        """Updates an input value in the DB"""
+        self.input_set.update(altern_id, crit_id, value)
+
+    ################################# Analysis ##############################
+    
+    def __create_mca_runs_table(self):
+    	self.mca_runs = McaRuns(self.meta, self.mca_runs_table_name)
+
+    def get_mca_runs_basic(self):
+        """Returns a list with basic info about all mca analysis runs for this project
+        """
+        return self.mca_runs.get_basic()
+    
+    def get_mca_run_by_id(self, mca_result_id):
+        return self.mca_runs.get_all_by_id(mca_result_id)
+ 
+    def get_num_mca_runs(self):
+        return self.mca_runs.get_num()
         
     def run_mca(self, input_data, input_weights, selected_crit_types):
         evamix = Evamix()

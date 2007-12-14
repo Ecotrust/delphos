@@ -39,7 +39,7 @@ class DelphosWindow(QMainWindow):
 		self.min_doc_dock_width = 200
 		
 		#Maximize the display to full size
-		self.showMaximized()
+		#self.showMaximized()
 		
 		QObject.connect(self.ui.menu_dock_visible, SIGNAL("triggered()"), self.toggle_documentation_window)
 		QObject.connect(self.ui.dock_doc, SIGNAL("visibilityChanged(bool)"), self.toggle_dock_visible_menu)

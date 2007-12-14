@@ -121,7 +121,7 @@
                  </font>
                 </property>
                 <property name="text" >
-                 <string>Load Default Criteria</string>
+                 <string>Load Suggested Criteria</string>
                 </property>
                 <property name="checked" >
                  <bool>true</bool>

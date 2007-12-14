@@ -27,6 +27,8 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+from core.input_data_set import InputDataSet
+
 from util.unicode_csv import *
 from util.common_functions import *
 
@@ -51,11 +53,12 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.setupUi(self)
         self.gui_manager = gui_manager
         self.project = project
+        self.input_data = None
 
         QObject.connect(self.add_altern_button,QtCore.SIGNAL("clicked()"), self.start_add_alternative)
         QObject.connect(self.remove_altern_button,QtCore.SIGNAL("clicked()"), self.start_remove_alternative)
         QObject.connect(self.add_criteria_button,QtCore.SIGNAL("clicked()"), self.start_add_criteria)
-        QObject.connect(self.remove_criteria_button,QtCore.SIGNAL("clicked()"), self.start_remove_criteria)
+        QObject.connect(self.remove_criteria_button,QtCore.SIGNAL("clicked()"), self.start_remove_criteria)        
         QObject.connect(self.view_analysis_button,QtCore.SIGNAL("clicked()"), self.start_view_analysis)
         QObject.connect(self.rerun_analysis_button,QtCore.SIGNAL("clicked()"), self.start_rerun_analysis1)
         QObject.connect(self.export_analysis_button,QtCore.SIGNAL("clicked()"), self.start_export_analysis)
@@ -66,10 +69,23 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.connect(self.help_define_criteria, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_8_run_analysis, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_prev_analysis, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
-        
+
+        self.connect(self.input_table, SIGNAL("update_input_value"), self.project.update_input_value)
+        self.connect(self.input_table, SIGNAL("update_input_complete"), self.load_data_input)
+        self.connect(self.input_table, SIGNAL("input_changed"), self.enable_input_save)
+
+        QObject.connect(self.tabProject,QtCore.SIGNAL("currentChanged(int)"), self.process_current_change)
+        QObject.connect(self.save_button,QtCore.SIGNAL("clicked()"), self.save_input)
+
         self.load_project_data_tab()
-        self.altern_table.load(self.project.get_all_alternatives())
-        self.crit_table.load(self.project.get_all_criteria())
+        
+        all_alternatives = self.project.get_all_alternatives()
+        all_criteria = self.project.get_all_criteria()
+        all_input = self.project.get_all_input()
+        
+        self.altern_table.load(all_alternatives)
+        self.crit_table.load(all_criteria)
+        #self.input_table.load(all_alternatives, all_criteria, all_input)
         self.mca_runs_table.load(self.project.get_mca_runs_basic())
 
     def load_project_data_tab(self):
@@ -82,7 +98,9 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             self.project_type.setText(project_type)
             self.project_created.setText(unicode(project_created))
             self.num_runs_label.setText(unicode(self.project.get_num_mca_runs()))
-    
+
+    ################################# Alternatives ##############################
+
     def start_add_alternative(self):
         """Create dialog for adding an alternative
         """
@@ -118,7 +136,9 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
                     self.altern_table.load(self.project.get_all_alternatives())
             else:
                 QMessageBox.critical(self,"Remove Alternative Error", "You must first select an alternative.")
-    
+
+    ################################# Criteria ##############################
+
     def start_add_criteria(self):
         """Create dialog for adding criteria
         """
@@ -137,7 +157,6 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         else:
             self.add_criteria_dialog.close()
             self.add_criteria_dialog.deleteLater()
-            print "reloading"
             self.crit_table.load(self.project.get_all_criteria())
 
     def start_remove_criteria(self):
@@ -150,6 +169,23 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
                 self.crit_table.load(self.project.get_all_criteria())
         else:
             QMessageBox.critical(self,"Remove Criteria Error", "You must first select one from the criteria table.")
+
+    ################################# Input Data ##############################
+
+    def enable_input_save(self, prevRow=0, prevCol=0, curRow=0, curCol=0):
+        self.save_button.setEnabled(True)
+
+    def save_input(self):
+        self.save_button.setDisabled(True)
+        self.input_table.save_input_data()
+
+    def load_data_input(self):
+        all_alternatives = self.project.get_all_alternatives()
+        all_criteria = self.project.get_all_criteria()
+        all_input = self.project.get_all_input()
+        self.input_table.load(all_alternatives, all_criteria, all_input)
+
+    ################################# Analysis ##############################
 
     def start_new_analysis(self):
         self.analysis_name = self.analysis_name_edit.text()
@@ -371,3 +407,11 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.mca_result_view = McaResultView(self.gui_manager, self, self.project)
         self.mca_result_view.load_results(name, description, altern_data, crit_data, input_data, input_weights, results)
         self.mca_result_view.show()
+
+    ################################# General ##############################
+        
+    def process_current_change(self, index):
+        """Loads the appropriate widget when the next button is clicked
+        """
+        if index is 3:
+            self.load_data_input()

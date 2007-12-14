@@ -71,8 +71,12 @@ class GuiManager(QObject):
 		self.win = DelphosWindow(self)
 		#Hide the docked widget initially
 		self.win.ui.dock_doc.hide()
+		
 		#Resize to full screen
-		self.win.resize(self.get_screen_width(), self.get_screen_height())
+		#self.win.resize(self.get_screen_width(), self.get_screen_height())
+		#Resize to smallish size, above doesn't work for dual head linux machines
+		#self.win.adjustSize()
+		#self.win.showMinimized()
 		
 		#self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/fisheries_documentation.html'))
 		
