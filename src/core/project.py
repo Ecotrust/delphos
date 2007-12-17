@@ -170,6 +170,16 @@ class Project:
         else:
             return False
 
+    def num_alternatives(self):
+        """Returns number of alternatives for project"""
+        if self.altern_set:
+            return self.altern_set.get_num()
+
+    def get_alternative_names(self):
+        """Returns list of alternative names for project"""
+        if self.altern_set:
+            return self.altern_set.get_alternative_names()
+
     ################################# Criteria ##############################
 
     def __create_criteria_set(self, load_default_crit=False):
@@ -224,6 +234,11 @@ class Project:
         else:
             return False
 
+    def num_criteria(self):
+        """Returns number of alternatives for project"""
+        if self.crit_set:
+            return self.crit_set.get_num()
+
     ################################# Input ##############################
 
     def __create_input_set(self):
@@ -236,6 +251,12 @@ class Project:
         """
         if self.input_set:
             return self.input_set.get_all_input()
+        else:
+            return None
+
+    def get_input_value(self, altern_id, crit_id):
+        if self.input_set:
+            return self.input_set.get_input_value(altern_id, crit_id)
         else:
             return None
 

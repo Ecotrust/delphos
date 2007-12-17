@@ -127,6 +127,11 @@ class AlternativeSet(object):
 		"""
 		return list(self.table.select(order_by=self.table.c.alternative_id).execute())
 
+	def get_alternative_names(self):
+		"""Returns all alternatives in set in list structure [[id, name], ...]
+		"""
+		return list(self.table.select([self.table.name], order_by=self.table.c.alternative_id).execute())
+
 	def get_alternative_ids(self):
 		"""Returns list of IDs of alternatives currently loaded
 		"""

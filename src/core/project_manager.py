@@ -89,7 +89,7 @@ class ProjectManager:
 		if not project_type:
 			raise DelphosError, "Project type not found"
 		elif project_type != self.current_project_type:
-			print "type changed to "+project_type+", notify!"
+			#print "type changed to "+project_type+", notify!"
 			self.current_project_type = project_type
 			#Notify to reload the documentation
 			self.emit(SIGNAL("project_type_changed"), project_type)

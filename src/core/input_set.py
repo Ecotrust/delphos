@@ -92,6 +92,20 @@ class InputSet():
 		self.remove_input_by_ids(altern_id, crit_id)
 		if value is not None:
 			self.add_input(altern_id, crit_id, value)
+
+	def get_input_value(self, altern_id, crit_id):
+		"""Return input value given an altern and crit id
+		"""
+		sql = self.table.select( and_(self.table.c.altern_id==altern_id, self.table.c.crit_id==crit_id) )
+		result = sql.execute()
+		if result:
+			row = result.fetchone()
+			if row:
+				return row.value
+			else:
+				return None
+		else:
+			return None
 	
 	def remove_input_by_ids(self, altern_id, crit_id):
 		"""Remove input from InputSet given its unique input id
