@@ -130,7 +130,19 @@ class AlternativeSet(object):
 	def get_alternative_names(self):
 		"""Returns all alternatives in set in list structure [[id, name], ...]
 		"""
-		return list(self.table.select([self.table.name], order_by=self.table.c.alternative_id).execute())
+		return list(self.table.select([self.table.c.name], order_by=self.table.c.alternative_id).execute())
+
+	def get_alternative_id_by_name(self, name):
+		"""Returns alternative id given an alternative name"""
+		result = self.table.select(self.table.c.name==name).execute()
+		if result:
+			row = result.fetchone()
+			if row:
+				return row.alternative_id
+			else:
+				return None
+		else:
+			return None
 
 	def get_alternative_ids(self):
 		"""Returns list of IDs of alternatives currently loaded

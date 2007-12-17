@@ -115,6 +115,23 @@ class InputSet():
 		#TODO : verify removal
 		return True
 
+	def remove_input_by_alternative(self, altern_id):
+		"""Remove input with given alternative id
+		"""
+		sql = self.table.delete( self.table.c.altern_id==altern_id )
+		result = sql.execute()
+		#TODO : verify removal
+		return True
+
+	def remove_input_by_criteria(self, crit_id):
+		"""Remove input with given criteria id
+		"""
+		sql = self.table.delete( self.table.c.crit_id==crit_id )
+		result = sql.execute()
+		#TODO : verify removal
+		return True
+
+
 	def get_all_input(self):
 		"""Returns all inputs in set in list structure [[id, name], ...]
 		"""

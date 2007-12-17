@@ -179,6 +179,11 @@ class Project:
         """Returns list of alternative names for project"""
         if self.altern_set:
             return self.altern_set.get_alternative_names()
+    
+    def get_alternative_id_by_name(self, name):
+        """Returns alternative id given an alternative name"""
+        if self.altern_set:
+            return self.altern_set.get_alternative_id_by_name(name)
 
     ################################# Criteria ##############################
 
@@ -239,6 +244,11 @@ class Project:
         if self.crit_set:
             return self.crit_set.get_num()
 
+    def get_criteria_id_by_name(self, desc):
+        """Returns criteria id given a criteria description"""
+        if self.crit_set:
+            return self.crit_set.get_criteria_id_by_description(desc)
+
     ################################# Input ##############################
 
     def __create_input_set(self):
@@ -263,6 +273,12 @@ class Project:
     def update_input_value(self, altern_id, crit_id, value):
         """Updates an input value in the DB"""
         self.input_set.update(altern_id, crit_id, value)
+
+    def remove_input_by_alternative(self, alternative_id):
+        return self.input_set.remove_input_by_alternative(alternative_id)
+
+    def remove_input_by_criteria(self, criteria_id):
+        return self.input_set.remove_input_by_criteria(criteria_id)
 
     ################################# Analysis ##############################
     

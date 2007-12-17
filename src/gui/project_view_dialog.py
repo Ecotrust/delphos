@@ -134,9 +134,12 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             QMessageBox.critical(self,"Please select or add an alternative first.", str(e))
         else:
             if cur_row_item:
-                success = self.project.remove_alternative_by_name(unicode(cur_row_item.text()))
-                if not success:
-                    QMessageBox.critical(self,"Remove Alternative Error", "Failed to remove alternative.")
+                altern_name = unicode(cur_row_item.text())
+                altern_id = self.project.get_alternative_id_by_name(altern_name)
+                altern_success = self.project.remove_alternative_by_name(altern_name)
+                input_success = self.project.remove_input_by_alternative(altern_id)
+                if not altern_success or not input_success:
+                    QMessageBox.critical(self,"Remove Alternative Error", "Failed to remove alternative and all associated input data.")
                 else:
                     self.altern_table.load(self.project.get_all_alternatives())
             else:
@@ -167,9 +170,12 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
     def start_remove_criteria(self):
         cur_item = self.crit_table.get_current_row_items()
         if cur_item:
-            success = self.project.remove_criteria_by_description(str(cur_item.text()))
-            if not success:
-                QMessageBox.critical(self,"Remove Criteria Error", "Failed to remove criteria.")
+            crit_desc = unicode(cur_item.text())
+            crit_id = self.project.get_criteria_id_by_name(crit_desc)            
+            crit_success = self.project.remove_criteria_by_description(crit_desc)
+            input_success = self.project.remove_input_by_criteria(crit_id)
+            if not crit_success or not input_success:
+                QMessageBox.critical(self,"Remove Criteria Error", "Failed to remove criteria and all associated input data.")
             else:
                 self.crit_table.load(self.project.get_all_criteria())
         else:

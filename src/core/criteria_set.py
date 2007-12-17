@@ -128,7 +128,19 @@ class CriteriaSet(object):
 		for row in self.table.select(order_by=self.table.c.criteria_id).execute():
 			crit_id_list.append(row.criteria_id)
 		return crit_id_list	
-	
+
+	def get_criteria_id_by_description(self, desc):
+		"""Returns criteria id given a criteria description"""
+		result = self.table.select(self.table.c.description==desc).execute()
+		if result:
+			row = result.fetchone()
+			if row:
+				return row.criteria_id
+			else:
+				return None
+		else:
+			return None
+
 	def get_num(self):
 		"""Returns the number of criteria stored in the CriteriaSet
 		"""
