@@ -209,73 +209,7 @@ class McaWizard(QDialog, Ui_McaWizard):
             #Update input set with any changes in criteria/alternatives
             self.input_data.update_headings(self.selected_altern_data, self.selected_crit_data)
         #Load the weight input table
-        self.input_table.load(self.input_data)
-
-    def process_template_import(self):
-        """Reads in input from a template
-        """
-        fd = QtGui.QFileDialog(self)
-        fd.setFileMode(QFileDialog.ExistingFile)
-        fd.setFilter("*."+self.default_template_extension)
-        template_filename = fd.getOpenFileName()
-
-        if template_filename:
-            if not re.search('[.]'+self.default_template_extension+'$', template_filename):
-                QMessageBox.critical(self,"Error", "You did not select a CSV file (."+self.default_template_extension+" file extension)")
-                return None
-            
-            #f = open(template_filename, "r")
-            reader = UnicodeReader(open(template_filename, "r"), csv.excel, 'utf-8')
-            #reader = csv.reader(f, dialect=csv.excel)
-            
-            #Load value into one long list
-            import_list = []
-            for i in range(self.num_selected_criteria+1):
-                try:
-                    row = reader.next()
-                except csv.Error, e:
-                    QMessageBox.critical(self,"Import Error", "Missing or malformed values in CSV file, check all cells where input values are expected")                    
-                else:
-                    if i is not 0:
-                        #append all but first two columns to end of existing list
-                        import_list += row[2:]
-            
-            #Make a copy, we don't want to overwrite the current input data 
-            #until we know all the data from the CSV is kosher
-            new_input_data = self.input_data.make_copy()
-            
-            #Load it up
-            try:
-                self.load_data_input_from_array(new_input_data, import_list)
-            except DataImportError, e:
-                print type(e)
-                QMessageBox.critical(self,"ImportError", unicode(e.value))
-                return
-            
-            #Replace current input data with new known-good input data from CSV
-            self.input_data = new_input_data
-
-            #Reload the input_table
-            success = self.input_table.load(self.input_data)
-            if success:
-                QMessageBox.information(self,"Success", "CSV loaded successfully")
-            else :
-                QMessageBox.critical(self,"Error", "Due to error, table may only be partially loaded")
-
-    def load_data_input_from_array(self, input_data, input_values):
-        #Check for missing or malformed data
-        cell_data = input_data.get_cell_data()
-        for i in range(len(input_values)):
-            new_value = input_values[i]
-            if not strIsInt(new_value):
-                row = input_data.get_row(i)+2
-                crit_name = input_data.get_crit_name(i)
-                col = input_data.get_col(i)+3
-                altern_name = input_data.get_altern_name(i)
-                raise DataImportError, "Malformed input in row "+unicode(row)+": '"+crit_name+"', column "+unicode(col)+": '"+altern_name+"'"
-            
-            input_data.set_value(i, input_values[i])
-        return input_data   
+        self.input_table.load(self.input_data) 
 
     def process_data_input(self, direction='forward'):
         input_required = True

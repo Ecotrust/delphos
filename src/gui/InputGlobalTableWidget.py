@@ -113,16 +113,8 @@ class InputGlobalTableWidget(QTableWidget):
         """Used after a save"""
         self.input_data = input_data
 
-    def save_input_data(self, input_required=False):
-        """Validates input and signals with changed input cell values.  
-        
-        update_input_value signal is sent for each cell that is changed.
-        """
-        
-        if not self.crit_data or not self.altern_data:
-            return
-        
-        #Get input values
+    def get_input_vals(self, input_required=False):
+        """Get input values from table and return as 2D list"""
         new_input_vals = initialize_int_array(self.num_rows, self.num_cols)
         for i in range(self.num_rows):
             (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = self.crit_data[i]
@@ -150,6 +142,18 @@ class InputGlobalTableWidget(QTableWidget):
                     raise DelphosError, "Missing input for row "+unicode(row)+" '"+unicode(crit_name)+"', column "+unicode(column)+" '"+unicode(altern_name)+"'"
     
                 new_input_vals[row][column] = value
+        return new_input_vals
+
+    def save_input_data(self, input_required=False):
+        """Validates input and signals with changed input cell values.  
+        
+        update_input_value signal is sent for each cell that is changed.
+        """
+        
+        if not self.crit_data or not self.altern_data:
+            return
+    
+        new_input_vals = self.get_input_vals(input_required)
                 
         #Traverse again updating each cell value in DB and creating new input_set
         new_input_set = []
