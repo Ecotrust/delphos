@@ -41,9 +41,10 @@
    </widget>
    <widget class="QMenu" name="menuAbout" >
     <property name="title" >
-     <string>&amp;Credits</string>
+     <string>&amp;About</string>
     </property>
     <addaction name="menu_credits" />
+    <addaction name="actionLicense" />
    </widget>
    <widget class="QMenu" name="menuView" >
     <property name="title" >
@@ -206,7 +207,7 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>Delphos &amp;Credits</string>
+    <string>&amp;Credits</string>
    </property>
    <property name="shortcut" >
     <string>Ctrl+A</string>
@@ -291,6 +292,11 @@
    </property>
    <property name="text" >
     <string>Docked</string>
+   </property>
+  </action>
+  <action name="actionLicense" >
+   <property name="text" >
+    <string>&amp;License</string>
    </property>
   </action>
  </widget>

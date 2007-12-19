@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>591</width>
-    <height>410</height>
+    <height>513</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -86,7 +86,9 @@ p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">&lt;a href="http://www.cobi.org.mx/">&lt;span style=" font-weight:600; text-decoration: underline; color:#0000ff;">Comunidad Y Biodiversidad&lt;/span>&lt;/a>&lt;span style=" font-weight:600;"> &lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt; font-weight:600;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt; font-weight:600;">&lt;span style=" font-weight:400;">COBI promotes the conservation of marine&lt;/span> &lt;span style=" font-weight:400;">biodiversity through community involvement schemes.&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt; font-weight:600;">&lt;span style=" font-weight:400;">COBI promotes the conservation of marine&lt;/span> &lt;span style=" font-weight:400;">biodiversity through community involvement schemes.  &lt;/span>&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">COBI designed the documentation and tool  for analysis of marine protected areas (MPAs).&lt;/p>&lt;/body>&lt;/html></string>
           </property>
           <property name="alignment" >
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -123,7 +125,9 @@ p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">&lt;a href="http://wwf.org/">&lt;span style=" font-weight:600; text-decoration: underline; color:#0000ff;">World Wildlife Fund&lt;/span>&lt;/a>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt; font-weight:600; text-decoration: underline; color:#0000ff;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">WWF's ultimate goal is to build a future where people live in harmony with nature.&lt;/p>&lt;/body>&lt;/html></string>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">Known in the United States as World Wildlife Fund and recognized worldwide by its panda logo, WWF leads international efforts to protect endangered species and their habitats and to conserve the diversity of life on Earth. Now in its fifth decade, WWF, the global conservation organization, works in more than 100 countries around the world.  &lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">WWF designed the Delphos documentation and tool for Fisheries analysis.&lt;/p>&lt;/body>&lt;/html></string>
             </property>
             <property name="alignment" >
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -209,7 +213,9 @@ p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">&lt;a href="http://www.ecotrust.org">&lt;span style=" font-weight:600; text-decoration: underline; color:#0000ff;">Ecotrust&lt;/span>&lt;/a>&lt;span style=" font-weight:600;"> &lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt; font-weight:600;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">Ecotrust believes in a place where economic, ecological, and social conditions are improving, where a "conservation economy" is emerging.  This software was developed by the Knowledge Systems group at Ecotrust.&lt;/p>&lt;/body>&lt;/html></string>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">Ecotrust believes in a place where economic, ecological, and social conditions are improving, where a "conservation economy" is emerging.  &lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;">Ecotrust Knowledge Systems designed and developed this software, making it available free and open source.  The source code is available under the GPL2 license and can be found &lt;a href="http://trac.infodrizzle.org/opendelphos">&lt;span style=" text-decoration: underline; color:#0000ff;">here&lt;/span>&lt;/a>.&lt;/p>&lt;/body>&lt;/html></string>
           </property>
           <property name="alignment" >
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

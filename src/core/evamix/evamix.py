@@ -273,6 +273,8 @@ class Evamix(object):
         if self.num_quant_criteria > 0:       
             for i in range(dim):
                 for j in range(dim):
+                    print quant_impact_matrix[i][j]
+                    print quant_abs_sum
                     final_matrix[i][j] = quant_impact_matrix[i][j]/quant_abs_sum
         return final_matrix
 

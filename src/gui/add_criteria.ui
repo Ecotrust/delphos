@@ -252,19 +252,11 @@
          </column>
          <column>
           <property name="text" >
-           <string>Value</string>
+           <string>Rank</string>
           </property>
          </column>
-         <column>
-          <property name="text" >
-           <string/>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string/>
-          </property>
-         </column>
+         <column/>
+         <column/>
         </widget>
        </item>
       </layout>

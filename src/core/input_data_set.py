@@ -73,6 +73,22 @@ class InputDataSet():
 		for i in range(len(self.cell_data)):
 			self.set_value(i, new_values.get_value(i))
 	
+	def load_values(self, input_data):
+		"""Load values into set"""
+		if not input_data:
+			raise Exception, "Error loading input table, no values given"
+	
+		#Load values from the given input data into the cell data where altern 
+		#and crit id match
+		for i in range(len(self.cell_data)):
+			for j in range(len(input_data)):
+				cur_altern_id = self.cell_data[i][0][0]
+				cur_crit_id = self.cell_data[i][1][0]
+				new_altern_id = input_data[j][0]
+				new_crit_id = input_data[j][1]
+				if cur_altern_id == new_altern_id and cur_crit_id == new_crit_id:
+					self.set_value(i, input_data[j][2])
+	
 	def update_headings(self, new_altern_data, new_crit_data):
 		if not new_altern_data or not new_crit_data:
 			raise Exception, "Error updating input table"
@@ -157,7 +173,7 @@ class InputDataSet():
 			crit_name = self.get_crit_name(row)
 			row_same_list.append(self.check_same_values_by_row(row))
 			 
-		all_same = reduce(lambda x,y: x and y, row_same_list) 
+		all_same = reduce(lambda x, y: x and y, row_same_list) 
 		if all_same: 
 			raise InputError, unicode(row+1)+" '"+unicode(crit_name)+"'"
 			

@@ -692,6 +692,16 @@
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="reset_button" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="text" >
+               <string>Reset</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="export_button" >
               <property name="text" >
                <string>Export</string>
@@ -734,7 +744,7 @@
            </property>
            <property name="sizeHint" >
             <size>
-             <width>411</width>
+             <width>361</width>
              <height>44</height>
             </size>
            </property>
@@ -1102,6 +1112,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>HelpButton</class>
+   <extends>QPushButton</extends>
+   <header location="global" >HelpButton.h</header>
+  </customwidget>
+  <customwidget>
    <class>AlternativeTableWidget</class>
    <extends>QTableWidget</extends>
    <header>AlternativeTableWidget.h</header>
@@ -1115,11 +1130,6 @@
    <class>McaRunsTableWidget</class>
    <extends>QTableWidget</extends>
    <header>McaRunsTableWidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>HelpButton</class>
-   <extends>QPushButton</extends>
-   <header location="global" >HelpButton.h</header>
   </customwidget>
   <customwidget>
    <class>InputGlobalTableWidget</class>

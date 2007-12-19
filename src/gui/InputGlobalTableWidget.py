@@ -34,6 +34,7 @@ class InputGlobalTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
         self.vertical_header_width = 300 #criteria descriptions are so freaking long!
+        self.loaded = False
 
     def load(self, altern_data, crit_data, input_data):
         """Given altern, crit and input table data, loads a table widget with combo boxes 
@@ -55,11 +56,12 @@ class InputGlobalTableWidget(QTableWidget):
         self.setColumnCount(self.num_cols)
         self.setRowCount(self.num_rows)
         
+        self.loaded = True
+        
         #Create input widgets for every combination of alternative and criteria given
         crit_id = crit_name = crit_type = crit_options_units = cost_benefits = None
         altern_id = altern_name = None
         self.input_data = input_data
-        #self.cell_data = input_data_set.get_cell_data()
 
         for i in range(self.num_rows):
             (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = crit_data[i]
@@ -149,14 +151,12 @@ class InputGlobalTableWidget(QTableWidget):
         
         update_input_value signal is sent for each cell that is changed.
         """
-        
         if not self.crit_data or not self.altern_data:
             return
     
         new_input_vals = self.get_input_vals(input_required)
                 
         #Traverse again updating each cell value in DB and creating new input_set
-        new_input_set = []
         for i in range(self.num_rows):
             (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = self.crit_data[i]
             row = i
@@ -165,7 +165,6 @@ class InputGlobalTableWidget(QTableWidget):
                 column = j
 
                 new_value = new_input_vals[row][column]
-                new_input_set.append((altern_id, crit_id, new_value))
                 self.emit(SIGNAL("update_input_value"), altern_id, crit_id, new_value)
         
     def get_combo_value(self, row, column):

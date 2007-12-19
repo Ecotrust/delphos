@@ -82,14 +82,14 @@ class InputMcaTableWidget(QTableWidget):
                 try:
                     self.set_combo_value(row, column, crit_options_units, input_value)
                 except InputError, e:
-                    QMessageBox.critical(self, "Combo Box Error", unicode(e)+" Row"+unicode(row+1)+" '"+unicode(crit_name)+"', Column "+unicode(column+1)+" '"+unicode(altern_name)+"'")
+                    QMessageBox.critical(self, "Combo Box Error", unicode(e)+"Invalid input in row "+unicode(row+1)+" '"+unicode(crit_name)+"', Column "+unicode(column+1)+" '"+unicode(altern_name)+"'")
                     return False
                 
             elif crit_type == "Ratio":
                 try:
                     self.set_cell_value(row, column, input_value)
                 except InputError, e:
-                    QMessageBox.critical(self, "Input Error", unicode(e)+" Row "+unicode(row+1)+" '"+unicode(crit_name)+"', Column "+unicode(column+1)+" '"+unicode(altern_name)+"'")
+                    QMessageBox.critical(self, "Input Error", unicode(e)+"Invalid input in row "+unicode(row+1)+" '"+unicode(crit_name)+"', Column "+unicode(column+1)+" '"+unicode(altern_name)+"'")
                     return False        
         self.show()
         return True      
@@ -110,16 +110,16 @@ class InputMcaTableWidget(QTableWidget):
             value = 0
             if crit_type == "Ordinal" or crit_type == "Binary":
                 try:
-                    value = self.get_combo_value(row, column)
+                    value = self.get_combo_value(row, column, input_required)
                 except InputError, e:
-                    raise DelphosError, unicode(e)+" Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
+                    raise DelphosError, unicode(e)+"Missing or Invalid input in row "+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)+".  Input is required for each cell in order to perform analysis."
                     return False
                 
             elif crit_type == "Ratio":
                 try:                    
                     value = self.get_cell_value(row, column)
                 except InputError, e:
-                    raise DelphosError, unicode(e)+" Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
+                    raise DelphosError, unicode(e)+"Missing or Invalid input in row "+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)+".  Input is required for each cell in order to perform analysis."
                     return False
                 
             if value == None and input_required:
@@ -128,7 +128,7 @@ class InputMcaTableWidget(QTableWidget):
             new_input_data.set_value(i, value)
         return new_input_data
 
-    def get_combo_value(self, row, column):
+    def get_combo_value(self, row, column, input_required):
         #Get value from combo box
         cell_widget = self.cellWidget(row, column)
         #print cell_widget
@@ -136,8 +136,8 @@ class InputMcaTableWidget(QTableWidget):
             raise InputError, "Unable to access combo box."
         (value, ok) = cell_widget.itemData(cell_widget.currentIndex()).toInt()
         if not value and input_required:
-            raise InputError, "Missing input."
-        if not ok:
+            raise InputError, "Missing input in row "+unicode(row)+", column "+unicode(column)+"."
+        if not ok and input_required:
             raise InputError, "Unable to read input. Expected an integer, received: "+unicode(value)+"."
         #print "value: "+unicode(value)
         #print "ok: "+unicode(ok)   
@@ -146,6 +146,7 @@ class InputMcaTableWidget(QTableWidget):
     
     def set_combo_value(self, row, column, crit_options_units, input_value):
         combo_box = QComboBox(self)
+        combo_box.addItem("")
         for option in crit_options_units:
             option_name = option[0]
             option_val = option[1]

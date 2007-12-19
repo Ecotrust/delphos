@@ -55,6 +55,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.project = project
         self.input_data = None
 
+        self.cur_tab = 0
+
         self.default_template_extension = "csv"
         self.output_encoding = 'latin-1'
 
@@ -196,6 +198,27 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         all_criteria = self.project.get_all_criteria()
         all_input = self.project.get_all_input()
         self.input_table.load(all_alternatives, all_criteria, all_input)
+
+    def get_current_input(self):
+        cur_input_vals = self.input_table.get_input_vals(input_required=False)
+                
+        #Associate current values with their altern and crit id's
+        cur_input_set = []
+        num_rows = self.project.num_criteria()
+        num_columns = self.project.num_alternatives()
+        altern_data = self.project.get_all_alternatives()
+        crit_data = self.project.get_all_criteria()
+        
+        for i in range(num_rows):
+            (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = crit_data[i]
+            row = i
+            for j in range(num_columns):
+                (altern_id, altern_name, altern_color) = altern_data[j]
+                column = j
+
+                cur_val = cur_input_vals[row][column]
+                cur_input_set.append((altern_id, crit_id, cur_val)) 
+        return cur_input_set      
 
     def process_template_export(self):
         """Creates a unicode CSV containing alternatives and criteria for quickly inputting data
@@ -350,7 +373,6 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             try:
                 new_input_data = self.load_data_input_from_array(altern_data, crit_data, import_list)
             except DataImportError, e:
-                print type(e)
                 QMessageBox.critical(self,"ImportError", unicode(e.value))
                 return
             
@@ -383,7 +405,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
                 new_value = import_list[row][column]
 
                 if new_value != "" and not strIsInt(new_value):
-                    raise DataImportError, "Malformed input in row "+unicode(row+2)+": '"+crit_name+"', column "+unicode(col+3)+": '"+altern_name+"'"                        
+                    raise DataImportError, "Malformed input '"+new_value+"' in imported CSV file. Check row "+unicode(row+2)+": '"+crit_name+"', column "+unicode(column+3)+": '"+altern_name+"'"                        
                 else:
                     new_input_data.append((altern_id, crit_id, new_value))
 
@@ -397,8 +419,12 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         if not self.analysis_name:
             QMessageBox.critical(self,"Analysis Error", "You must enter a name for this analysis")
         else:
-            #Load mca wizard
-            self.mca_wizard = McaWizard(self.gui_manager, self, self.project)
+            #Fire up MCA Wizard.            
+            if self.input_table.loaded:
+                self.mca_wizard = McaWizard(self.gui_manager, self, self.project, global_input_data=self.get_current_input())
+            else:
+                self.mca_wizard = McaWizard(self.gui_manager, self, self.project)
+                
             self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
             self.mca_wizard.show()
             
@@ -616,6 +642,11 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         
     def process_current_change(self, index):
         """Loads the appropriate widget when the next button is clicked
-        """
+        """       
         if index is 3:
-            self.load_data_input()
+            if self.cur_tab > 3 and not self.input_table.loaded:
+                self.load_data_input()
+            if self.cur_tab < 3:
+                self.load_data_input()
+                
+        self.cur_tab = index

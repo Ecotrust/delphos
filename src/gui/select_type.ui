@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>446</width>
-    <height>180</height>
+    <height>225</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -43,7 +43,7 @@
         <property name="font" >
          <font>
           <family>Arial</family>
-          <pointsize>14</pointsize>
+          <pointsize>13</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -58,7 +58,7 @@
           <x>10</x>
           <y>42</y>
           <width>200</width>
-          <height>108</height>
+          <height>151</height>
          </rect>
         </property>
         <property name="maximumSize" >
@@ -74,7 +74,7 @@
          </font>
         </property>
         <property name="text" >
-         <string>A decision-making tool for community-based marine conservation. Developed by Comunidad y Biodiversidad (COBI), World Wildlife Fund and Ecotrust.</string>
+         <string>A decision-making tool for community-based marine conservation. Developed by Comunidad y Biodiversidad (COBI), World Wildlife Fund (WWF) and Ecotrust.  Released free and open source under the GPL2 license</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -142,11 +142,13 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>11</pointsize>
+                  <pointsize>10</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
                  </font>
                 </property>
                 <property name="text" >
-                 <string>Select Analysis Type:</string>
+                 <string>Select  Analysis Type:</string>
                 </property>
                </widget>
               </item>

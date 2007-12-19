@@ -37,7 +37,7 @@ class McaWizard(QDialog, Ui_McaWizard):
     
     Optionally takes input from a previous MCA analysis run
     """
-    def __init__(self, gui_manager, parent, project, prev_run_data=None):
+    def __init__(self, gui_manager, parent, project, prev_run_data=None, global_input_data=None):
         QDialog.__init__(self, parent)
         self.setupUi(self)
         self.parent = parent
@@ -74,6 +74,8 @@ class McaWizard(QDialog, Ui_McaWizard):
         self.crit_type_column = 2
         self.crit_options_column = 3
         
+        self.global_input_data = None
+        
         #Button Signals
         QObject.connect(self.altern_next_button,QtCore.SIGNAL("clicked()"), self.process_altern_select)
         QObject.connect(self.crit_next_button,QtCore.SIGNAL("clicked()"), self.process_crit_select)
@@ -93,8 +95,6 @@ class McaWizard(QDialog, Ui_McaWizard):
         QObject.connect(self.uncheck_all_altern_button,QtCore.SIGNAL("clicked()"), self.uncheck_all_alternatives)
         QObject.connect(self.uncheck_all_criteria_button,QtCore.SIGNAL("clicked()"), self.uncheck_all_criteria)
         QObject.connect(self.equal_weight_button,QtCore.SIGNAL("clicked()"), self.assign_equal_weight)        
-        QObject.connect(self.export_button,QtCore.SIGNAL("clicked()"), self.process_template_export)
-        QObject.connect(self.import_button,QtCore.SIGNAL("clicked()"), self.process_template_import)        
         QObject.connect(self.run_analysis_button,QtCore.SIGNAL("clicked()"), self.process_run)
 
         self.connect(self.help_select_alternatives, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
@@ -109,6 +109,8 @@ class McaWizard(QDialog, Ui_McaWizard):
             (prev_run_id, prev_run_name, prev_run_description, prev_altern_data, prev_crit_data, prev_input_data, prev_input_weights, prev_results, prev_creation_date, int_results) = prev_run_data
             self.altern_data = prev_altern_data        
             self.crit_data = prev_crit_data
+        elif global_input_data:
+            self.global_input_data = global_input_data
 
         self.setup_crit_select()        
         self.setup_altern_select()
@@ -130,8 +132,11 @@ class McaWizard(QDialog, Ui_McaWizard):
             self.input_weights.update_weights(prev_input_weights)
             self.weight_table.load(self.input_weights)
             self.process_weight_input()
+        elif global_input_data:         
+            #Creates InputDataSet and loads global input values too
+            self.setup_data_input()
             
-            self.jump_to_page(1)
+        self.jump_to_page(1)
 
     #################################### Alternatives #####################
 
@@ -202,9 +207,17 @@ class McaWizard(QDialog, Ui_McaWizard):
             self.prev_click()
 
     def setup_data_input(self):
-        if not self.input_data:
+        """Create or update InputDataSet which brings together alterns, crits, 
+        and input values in one place.  Perhaps not a good implementation, but
+        encapsulates a lot of the logic to work with them.
+        """
+        if not self.input_data and self.global_input_data:
+            self.input_data = InputDataSet(self.altern_data, self.crit_data)
+            self.input_data.load_values(self.global_input_data)
+        elif not self.input_data:
             #Create input set
             self.input_data = InputDataSet(self.selected_altern_data, self.selected_crit_data)
+            self.input_data.load_values(self.project.get_all_input())
         else:
             #Update input set with any changes in criteria/alternatives
             self.input_data.update_headings(self.selected_altern_data, self.selected_crit_data)
@@ -225,7 +238,6 @@ class McaWizard(QDialog, Ui_McaWizard):
         try:
             self.input_table.get_input_data(input_required, new_input_data)
         except DelphosError, e:
-            print "got here"
             QMessageBox.critical(self,"Input Error", unicode(e.value))
         else:
             #Replace old input data with latest known good input data
