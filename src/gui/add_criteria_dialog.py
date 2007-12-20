@@ -43,6 +43,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 		
 		#Connect slots to signals
 		QObject.connect(self.add_criteria_box,QtCore.SIGNAL("accepted()"), self.process_accept)
+		QObject.connect(self.add_criteria_box,QtCore.SIGNAL("rejected()"), self.close)
 		QObject.connect(self.add_ordinal_option_button,QtCore.SIGNAL("clicked()"), self.start_add_ordinal_option)
 		QObject.connect(self.remove_ordinal_option_button,QtCore.SIGNAL("clicked()"), self.handle_remove_ordinal_option)
 
@@ -103,7 +104,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 			cost_benefit = "C"
 		else:
 			self.isError = True
-			self.errorMsg += "* Please define criterion as a \"Benefit\" or \"Cost\n"
+			self.errorMsg += "* Please define criterion as a \"Benefit\" or \"Cost\"\n"
 
 		if self.isError:
 			self.isError = False

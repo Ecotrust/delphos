@@ -255,8 +255,16 @@
            <string>Rank</string>
           </property>
          </column>
-         <column/>
-         <column/>
+         <column>
+          <property name="text" >
+           <string> </string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string> </string>
+          </property>
+         </column>
         </widget>
        </item>
       </layout>

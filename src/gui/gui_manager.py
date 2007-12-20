@@ -33,6 +33,7 @@ from open_project_dialog import OpenProjectDialog
 from project_view_dialog import ProjectViewDialog
 from language_dialog import LanguageDialog
 from credits_dialog import CreditsDialog
+from about_dialog import AboutDialog
 
 class GuiManager(QObject):
 	"""Provides access to, handles and maintins the Delphos GUI interface
@@ -90,6 +91,7 @@ class GuiManager(QObject):
 		QObject.connect(self.win.ui.menu_open_project, SIGNAL("triggered()"), self.handle_open_existing_selection)
 		QObject.connect(self.win.ui.menu_create_project, SIGNAL("triggered()"), self.handle_design_new_selection)
 		QObject.connect(self.win.ui.menu_credits, SIGNAL("triggered()"), self.show_credits)
+		QObject.connect(self.win.ui.menu_about, SIGNAL("triggered()"), self.show_about)
 		
 		#Flag indicating whether dock_doc widget is currently full screen
 		self.dock_doc_is_full_screen = False
@@ -218,6 +220,12 @@ class GuiManager(QObject):
 		"""
 		credits_dialog = CreditsDialog(self, self.win)
 		credits_dialog.show()
+
+	def show_about(self):
+		"""Show about dialog
+		"""
+		about_dialog = AboutDialog(self.win)
+		about_dialog.show()
 
 	def get_screen_dimensions(self):
 		"""Return (width, height) tuple in pixels of the screen containing the delphos window

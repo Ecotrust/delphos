@@ -43,8 +43,8 @@
     <property name="title" >
      <string>&amp;About</string>
     </property>
+    <addaction name="menu_about" />
     <addaction name="menu_credits" />
-    <addaction name="actionLicense" />
    </widget>
    <widget class="QMenu" name="menuView" >
     <property name="title" >
@@ -294,9 +294,9 @@
     <string>Docked</string>
    </property>
   </action>
-  <action name="actionLicense" >
+  <action name="menu_about" >
    <property name="text" >
-    <string>&amp;License</string>
+    <string>&amp;About Delphos</string>
    </property>
   </action>
  </widget>

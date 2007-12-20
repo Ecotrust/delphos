@@ -34,6 +34,6 @@ opts = {
 }
  
 setup(options = opts,
-	  windows=[{"script": "start_gui.py"}],
+	  windows=[{"script": "Delphos.py"}],
 	  data_files=[matplotlib.get_py2exe_datafiles()]
 )
