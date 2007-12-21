@@ -54,13 +54,17 @@ class AddOrdinalOptionDialog(QDialog, Ui_AddOrdinalOptionDialog):
 		option_value = self.option_value_edit.text()
 		if not option_value:
 			self.isError = True
-			self.errorMsg += "* Please enter an option value.\n"
+			self.errorMsg += "* Please enter an option rank.\n"
 		else:
 			try:
 				option_value = int(option_value)
 			except:
 				self.isError = True
-				self.errorMsg += "* Option value is not an integer"
+				self.errorMsg += "* Option rank is not an integer"
+
+			if option_value < 1 and not self.isError:
+				self.isError = True
+				self.errorMsg += "* Option rank must be a positive integer greater than zero, you entered "+unicode(option_value)
 
 		if self.isError:
 			self.isError = False
@@ -68,4 +72,3 @@ class AddOrdinalOptionDialog(QDialog, Ui_AddOrdinalOptionDialog):
 		else:
 			option_info = (str(option_description), option_value)
 			self.emit(SIGNAL("ordinal_option_info_collected"), option_info)
-			self.deleteLater()

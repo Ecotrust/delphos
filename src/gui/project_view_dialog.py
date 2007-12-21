@@ -164,7 +164,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             #Add criterion to DB
             self.project.add_criteria(criteria_info)
         except DelphosError, e:
-            QMessageBox.critical(self.add_criteria_dialog,"Criteria Error", str(e))
+            QMessageBox.critical(self.add_criteria_dialog,"Criteria Error", str(e.value))
         else:
             self.add_criteria_dialog.close()
             self.add_criteria_dialog.deleteLater()

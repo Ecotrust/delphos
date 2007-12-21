@@ -25,6 +25,8 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+from util.common_functions import *
+
 from delphos_exceptions import *
 from add_criteria_ui import Ui_AddCriteriaDialog
 from AddOrdinalOptionDialog import AddOrdinalOptionDialog
@@ -77,7 +79,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 				self.isError = True
 				self.errorMsg += "* Please enter a description of the quantitative ratio value.\n"
 			if not self.isError:
-				type_info = str(ratio_description)
+				type_info = unicode(ratio_description)
 				
 		elif current_tab_name == "Binary":
 			binary_yes_description = self.binary_yes_edit.text()
@@ -89,14 +91,17 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 				self.isError = True
 				self.errorMsg += "* Please enter a \"No\" description\n"
 			if not self.isError:
-				type_info = [[str(binary_yes_description), 2],[str(binary_no_description), 1]]
+				type_info = [[unicode(binary_yes_description), 2],[unicode(binary_no_description), 1]]
 				
 		elif current_tab_name == "Ordinal":
+			if len(self.ordinal_option_list) < 2:
+				self.isError = True
+				self.errorMsg += "* Your ordinal criterion must have at least two options\n"
 			type_info = self.ordinal_option_list
 			
 		else:
 			self.isError = True
-			self.errorMsg += "Delphos", "Criteria add failed unexpectedly.\n"
+			self.errorMsg += "Criteria add failed unexpectedly.\n"
 
 		if self.benefit_button.isChecked():
 			cost_benefit = "B"
@@ -110,9 +115,8 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 			self.isError = False
 			QMessageBox.critical(self,"Error adding criteria",self.errorMsg)
 		else:
-			criteria_info = [str(criteria_description), str(current_tab_name), type_info, cost_benefit]
+			criteria_info = [unicode(criteria_description), unicode(current_tab_name), type_info, cost_benefit]
 			self.emit(SIGNAL("add_criteria_info_collected"), criteria_info)
-			self.deleteLater()
 
 	def start_add_ordinal_option(self):
 		self.add_ordinal_option_dialog = AddOrdinalOptionDialog(self.gui_manager, self)
@@ -120,8 +124,22 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 		self.add_ordinal_option_dialog.show()
 	
 	def finish_add_ordinal_option(self, option_info):
-		self.ordinal_option_list.append(option_info)
-		self.ordinal_option_table.load(self.ordinal_option_list)
+		self.errorMsg = ""
+		(new_name, new_value) = option_info		
+		for option in self.ordinal_option_list:
+			(name, value) = option
+			if new_value == value:
+				self.isError = True
+				self.errorMsg += "The option '"+unicode(name)+"' already has the rank of '"+unicode(value)+"'. Please choose another rank value."	
+		
+		if self.isError:
+			self.isError = False
+			QMessageBox.critical(self,"Error adding criteria",self.errorMsg)
+		else:
+			self.add_ordinal_option_dialog.hide()
+			self.add_ordinal_option_dialog.deleteLater()
+			self.ordinal_option_list.append(option_info)
+			self.ordinal_option_table.load(self.ordinal_option_list)
 
 	def handle_remove_ordinal_option(self):
 		if not self.ordinal_option_list:
@@ -131,7 +149,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 		try:
 			cur_row = self.ordinal_option_table.get_current_row()
 		except DelphosError, e:
-			QMessageBox.critical(self,"Error Removing Option", str(e))
+			QMessageBox.critical(self,"Error Removing Option", unicode(e))
 		else:
 			#Remove selected row
 			self.ordinal_option_list.pop(cur_row)

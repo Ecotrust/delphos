@@ -232,7 +232,7 @@
           <bool>false</bool>
          </property>
          <property name="alternatingRowColors" >
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="selectionMode" >
           <enum>QAbstractItemView::SingleSelection</enum>
@@ -257,12 +257,12 @@
          </column>
          <column>
           <property name="text" >
-           <string> </string>
+           <string>                              </string>
           </property>
          </column>
          <column>
           <property name="text" >
-           <string> </string>
+           <string>                              </string>
           </property>
          </column>
         </widget>

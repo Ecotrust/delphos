@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1001</width>
-    <height>620</height>
+    <width>1000</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -27,7 +27,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1001</width>
+     <width>1000</width>
      <height>21</height>
     </rect>
    </property>
@@ -63,7 +63,7 @@
     <property name="title" >
      <string>&amp;Options</string>
     </property>
-    <addaction name="actionOpen_Documentation_Externally" />
+    <addaction name="menu_open_full_doc" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuView" />
@@ -91,7 +91,7 @@
     <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
    <property name="windowTitle" >
-    <string>Delphos Documention</string>
+    <string>Documentation Window</string>
    </property>
    <attribute name="dockWidgetArea" >
     <number>1</number>
@@ -108,13 +108,13 @@
          <property name="minimumSize" >
           <size>
            <width>0</width>
-           <height>100</height>
+           <height>120</height>
           </size>
          </property>
          <property name="maximumSize" >
           <size>
            <width>16777215</width>
-           <height>150</height>
+           <height>170</height>
           </size>
          </property>
          <property name="title" >
@@ -229,12 +229,12 @@
     <string>Ctrl+X</string>
    </property>
   </action>
-  <action name="actionOpen_Documentation_Externally" >
+  <action name="menu_open_full_doc" >
    <property name="enabled" >
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>&amp;Load Printable Documentation</string>
+    <string>&amp;View Documentation In Browser</string>
    </property>
    <property name="shortcut" >
     <string>Ctrl+L</string>

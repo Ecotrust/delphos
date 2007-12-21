@@ -285,8 +285,24 @@ class GuiManager(QObject):
 				self.start_project_creation()
 		
 		elif type == 'doc':
-			doc_path = os.getcwd()+os.sep+"documentation"+os.sep+action
+			#Find which documentation subdir to look in
+			project_type = self.project_manager.get_current_project_type()
+			language = self.config_manager.get_language()
+			if project_type == 'fisheries':
+				if language == 'english':
+					doc_subdir = 'fisheries'+os.sep+'english'+os.sep
+				else:
+					doc_subdir = 'fisheries'+os.sep+'spanish'+os.sep
+			else:
+				if language == 'english':
+					doc_subdir = 'mpa'+os.sep+'english'+os.sep
+				else:
+					doc_subdir = 'mpa'+os.sep+'spanish'+os.sep
+			
+			doc_path = os.getcwd()+os.sep+"documentation"+os.sep+doc_subdir+os.sep+action
 			doc_url = "file:"+urllib.pathname2url(unicode(doc_path))
+			print "doc url"
+			print doc_url
 			self.desktop_services.openUrl(QUrl(doc_url))
 	
 #Testing purposes

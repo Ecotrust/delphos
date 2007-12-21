@@ -46,19 +46,28 @@ class DelphosWindow(QMainWindow):
 
 		QObject.connect(self.ui.menu_dock_floating, SIGNAL("triggered()"), self.toggle_dock_float)
 		QObject.connect(self.ui.dock_doc, SIGNAL("topLevelChanged(bool)"), self.toggle_dock_floating_menu)
-		
+
+		QObject.connect(self.ui.menu_open_full_doc, SIGNAL("triggered()"), self.load_full_doc)
+
 		#self.ui.dock_doc.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.load_toc()
-		
+
+	def load_full_doc(self):
+		"""Load full documentation in help window
+		"""
+		print "loading"
+		self.gui_manager.desktop_services.openUrl(QUrl('file:/documentation/fisheries/english/documentation.html'))
+									  
 	def load_toc(self):
 		"""Loads the table of contents within the dock widget
 		"""
 		fisheries_toc = [
 			"Introduction",
-			"Background", 
+			{"Background": [
+			    "Program History",
+			]}, 
 			{"Multicriteria Analysis/Evamix": [
-				"References", 
-				"Algorithm"
+				"References"
 			]},
 			{"The Delphos Process": [
 				"1. Define Your Goals",
@@ -71,8 +80,14 @@ class DelphosWindow(QMainWindow):
 				]},
 				"6. Review Recommendations",
 				{"7. Design Your Database": [
+					"Create New Project",
 					"Define Alternatives",
-					"Define Criteria"
+					"Define Criteria",
+					{"Input Data": [
+					    "Inputting Data Directly",
+					    "Importing Data",
+					    "Data Gaps"
+					]}
 				]},
 				{"8. Run Analysis":[
 					"Select Alternatives",
@@ -84,9 +99,8 @@ class DelphosWindow(QMainWindow):
 			]},
 			"Evaluating Your Results",
 			"Next Steps",
-			{"Conclusion": [
-				"Contact Information"
-			]}
+			"Conclusion",
+			"Contact Information",
 		]
 		
 		self.process_toc(fisheries_toc)

@@ -86,7 +86,7 @@ class CriteriaSet(object):
 		same_list = list(self.table.select(self.table.c.description==desc).execute())
 		#print "same_list: "+unicode(same_list)
 		if len(same_list) > 0:
-			raise DelphosError, "A criterion with the description "+desc+" already exists in this project."
+			raise DelphosError, "A criterion with the description '"+desc+"' already exists in this project."
 		else:
 			#print "inserting"
 			self.table.insert().execute({'description':desc, 'type':type, 'type_options':type_options, 'cost_benefit':cost_benefit})

@@ -26,6 +26,16 @@ from PyQt4.QtGui import *
 class HelpTextBrowser(QTextBrowser):
 	def __init__(self, parent=None):
 		QTextBrowser.__init__(self, parent)
+		
+		#Get doc stylesheet
+		doc_style_qss = QFile(":/qss/help_doc.css")
+		doc_style_qss.open(QIODevice.ReadOnly)
+		self.doc_style_str = str(doc_style_qss.readAll())
+		doc_style_qss.close()
+		
+		print self.doc_style_str
+		
+
 	
 	def setSource(self, url):
 		list = url.path().split('/')
@@ -46,6 +56,7 @@ class HelpTextBrowser(QTextBrowser):
 	def load_doc(self, project_type, language):
 		doc_name = self.get_doc_name(project_type, language)
 		self.setSource(QUrl(doc_name))
+		self.setStyleSheet(QString(self.doc_style_str))	
 	
 	def load_anchor(self, label, project_type, language):
 		doc_name = self.get_doc_name(project_type, language)
@@ -96,6 +107,7 @@ if __name__ == "__main__":
 				doc_path = os.getcwd()+os.sep+"documentation"+os.sep+action
 				print doc_path
 				doc_url = "file:"+urllib.pathname2url(unicode(doc_path))
+				print "doc_url"
 				print doc_url
 				self.desktop_services.openUrl(QUrl(doc_url))
 

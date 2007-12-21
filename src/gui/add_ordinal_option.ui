@@ -46,7 +46,7 @@
            </font>
           </property>
           <property name="text" >
-           <string>Option Description:</string>
+           <string>Description:</string>
           </property>
          </widget>
         </item>
@@ -86,7 +86,7 @@
            </font>
           </property>
           <property name="text" >
-           <string>Option Value:</string>
+           <string>Rank:</string>
           </property>
          </widget>
         </item>

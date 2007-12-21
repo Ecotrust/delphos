@@ -950,7 +950,7 @@
           </font>
          </property>
          <property name="title" >
-          <string>Previous Analysis:</string>
+          <string>Previous Analyses:</string>
          </property>
          <layout class="QVBoxLayout" >
           <item>
