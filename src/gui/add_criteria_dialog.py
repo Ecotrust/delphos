@@ -72,7 +72,15 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 			self.errorMsg += "* Please select a criteria type (ratio, binary, ordinal) and enter the appropriate information\n"
 		
 		current_tab_name = self.criteria_type_tab.tabText(self.criteria_type_tab.currentIndex())
-		
+
+		if self.benefit_button.isChecked():
+			cost_benefit = "B"
+		elif self.cost_button.isChecked():
+			cost_benefit = "C"
+		else:
+			self.isError = True
+			self.errorMsg += "* Please define criterion as a \"Benefit\" or \"Cost\"\n"
+
 		if current_tab_name == "Ratio":
 			ratio_description = self.ratio_description_edit.text()
 			if not ratio_description:
@@ -97,19 +105,16 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 			if len(self.ordinal_option_list) < 2:
 				self.isError = True
 				self.errorMsg += "* Your ordinal criterion must have at least two options\n"
+			
+			#if cost option then reverse option list to low-high
+			if cost_benefit == 'C':
+				self.ordinal_option_list.reverse()
+				
 			type_info = self.ordinal_option_list
 			
 		else:
 			self.isError = True
 			self.errorMsg += "Criteria add failed unexpectedly.\n"
-
-		if self.benefit_button.isChecked():
-			cost_benefit = "B"
-		elif self.cost_button.isChecked():
-			cost_benefit = "C"
-		else:
-			self.isError = True
-			self.errorMsg += "* Please define criterion as a \"Benefit\" or \"Cost\"\n"
 
 		if self.isError:
 			self.isError = False
@@ -138,7 +143,25 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 		else:
 			self.add_ordinal_option_dialog.hide()
 			self.add_ordinal_option_dialog.deleteLater()
-			self.ordinal_option_list.append(option_info)
+			
+			num_options = len(self.ordinal_option_list)
+			
+			if num_options == 0:
+				#New list
+				self.ordinal_option_list.append(option_info)
+			elif new_value < self.ordinal_option_list[num_options-1][1]:
+				#Add to end
+				self.ordinal_option_list.append(option_info)
+			else:
+				#Add to middle
+				for i in range(num_options):
+					(name, value) = self.ordinal_option_list[i]
+					if new_value > value:
+						self.ordinal_option_list.insert(i, option_info)
+						break
+
+			for row in self.ordinal_option_list:
+				print row
 			self.ordinal_option_table.load(self.ordinal_option_list)
 
 	def handle_remove_ordinal_option(self):
@@ -160,4 +183,4 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 		"""Processes clicking of Cancel button in dialog
 		"""
 		self.deleteLater()
-		self.hide()
+		self.hide()			 
