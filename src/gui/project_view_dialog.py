@@ -191,7 +191,9 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 
     def save_input(self):
         self.save_button.setDisabled(True)
+        self.gui_manager.save_dialog.show()
         self.input_table.save_input_data()
+        self.gui_manager.save_dialog.hide()
 
     def load_data_input(self):
         all_alternatives = self.project.get_all_alternatives()
@@ -431,19 +433,22 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
     def finish_new_analysis(self, altern_data, crit_data, input_data, input_weights, selected_crit_types):
         try:
             input_weights_copy = copy.deepcopy(input_weights)
+            self.gui_manager.process_dialog.show()
             [final_scores, int_data] = self.project.run_mca(input_data, input_weights_copy, selected_crit_types)
         except DelphosError, e:
+            self.gui_manager.process_dialog.hide()
             QMessageBox.critical(self,"Evamix Error", str(e))
         else:
             if final_scores:
                 self.mca_wizard.hide()
-                self.mca_wizard.deleteLater()            
+                self.mca_wizard.deleteLater()       
                 self.project.save_analysis(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, final_scores, int_data)
-
                 self.mca_runs_table.load(self.project.get_mca_runs_basic())
+                self.gui_manager.process_dialog.hide()
                 self.show_analysis_results(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, final_scores)
             else:
                 QMessageBox.critical(self,"Analysis Error", "MCA analysis failed.")
+            
 
 
     def start_view_analysis(self):

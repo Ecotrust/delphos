@@ -34,6 +34,7 @@ from project_view_dialog import ProjectViewDialog
 from language_dialog import LanguageDialog
 from credits_dialog import CreditsDialog
 from about_dialog import AboutDialog
+from progress_dialog2 import ProgressDialog2
 
 class GuiManager(QObject):
 	"""Provides access to, handles and maintins the Delphos GUI interface
@@ -52,34 +53,21 @@ class GuiManager(QObject):
 		qss.open(QIODevice.ReadOnly)
 		stylesheet = str(qss.readAll())
 		qss.close()
-		
-		#print "stylesheet: "
-		#print stylesheet
-		
+			
 		#self.qapp.setStyleSheet(stylesheet)
 
 		#Create DesktopService for accessing services provided by desktop (eg. web browser) 
 		self.desktop_services = QDesktopServices()
-
-		#Assign URL handler for help: links which can be placed in widgets and load appropriate help documentation
-		#self.desktop_services.setUrlHandler("help", self, SLOT("showHelp(QUrl)"))
-		#Assign URL handler for app: links, which can be placed in documentation and load appropriate widgets
-		#self.desktop_services.setUrlHandler("help", self, SLOT("showApp(QUrl)"))
-		#Test URL handler
-		#self.desktop_services.openUrl(QUrl('help:/me/now'))
 			
 		#Create main delphos window
 		self.win = DelphosWindow(self)
 		#Hide the docked widget initially
 		self.win.ui.dock_doc.hide()
 		
-		#Resize to full screen
-		#self.win.resize(self.get_screen_width(), self.get_screen_height())
-		#Resize to smallish size, above doesn't work for dual head linux machines
-		#self.win.adjustSize()
-		#self.win.showMinimized()
-		
-		#self.win.ui.doc_browser.setSource(QUrl('qrc:/documentation/fisheries_documentation.html'))
+		self.save_dialog = ProgressDialog2("Saving...")
+		self.load_dialog = ProgressDialog2("Loading...")
+		self.create_dialog = ProgressDialog2("Creating...")
+		self.process_dialog = ProgressDialog2("Processing...")
 		
 		#Signal to capture qrc link clicks in text browsers or labels
 		QObject.connect(self.win.ui.doc_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
@@ -95,7 +83,7 @@ class GuiManager(QObject):
 		
 		#Flag indicating whether dock_doc widget is currently full screen
 		self.dock_doc_is_full_screen = False
-        
+
 	def start_gui(self):
 		"""Displays the main window and additional startup dialog
 		"""
@@ -181,13 +169,16 @@ class GuiManager(QObject):
 		"""
 		project_filename, project_path, project_type, load_default_altern, load_default_crit = args
 		try:
+			self.create_dialog.show()
 			self.project_manager.create_project(project_filename, project_path, load_default_altern, load_default_crit, self.config_manager.get_language())
 		except DelphosError, e:
+			self.create_dialog.hide()
 			QMessageBox.critical(self.create_proj_dialog, "Project Creation Error", str(e))
 		else:
 			self.create_proj_dialog.close()
 			self.create_proj_dialog.deleteLater()
 			self.start_project_display()
+			self.create_dialog.hide()
 			
 	def start_project_opening(self):
 		"""Create dialog for opening an existing project
@@ -201,12 +192,15 @@ class GuiManager(QObject):
 		"""
 		project_filename, project_path = args
 		try:
+			self.load_dialog.show()
 			self.project_manager.open_project(project_filename, project_path)
 		except DelphosError, e:
+			self.load_dialog.hide()
 			QMessageBox.critical(self.open_proj_dialog,"Project Open Error", "Project opening failed: "+str(e))
 		else:
 			self.open_proj_dialog.close()
-			self.start_project_display()		
+			self.start_project_display()
+			self.load_dialog.hide()	
 	
 	def start_project_display(self):
 		"""Create widget displaying project

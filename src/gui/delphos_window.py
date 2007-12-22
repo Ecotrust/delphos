@@ -24,6 +24,7 @@ from PyQt4.QtGui import *
 from main_window_ui import Ui_MainWindow
 
 import os
+import urllib
 
 class DelphosWindow(QMainWindow):
 	"""Manages the main Delphos window interface (Ui_MainWindow)
@@ -55,8 +56,26 @@ class DelphosWindow(QMainWindow):
 	def load_full_doc(self):
 		"""Load full documentation in help window
 		"""
-		print "loading"
-		self.gui_manager.desktop_services.openUrl(QUrl('file:/documentation/fisheries/english/documentation.html'))
+
+		#Find which documentation subdir to look in
+		project_type = self.gui_manager.project_manager.get_current_project_type()
+		language = self.gui_manager.config_manager.get_language()
+		if project_type == 'fisheries':
+			if language == 'english':
+				doc_subdir = 'fisheries'+os.sep+'english'+os.sep
+			else:
+				doc_subdir = 'fisheries'+os.sep+'spanish'+os.sep
+		else:
+			if language == 'english':
+				doc_subdir = 'mpa'+os.sep+'english'+os.sep
+			else:
+				doc_subdir = 'mpa'+os.sep+'spanish'+os.sep
+		
+		doc_path = os.getcwd()+os.sep+"documentation"+os.sep+doc_subdir+'documentation.html'
+		doc_url = "file:"+urllib.pathname2url(unicode(doc_path))
+
+		#file:///U|/dev/delphos/src/documentation/fisheries/english/letter_to_experts.doc
+		self.gui_manager.desktop_services.openUrl(QUrl(doc_url))
 									  
 	def load_toc(self):
 		"""Loads the table of contents within the dock widget

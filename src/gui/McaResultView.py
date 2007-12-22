@@ -72,6 +72,8 @@ class McaResultView(QDialog, Ui_McaResultView):
         final_results = []
 
         #Build results dictionary using altern id as key
+        last_rank = None
+        last_score = None
         for i in range(len(results)):
             (altern_id, altern_name, altern_color) = altern_data[i]
             score = round(interm_results[altern_id], 4)
@@ -82,7 +84,19 @@ class McaResultView(QDialog, Ui_McaResultView):
             for j in range(len(sorted_results)):
                 (s_altern_id, s_score) = sorted_results[j]
                 if s_altern_id == altern_id:
-                    rank = j+1
+                    if last_score == score:
+                        if last_rank == None:
+                            last_rank = 1
+                            
+                        rank = last_rank
+                    else:
+                        if last_rank == None:
+                            last_rank = 0
+                            
+                        rank = last_rank+1
+                        last_rank += 1
+                        
+                    last_score = score
                 
             final_results.append([altern_id, altern_name, rank, score, altern_color])
         
