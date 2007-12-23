@@ -196,10 +196,12 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.gui_manager.save_dialog.hide()
 
     def load_data_input(self):
+        self.gui_manager.load_dialog.show()
         all_alternatives = self.project.get_all_alternatives()
         all_criteria = self.project.get_all_criteria()
         all_input = self.project.get_all_input()
         self.input_table.load(all_alternatives, all_criteria, all_input)
+        self.gui_manager.load_dialog.hide()
 
     def get_current_input(self):
         cur_input_vals = self.input_table.get_input_vals(input_required=False)
@@ -438,6 +440,9 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         except DelphosError, e:
             self.gui_manager.process_dialog.hide()
             QMessageBox.critical(self,"Evamix Error", str(e))
+        except ZeroDivisionError, e:
+            self.gui_manager.process_dialog.hide()
+            QMessageBox.critical(self,"Evamix Error", "Division by zero: "+str(e))
         else:
             if final_scores:
                 self.mca_wizard.hide()

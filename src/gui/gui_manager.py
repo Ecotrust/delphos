@@ -33,7 +33,7 @@ from open_project_dialog import OpenProjectDialog
 from project_view_dialog import ProjectViewDialog
 from language_dialog import LanguageDialog
 from credits_dialog import CreditsDialog
-from about_dialog import AboutDialog
+#from about_dialog import AboutDialog
 from progress_dialog2 import ProgressDialog2
 
 class GuiManager(QObject):

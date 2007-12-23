@@ -41,6 +41,6 @@ setup(
 			includes="FileDialog, Tkinter, numpy, sqlalchemy,sqlalchemy.*,sqlalchemy.mods.*,sqlalchemy.databases.*,sqlalchemy.engine.*,sqlalchemy.ext.*,sqlalchemy.orm.*"
 		),
 	),
-	app=[ 'start_gui.py' ],
+	app=[ 'Delphos.py' ],
 	install_requires=['py2app','SQLAlchemy','numpy']
 )

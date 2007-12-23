@@ -65,6 +65,10 @@ class AlternativeMcaTableWidget(QTableWidget):
         for i in range(self.num_rows):
             check_box = self.cellWidget(i, self.altern_check_display_column)
             check_box.setCheckState(Qt.Checked)
+
+    def check_one(self, index):
+        check_box = self.cellWidget(index, self.altern_check_display_column)
+        check_box.setCheckState(Qt.Checked)  
         
     def uncheck_all(self):
         for i in range(self.num_rows):

@@ -25,7 +25,7 @@ from copy import deepcopy
 class Evamix(object):
     
     def __init__(self):
-        self.debug = False
+        self.debug = True
 
     def do_analysis(self, in_matrix, crit_weights, crit_types):
         """Performs multicriteria analysis using the Evamix algorithm
@@ -219,16 +219,17 @@ class Evamix(object):
                     #for each pair of alternatives A and B for each alternatives
                     Ni_vals = []
                     for k in quant_cols:
-                        #print "i:"+str(i)+"j:"+str(j)+"k:"+str(k)
+                        print "i:"+str(i)+" j:"+str(j)+" k:"+str(k)
                         crit_weight = float(crit_weights[k])
-                        #print "crit weight: "+str(crit_weight)
+                        print "crit weight: "+str(crit_weight)
                         std_val_A = float(in_matrix[i][k])
-                        #print "std_val_A: "+str(std_val_A)
+                        print "std_val_A: "+str(std_val_A)
                         std_val_B = float(in_matrix[j][k])
-                        #print "std_val_B: "+str(std_val_B)
+                        print "std_val_B: "+str(std_val_B)
                         Ni = crit_weight * (std_val_A - std_val_B)
-                        #print "Ni: "+str(Ni)
+                        print "Ni: "+str(Ni)
                         Ni_vals.append(Ni)
+                    print "Sum: "+str(sum(Ni_vals))
                     mat[i][j] = sum(Ni_vals)
         return mat
 

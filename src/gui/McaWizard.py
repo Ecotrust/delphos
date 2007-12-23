@@ -107,20 +107,20 @@ class McaWizard(QDialog, Ui_McaWizard):
         
         if prev_run_data:
             (prev_run_id, prev_run_name, prev_run_description, prev_altern_data, prev_crit_data, prev_input_data, prev_input_weights, prev_results, prev_creation_date, int_results) = prev_run_data
-            self.altern_data = prev_altern_data        
-            self.crit_data = prev_crit_data
+            #self.altern_data = prev_altern_data        
+            #self.crit_data = prev_crit_data
         elif global_input_data:
             self.global_input_data = global_input_data
-
-        self.setup_crit_select()        
+            
         self.setup_altern_select()
+        self.setup_crit_select()
         
         if prev_run_data:
         	#Load up the wizard dialogs
-            self.check_all_alternatives()
+            self.check_prev_alternatives(prev_altern_data)
+            self.check_prev_criteria(prev_crit_data)
+
             self.process_altern_select()
-            
-            self.check_all_criteria()
             self.process_crit_select()
             
             self.setup_data_input()
@@ -160,9 +160,16 @@ class McaWizard(QDialog, Ui_McaWizard):
                 self.selected_altern_names.append(self.altern_data[index][self.altern_name_column])
             self.next_click()
         self.num_selected_alternatives = len(self.selected_altern_data)
-        
-    def check_all_alternatives(self):
+    
+    def check_all_alternatives(self, prev_altern_data):
         self.altern_table.check_all()
+    
+    def check_prev_alternatives(self, prev_altern_data):
+        for i in range(len(prev_altern_data)):
+            for j in range(len(self.altern_data)):
+                if prev_altern_data[i][self.altern_id_column] == self.altern_data[j][self.altern_id_column]:
+                    self.altern_table.check_one(j)
+                    break
     
     def uncheck_all_alternatives(self):
         self.altern_table.uncheck_all()
@@ -195,6 +202,13 @@ class McaWizard(QDialog, Ui_McaWizard):
 
     def check_all_criteria(self):
         self.crit_table.check_all()
+
+    def check_prev_criteria(self, prev_crit_data):
+        for i in range(len(prev_crit_data)):
+            for j in range(len(self.crit_data)):
+                if prev_crit_data[i][self.crit_id_column] == self.crit_data[j][self.crit_id_column]:
+                    self.crit_table.check_one(j)
+                    break
 
     def uncheck_all_criteria(self):
         self.crit_table.uncheck_all()
