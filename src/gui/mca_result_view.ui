@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>370</height>
+    <height>375</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -39,20 +39,108 @@
       </attribute>
       <layout class="QHBoxLayout" >
        <item>
-        <widget class="McaMplCanvas" native="1" name="mca_plot_canvas" >
-         <property name="minimumSize" >
-          <size>
-           <width>300</width>
-           <height>300</height>
-          </size>
-         </property>
-         <property name="maximumSize" >
-          <size>
-           <width>980</width>
-           <height>800</height>
-          </size>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" >
+         <item>
+          <layout class="QVBoxLayout" >
+           <item>
+            <widget class="McaMplCanvas" native="1" name="mca_plot_canvas" >
+             <property name="minimumSize" >
+              <size>
+               <width>380</width>
+               <height>250</height>
+              </size>
+             </property>
+             <property name="maximumSize" >
+              <size>
+               <width>980</width>
+               <height>800</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" >
+             <item>
+              <spacer>
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" >
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="label" >
+               <property name="minimumSize" >
+                <size>
+                 <width>80</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text" >
+                <string>Alternative #</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" >
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" >
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_2" >
+             <property name="text" >
+              <string>Rank</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>

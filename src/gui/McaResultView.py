@@ -25,6 +25,8 @@ from core.input_data_set import *
 from core.input_weight_set import *
 from mca_result_view_ui import Ui_McaResultView
 
+from util.common_functions import *
+
 class McaResultView(QDialog, Ui_McaResultView):
     """Manages the viewing of MCA analysis results
     """
@@ -56,49 +58,51 @@ class McaResultView(QDialog, Ui_McaResultView):
 
         interm_results = {}
         #Build results dictionary using altern id as key
+
         for i in range(len(results)):
             (altern_id, altern_name, altern_color) = altern_data[i]
             score = results[i]
             interm_results[altern_id] = score
 
+        #Sort alterns by score
         from operator import itemgetter
-        sorted_results = sorted(interm_results.items(), key=itemgetter(1), reverse=False)
+        sorted_results = sorted(interm_results.items(), key=itemgetter(1), reverse=True)
         
         #Make altern recs a dict using altern_id as key
         altern_dict = {}
         for altern in altern_data:
             altern_dict[altern[0]] = altern[1]
 
-        final_results = []
-
-        #Build results dictionary using altern id as key
-        last_rank = None
-        last_score = None
-        for i in range(len(results)):
-            (altern_id, altern_name, altern_color) = altern_data[i]
-            score = round(interm_results[altern_id], 4)
-            altern_name = altern_dict[altern_id]
-            altern_color = altern_data[i][self.altern_color_column]
+        #Build results list using altern id as key
+        final_results = initialize_list(len(results), None)
+        rank = None
+        prev_s_score = None
+        for i in range(len(sorted_results)):
+            #Get current score in sorted list
+            (s_altern_id, s_score) = sorted_results[i]
+            #Get previous score in sorted list, if there is one
+            if i > 0:
+                prev_s_score = sorted_results[i-1][1]
+            else:
+                prev_s_score = None
             
-            rank = None
-            for j in range(len(sorted_results)):
-                (s_altern_id, s_score) = sorted_results[j]
-                if s_altern_id == altern_id:
-                    if last_score == score:
-                        if last_rank == None:
-                            last_rank = 1
-                            
-                        rank = last_rank
-                    else:
-                        if last_rank == None:
-                            last_rank = 0
-                            
-                        rank = last_rank+1
-                        last_rank += 1
-                        
-                    last_score = score
+            for j in range(len(results)):
+                (altern_id, altern_name, altern_color) = altern_data[j]
+                score = interm_results[altern_id]
+                altern_name = altern_dict[altern_id]
+                altern_color = altern_data[j][self.altern_color_column]
                 
-            final_results.append([altern_id, altern_name, rank, score, altern_color])
+                if s_altern_id == altern_id:
+                    if score == prev_s_score:
+                        break
+                    else:
+                    	if not rank:
+                    		rank = 1
+                    	else:
+                        	rank += 1
+                        break
+                
+            final_results[j] = [altern_id, altern_name, rank, round(score,4), altern_color]
         
         self.final_table.load(final_results)
         self.mca_plot_canvas.draw_bar_chart(final_results)

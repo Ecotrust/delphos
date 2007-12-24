@@ -57,6 +57,14 @@ def initialize_str_array(rows, cols):
         mat.append([""] * cols)
     return mat
 
+def initialize_list(rows, initial_value):
+    """Allocates a list with number of rows and initial value given
+    """
+    list = []
+    for x in range(rows):
+        list.append(initial_value)
+    return list
+
 def utc_to_local_time(x):
     """Given a UTC datetime object x set to GMT, convert it to the local time
     """

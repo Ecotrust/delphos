@@ -161,7 +161,7 @@ class McaWizard(QDialog, Ui_McaWizard):
             self.next_click()
         self.num_selected_alternatives = len(self.selected_altern_data)
     
-    def check_all_alternatives(self, prev_altern_data):
+    def check_all_alternatives(self):
         self.altern_table.check_all()
     
     def check_prev_alternatives(self, prev_altern_data):
