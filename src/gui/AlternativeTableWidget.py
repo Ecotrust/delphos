@@ -22,6 +22,7 @@ import sys
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+from delphos_exceptions import *
 
 class AlternativeTableWidget(QTableWidget):
     def __init__(self, parent=None):

@@ -100,7 +100,7 @@ class McaWizard(QDialog, Ui_McaWizard):
 
         self.connect(self.help_select_alternatives, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_select_criteria, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
-        self.connect(self.help_input_data, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        self.connect(self.help_input_mca_data, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_weight_criteria, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
                 
         #Other signals
@@ -228,6 +228,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         and input values in one place.  Perhaps not a good implementation, but
         encapsulates a lot of the logic to work with them.
         """
+        self.gui_manager.load_dialog.show()
         if not self.input_data and self.global_input_data:
             self.input_data = InputDataSet(self.altern_data, self.crit_data)
             self.input_data.load_values(self.global_input_data)
@@ -239,7 +240,8 @@ class McaWizard(QDialog, Ui_McaWizard):
             #Update input set with any changes in criteria/alternatives
             self.input_data.update_headings(self.selected_altern_data, self.selected_crit_data)
         #Load the weight input table
-        self.input_table.load(self.input_data) 
+        self.input_table.load(self.input_data)
+        self.gui_manager.load_dialog.hide()
 
     def process_data_input(self, direction='forward'):
         input_required = True

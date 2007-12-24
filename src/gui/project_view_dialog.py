@@ -72,8 +72,9 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 
         self.connect(self.help_define_alternatives, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_define_criteria, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        self.connect(self.help_input_global_data, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_8_run_analysis, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
-        self.connect(self.help_prev_analysis, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        self.connect(self.help_run_the_program, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
 
         self.connect(self.input_table, SIGNAL("update_input_value"), self.project.update_input_value)
         self.connect(self.input_table, SIGNAL("update_input_complete"), self.load_data_input)
@@ -118,13 +119,13 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.connect(self.add_altern_dialog, SIGNAL("add_alternative_info_collected"), self.finish_add_alternative)
         self.add_altern_dialog.show()
     
-    def finish_add_alternative(self, alternative_name):
+    def finish_add_alternative(self, alternative_name, alternative_color):
         """Add alternative given its name from dialog
         """
         try:
-            self.project.add_alternative(alternative_name)
+            self.project.add_alternative(alternative_name, alternative_color)
         except DelphosError, e:
-            QMessageBox.critical(self.add_altern_dialog,"Alternative Error", str(e))
+            QMessageBox.critical(self.add_altern_dialog,"Alternative Error", unicode(e.value))
         else:
             self.add_altern_dialog.close()
             self.add_altern_dialog.deleteLater()
@@ -134,19 +135,16 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         try:
             cur_row_item = self.altern_table.get_current_row_items()
         except DelphosError, e:
-            QMessageBox.critical(self,"Please select or add an alternative first.", str(e))
+            QMessageBox.critical(self,"Please select or add an alternative first.", unicode(e.value))
         else:
-            if cur_row_item:
-                altern_name = unicode(cur_row_item.text())
-                altern_id = self.project.get_alternative_id_by_name(altern_name)
-                altern_success = self.project.remove_alternative_by_name(altern_name)
-                input_success = self.project.remove_input_by_alternative(altern_id)
-                if not altern_success or not input_success:
-                    QMessageBox.critical(self,"Remove Alternative Error", "Failed to remove alternative and all associated input data.")
-                else:
-                    self.altern_table.load(self.project.get_all_alternatives())
+            altern_name = unicode(cur_row_item.text())
+            altern_id = self.project.get_alternative_id_by_name(altern_name)
+            altern_success = self.project.remove_alternative_by_name(altern_name)
+            input_success = self.project.remove_input_by_alternative(altern_id)
+            if not altern_success or not input_success:
+                QMessageBox.critical(self,"Remove Alternative Error", "Failed to remove alternative and all associated input data.")
             else:
-                QMessageBox.critical(self,"Remove Alternative Error", "You must first select an alternative.")
+                self.altern_table.load(self.project.get_all_alternatives())
 
     ################################# Criteria ##############################
 
@@ -171,8 +169,11 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             self.crit_table.load(self.project.get_all_criteria())
 
     def start_remove_criteria(self):
-        cur_item = self.crit_table.get_current_row_items()
-        if cur_item:
+        try:
+            cur_item = self.crit_table.get_current_row_items()
+        except DelphosError, e:
+            QMessageBox.critical(self,"Error Removing Criterion", unicode(e.value))
+        else:
             crit_desc = unicode(cur_item.text())
             crit_id = self.project.get_criteria_id_by_name(crit_desc)            
             crit_success = self.project.remove_criteria_by_description(crit_desc)
@@ -181,8 +182,6 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
                 QMessageBox.critical(self,"Remove Criteria Error", "Failed to remove criteria and all associated input data.")
             else:
                 self.crit_table.load(self.project.get_all_criteria())
-        else:
-            QMessageBox.critical(self,"Remove Criteria Error", "You must first select one from the criteria table.")
 
     ################################# Input Data ##############################
 
@@ -423,7 +422,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         if not self.analysis_name:
             QMessageBox.critical(self,"Analysis Error", "You must enter a name for this analysis")
         else:
-            #Fire up MCA Wizard.            
+            #Fire up MCA Wizard.
+            self.gui_manager.load_dialog.show()           
             if self.input_table.loaded:
                 self.mca_wizard = McaWizard(self.gui_manager, self, self.project, global_input_data=self.get_current_input())
             else:
@@ -431,6 +431,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
                 
             self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
             self.mca_wizard.show()
+            self.gui_manager.load_dialog.hide()
             
     def finish_new_analysis(self, altern_data, crit_data, input_data, input_weights, selected_crit_types, selected_crit_bc):
         try:

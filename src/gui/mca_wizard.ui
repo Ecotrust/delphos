@@ -440,7 +440,7 @@
           </widget>
          </item>
          <item>
-          <widget class="HelpButton" name="help_input_data" >
+          <widget class="HelpButton" name="help_input_mca_data" >
            <property name="text" >
             <string/>
            </property>
@@ -754,6 +754,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>HelpButton</class>
+   <extends>QPushButton</extends>
+   <header location="global" >HelpButton.h</header>
+  </customwidget>
+  <customwidget>
    <class>AlternativeMcaTableWidget</class>
    <extends>QTableWidget</extends>
    <header>AlternativeMcaTableWidget.h</header>
@@ -772,11 +777,6 @@
    <class>WeightMcaTableWidget</class>
    <extends>QTableWidget</extends>
    <header>WeightMcaTableWidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>HelpButton</class>
-   <extends>QPushButton</extends>
-   <header location="global" >HelpButton.h</header>
   </customwidget>
  </customwidgets>
  <resources>

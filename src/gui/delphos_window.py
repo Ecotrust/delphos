@@ -162,7 +162,6 @@ class DelphosWindow(QMainWindow):
 		"""Uses the help type given to load a section of the documentation
 		"""
 		label = name.replace('help_', '')
-		print label
 		#Build URL
 		project_type = self.gui_manager.project_manager.get_current_project_type()
 		language = self.gui_manager.config_manager.get_language()

@@ -18,13 +18,14 @@
 #===============================================================================
 
 class ConfigManager():
-	"""Manages application configuration
-	"""
-	def __init__(self):
-		self.language = None
-	
-	def set_language(self, language):
-		self.language = language
-	
-	def get_language(self):
-		return self.language
+    """Manages application configuration
+    """
+    def __init__(self):
+        self.language = None
+    
+    def set_language(self, language):
+        self.language = language
+    
+    def get_language(self):
+        return self.language
+

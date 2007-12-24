@@ -257,12 +257,12 @@
          </column>
          <column>
           <property name="text" >
-           <string>                              </string>
+           <string/>
           </property>
          </column>
          <column>
           <property name="text" >
-           <string>                              </string>
+           <string/>
           </property>
          </column>
         </widget>
@@ -342,6 +342,25 @@
       </spacer>
      </item>
      <item>
+      <widget class="HelpButton" name="help_define_criteria" >
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="flat" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QDialogButtonBox" name="add_criteria_box" >
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
@@ -356,6 +375,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>HelpButton</class>
+   <extends>QPushButton</extends>
+   <header location="global" >HelpButton.h</header>
+  </customwidget>
   <customwidget>
    <class>OrdinalOptionTableWidget</class>
    <extends>QTableWidget</extends>

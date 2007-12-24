@@ -34,6 +34,7 @@ from data import default_alternative_data
 from data import default_criteria_data
 
 from evamix.evamix import *
+from util.common_functions import *
 
 class Project:
     """Represents a delphos project.
@@ -94,7 +95,30 @@ class Project:
             self.__create_criteria_set(load_default_crit)
             self.__create_input_set()
             self.__create_mca_runs_table()
-        
+
+        #Cross-platform compatible colors taken from 
+        #http://www.tbtf.com/resource/20colors.html
+        self.default_altern_colors = [
+                                      '#ff0000',
+                                      '#00ff00',
+                                      '#0000ff',
+                                      '#ffff00',
+                                      '#ff00ff',
+                                      '#00ffff',
+                                      '#000000', 
+                                      '#800000', 
+                                      '#008000', 
+                                      '#808000',
+                                      '#000080',
+                                      '#800080',
+                                      '#008080',
+                                      '#c0c0c0',
+                                      '#c0dcc0',
+                                      '#a6caf0',
+
+                                      '#808080',
+                                      ]
+
     def __create_project_db(self):
         """Creates a persistent DB for storing project data.
         """
@@ -132,12 +156,12 @@ class Project:
         for i in range(len(self.default_alternatives)):
             self.altern_set.add_alternative((self.default_alternatives[i]))
 
-    def add_alternative(self, name):
+    def add_alternative(self, name, color):
         """Add alternative to the project AlternativeSet
         
         name (string) - name of alternative
         """
-        self.altern_set.add_alternative(name)
+        self.altern_set.add_alternative(name, color)
 
     def remove_alternative_by_id(self, alternative_id):
         """Remove alternative from the project AlternativeSet given its unique alternative id
@@ -184,6 +208,14 @@ class Project:
         """Returns alternative id given an alternative name"""
         if self.altern_set:
             return self.altern_set.get_alternative_id_by_name(name)
+
+    def get_next_altern_color(self):
+        num_alterns = self.num_alternatives()
+        if num_alterns < 17:
+            return self.default_altern_colors[num_alterns]
+        else:
+            return "#ffffff"
+            
 
     ################################# Criteria ##############################
 

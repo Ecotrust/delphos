@@ -1057,7 +1057,7 @@
                </widget>
               </item>
               <item>
-               <widget class="HelpButton" name="help_prev_analysis" >
+               <widget class="HelpButton" name="help_run_the_program" >
                 <property name="text" >
                  <string/>
                 </property>
