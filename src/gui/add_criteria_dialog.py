@@ -94,12 +94,19 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 			binary_no_description = self.binary_no_edit.text()
 			if not binary_yes_description:
 				self.isError = True
-				self.errorMsg += "* Please enter a \"Yes\" description\n"
+				self.errorMsg += "* Please enter a description for Option 1\n"
 			if not binary_no_description:
 				self.isError = True
-				self.errorMsg += "* Please enter a \"No\" description\n"
+				self.errorMsg += "* Please enter a description for Option 2\n"
 			if not self.isError:
-				type_info = [[unicode(binary_yes_description), 2],[unicode(binary_no_description), 1]]
+				if cost_benefit == 'B':
+					#If benefit then yes should be valued higher
+					type_info = [[unicode(binary_yes_description), 2],[unicode(binary_no_description), 1]]
+				elif cost_benefit == 'C':
+					#If cost then no should be valued higher
+					type_info = [[unicode(binary_yes_description), 1],[unicode(binary_no_description), 2]]
+
+			
 				
 		elif current_tab_name == "Ordinal":
 			if len(self.ordinal_option_list) < 2:
