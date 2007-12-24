@@ -33,7 +33,7 @@ from open_project_dialog import OpenProjectDialog
 from project_view_dialog import ProjectViewDialog
 from language_dialog import LanguageDialog
 from credits_dialog import CreditsDialog
-#from about_dialog import AboutDialog
+from about_dialog import AboutDialog
 from progress_dialog2 import ProgressDialog2
 
 class GuiManager(QObject):
@@ -282,6 +282,8 @@ class GuiManager(QObject):
 			#Find which documentation subdir to look in
 			project_type = self.project_manager.get_current_project_type()
 			language = self.config_manager.get_language()
+			print "my language"
+			print language
 			if project_type == 'fisheries':
 				if language == 'english':
 					doc_subdir = 'fisheries'+os.sep+'english'+os.sep
