@@ -432,11 +432,11 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
             self.mca_wizard.show()
             
-    def finish_new_analysis(self, altern_data, crit_data, input_data, input_weights, selected_crit_types):
+    def finish_new_analysis(self, altern_data, crit_data, input_data, input_weights, selected_crit_types, selected_crit_bc):
         try:
             input_weights_copy = copy.deepcopy(input_weights)
             self.gui_manager.process_dialog.show()
-            [final_scores, int_data] = self.project.run_mca(input_data, input_weights_copy, selected_crit_types)
+            [final_scores, int_data] = self.project.run_mca(input_data, input_weights_copy, selected_crit_types, selected_crit_bc)
         except DelphosError, e:
             self.gui_manager.process_dialog.hide()
             QMessageBox.critical(self,"Evamix Error", str(e))

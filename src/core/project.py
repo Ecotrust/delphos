@@ -296,9 +296,9 @@ class Project:
     def get_num_mca_runs(self):
         return self.mca_runs.get_num()
         
-    def run_mca(self, input_data, input_weights, selected_crit_types):
+    def run_mca(self, input_data, input_weights, selected_crit_types, selected_crit_bc):
         evamix = Evamix()
-        return evamix.do_analysis(input_data, input_weights, selected_crit_types)
+        return evamix.do_analysis(input_data, input_weights, selected_crit_types, selected_crit_bc)
 
     def save_analysis(self, name, description, altern_data, crit_data, input_data, input_weights, results, int_data):        
         self.mca_runs.insert(name, description, altern_data, crit_data, input_data, input_weights, results, int_data)

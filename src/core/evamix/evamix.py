@@ -27,7 +27,7 @@ class Evamix(object):
     def __init__(self):
         self.debug = True
 
-    def do_analysis(self, in_matrix, crit_weights, crit_types):
+    def do_analysis(self, in_matrix, crit_weights, crit_types, crit_bc):
         """Performs multicriteria analysis using the Evamix algorithm
         
         Returns a list containing a list of final scores and a list of
@@ -47,6 +47,10 @@ class Evamix(object):
             raise DelphosError, "No criteria types given"
         if type(crit_types) is not type([]):
             raise DelphosError, "No criteria types given"
+        if not crit_bc:
+            raise DelphosError, "No criteria cost/benefits given"
+        if type(crit_bc) is not type([]):
+            raise DelphosError, "No criteria cost/benefits given"        
 
         if len(in_matrix) < 1:
             raise DelphosError, "in_matrix contains no data"
@@ -61,6 +65,9 @@ class Evamix(object):
 
             print "crit types:"
             print crit_types
+            
+            print "cost benefits:"
+            print crit_bc
         
         self.num_criteria = len(in_matrix[0])
         self.num_alternatives = len(in_matrix)
@@ -241,6 +248,8 @@ class Evamix(object):
         impact_matrix = initialize_float_array(dim, dim)
         for i in range(dim):
             for j in range(dim):
+                crit_type = None
+                bc_type = None
                 #Don't compare alternative to itself
                 if i is not j:
                     sum_greater = 0.0
@@ -253,15 +262,18 @@ class Evamix(object):
                         #print "val_B: "+str(val_B)
                         crit_weight = float(crit_weights[k])
                         #print "crit weight: "+str(crit_weight)
+                        
                         if (val_A > val_B):
                             sum_greater += crit_weight
                             #print "sum_greater: "+str(sum_greater)
                         elif (val_A < val_B):
                             sum_less += crit_weight
                             #print "sum_less: "+str(sum_less)
+                            
                     #print "total sum greater: "+str(sum_greater)
                     #print "total sum less: "+str(sum_less)
                     impact_matrix[i][j] = sum_greater - sum_less
+                    
                     #print "cell val: "+str(impact_matrix[i][j])         
         return impact_matrix
 

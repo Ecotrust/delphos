@@ -73,6 +73,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         self.crit_name_column = 1
         self.crit_type_column = 2
         self.crit_options_column = 3
+        self.crit_bc_column = 4
         
         self.global_input_data = None
         
@@ -191,12 +192,14 @@ class McaWizard(QDialog, Ui_McaWizard):
             self.selected_crit_ids = []
             self.selected_crit_names = []
             self.selected_crit_types = []
+            self.selected_crit_bc = []
             for index in selected_crit_indexes:
                 crit = self.crit_data[index]
                 self.selected_crit_data.append(crit)
                 self.selected_crit_ids.append(crit[self.crit_id_column])
                 self.selected_crit_names.append(crit[self.crit_name_column])
                 self.selected_crit_types.append(crit[self.crit_type_column])
+                self.selected_crit_bc.append(crit[self.crit_bc_column])
             self.next_click()
         self.num_selected_criteria = len(self.selected_crit_data)
 
@@ -330,7 +333,7 @@ class McaWizard(QDialog, Ui_McaWizard):
             if self.isError:
                 self.isError = False
             else:
-                self.emit(SIGNAL("mca_analysis_info_collected"), self.selected_altern_data, self.selected_crit_data, self.input_data.get_mca_input(), self.input_weights.get_weights(), self.selected_crit_types)
+                self.emit(SIGNAL("mca_analysis_info_collected"), self.selected_altern_data, self.selected_crit_data, self.input_data.get_mca_input(), self.input_weights.get_weights(), self.selected_crit_types, self.selected_crit_bc)
 
     ############################# General ###############################
 
