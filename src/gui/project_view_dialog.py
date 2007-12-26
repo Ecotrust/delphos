@@ -188,6 +188,9 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
     def enable_input_save(self, prevRow=0, prevCol=0, curRow=0, curCol=0):
         self.save_button.setEnabled(True)
 
+    def disable_input_save(self):
+        self.save_button.setEnabled(False)
+
     def save_input(self):
         self.save_button.setDisabled(True)
         self.gui_manager.save_dialog.show()
@@ -200,6 +203,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         all_criteria = self.project.get_all_criteria()
         all_input = self.project.get_all_input()
         self.input_table.load(all_alternatives, all_criteria, all_input)
+        #Loading of input will trigger enabling of save button, needs to default to diabled
+        self.disable_input_save()
         self.gui_manager.load_dialog.hide()
 
     def get_current_input(self):
@@ -653,7 +658,15 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         
     def process_current_change(self, index):
         """Loads the appropriate widget when the next button is clicked
-        """       
+        """
+        #if tab was 3
+        if self.cur_tab == 3:
+            if self.save_button.isEnabled():
+                response = QMessageBox.question(self, "Save Input", "You have new or modified input values.  Do you want to save them now?", QMessageBox.Yes, QMessageBox.No)
+                if response == QMessageBox.Yes:
+                    self.save_input()
+
+        #if new tab is 3
         if index is 3:
             if self.cur_tab > 3 and not self.input_table.loaded:
                 self.load_data_input()
