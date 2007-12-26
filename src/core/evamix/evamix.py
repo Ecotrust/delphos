@@ -112,6 +112,10 @@ class Evamix(object):
         if self.debug:
             print "\nStandardized weights: "
             print crit_weights
+
+        # If cost ratio criterion then values need to be 'flipped' so that lower 
+        # values will score better than higher values
+        in_matrix = self.flip_cost_ratio_criteria_values(in_matrix, quant_cols, crit_bc)
             
         in_matrix = self.standardize_quantitative_values(in_matrix, quant_cols)
         if self.debug:
@@ -192,6 +196,24 @@ class Evamix(object):
             weight = new_weights[i]
             std_weight = float(weight)/float(new_sum)
             weights[i] = std_weight
+
+    def flip_cost_ratio_criteria_values(self, in_matrix, quant_cols, crit_bc):
+        flip = lambda val, max_val: (val*-1)+max_val
+        
+        #Copy in_matrix, each iteration needs the untouched original.
+        new_matrix = deepcopy(in_matrix)
+
+        for col in quant_cols:
+            if crit_bc[col] == 'C':
+                col_vals = self.get_criteria_by_col(in_matrix, col)
+                max_val = max(col_vals)
+                #Flip the values
+                for i in range(len(col_vals)):
+                    new_val = flip(col_vals[i], max_val)
+                    #Update the original value
+                    new_matrix[i][col] = new_val
+        
+        return new_matrix
 
     def standardize_quantitative_values(self, in_matrix, quant_cols):
         """Standardizes all quantitative values.
