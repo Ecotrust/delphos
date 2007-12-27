@@ -33,8 +33,11 @@ from core.project_manager import *
 from core.config_manager import *
 from gui.gui_manager import *
 
+import warnings
+
 if __name__ == "__main__":
-	project_manager = ProjectManager()
-	config_manager = ConfigManager()
-	gui_manager = GuiManager(project_manager, config_manager)
-	gui_manager.start_gui()
+    warnings.simplefilter('ignore', RuntimeWarning) 
+    project_manager = ProjectManager()
+    config_manager = ConfigManager()
+    gui_manager = GuiManager(project_manager, config_manager)
+    gui_manager.start_gui()
