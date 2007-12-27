@@ -123,7 +123,7 @@ fisheries_english_default_criteria = [
        "people", 
        "B"
     ],[
-       "Percentage of the human population within the coastal community that depends on the fishery for their food or livelihood (eg. '.10', '.75')", 
+       "Percentage of the human population within the coastal community that depends on the fishery for their food or livelihood (eg. '10', '75')", 
        "Ratio", 
        "percentage of population", 
        "B"
