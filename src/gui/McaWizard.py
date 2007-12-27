@@ -281,18 +281,16 @@ class McaWizard(QDialog, Ui_McaWizard):
         try:
             self.input_data.check_quant_rows()
         except InputError, e:
-            QMessageBox.critical(self,"Input Error", "Your inputs for a given quantitative criterion are all the same value.  This is a limitation of the Evamix algorithm, at least one value in a row must be difference."+unicode(e.value))
+            QMessageBox.critical(self,"Input Error", "Your inputs for a given quantitative criterion (Ratio) are all the same value.  This is a limitation of the Evamix algorithm, at least one value in a row must be difference."+unicode(e.value))
             return False
-        else:
-            return True
 
         try:
             self.input_data.check_qual_rows()
         except InputError, e:
             QMessageBox.critical(self,"Input Error", "Your inputs for all qualitative criteria (Ordinal/Binary) are the same value.  This is not valid input for the Evamix algorithm, at least one value in one qualitative criteria row must be different."+unicode(e.value))
             return False
-        else:
-            return True
+
+        return True
         
     ########################## Input Weights #########################
 

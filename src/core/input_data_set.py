@@ -175,7 +175,7 @@ class InputDataSet():
 			 
 		all_same = reduce(lambda x, y: x and y, row_same_list) 
 		if all_same: 
-			raise InputError, unicode(row+1)+" '"+unicode(crit_name)+"'"
+			raise InputError, ""
 			
 	def check_same_values_by_row(self, row):
 		"""Check if the cells in any row all have the same values
