@@ -88,7 +88,7 @@
          </font>
         </property>
         <property name="text" >
-         <string>* Note, the CSV file that is generated will use the 'utf-8' encoding scheme to allow for non-english characters (ñ, ä, 字, etc.).  If you have input non-english characters be sure and specify 'utf-8' encoding when you open the file (OpenOffice Calc, Notepad, etc.).  If you use MS Excel it is likely to choose the wrong encoding for you automatically and you will see odd characters.  To specify utf-8 encoding in Excel you must re-save the CSV file (.csv) as a text file (.txt) using Notepad or other and then open the text file in Excel.  Specify the 'utf-8' encoding and 'comma' delimiter when asked.</string>
+         <string>* Note, this will export a comma-separated-value (CSV) file in the 'utf-8' encoding.  This encoding allows for non-latin characters such as (ñ, ä, 字, etc.).  When opening the file in OpenOffice Calc, Notepad, etc. be sure to specify the 'utf-8' encoding.  If you use MS Excel you will need to open the CSV as a text file by clicking File->Open->Files of type: Text Files.  Specify the 'utf-8' encoding and 'comma' delimiter when asked.</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
