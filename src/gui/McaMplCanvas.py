@@ -23,6 +23,8 @@ from PyQt4 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.font_manager import FontProperties
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
+
 from pylab import * #Keep
 import pytz.zoneinfo #Keep
 from pytz.zoneinfo import UTC #Keep
@@ -78,8 +80,12 @@ class McaMplCanvas(MyMplCanvas):
 
         #pyqt matplotlib widget (subplot)
         self.axes.bar(ind, ranks, width, color=altern_colors)
-        self.axes.legend(p1, altern_names, loc='best', pad=0.1, prop=FontProperties(size='small'))
-        #self.axes.xlabel('Rank')
-        #self.axes.ylabel('Final Score')
-        #self.axes.bar.title = 'MCA Results'
-        #legend(p1, altern_names, loc='best', pad=0.1, prop=FontProperties(size='small'))
+        #Y-axis ticks should be whole integers
+        majorLocator = MultipleLocator(1)
+        self.axes.yaxis.set_major_locator(majorLocator)
+        #X-axis should have no ticks
+        self.axes.xaxis.set_major_locator(NullLocator())
+#       self.axes.set_ylabel("Rank")
+#       self.axes.set_xlabel("Alternative")
+        self.axes.legend(p1, altern_names, 'best', pad=0.1, prop=FontProperties(size='small'))
+#       self.axes.set_title ('MCA Results', va='top')
