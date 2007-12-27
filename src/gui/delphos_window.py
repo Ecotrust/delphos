@@ -111,7 +111,7 @@ class DelphosWindow(QMainWindow):
 				{"8. Run Analysis":[
 					"Select Alternatives",
 					"Select Criteria",
-					"Input Data",
+					"Input MCA Data",
 					"Weight Criteria",
 					"Run the Program"
 				]}

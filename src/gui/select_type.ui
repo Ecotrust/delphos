@@ -193,6 +193,9 @@
               </item>
               <item>
                <widget class="QPushButton" name="mpa_type_button" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
                 <property name="font" >
                  <font>
                   <family>Arial</family>

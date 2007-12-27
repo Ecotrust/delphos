@@ -72,7 +72,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 
         self.connect(self.help_define_alternatives, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_define_criteria, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
-        self.connect(self.help_input_global_data, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
+        self.connect(self.help_input_data, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_8_run_analysis, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_run_the_program, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
 

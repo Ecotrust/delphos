@@ -710,7 +710,7 @@
           </widget>
          </item>
          <item>
-          <widget class="HelpButton" name="help_input_global_data" >
+          <widget class="HelpButton" name="help_input_data" >
            <property name="text" >
             <string/>
            </property>
