@@ -77,6 +77,19 @@
                 </property>
                </widget>
               </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
              </layout>
             </widget>
            </item>
@@ -95,6 +108,23 @@
              </property>
              <layout class="QVBoxLayout" >
               <item>
+               <widget class="QCheckBox" name="default_crit_check" >
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Load Suggested Criteria</string>
+                </property>
+                <property name="checked" >
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QCheckBox" name="default_altern_check" >
                 <property name="font" >
                  <font>
@@ -112,21 +142,17 @@
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="default_crit_check" >
-                <property name="font" >
-                 <font>
-                  <pointsize>9</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Vertical</enum>
                 </property>
-                <property name="text" >
-                 <string>Load Suggested Criteria</string>
+                <property name="sizeHint" >
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
                 </property>
-                <property name="checked" >
-                 <bool>true</bool>
-                </property>
-               </widget>
+               </spacer>
               </item>
              </layout>
             </widget>

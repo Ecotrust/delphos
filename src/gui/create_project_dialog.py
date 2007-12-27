@@ -43,7 +43,8 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 		QObject.connect(self.project_browse_button,QtCore.SIGNAL("clicked()"), self.process_browse)
 		QObject.connect(self.create_button_box,QtCore.SIGNAL("accepted()"), self.process_accept)
 		QObject.connect(self.create_button_box,QtCore.SIGNAL("rejected()"), self.process_reject)
-
+		self.default_altern_check.hide()
+		
 	def process_browse(self):
 		"""Processes clicking of browse button
 		"""
