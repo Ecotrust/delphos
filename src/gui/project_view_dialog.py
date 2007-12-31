@@ -466,7 +466,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         try:
             selected_id = self.mca_runs_table.get_selected_id()
         except InputError, e:
-            QMessageBox.critical(self,"View Error", str(e))
+            QMessageBox.critical(self,"View Error", str(e.value))
         else:
             (id, name, description, altern_data, crit_data, input_data, input_weights, results, created, int_data) = self.project.get_mca_run_by_id(selected_id)
             self.show_analysis_results(name, description, altern_data, crit_data, input_data, input_weights, results)
@@ -476,7 +476,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             selected_id = self.mca_runs_table.get_selected_id()
             self.mca_data = self.project.get_mca_run_by_id(selected_id)
         except InputError, e:
-            QMessageBox.critical(self,"Run Error", str(e))
+            QMessageBox.critical(self,"Run Error", str(e.value))
         else:            
             self.rerun_dialog = McaRerunDialog(self)
             self.connect(self.rerun_dialog, SIGNAL("mca_rerun_info_collected"), self.start_rerun_analysis2)
@@ -492,13 +492,14 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.mca_wizard.show()    
     
     def start_export_analysis(self):
-        self.export_id = self.mca_runs_table.get_selected_id()
-        if not self.export_id:
-            QMessageBox.critical(self,"Selection Error", "No analysis runs have been selected")
-            return
-        self.export_analysis_dialog = ExportAnalysisDialog(self)
-        self.connect(self.export_analysis_dialog, SIGNAL("export_analysis_info_collected"), self.finish_export_analysis)
-        self.export_analysis_dialog.show()
+        try:
+            self.export_id = self.mca_runs_table.get_selected_id()
+        except DelphosError, e:
+            QMessageBox.critical(self,"Analysis Delete Error", str(e.value))    
+        else:
+            self.export_analysis_dialog = ExportAnalysisDialog(self)
+            self.connect(self.export_analysis_dialog, SIGNAL("export_analysis_info_collected"), self.finish_export_analysis)
+            self.export_analysis_dialog.show()
     
     def finish_export_analysis(self, filename):
         
@@ -628,13 +629,14 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QMessageBox.information(self,"Template Exported", "Analysis was successfully exported to "+filename)
     
     def start_delete_analysis(self):
-        selected_id = self.mca_runs_table.get_selected_id()
-        if not selected_id:
-            QMessageBox.critical(self,"Selection Error", "No analysis runs have been selected")
-            return
-        self.yes_no_dialog = YesNoDialog(self, "Are you sure you want to delete this analysis run?")
-        self.connect(self.yes_no_dialog, SIGNAL("delete_confirm"), self.finish_delete_analysis)
-        self.yes_no_dialog.show()
+        try:
+            selected_id = self.mca_runs_table.get_selected_id()
+        except DelphosError, e:
+            QMessageBox.critical(self,"Analysis Delete Error", str(e.value))    
+        else:
+            self.yes_no_dialog = YesNoDialog(self, "Are you sure you want to delete this analysis run?")
+            self.connect(self.yes_no_dialog, SIGNAL("delete_confirm"), self.finish_delete_analysis)
+            self.yes_no_dialog.show()
 
     def finish_delete_analysis(self, confirm):
         if confirm is True:
@@ -642,7 +644,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             try:
                 self.project.delete_analysis(selected_id)
             except DelphosError, e:
-                QMessageBox.critical(self,"Analysis Delete Error", str(e))
+                QMessageBox.critical(self,"Analysis Delete Error", str(e.value))
             else:
                 self.mca_runs_table.load(self.project.get_mca_runs_basic())
         
