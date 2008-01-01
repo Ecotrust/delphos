@@ -17,8 +17,6 @@ import os
 #Taken from http://osdir.com/ml/python.py2exe/2006-02/msg00085.html
 def tree(src):
     list = [(root, map(lambda f: os.path.join(root, f), files)) for (root, dirs, files) in os.walk(os.path.normpath(src))]
-    for row in list:
-        print row 
     new_list = []
     for (root, files) in list:
         if len(files) > 0:
@@ -69,6 +67,9 @@ class InnoScript:
         for path in self.windows_exe_files:
             print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"' % \
                   (self.name, path)
+                  
+        print >> ofi, r'Name: "{group}\Delphos Fisheries Documentation - English"; Filename: "{app}\documentation\fisheries\english\documentation.html"'
+                  
         print >> ofi, 'Name: "{group}\Uninstall %s"; Filename: "{uninstallexe}"' % self.name
 
     def compile(self):
@@ -141,7 +142,8 @@ options = {
 }
 
 matplotlib_data_files = tree('lib\matplotlibdata')
-doc_data_files = tree('documentation') 
+doc_data_files = tree('documentation')
+base_files = ("",["LICENSE.txt", "README.txt"])
 data_files = matplotlib_data_files + doc_data_files
  
 setup(
