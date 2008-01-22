@@ -100,7 +100,7 @@ fisheries_english_default_criteria = [
     ],[
        "Compliance with international regulations for species conservation", 
        "Binary", 
-       [["Compliant",1],["Not compliant",0]], 
+       [["Compliant",2],["Not compliant",1]], 
        "B"
     ],[
        "Enforcement of fishery regulations", 
@@ -130,8 +130,8 @@ fisheries_english_default_criteria = [
     ],[
        "Coastal development", 
        "Ordinal", 
-       [["Highly developed and industrialized",1],["Developed",2],["Semi-rural",3],["Rural",4]], 
-       "C"
+       [["Rural",4],["Semi-rural",3],["Developed",2],["Highly developed and industrialized",1]], 
+       "B"
     ],[
        "Socioeconomic level of fishing community", 
        "Ordinal", 
@@ -237,7 +237,7 @@ fisheries_spanish_default_criteria = [
     ],[
        u"Cumplimiento de las regulaciones internacionales para la conservación de las especies", 
        u"Binary", 
-       [[u"Las cumplen",1],[u"No las cumplen",0]], 
+       [[u"Las cumplen",2],[u"No las cumplen",1]], 
        u"B"
     ],[
        u"Aplicación de las regulaciones de la pesquería", 

@@ -6,48 +6,51 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <head>
 <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
 <meta name=ProgId content=Word.Document>
-<meta name=Generator content="Microsoft Word 11">
-<meta name=Originator content="Microsoft Word 11">
-<link rel=File-List href="documentation_files/filelist.xml">
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List
+href="Text%20HTML%20-%20v2%20%20AC%20edits%202_files/filelist.xml">
 <title>Delphos Documentation</title>
 <o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
  name="country-region"/>
 <o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="PostalCode"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="address"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="Street"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="State"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
  name="City"/>
 <o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
  name="place"/>
-<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
- name="State"/>
 <o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
  name="stockticker"/>
 <!--[if gte mso 9]><xml>
  <o:DocumentProperties>
   <o:Author>Alison Cross</o:Author>
   <o:Template>Normal</o:Template>
-  <o:LastAuthor>Tim Welch</o:LastAuthor>
-  <o:Revision>57</o:Revision>
-  <o:TotalTime>2105</o:TotalTime>
-  <o:LastPrinted>2007-12-19T18:38:00Z</o:LastPrinted>
-  <o:Created>2007-12-18T22:57:00Z</o:Created>
-  <o:LastSaved>2007-12-20T20:24:00Z</o:LastSaved>
+  <o:LastAuthor>Alison Cross</o:LastAuthor>
+  <o:Revision>20</o:Revision>
+  <o:TotalTime>2467</o:TotalTime>
+  <o:LastPrinted>2008-01-11T20:01:00Z</o:LastPrinted>
+  <o:Created>2008-01-10T18:44:00Z</o:Created>
+  <o:LastSaved>2008-01-11T21:02:00Z</o:LastSaved>
   <o:Pages>1</o:Pages>
-  <o:Words>5058</o:Words>
-  <o:Characters>28836</o:Characters>
+  <o:Words>5240</o:Words>
+  <o:Characters>29869</o:Characters>
   <o:Company>World Wildlife Fund</o:Company>
-  <o:Lines>240</o:Lines>
-  <o:Paragraphs>67</o:Paragraphs>
-  <o:CharactersWithSpaces>33827</o:CharactersWithSpaces>
-  <o:Version>11.8132</o:Version>
+  <o:Lines>248</o:Lines>
+  <o:Paragraphs>70</o:Paragraphs>
+  <o:CharactersWithSpaces>35039</o:CharactersWithSpaces>
+  <o:Version>10.6830</o:Version>
  </o:DocumentProperties>
 </xml><![endif]--><!--[if gte mso 9]><xml>
  <w:WordDocument>
   <w:SpellingState>Clean</w:SpellingState>
   <w:GrammarState>Clean</w:GrammarState>
   <w:TrackRevisions/>
-  <w:ValidateAgainstSchemas/>
-  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
-  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
-  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
   <w:Compatibility>
    <w:BreakWrappedTables/>
    <w:SnapToGridInCell/>
@@ -55,10 +58,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
    <w:UseAsianBreakRules/>
   </w:Compatibility>
   <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
  </w:WordDocument>
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
- </w:LatentStyles>
 </xml><![endif]--><!--[if !mso]><object
  classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
 <style>
@@ -66,7 +70,13 @@ st1\:*{behavior:url(#ieooui) }
 </style>
 <![endif]-->
 <style>
-<!--
+<!--span.HEADING4CHAR
+	{mso-style-locked:yes;}
+span.HEADING3CHAR
+	{mso-style-locked:yes;}
+span.HEADING2CHAR
+	{mso-style-locked:yes;}
+
  /* Font Definitions */
  @font-face
 	{font-family:Tahoma;
@@ -172,15 +182,34 @@ p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
 	font-family:"Times New Roman";
 	mso-fareast-font-family:"Times New Roman";
 	font-weight:bold;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-noshow:yes;
-	margin:0in;
-	margin-bottom:.0001pt;
-	mso-pagination:widow-orphan;
-	font-size:8.0pt;
-	font-family:Tahoma;
-	mso-fareast-font-family:"Times New Roman";}
-p.msoacetate0, li.msoacetate0, div.msoacetate0
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	mso-ansi-font-size:14.0pt;
+	mso-bidi-font-size:18.0pt;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	mso-bidi-language:AR-SA;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:13.5pt;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	mso-bidi-language:AR-SA;
+	font-weight:bold;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	mso-ansi-font-size:14.0pt;
+	mso-bidi-font-size:14.0pt;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	mso-bidi-language:AR-SA;
+	font-weight:bold;}
+p.msoacetate, li.msoacetate, div.msoacetate
 	{mso-style-name:msoacetate;
 	mso-style-noshow:yes;
 	margin:0in;
@@ -203,42 +232,14 @@ p.Style1, li.Style1, div.Style1
 	font-family:"Times New Roman";
 	mso-fareast-font-family:"Times New Roman";
 	font-weight:bold;}
-span.Heading4Char
-	{mso-style-name:"Heading 4 Char";
-	mso-style-locked:yes;
-	mso-style-link:"Heading 4";
-	mso-ansi-font-size:14.0pt;
-	mso-bidi-font-size:14.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:EN-US;
-	mso-bidi-language:AR-SA;
-	font-weight:bold;}
-span.Heading3Char
-	{mso-style-name:"Heading 3 Char";
-	mso-style-locked:yes;
-	mso-style-link:"Heading 3";
-	mso-ansi-font-size:12.0pt;
-	mso-bidi-font-size:13.5pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:EN-US;
-	mso-bidi-language:AR-SA;
-	font-weight:bold;}
-span.Heading2Char
-	{mso-style-name:"Heading 2 Char";
-	mso-style-locked:yes;
-	mso-style-link:"Heading 2";
-	mso-ansi-font-size:14.0pt;
-	mso-bidi-font-size:18.0pt;
-	mso-ansi-language:EN-US;
-	mso-fareast-language:EN-US;
-	mso-bidi-language:AR-SA;
-	font-weight:bold;}
+ins
+	{mso-style-type:export-only;
+	text-decoration:none;}
 span.msoIns
 	{mso-style-type:export-only;
 	mso-style-name:"";
 	text-decoration:underline;
-	text-underline:single;
-	color:teal;}
+	text-underline:single;}
 span.msoDel
 	{mso-style-type:export-only;
 	mso-style-name:"";
@@ -369,22 +370,18 @@ ul
 	mso-para-margin-bottom:.0001pt;
 	mso-pagination:widow-orphan;
 	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-ansi-language:#0400;
-	mso-fareast-language:#0400;
-	mso-bidi-language:#0400;}
+	font-family:"Times New Roman";}
 </style>
-<![endif]-->
+<![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">  </w:LatentStyles>
+</xml><![endif]-->
 </head>
 
 <body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
 
 <div class=Section1>
 
-<h2 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:1 !msorm;mso-style-name:"Heading 1" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><span style='font-size:16.0pt !msorm;mso-bidi-font-size:
-24.0pt !msorm;mso-font-kerning:18.0pt !msorm'>Introduction</span></h2>
+<h2>Introduction</h2>
 
 <p>Decisions regarding conservation problems are complex because they deal with
 interactions among people, their livelihoods, and natural resources. Moreover,
@@ -392,110 +389,91 @@ decisions may involve controversial or poorly understood issues such as the
 status of species, equity, or property rights. Selecting a fishery that has the
 right set of characteristics to be successful in the <a
 href="http://www.msc.org/">Marine Stewardship Council</a> (<st1:stockticker
-w:st="on">MSC</st1:stockticker>) certification program is one such conservation
+st="on">MSC</st1:stockticker>) certification program is one such conservation
 challenge. </p>
 
 <p>Delphos: Fisheries is a decision-making tool for selecting suitable
-candidate fisheries for <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
+candidate fisheries for <st1:stockticker st="on">MSC</st1:stockticker>
 certification. It can be used to evaluate fisheries anywhere in the world and
 in any size region. The program will guide you through a data-gathering and
 analysis process that is compatible with your institutional and project goals. </p>
 
-<h2 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:1 !msorm;mso-style-name:"Heading 1" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name=background><span style='font-size:16.0pt !msorm;
-mso-bidi-font-size:24.0pt !msorm;mso-font-kerning:18.0pt !msorm'>Background</span></a></h2>
+<h2><a name=background>Background</a></h2>
 
 <p>Through the application of a global environmental standard for sustainable
-and well-managed fisheries and its blue ecolabel, the <st1:stockticker st="on"
-w:st="on">MSC</st1:stockticker> seeks to harness consumer purchasing power to
-promote environmentally responsible stewardship of the world's fisheries. <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> certification not only provides
-long-term security for fishing communities, but also offers fisheries and
-stakeholders an opportunity to improve management practices and advocate for
-better data collection, new laws, and stronger enforcement measures. </p>
+and well-managed fisheries and its blue ecolabel, the <st1:stockticker st="on">MSC</st1:stockticker>
+seeks to harness consumer purchasing power to promote environmentally responsible
+stewardship of the world's fisheries. <st1:stockticker st="on">MSC</st1:stockticker>
+certification not only provides long-term security for fishing communities, but
+also offers fisheries and stakeholders an opportunity to improve management
+practices and advocate for better data collection, new laws, and stronger
+enforcement measures. </p>
 
-<p>Each fishery that applies for <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
+<p>Each fishery that applies for <st1:stockticker st="on">MSC</st1:stockticker>
 certification is evaluated by an independent assessment team with regard to a
 standard set of principles and criteria concerning the 1) health of the target
 stock, 2) effects of the fishery on the ecosystem, and 3) quality of the
-management system. For details about the <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
+management system. For details about the <st1:stockticker st="on">MSC</st1:stockticker>
 standard, please see <a href="http://www.msc.org/">http://www.msc.org</a>. </p>
 
-<p>Early critics of the <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
+<p>Early critics of the <st1:stockticker st="on">MSC</st1:stockticker>
 contended that the certification process was geared toward large-scale
 industrial fisheries, and inaccessible to small-scale community fisheries due
 to extensive data requirements and prohibitive costs. However, many small-scale
-fisheries are healthy and well-managed. Small-scale fisheries are also of
-enormous global importance, as small-scale fishers comprise approximately 94%
-of the world's fishers and produce nearly half of the global fish supply for
-human consumption. Small-scale fisheries provide most of the protein and jobs
-for coastal communities around the world and operate in some of the most
+fisheries are healthy and well-managed. Small-scale fisheries are also of enormous
+global importance, as small-scale fishers comprise approximately 94% of the
+world's fishers and produce nearly half of the global fish supply for human
+consumption. Small-scale fisheries provide most of the protein and jobs for
+coastal communities around the world and operate in some of the most
 biologically rich and diverse places on earth. </p>
 
 <p>WWF's <a href="http://www.panda.org/marine/community_fisheries">Community
 Fisheries Program</a> helps small-scale fisheries through the <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> certification process. WWF has been
-working on small-scale fisheries certification since 1999, emphasizing the
-participation of local fishers and the importance of traditional knowledge in
-the certification process, and thereby engaging communities in protecting the
+st="on">MSC</st1:stockticker> certification process. WWF has been working on
+small-scale fisheries certification since 1999, emphasizing the participation
+of local fishers and the importance of traditional knowledge in the
+certification process, and thereby engaging communities in protecting the
 resources they rely upon. </p>
 
-<h3 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:2 !msorm;mso-style-name:"Heading 2" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><span style='font-size:14.0pt !msorm;mso-bidi-font-size:
-18.0pt !msorm'><a name="program_history">Program History</a></span></h3>
+<h3><a name="program_history">Program History</a></h3>
 
 <p>In the spring of 2000, <a href="http://www.cobi.org.mx/"><span class=SpellE>Comunidad</span>
 y <span class=SpellE>Biodiversidad</span> A.C.</a> (COBI), in partnership with
 the WWF Community Fisheries Program, wondered how to select the best candidate
-for <st1:stockticker st="on" w:st="on">MSC</st1:stockticker> certification from
-dozens of community fisheries on the <ns0:state><st1:place w:st="on"><st1:State
- w:st="on">Baja California</st1:State></st1:place></ns0:state> peninsula.
-Because we needed to consider different institutional objectives from various
-project partners, we designed a “pre-analysis” method to systematize our
-decision-making process. By convening an expert panel to gather data and using
-a multicriteria analysis process, we selected the <a
+for <st1:stockticker st="on">MSC</st1:stockticker> certification from dozens of
+community fisheries on the <ns0:state><st1:State><st1:place>Baja California</ns0:state></st1:place></st1:State>
+peninsula. Because we needed to consider different institutional objectives
+from various project partners, we designed a “pre-analysis” method to
+systematize our decision-making process. By convening an expert panel to gather
+data and using a multicriteria analysis process, we selected the <a
 href="http://www.panda.org/news_facts/newsroom/news/index.cfm?uNewsID=12799&amp;uLangID=1">Baja
 California red spiny lobster</a>, <span class=SpellE><i style='mso-bidi-font-style:
 normal'>Panulirus</i></span><i style='mso-bidi-font-style:normal'> <span
-class=SpellE>interruptus</span></i>, as our preferred <st1:stockticker st="on"
-w:st="on">MSC</st1:stockticker> candidate fishery. In April 2004, this fishery
-became the first small-scale fishery from a developing country to receive <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> certification. </p>
+class=SpellE>interruptus</span></i>, as our preferred <st1:stockticker st="on">MSC</st1:stockticker>
+candidate fishery. In April 2004, this fishery became the first small-scale
+fishery from a developing country to receive <st1:stockticker st="on">MSC</st1:stockticker>
+certification. </p>
 
-<p class=MsoNormal style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:
-auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><span style='mso-bidi-font-size:
-13.5pt !msorm;font-weight:bold !msorm'>This versatile software program is based
-on </span><span style='mso-bidi-font-size:13.5pt !msorm;font-weight:bold !msorm'>the
-pre-analysis process that COBI and the WWF Community Fisheries Program
-developed to select a suitable candidate fishery for </span><st1:stockticker
-st="on" w:st="on"><span style='mso-bidi-font-size:13.5pt !msorm;font-weight:
- bold !msorm'>MSC</span></st1:stockticker><span style='mso-bidi-font-size:13.5pt !msorm;
-font-weight:bold !msorm'> certification. </span></p>
+<p class=MsoNormal>This versatile software program is based on the pre-analysis
+process that COBI and the WWF Community Fisheries Program developed to select a
+suitable candidate fishery for <st1:stockticker st="on">MSC</st1:stockticker>
+certification. </p>
 
-<h2 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:1 !msorm;mso-style-name:"Heading 1" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="multicriteria_analysis_evamix"></a><span
-style='font-size:16.0pt !msorm;mso-bidi-font-size:24.0pt !msorm;mso-font-kerning:
-18.0pt !msorm'>Multicriteria Analysis/</span><span class=SpellE><span
-style='font-size:16.0pt !msorm;mso-bidi-font-size:24.0pt !msorm;mso-font-kerning:
-18.0pt !msorm'>Evamix</span></span></h2>
+<h2><a name="multicriteria_analysis_evamix"></a>Multicriteria Analysis/<span
+class=SpellE>Evamix</span></h2>
 
-<p><span class=SpellE>Multicriteria</span> analysis is a versatile tool for
-evaluating environmental and conservation questions. We selected multicriteria
-analysis as the appropriate decision-making tool to select candidates for <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> certification because it can handle
-both qualitative and quantitative criteria and allows a question to be
-evaluated from different points of view. </p>
+<p>Multicriteria analysis is a versatile tool for evaluating environmental and
+conservation questions. We selected multicriteria analysis as the appropriate
+decision-making tool to select candidates for <st1:stockticker st="on">MSC</st1:stockticker>
+certification because it can handle both qualitative and quantitative criteria
+and allows a question to be evaluated from different points of view. </p>
 
 <p>Multicriteria analysis allows the inclusion of both qualitative and
 quantitative information because it does not require converting all data
 involved in the assessment to the same unit. This flexibility allows one to
 include very vague criteria, such as the &quot;community's current interest in <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> certification,” as well as hard data,
-such as &quot;catch volume.” </p>
+st="on">MSC</st1:stockticker> certification,” as well as hard data, such as
+&quot;catch volume.” </p>
 
 <p>Institutional or program goals may be expressed by weighting – or giving
 importance to – certain criteria. The data can then be analyzed multiple times
@@ -506,22 +484,21 @@ fishery has strong national and international markets. Using multicriteria
 analysis, partners may assign importance to each criterion as determined by
 their individual goals, and the fisheries can be evaluated from each point of
 view. The results from each analysis provide the basis for discussion among
-project partners about which fishery to select for the <st1:stockticker st="on"
-w:st="on">MSC</st1:stockticker> certification process. </p>
+project partners about which fishery to select for the <st1:stockticker st="on">MSC</st1:stockticker>
+certification process. </p>
 
-<p>The multicriteria approach used in Delphos is the Evamix method, a
-matrix-based evaluation and ranking tool. The Evamix algorithm results in a
-relative ranking of each fishery that incorporates all of the criteria and
-criteria weights. Evamix is an ideal tool for our purposes of analyzing and
-comparing fisheries because it is simple and flexible, and allows the user to
-clearly define both qualitative and quantitative evaluation criteria. </p>
+<p>The multicriteria approach used in Delphos is the <span class=SpellE>Evamix</span>
+method, a matrix-based evaluation and ranking tool. The <span class=SpellE>Evamix</span>
+algorithm results in a relative ranking of each fishery that incorporates all
+of the criteria and criteria weights. <span class=SpellE>Evamix</span> is an
+ideal tool for our purposes of analyzing and comparing fisheries because it is
+simple and flexible, and allows the user to clearly define both qualitative and
+quantitative evaluation criteria. </p>
 
-<h3 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:2 !msorm;mso-style-name:"Heading 2" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name=references><span style='font-size:14.0pt !msorm;
-mso-bidi-font-size:18.0pt !msorm'>References</span></a></h3>
+<h3><a name=references>References</a></h3>
 
-<p>For more information about multicriteria analysis and Evamix: </p>
+<p>For more information about multicriteria analysis and <span class=SpellE>Evamix</span>:
+</p>
 
 <p><span class=SpellE>Hajkowicz</span>, S. 2007. <span class=GramE>A comparison
 of multiple criteria analysis and unaided approaches to environmental decision
@@ -535,26 +512,26 @@ Diversity and Distributions 12(2): 125–137. </p>
 <p><span class=SpellE><span class=GramE>Munda</span></span><span class=GramE>,
 G., P. <span class=SpellE>Nijkamp</span>, and P. <span class=SpellE>Rietveld</span>.</span>
 1994. Qualitative multicriteria evaluation for environmental management.
-Ecological Economics 10(2): 97 -112. </p>
+Ecological Economics 10(2): 97-112. </p>
 
 <p><span class=SpellE>Nijkamp</span>, P. 1989. Multicriteria analysis: a
 decision support system for environmental management. <span class=GramE>In <span
 class=SpellE>Archibugi</span>, F., and <span class=SpellE>Nijkamp</span>, P.,
 editors.</span> Economy and ecology: towards sustainable development. <span
-class=SpellE>Kluwer</span>, <ns0:city><st1:place st="on" w:st="on">Dordrecht</st1:place></ns0:city>.
+class=SpellE>Kluwer</span>, <ns0:city><st1:City><st1:place>Dordrecht</ns0:city></st1:place></st1:City>.
 </p>
 
 <p><span class=SpellE><span class=GramE>Nijkamp</span></span><span class=GramE>
 P., <span class=SpellE>Reitveld</span> P. and <span class=SpellE>Voogd</span>
 H. 1990.</span> <span class=GramE>Multicriteria evaluation in physical
-planning.</span> North Holland Publishing, <ns0:city><st1:place st="on" w:st="on">Amsterdam</st1:place></ns0:city>.
+planning.</span> <st1:place>North Holland</st1:place> Publishing, <ns0:city><st1:City><st1:place>Amsterdam</ns0:city></st1:place></st1:City>.
 </p>
 
-<p><st1:place w:st="on"><span class=SpellE><span class=GramE>Stirling</span></span></st1:place><span
+<p><st1:place><span class=SpellE><span class=GramE>Stirling</span></span></st1:place><span
 class=GramE>, A. 1997.</span> Multi-criteria mapping: mitigating the problems
 of environmental valuation? <span class=GramE>In J. Foster, editor.</span> <span
 class=GramE>Valuing Nature: Economics, Ethics and Environment.</span> <span
-class=SpellE>Routledge</span>, <ns0:city><st1:place st="on" w:st="on">London</st1:place></ns0:city>.
+class=SpellE>Routledge</span>, <ns0:city><st1:City><st1:place>London</ns0:city></st1:place></st1:City>.
 pp. 186-210. </p>
 
 <p>Van Pelt, M. 1993. <span class=GramE>Ecologically sustainable development
@@ -567,42 +544,35 @@ Planning 9: 221–236. </p>
 
 <p><span class=SpellE>Voogd</span>, H. 1983. <span class=GramE>Multicriteria
 evaluation for urban and regional planning.</span> <span class=SpellE><span
-class=GramE>Pion</span></span><span class=GramE>, <ns0:city><st1:place w:st="on"><st1:City
- w:st="on">London</ns0:city></st1:City></st1:place>.</span> </p>
+class=GramE>Pion</span></span><span class=GramE>, <ns0:city></span><st1:City><st1:place><span
+  class=GramE>London</ns0:city></span></st1:place></st1:City><span class=GramE>.</span>
+</p>
 
-<h2 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:1 !msorm;mso-style-name:"Heading 1" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="the_delphos_process"><span
-style='font-size:16.0pt !msorm;mso-bidi-font-size:24.0pt !msorm;mso-font-kerning:
-18.0pt !msorm'>The Delphos Process</span></a></h2>
+<h2><a name="the_delphos_process">The Delphos Process</a></h2>
 
 <p>The following pages will step you through the pre-analysis process: project
 planning, information gathering, and multicriteria analysis. Each link in the
-chain depends, to an extent, on the one before. As such, it is important to think
-through the entire process before jumping into a project. Brainstorming the
-outcome of each step in advance will help ensure that you gain the most from
-each step. </p>
+chain depends, to an extent, on the one before. As such, it is important to
+think through the entire process before jumping into a project. Brainstorming
+the outcome of each step in advance will help ensure that you gain the most
+from each step. </p>
 
 <p>The pre-analysis is meant to give you a better understanding of the
 fisheries that exist in a given geographical area and which might be the best
-candidate for <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
-certification. This process is not meant to expose larger political or cultural
-issues related to fisheries. While you can learn about some of these issues
-during discussions with local experts, it is essential to be aware of the
-political realities of your region of interest before beginning the
-pre-analysis, and to account for them in your project goals and design. </p>
+candidate for <st1:stockticker st="on">MSC</st1:stockticker> certification.
+This process is not meant to expose larger political or cultural issues related
+to fisheries. While you can learn about some of these issues during discussions
+with local experts, it is essential to be aware of the political realities of
+your region of interest before beginning the pre-analysis, and to account for
+them in your project goals and design. </p>
 
-<h3 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:2 !msorm;mso-style-name:"Heading 2" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><span style='font-size:14.0pt !msorm;mso-bidi-font-size:
-18.0pt !msorm'>1. Define Your Goals</span><a name="1_define_your_goals"></a><span
-style='font-size:18.0pt !msorm'><span style='mso-prop-change:"Tim Welch" 20071220T1223'><o:p></o:p></span></span></h3>
+<h3>1. Define Your Goals<a name="1_define_your_goals"></a></h3>
 
 <p>There are a number of reasons why an organization might want to explore <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> certification for fisheries in a given
-region. Alternatively, a group might want to use the pre-analysis process not
-with <st1:stockticker st="on" w:st="on">MSC</st1:stockticker> certification in
-mind, but simply to create a database of information. </p>
+st="on">MSC</st1:stockticker> certification for fisheries in a given region.
+Alternatively, a group might want to use the pre-analysis process not with <st1:stockticker
+st="on">MSC</st1:stockticker> certification in mind, but simply to create a
+database of information. </p>
 
 <p>Your reasons for using this program will impact the way you approach the
 pre-analysis process, from how you define the geographic region to the weights
@@ -610,11 +580,7 @@ you apply to criteria. Having a clear understanding from the beginning of what
 you seek to accomplish will make the entire process flow more smoothly and
 produce more meaningful and applicable results. </p>
 
-<h3 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:2 !msorm;mso-style-name:"Heading 2" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="2_define_your_timeline"><span
-style='font-size:14.0pt !msorm;mso-bidi-font-size:18.0pt !msorm'>2. Define Your
-Timeline</span></a></h3>
+<h3><a name="2_define_your_timeline">2. Define Your Timeline</a></h3>
 
 <p>It is important to consider the timeline for your project during your
 initial brainstorming and project design. Think about how much time you intend
@@ -622,27 +588,23 @@ to spend on each step of the pre-analysis process to achieve the goals you have
 defined. Establishing a timeline will help you avoid taking on too much. </p>
 
 <p>For example, if you want to see pre-analysis results within one year, it
-would be unwise to look at a very large region that includes a lot of
-fisheries, such as multiple states or countries. On the other hand, if you are
-interested in a large region, it is important to realize that your timeline may
-be closer to two years. </p>
+would be unwise to look at a very large region that includes a lot of fisheries,
+such as multiple states or countries. On the other hand, if you are interested
+in a large region, it is important to realize that your timeline may be closer
+to two years. </p>
 
 <p>In addition to considering the time needed to complete the pre-analysis, you
 might also want to consider the time needed to complete goals beyond this
-point, such as <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
-assessment of the selected fishery. Depending on the size and complexity of the
-fishery, the actual certification process can become quite lengthy. Thinking
-through this step will help refine expectations. </p>
+point, such as <st1:stockticker st="on">MSC</st1:stockticker> assessment of the
+selected fishery. Depending on the size and complexity of the fishery, the
+actual certification process can become quite lengthy. Thinking through this
+step will help refine expectations. </p>
 
-<h3 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:2 !msorm;mso-style-name:"Heading 2" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="3_define_the_region"><span
-style='font-size:14.0pt !msorm;mso-bidi-font-size:18.0pt !msorm'>3. Define the
-Region</span></a></h3>
+<h3><a name="3_define_the_region">3. Define the Region</a></h3>
 
 <p>This model can be used anywhere in the world and in any size region.
 However, selecting and defining your region of interest is a critical part of
-both the pre-analysis process and <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
+both the pre-analysis process and <st1:stockticker st="on">MSC</st1:stockticker>
 certification. It is important to keep in mind that the certification process
 can often be long and challenging. While conducting a pre-analysis can help
 avoid some of the obstacles associated with this kind of work, trying to tackle
@@ -660,8 +622,8 @@ region that can locally execute the following chain of steps. </p>
 
 <p>In addition to considering the size of the region, it is important to
 consider your overall goals. If conservation is your main goal and <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> certification is only one element of
-the conservation plan, then the biological importance of an area may be your
+st="on">MSC</st1:stockticker> certification is only one element of the
+conservation plan, then the biological importance of an area may be your
 driving force for site selection. While this makes sense for conservation
 purposes, good fishery candidates that do not lie directly within an area of
 great biological importance can easily be overlooked. If developing sustainable
@@ -671,10 +633,7 @@ important location can then be considered down the line as one of your criteria
 for selecting a candidate fishery, and can be weighted appropriately. This
 approach will safeguard against limiting your options from the beginning. </p>
 
-<h3 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:2 !msorm;mso-style-name:"Heading 2" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="4_identify_experts"><span style='font-size:
-14.0pt !msorm;mso-bidi-font-size:18.0pt !msorm'>4. Identify Experts</span></a></h3>
+<h3><a name="4_identify_experts">4. Identify Experts</a></h3>
 
 <p>Now that you have done some planning and set the goals and geographical
 boundaries of your project, it is time to start looking for candidate
@@ -687,13 +646,13 @@ you start to determine which fisheries meet the goals of your project? </p>
 <p>Don't try to do it alone! </p>
 
 <p>The first step is to identify a panel of experts that can help provide
-fisheries information and guidance. The panel should be composed of a wide variety
-of experts who can give you the most comprehensive picture of fisheries in your
-area: academics, research scientists, fishery managers, government officials,
-staff of non-profits or NGOs, fishers, and others that work in the fishing
-industry. You can add additional types of experts if you feel their knowledge
-and opinions will add to the process. The inclusion of a variety of experts can
-also help you spread the word about the <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
+fisheries information and guidance. The panel should be composed of a wide
+variety of experts who can give you the most comprehensive picture of fisheries
+in your area: academics, research scientists, fishery managers, government
+officials, staff of non-profits or NGOs, fishers, and others that work in the
+fishing industry. You can add additional types of experts if you feel their
+knowledge and opinions will add to the process. The inclusion of a variety of
+experts can also help you spread the word about the <st1:stockticker st="on">MSC</st1:stockticker>
 and your organization's goals in the region – a bit of additional outreach that
 will help the process run more smoothly later on. </p>
 
@@ -702,42 +661,29 @@ your approach to data-gathering and the types of experts to include in your
 panel. Working in some locations may require creative tactics to obtain the
 cooperation of various stakeholders. </p>
 
-<p><a href="qrc:/doc/examples_from_the_field.doc">Click here</a> for
-a comparison of how the WWF Community Fisheries Program outlined the first four
+<p><a href="qrc://doc/examples_from_the_field.doc">Click here</a> for a
+comparison of how the WWF Community Fisheries Program outlined the first four
 steps in the pre-analysis process in three very different scenarios. </p>
 
-<h3 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:2 !msorm;mso-style-name:"Heading 2" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="5_consult_the_experts"><span
-style='font-size:14.0pt !msorm;mso-bidi-font-size:18.0pt !msorm'>5. Consult the
-Experts</span></a></h3>
+<h3><a name="5_consult_the_experts">5. Consult the Experts</a></h3>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Once
 you have identified your panel of experts, you are ready to start asking for
 advice. It is important that the experts are well informed about the <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> certification process and the goals of
-your institution. Informing participants is critical to obtaining the best
+st="on">MSC</st1:stockticker> certification process and the goals of your
+institution. Informing participants is critical to obtaining the best
 information about fisheries in your region. </p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><a name="pre-analysis_workshop"><span
-style='font-size:12.0pt !msorm;mso-bidi-font-size:13.5pt !msorm'>Pre-Analysis
-Workshop</span></a></h4>
+<h4><a name="pre-analysis_workshop">Pre-Analysis Workshop</a></h4>
 
-<p>Because the concept of <span class=SpellE>ecolabeling</span> and the <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> process are complex and often best
-explained in person, the most effective way to educate your panel is to bring
-them together at a workshop where you present your project goals and the <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> program. This provides a framework with<span
-class=msoIns><ins cite="mailto:Alison%20Cross" datetime="2007-12-19T12:57">in</ins></span>
-which you can discuss appropriate candidate fisheries. </p>
+<p>Because the concept of <span class=SpellE>ecolabelling</span> and the <st1:stockticker
+st="on">MSC</st1:stockticker> process are complex and often best explained in
+person, the most effective way to educate your panel is to bring them together
+at a workshop where you present your project goals and the <st1:stockticker
+st="on">MSC</st1:stockticker> program. This provides a framework within which
+you can discuss appropriate candidate fisheries. </p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><a name="the_questionnaire"><span
-style='font-size:12.0pt !msorm;mso-bidi-font-size:13.5pt !msorm'>The
-Questionnaire</span></a></h4>
+<h4><a name="the_questionnaire">The Questionnaire</a></h4>
 
 <p>Once you have well-informed experts, we recommend asking them to complete a
 questionnaire as a way to gather information about potential candidate
@@ -745,30 +691,24 @@ fisheries. You can have the experts fill out questionnaires as individuals or
 in groups at or after the workshop. </p>
 
 <p>If a workshop is logistically or financially unfeasible, you can write a <a
-href="qrc:/doc/letter_to_experts.doc">letter to the experts</a>
-asking for their help. Be sure to provide the experts with a list of sources
-(e.g. websites) where they can learn more about the <st1:stockticker st="on"
-w:st="on">MSC</st1:stockticker> and your organization. Also, remember that the
-experts might be very busy. If you do not receive a response from them, follow
-up by phone or e-mail, and perhaps ask for an appointment to interview them
-personally. </p>
+href="qrc:/doc/letter_to_experts.doc">letter to the experts</a> asking for
+their help. Be sure to provide the experts with a list of sources (e.g.
+websites) where they can learn more about the <st1:stockticker st="on">MSC</st1:stockticker>
+and your organization. Also, remember that the experts might be very busy. If
+you do not receive a response from them, follow up by phone or e-mail, and
+perhaps ask for an appointment to interview them personally. </p>
 
 <p>Three example questionnaires are provided. First is our <a
-href="qrc:/doc/general_questionnaire.doc">general</a> questionnaire.
-This questionnaire is very thorough, and we suggest that you adapt it for your region
-and specific goals. For example, although the majority of the questionnaire
-remained similar, the WWF Community Fisheries Program has for past projects
-modified several questions to reflect a <a
-href="qrc:/doc/data_driven_questionnaire.doc">data-driven</a>
-culture in one region and <a
-href="qrc:/doc/data_limited_questionnaire.doc">data-limited</a>
+href="qrc:/doc/general_questionnaire.doc">general</a> questionnaire. This
+questionnaire is very thorough, and we suggest that you adapt it for your
+region and specific goals. For example, although the majority of the
+questionnaire remained similar, the WWF Community Fisheries Program has for
+past projects modified several questions to reflect a <a
+href="qrc:/doc/data_driven_questionnaire.doc">data-driven</a> culture in one
+region and <a href="qrc:/doc/data_limited_questionnaire.doc">data-limited</a>
 conditions in another. </p>
 
-<h3 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:2 !msorm;mso-style-name:"Heading 2" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="6_review_recommendations"><span
-style='font-size:14.0pt !msorm;mso-bidi-font-size:18.0pt !msorm'>6. Review
-Recommendations</span></a></h3>
+<h3><a name="6_review_recommendations">6. Review Recommendations</a></h3>
 
 <p>Once the experts have returned completed questionnaires, you should complete
 a <a href="qrc:/doc/fishery_profile.doc">fishery profile</a> for each of the
@@ -784,13 +724,12 @@ your results. Therefore, we strongly recommend that you ground-truth the
 information you have collected. You might also need to seek out supplementary
 information that was not provided by the experts. You could do this by meeting
 with potential candidates to review the facts about their fishery and gage
-their interest in <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
-certification. Since <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
-certification is voluntary and requires the participation of the fishery, it is
-essential that your chosen candidate is interested in engaging in the process.
-You could also consult other stakeholders, published literature, or reliable
-online references such as <a href="http://www.fishbase.org"><span class=SpellE>FishBase</span></a>.
-</p>
+their interest in <st1:stockticker st="on">MSC</st1:stockticker> certification.
+Since <st1:stockticker st="on">MSC</st1:stockticker> certification is voluntary
+and requires the participation of the fishery, it is essential that your chosen
+candidate is interested in engaging in the process. You could also consult
+other stakeholders, published literature, or reliable online references such as
+<a href="http://www.fishbase.org">FishBase</a>. </p>
 
 <p>After you have completed the fishery profiles and verified the information
 received, you should review the experts' recommendations and determine if the
@@ -800,106 +739,125 @@ one or more of the fisheries from consideration. However, if you would like to
 end with a database of all of the information you have gathered, we suggest
 narrowing the field of candidates at a later point in the process. </p>
 
-<h3 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:2 !msorm;mso-style-name:"Heading 2" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="7_design_your_database"><span
-style='font-size:14.0pt !msorm;mso-bidi-font-size:18.0pt !msorm'>7. Design Your
-Data</span><span style='font-size:14.0pt !msorm;mso-bidi-font-size:18.0pt !msorm'>base</span></a></h3>
+<h3><a name="7_design_your_database">7. Design Your Database</a></h3>
 
 <p>Now that you have selected and gathered sufficient information about your
-candidate fisheries, it is time to design your database. The first step is to
-create a new project. </p>
+candidate fisheries, it is time to design your database. First, create a new
+project. </p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><span style='font-size:12.0pt !msorm;
-mso-bidi-font-size:13.5pt !msorm'><a name='create_new_project'>Create New Project</a></span></h4>
+<h4><a name="create_new_project">Create New Project</a></h4>
 
-<p>To create a new project, first click the File option in the top menubar and
-then click Create New Project. A new dialog box will open. Select a project
-type of Fisheries. Next, click the Browse button to choose a location and name
-for your saved project. Optionally, you may also load a set of suggested
-fisheries criteria for your analysis by clicking the Load Suggested Criteria
-checkbox. Suggested criteria are described in more detail below and can always
-be removed later. Once you are done providing all of the information for your
-new <span class=GramE>project,</span> click OK to create it. Your project will
-load and you will see five tabs: Project Info, Alternatives, Criteria, Input
-Data, and Analysis.</p>
+<p>To create a new project, first click the <i style='mso-bidi-font-style:normal'>File
+</i>option in the top <span class=SpellE>menubar</span> and then click <i
+style='mso-bidi-font-style:normal'>Create New Project</i>. A new dialog box
+will open. Select a project type of <i style='mso-bidi-font-style:normal'>Fisheries</i>.
+Next, click the <i style='mso-bidi-font-style:normal'>Browse</i> button to
+choose a location and name for your saved project. Optionally, you may also
+load a set of suggested fisheries criteria for your analysis by clicking the <i
+style='mso-bidi-font-style:normal'>Load Suggested Criteria</i> checkbox.
+Suggested criteria are described in more detail below and can always be removed
+later. Once you are done providing all of the information for your new <span
+class=GramE>project,</span> click <i style='mso-bidi-font-style:normal'>OK</i>
+to create it. Your project will load and you will see five tabs: <b
+style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'>Project
+Info</i></b>, <b style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:
+normal'>Alternatives</i></b>, <b style='mso-bidi-font-weight:normal'><i
+style='mso-bidi-font-style:normal'>Criteria</i></b>, <b style='mso-bidi-font-weight:
+normal'><i style='mso-bidi-font-style:normal'>Input Data</i></b>, and <b
+style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'>Analysis</i></b>.</p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><a name="define_alternatives"><span
-style='font-size:12.0pt !msorm;mso-bidi-font-size:13.5pt !msorm'>Define
-Alternatives</span></a></h4>
+<h4><a name="define_alternatives">Define Alternatives</a></h4>
 
 <p>Your alternatives are the various fisheries for which you have collected
-data. If you select the Alternatives tab, you will see an empty table. Click
-Add and Remove to enter and edit the list of fisheries you want to use in your
-analysis.  When adding an alternative, a color will be chosen for you and associated with the alternative.  You may choose a different color by clicking the "New Color" button.  This will randomly pick a new color. Once you are finished, move on by selecting the Criteria tab. </p>
+data. If you select the <b style='mso-bidi-font-weight:normal'><i
+style='mso-bidi-font-style:normal'>Alternatives</i></b> tab, you will see an
+empty table. Click <i style='mso-bidi-font-style:normal'>Add</i> and <i
+style='mso-bidi-font-style:normal'>Remove</i> to enter and edit your list of
+fisheries. A color will automatically be associated with each alternative. You
+may choose a different color by clicking the <i style='mso-bidi-font-style:
+normal'>New Color</i> button, which will randomly pick a new color. Once you
+are finished, move on by selecting the <b style='mso-bidi-font-weight:normal'><i
+style='mso-bidi-font-style:normal'>Criteria</i></b> tab. </p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><a name="define_criteria"><span
-style='font-size:12.0pt !msorm;mso-bidi-font-size:13.5pt !msorm'>Define
-Criteria</span></a></h4>
+<h4><a name="define_criteria">Define Criteria</a></h4>
 
-<p>Criteria are specific standards that the software program will use to
-evaluate the candidate fisheries from biological, management, political,
-socioeconomic, and market perspectives. Criteria may reflect qualitative or
-quantitative information. </p>
+<p>Criteria are specific standards used to evaluate the candidate fisheries
+from biological, management, political, socioeconomic, and market perspectives.
+Criteria may reflect qualitative or quantitative information. </p>
 
 <p>Over the course of a number of projects, we have developed a list of
-suggested <a href="qrc:/doc/criteria_and_guidance.doc">criteria and
-guidance</a> for their evaluation, which are built into the program. This list
-reflects lessons we learned while developing this process and covers the most
-important areas to consider when selecting a small-scale fishery to guide
-through the <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
-certification process. You may load the suggested criteria into your project
-during the initial project creation phase, as described at the beginning of
-this section. Feel free to add to, delete, or modify the suggested criteria
-based on your specific project goals and location. </p>
+suggested <a href="qrc:/doc/criteria_and_guidance.doc">criteria and guidance</a>
+for their evaluation, which are built into the program. This list reflects
+lessons we learned while developing this process and covers the most important
+areas to consider when selecting a small-scale fishery to guide through the <st1:stockticker
+st="on">MSC</st1:stockticker> certification process. You may load the suggested
+criteria into your project during the initial project creation phase, as
+described at the beginning of this section. Feel free to add to, delete, or
+modify the suggested criteria based on your specific project goals and
+location. </p>
 
-<p>To add your own criteria, click the Add button to open the dialog. Next,
-enter a description of a new criterion. Then, identify the criterion as a
-benefit or a cost by clicking the appropriate radio button. Finally, select
+<p>To add your own criteria, click the <i style='mso-bidi-font-style:normal'>Add</i>
+button to open the dialog. Next, enter a description of a new criterion. Then,
+identify the criterion as a 'Benefit' or a 'Cost' to a fishery (in terms of <st1:stockticker>MSC</st1:stockticker>
+certification) by clicking the appropriate radio button. Finally, select
 whether the criterion will be defined on a binary, ordinal, or ratio scale: </p>
 
-<p style='margin-left:.25in;text-indent:-.25in;mso-text-indent-alt:-.25in;
-mso-list:l1 level1 lfo2;mso-list-change:\F0B7 "Alison Cross" 20071219T1254;
-tab-stops:list .25in'><![if !supportLists]><span style='font-family:Symbol;
-mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:12.0pt;margin-left:
+.25in;text-indent:-.25in;mso-text-indent-alt:-.25in;mso-list:l1 level1 lfo2;
+mso-list-change:\F0B7 "Alison Cross" 20080110T1045;tab-stops:list .25in'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Binary criteria are qualitative criteria with
-only two options, such as for a yes or no question. If the criterion is a 'Benefit' then Option 1 is the ‘positive’
-option and will score higher in analysis.  Option 2 is the ‘negative’ option and
-will score lower in analysis. One example of a criterion that's a benefit is: "Community participation in fishery management".  It makes sense in this case that Option 1 would be 'Yes' and Option 2 would be 'No' where 'Yes' is better than 'No'.<br/><br/>If the criterion is a 'Cost' then Option 1 is the 'negative' option and will score lower in analysis.  Option 2 is the 'positive' option and will score higher in analysis.  <br/><br/>Enter an appropriate description for each option
-(e.g. “yes” and “no,” “positive” and “negative,” “high” and “low”) and click
-OK.</p>
+only two options, such as for a yes-or-no question. If the criterion is a
+'Benefit', then Option 1 is the positive option and will score higher in
+analysis. Option 2 is the negative option and will score lower in analysis. For
+example, one criterion that is a benefit is &quot;Community participation in
+fishery management.&quot; In this case, Option 1 would be 'Yes' and Option 2
+would be 'No', because 'Yes' is better than 'No'.<br>
+<br>
+If the criterion is a 'Cost', then Option 1 is the negative option and will
+score lower in analysis. Option 2 is the positive option and will score higher
+in analysis. <br>
+<br>
+Enter an appropriate description for each option (e.g. &quot;yes&quot; and
+&quot;no&quot;, &quot;positive&quot; and &quot;negative&quot;, &quot;high&quot;
+and &quot;low&quot;) and click <i style='mso-bidi-font-style:normal'>OK</i>.</p>
 
-<p style='margin-left:.25in;text-indent:-.25in;mso-text-indent-alt:-.25in;
-mso-list:l1 level1 lfo2;mso-list-change:\F0B7 "Alison Cross" 20071219T1254;
-tab-stops:list .25in'><![if !supportLists]><span style='font-family:Symbol;
-mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:12.0pt;margin-left:
+.25in;text-indent:-.25in;mso-text-indent-alt:-.25in;mso-list:l1 level1 lfo2;
+mso-list-change:\F0B7 "Alison Cross" 20080110T1045;tab-stops:list .25in'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]>Ordinal criteria are qualitative criteria with
 more than two options, which must be clearly defined. Add each option in
-sequence by clicking the Add Option button (you may also remove any option that
-has been entered by clicking the Remove Option button). For each option, enter
-a description (e.g. “Good,” “Moderate,” “Poor”) and assign it a rank. A rank
-relates this option to the other options for this criterion.  Overall, an option with a higher rank value will score higher in analysis than an option with a lower rank value.  For example, let’s say we have a criterion with five options ranking from 1-5. If this criterion has been labeled as a 'Benefit', then the option with a rank of 5 is seen as the
-most beneficial and the option with the rank of 1 is seen as the least
-beneficial. If this criterion has been labeled as a 'Cost', then the option with
-a rank of 1 is seen as the most costly and the option with a rank of 5 is seen
-as the least costly. Define all of your options and click OK.</p>
+sequence by clicking the <i style='mso-bidi-font-style:normal'>Add Option</i>
+button (you may also remove any option that has been entered by clicking the <i
+style='mso-bidi-font-style:normal'>Remove Option</i> button). For each option,
+enter a description (e.g. &quot;Good&quot;, &quot;Moderate&quot;, <span
+class=GramE>&quot;</span>Poor&quot;) and assign it a rank. A rank relates this
+option to the other options for this criterion. Overall, an option with a
+higher rank value will score higher in analysis than an option with a lower
+rank value. For example, let’s say we have a criterion with five options
+ranking from 1-5. If this criterion has been labeled as a 'Benefit', then the
+option with a rank of 5 is seen as the most beneficial and the option with the
+rank of 1 is seen as the least beneficial. If this criterion has been labeled
+as a 'Cost', then the option with a rank of 1 is seen as the most costly and
+the option with a rank of 5 is seen as the least costly. Define all of your
+options and click <i style='mso-bidi-font-style:normal'>OK</i>.</p>
 
 <p style='margin-left:.25in;text-indent:-.25in;mso-text-indent-alt:-.25in;
-mso-list:l1 level1 lfo2;mso-list-change:\F0B7 "Alison Cross" 20071219T1254;
+mso-list:l1 level1 lfo2;mso-list-change:\F0B7 "Alison Cross" 20080110T1045;
 tab-stops:list .25in'><![if !supportLists]><span style='font-family:Symbol;
 mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
 style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Ratio criteria deal with quantitative
-information. If the criterion is labelled as a 'Benefit' then a larger value will score higher in analysis than a lower value.  One example of a ratio criterion that is a benefit is "Catch volume" with unit "tons/yr."  If the criterion is labelled as a 'Cost' then a lower value will score higher in analysis than a higher value.  One example of a ratio criterion that is a cost is "Bycatch volume" with unit "tons/yr." Describe the units of the criterion (e.g. “tons/yr”, “people”, “days”) and click
-OK.<span style='mso-spacerun:yes'>  </span></p>
+</span></span></span><![endif]>Ratio criteria deal with quantitative information.
+If the ratio criterion is labeled as a 'Benefit' (e.g. &quot;Catch
+volume&quot;), then a larger value will score higher in analysis than a smaller
+value. If the criterion is labeled as a 'Cost' (e.g. &quot;Bycatch
+volume&quot;), then a smaller value will score higher in analysis than a larger
+value. Describe the units of the criterion (e.g. &quot;tons/yr&quot;,
+&quot;people&quot;, &quot;days&quot;) and click <i style='mso-bidi-font-style:
+normal'>OK</i>.<span style='mso-spacerun:yes'>  </span></p>
 
 <p>Keep in mind that you are not required to use all of the criteria you enter
 here in your analysis – use this stage as a way to create a complete database
@@ -909,44 +867,47 @@ factor into your evaluation. </p>
 <p>In your full list of criteria, scroll to the right to see the type, options,
 and cost/benefit information for each criterion.</p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><span style='font-size:12.0pt !msorm;
-mso-bidi-font-size:13.5pt !msorm'><a name='input_data'>Input Data</a></span></h4>
+<h4><a name="input_data">Input Data</a></h4>
 
-<p>When your list of criteria is complete, select the Input Data tab. A table
+<p>When your list of criteria is complete, select the <b style='mso-bidi-font-weight:
+normal'><i style='mso-bidi-font-style:normal'>Input Data</i></b> tab. A table
 appears with the fishery alternatives listed across the top row and criteria
 down the first column. Using your completed fishery profiles, you can either
 input data directly into the table or import the data into Delphos from an
 independent spreadsheet program.</p>
 
-<p><i style='mso-bidi-font-style:normal'><a name='inputting_data_directly'>Inputting Data Directly</a><o:p></o:p></i></p>
+<p><a name="inputting_data_directly"><i style='mso-bidi-font-style:normal'>Inputting
+Data Directly</i></a><i style='mso-bidi-font-style:normal'><o:p></o:p></i></p>
 
 <p>Cells associated with qualitative criteria have drop-down menus containing
 the options that you previously defined. For each of these cells, select the
-appropriate option from the menu. Cells associated with quantitative criteria
-expect a single positive integer as input. Click inside each of these cells to
-enter a value.</p>
+appropriate option from the menu. If you cannot see the full text for each
+option, you can widen the columns by dragging the vertical lines in the header
+bar. Cells associated with quantitative criteria expect a single positive
+integer as input. Click inside each of these cells to enter a value. </p>
 
-<p>Click the Save button at any time to save the input table. Any subsequent
-changes will not be saved unless you click Save. When you return to this
+<p>Click the <i style='mso-bidi-font-style:normal'>Save</i> button at any time
+to save the input table. Any subsequent changes will not be saved unless you
+click <i style='mso-bidi-font-style:normal'>Save</i>. When you return to this
 project at a later time, your saved input will automatically load into the
 table.<span style='mso-spacerun:yes'>  </span></p>
 
-<p><i style='mso-bidi-font-style:normal'><a name='importing_data'>Importing Data</a><o:p></o:p></i></p>
+<p><a name="importing_data"><i style='mso-bidi-font-style:normal'>Importing
+Data</i></a><i style='mso-bidi-font-style:normal'><o:p></o:p></i></p>
 
 <p>If you would like to prepare your database in a spreadsheet program such as
-Excel or OpenOffice Calc, you can export a template of the Delphos database in
-a comma-separated value (<st1:stockticker st="on" w:st="on">CSV</st1:stockticker>)
-format. To export a template, click the Export button under the Input Data tab,
-enter a filename, and save the file to your hard drive. The template can then
-be opened in your spreadsheet program. The template will look similar to the
-data table in Delphos, with the fisheries listed across the top row and
-criteria down the first column. However, your options for evaluation will now
-appear in the second column. Instructions for entering data correctly are
-provided in the first column below the table - pay careful attention to them.
-An example template file with valid input values can be found in the data
-folder within the main Delphos folder that you downloaded.</p>
+Excel or <span class=SpellE>OpenOffice</span> Calc, you can export a template
+of the Delphos database in a comma-separated value (<st1:stockticker st="on">CSV</st1:stockticker>)
+format. To export a template, click the <i style='mso-bidi-font-style:normal'>Export</i>
+button under the <b style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:
+normal'>Input Data</i></b> tab, enter a filename, and save the file to your
+hard drive. The template can then be opened in your spreadsheet program. The
+template will look similar to the data table in Delphos, with the fisheries
+listed across the top row and criteria down the first column. However, your
+options for evaluation will now appear in the second column. Instructions for
+entering data correctly are provided in the first column below the table – pay
+careful attention to them. An example template file with valid input values can
+be found in the data folder within the main Delphos folder that you downloaded.</p>
 
 <p>Populate the template with input values based on the information you have
 gathered about each fishery, keeping in mind that all input values should be
@@ -958,21 +919,23 @@ removing columns or rows. If you make changes, the importing process is likely
 to fail or give you unexpected results.</p>
 
 <p>Once you are done entering values, save the file in the <st1:stockticker
-st="on" w:st="on">CSV</st1:stockticker> format. Next, return to Delphos and
-click the Import button. Select your file and click OK. Once the importing
-process is complete you will be notified whether it was successful or not. If
-the process was unsuccessful, an error message should appear that describes the
+st="on">CSV</st1:stockticker> format. Next, return to Delphos and click the <i
+style='mso-bidi-font-style:normal'>Import</i> button. Select your file and
+click <i style='mso-bidi-font-style:normal'>OK</i>. Once the importing process
+is complete you will be notified whether it was successful or not. If the
+process was unsuccessful, an error message should appear that describes the
 problem. If the process was successful, the information from your template will
 appear in the data table. Double-check that the cells filled in correctly, and
 be sure to save the completed input table.</p>
 
-<p><i style='mso-bidi-font-style:normal'><a name='data_gaps'>Data Gaps</a><o:p></o:p></i></p>
+<p><a name="data_gaps"><i style='mso-bidi-font-style:normal'>Data Gaps</i></a><i
+style='mso-bidi-font-style:normal'><o:p></o:p></i></p>
 
 <p>You will likely find that you lack enough information to complete every cell
-in the table. This is fine for the purpose of creating a database, but the
-Evamix algorithm cannot evaluate fisheries with gaps in information. The
-criterion or fishery corresponding to each incomplete cell will later need to
-be dropped from the analysis.</p>
+in the table. This is fine for the purpose of creating a database, but the <span
+class=SpellE>Evamix</span> algorithm cannot evaluate fisheries with gaps in
+information. The criterion or fishery corresponding to each incomplete cell
+will later need to be dropped from the analysis.</p>
 
 <p>To fill data gaps you will want to consult your panel of experts again. By
 relying on the experts for information, you help to ensure a robust evaluation.
@@ -983,46 +946,34 @@ better flow of information and resulting in a more complete data set. If you
 are unable to have a workshop and must send the experts the evaluation table,
 you will need to average their opinions when the tables are returned. You could
 also again consult other stakeholders, published literature, or reliable online
-references such as <a href="http://www.fishbase.org"><span class=SpellE>FishBase</span></a>.
-</p>
+references such as <a href="http://www.fishbase.org">FishBase</a>. </p>
 
 <p>Once the evaluation table is complete and you are satisfied with the
 robustness of the information, you are ready to analyze the data.<span
 style='background:aqua;mso-highlight:aqua'><o:p></o:p></span></p>
 
-<h3 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:2 !msorm;mso-style-name:"Heading 2" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="8_run_analysis"><span style='font-size:
-14.0pt !msorm;mso-bidi-font-size:18.0pt !msorm'>8. Run the Analysis</span></a><span
-style='font-size:14.0pt !msorm;mso-bidi-font-size:18.0pt !msorm'> </span><span
-style='font-size:18.0pt !msorm'><span style='mso-prop-change:"Tim Welch" 20071220T1223'><o:p></o:p></span></span></h3>
+<h3><a name="8_run_analysis">8. Run the Analysis</a> </h3>
 
-<p>To begin the multicriteria analysis, select the Analysis tab. Here you can
-start new analysis runs and view any previously completed runs within the
+<p>To begin the multicriteria analysis, select the <b style='mso-bidi-font-weight:
+normal'><i style='mso-bidi-font-style:normal'>Analysis</i></b> tab. Here you
+can start new analysis runs and view any previously completed runs within the
 project. To start a new analysis, enter a name and description for the run (a
 brief description will later help you differentiate between analyses) and click
-Start Analysis. A new window will open with a list of your previously defined
-fisheries. </p>
+<i style='mso-bidi-font-style:normal'>Start Analysis</i>. A new window will
+open with a list of your previously defined fisheries. </p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><a name="select_alternatives"><span
-style='font-size:12.0pt !msorm;mso-bidi-font-size:13.5pt !msorm'>Select
-Alternatives</span></a></h4>
+<h4><a name="select_alternatives">Select Alternatives</a></h4>
 
 <p>At this point you should have a good sense of which fisheries to include in
-the evaluation process. In Step 1 of the analysis, select the fisheries you want
-to evaluate by clicking the appropriate boxes in the first column of the table.
-We recommend selecting no less than 3 fisheries and keeping the upper limit to
-between 10-15 alternatives. </p>
+the evaluation process. In Step 1 of the analysis, select the fisheries you
+want to evaluate by clicking the appropriate boxes in the first column of the
+table. We recommend selecting no less than 3 fisheries and keeping the upper
+limit to between 10-15 alternatives. </p>
 
-<p>Click Next to move on to Step 2: Select Criteria. </p>
+<p>Click <i style='mso-bidi-font-style:normal'>Next</i> to move on to Step 2:
+Select Criteria. </p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><a name="select_criteria"><span
-style='font-size:12.0pt !msorm;mso-bidi-font-size:13.5pt !msorm'>Select Crite</span><span
-style='font-size:12.0pt !msorm;mso-bidi-font-size:13.5pt !msorm'>ria</span></a></h4>
+<h4><a name="select_criteria">Select Criteria</a></h4>
 
 <p>Select the criteria you want to evaluate by clicking the appropriate
 checkboxes in the first column of the table. You must use the same list of
@@ -1031,13 +982,10 @@ criterion and fishery you wish to include, all cells must be filled in or the
 analysis will not work. If you could not address some of the criteria, then
 those criteria or fisheries with data gaps must be dropped from the analysis.</p>
 
-<p>Click Next to move on to Step 3: Input Data.<span style='mso-spacerun:yes'>
-</span></p>
+<p>Click <i style='mso-bidi-font-style:normal'>Next</i> to move on to Step 3:
+Input Data. </p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><span style='font-size:12.0pt !msorm;
-mso-bidi-font-size:13.5pt !msorm'><a name='input_mca_data'>Input Data<a></span></h4>
+<h4><a name="input_mca_data">Input Data</a></h4>
 
 <p>In this step, you will see a table with the input data for the fisheries and
 criteria you have just selected. You may change the information in any of the
@@ -1048,14 +996,10 @@ algorithm cannot evaluate fisheries with gaps in information, all cells at this
 stage must be filled in or the corresponding fishery/criterion must be dropped
 from the analysis.</p>
 
-<p>Click Next to move on to Step 4: Assign Weights.<span
-style='mso-spacerun:yes'>  </span></p>
+<p>Click <i style='mso-bidi-font-style:normal'>Next</i> to move on to Step 4:
+Assign Weights.<span style='mso-spacerun:yes'>  </span></p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><a name="weight_criteria"><span
-style='font-size:12.0pt !msorm;mso-bidi-font-size:13.5pt !msorm'>Weight
-Criteria</span></a></h4>
+<h4><a name="weight_criteria">Weight Criteria</a></h4>
 
 <p>Weighting the criteria allows project partners to decide which criteria are
 most important and generate analysis results that reflect their different goals
@@ -1072,22 +1016,20 @@ convert your weights to an ordinal scale during the analysis.</p>
 criteria weights have a large impact on the final result.</p>
 
 <p>For example, say you are planning a vacation, and have narrowed your
-potential destinations to <st1:country-region w:st="on"><st1:place w:st="on">Mexico</st1:place></st1:country-region>,
-<ns0:state><st1:State w:st="on"><st1:place w:st="on">Alaska</st1:place></st1:State></ns0:state>,
-and <st1:country-region w:st="on"><st1:place w:st="on">Italy</st1:place></st1:country-region>.
-Your choice will differ depending on the importance of various criteria such as
+potential destinations to <st1:country-region><st1:place>Mexico</st1:place></st1:country-region>,
+<ns0:state><st1:State><st1:place>Alaska</ns0:state></st1:place></st1:State>,
+and <st1:country-region><st1:place>Italy</st1:place></st1:country-region>. Your
+choice will differ depending on the importance of various criteria such as
 weather, activities, and cost. If you dream of lying on a warm, sandy beach,
-you would prefer <st1:country-region st="on" w:st="on">Mexico</st1:country-region>
-or <st1:country-region st="on" w:st="on">Italy</st1:country-region> over <ns0:state><st1:place
-st="on" w:st="on">Alaska</st1:place></ns0:state>. If cost is then important,
-and visiting <st1:country-region st="on" w:st="on">Mexico</st1:country-region>
-would be less expensive than traveling to <st1:country-region st="on" w:st="on">Italy</st1:country-region>,
-you might choose to go to <st1:country-region st="on" w:st="on"><st1:place
- st="on" w:st="on">Mexico</st1:place></st1:country-region>. If cost is not as
-important to you as the availability of local wines, you might prefer <st1:country-region
-w:st="on"><st1:place w:st="on">Italy</st1:place></st1:country-region>. On the other
-hand, if weather is not important to you and you want to see wildlife, you
-might pick <ns0:state><st1:place st="on" w:st="on"><st1:State st="on" w:st="on">Alaska</st1:State></st1:place></ns0:state>.
+you would prefer <st1:country-region><st1:place>Mexico</st1:place></st1:country-region>
+or <st1:country-region><st1:place>Italy</st1:place></st1:country-region> over <ns0:state><st1:State><st1:place>Alaska</ns0:state></st1:place></st1:State>.
+If cost is then important, and visiting <st1:country-region><st1:place>Mexico</st1:place></st1:country-region>
+would be less expensive than traveling to <st1:country-region><st1:place>Italy</st1:place></st1:country-region>,
+you might choose to go to <st1:country-region><st1:place>Mexico</st1:place></st1:country-region>.
+If cost is not as important to you as the availability of local wines, you
+might prefer <st1:country-region><st1:place>Italy</st1:place></st1:country-region>.
+On the other hand, if weather is not important to you and you want to see
+wildlife, you might pick <ns0:state><st1:State><st1:place>Alaska</ns0:state></st1:place></st1:State>.
 Your decision will vary based on how much weight you place on each of your
 criteria, just as in this program. </p>
 
@@ -1096,66 +1038,55 @@ independently and run the analysis with each weighting scheme. The results will
 provide a basis for discussion. You can also run the model using an average of
 each partner's weights, as well as equal weights for all criteria. </p>
 
-<h4 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-page-break-after:auto !msorm;mso-outline-level:3 !msorm;mso-style-name:"Heading 3" !msorm;
-mso-prop-change:"Tim Welch" 20071220T1223'><a name="run_the_program"><span
-style='font-size:12.0pt !msorm;mso-bidi-font-size:13.5pt !msorm'>Run the
-Program</span></a><span style='font-size:13.5pt !msorm'><span style='mso-prop-change:
-"Tim Welch" 20071220T1223'><o:p></o:p></span></span></h4>
+<h4><a name="run_the_program">Run the Program</a></h4>
 
-<p>At this point you are ready to run the model. Click Run Analysis. Once the
-analysis has completed, a summary of the results and inputs will appear and you
-will see the name of your analysis in the Previous Analyses box. The summary of
-each analysis can be accessed at any time by selecting a run and clicking
-Summary. You can also click Export to save the results of each summary as a <st1:stockticker
-st="on" w:st="on">CSV</st1:stockticker> file, which can then be opened in Excel
-or a similar program.</p>
+<p>At this point you are ready to run the model. Click <i style='mso-bidi-font-style:
+normal'>Run Analysis</i>. Once the analysis has completed, a summary of the
+results and inputs will appear and you will see the name of your analysis in
+the Previous Analyses box. The summary of each analysis can be accessed at any
+time by selecting a run and clicking <i style='mso-bidi-font-style:normal'>Summary</i>.
+You can click <i style='mso-bidi-font-style:normal'>Export</i> to save the
+summary of an analysis as a <st1:stockticker st="on">CSV</st1:stockticker>
+file, which can then be opened in Excel or a similar program and printed, if desired.</p>
 
-<p>You can run the model multiple times with differently weighted criteria, and
+<p>You can run the model multiple times with differently weighted criteria and
 thus evaluate the fisheries based on the different scenarios, goals, and
 viewpoints of your project partners. The ability to perform multiple analyses
 within a project also allows you to compare different groups of fisheries. For
 example, if you have fisheries from different countries in your dataset, you
 might want to compare fisheries in one country at a time. In this case, you
-might run the program a number of times using differently weighted criteria for
-each of your groups of fisheries. </p>
+might run the program for each of your groups of fisheries a number of times
+using differently weighted criteria. </p>
 
 <p>To modify and re-run a prior analysis, click on the name of your analysis
-and then click Restart. You will be asked to enter a name and description for
-the new analysis (your original analysis will remain unchanged). Click Restart
+and then click <i style='mso-bidi-font-style:normal'>Restart</i>. You will be
+asked to enter a name and description for the new analysis (your original analysis
+will remain unchanged). Click <i style='mso-bidi-font-style:normal'>Restart</i>
 and you will be taken back to Step 1: Select Alternatives. Modify any of your
 previous selections as desired, and run the analysis as before.<span
 style='mso-spacerun:yes'>  </span></p>
 
-<h2 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:1 !msorm;mso-style-name:"Heading 1" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="evaluating_your_results"><span
-style='font-size:16.0pt !msorm;mso-bidi-font-size:24.0pt !msorm;mso-font-kerning:
-18.0pt !msorm'>Evaluating Your Results</span></a></h2>
+<h2><a name="evaluating_your_results">Evaluating Your Results</a></h2>
 
 <p>Each evaluation will produce a ranking of the fisheries analyzed, which is
-graphically displayed in each summary file. You will want to bring the project
-partners together to discuss any differences in rankings between analyses, what
-might be causing the differences, and which might be the best candidate(s) for <st1:stockticker
-st="on" w:st="on">MSC</st1:stockticker> certification. Multiple summaries can
-be opened simultaneously, allowing you to easily compare the results of
-different analyses. </p>
+graphically displayed in each summary file. The fishery with a rank of 1 is the
+top-ranked fishery. You will want to bring the project partners together to
+discuss any differences in rankings between analyses, what might be causing the
+differences, and which might be the best candidate(s) for <st1:stockticker
+st="on">MSC</st1:stockticker> certification. Multiple summaries can be opened
+simultaneously, allowing you to easily compare the results of different
+analyses. </p>
 
 <p>Be sure to focus your discussions around the rankings of the fisheries, not
 the score of the multicriteria analysis, which is not based on a ratio scale.
 In other words, the difference between scores is not proportional to the
-difference between fisheries. Also, keep in mind that the quality of your
-results is only as good as the quality of your data, and that the rankings are
-based on pairwise comparisons. Thus, your highest-ranked fishery is not
-necessarily certain to meet all of the <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
+difference between fisheries. Also, keep in mind that the quality of your results
+is only as good as the quality of your data, and that the rankings are based on
+<span class=SpellE>pairwise</span> comparisons. Thus, your highest-ranked
+fishery is not necessarily certain to meet all of the <st1:stockticker st="on">MSC</st1:stockticker>
 Principles and Criteria. </p>
 
-<h2 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:1 !msorm;mso-style-name:"Heading 1" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="next_steps"><span style='font-size:16.0pt !msorm;
-mso-bidi-font-size:24.0pt !msorm;mso-font-kerning:18.0pt !msorm'>Next Steps</span></a><span
-style='font-size:24.0pt !msorm;mso-font-kerning:18.0pt !msorm'><span
-style='mso-prop-change:"Tim Welch" 20071220T1223'><o:p></o:p></span></span></h2>
+<h2><a name="next_steps">Next Steps</a></h2>
 
 <p>You have by this time built a support system of partners, colleagues, and
 stakeholders who helped you with this evaluation process. They would very much
@@ -1165,42 +1096,37 @@ which you may want to include a note thanking them for their help. </p>
 <p>You will also want to communicate your selection back to the stakeholders of
 the fishery you selected, as they will be excited to hear about the results of
 your analysis. Once you have confirmed the fishery's interest in <st1:stockticker
-w:st="on">MSC</st1:stockticker> certification, contact the WWF Community
-Fisheries Program and/or the <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
-for assistance with entering the pre-assessment process. </p>
+st="on">MSC</st1:stockticker> certification, contact the WWF Community
+Fisheries Program and/or the <st1:stockticker st="on">MSC</st1:stockticker> for
+assistance with entering the pre-assessment process. </p>
 
-<h2 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:1 !msorm;mso-style-name:"Heading 1" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name=conclusion><span style='font-size:16.0pt !msorm;
-mso-bidi-font-size:24.0pt !msorm;mso-font-kerning:18.0pt !msorm'>Conclusion</span></a></h2>
+<h2><a name=conclusion>Conclusion</a></h2>
 
 <p>Delphos is a step-by-step process designed to help you select a good
-candidate fishery for <st1:stockticker st="on" w:st="on">MSC</st1:stockticker>
+candidate fishery for <st1:stockticker st="on">MSC</st1:stockticker>
 certification. As with any method, you should modify it to suit your needs. If
 you have any suggestions or feedback on either the pre-analysis method or the
 software program, please do not hesitate to contact us – your advice is more
 than welcome. </p>
 
-<h2 style='mso-margin-top-alt:auto !msorm;mso-margin-bottom-alt:auto !msorm;
-mso-outline-level:1 !msorm;mso-style-name:"Heading 1" !msorm;mso-prop-change:
-"Tim Welch" 20071220T1223'><a name="contact_information"><span
-style='font-size:16.0pt !msorm;mso-bidi-font-size:24.0pt !msorm;mso-font-kerning:
-18.0pt !msorm'><span lang=ES style='mso-ansi-language:ES'>Contact Information</span></span></a><span
-style='mso-bookmark:contact_information'></span><span style='font-size:16.0pt !msorm;
-mso-bidi-font-size:24.0pt !msorm;mso-font-kerning:18.0pt !msorm'><span lang=ES
-style='mso-ansi-language:ES'><o:p></o:p></span></span></h2>
+<h2><a name="contact_information"><span lang=ES style='mso-ansi-language:ES'>Contact
+</span></a><span class=SpellE><span style='mso-bookmark:contact_information'><span
+lang=ES style='mso-ansi-language:ES'>Information</span></span></span><span
+style='mso-bookmark:contact_information'></span><span lang=ES style='mso-ansi-language:
+ES'><o:p></o:p></span></h2>
 
 <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span
-lang=ES style='mso-ansi-language:ES'>Comunidad y Biodiversidad A.C.<br>
+lang=ES style='mso-ansi-language:ES'><a href="http://www.cobi.org.mx/">Comunidad
+y Biodiversidad A.C.</a><br>
 </span><span lang=ES-TRAD style='mso-ansi-language:ES-TRAD'>Bahía de <span
 class=SpellE>Bacochibampo</span> s/n Col. Lomas de Cortés</span><span lang=ES
 style='mso-ansi-language:ES'><br>
 <ns0:city>Guaymas</ns0:city>, <ns0:state>Sonora<br>
-</ns0:state><st1:country-region st="on" w:st="on"></st1:country-region><span
-class=SpellE>Mexico</span><br>
+<span class=SpellE></ns0:state>Mexico</span><br>
 <span class=SpellE>asaenz@cobi.org.mx</span><o:p></o:p></span></p>
 
-<p><span lang=ES style='mso-ansi-language:ES'><ns0:placename><u2:p></u2:p>Ecotrust<br>
+<p><span lang=ES style='mso-ansi-language:ES'><ns0:placename><u2:p></u2:p><a
+href="http://www.ecotrust.org/">Ecotrust</a><br>
 </ns0:placename><ns0:placename>Jean</ns0:placename> <ns0:placename><span
 class=SpellE>Vollum</ns0:placename></span> <ns0:placename>Natural</ns0:placename>
 <ns0:placename>Capital</ns0:placename> <ns0:placetype><span class=SpellE>Center</span><br>
@@ -1208,17 +1134,21 @@ class=SpellE>Vollum</ns0:placename></span> <ns0:placename>Natural</ns0:placename
 </ns0:address><ns0:address><ns0:street>721 NW <span class=SpellE>Ninth</span> <span
 class=SpellE>Avenue</span><br>
 </ns0:street><ns0:city>Portland</ns0:city>, <ns0:state>OR</ns0:state> <ns0:postalcode>97209<br>
-</ns0:postalcode><st1:country-region st="on" w:st="on"></st1:country-region>USA<br>
+</ns0:postalcode>USA<br>
 </ns0:address>mikem@ecotrust.org<o:p></o:p></span></p>
 
-<p>World Wildlife Fund <br>
+<p><a href="http://www.wwf.org/">World Wildlife Fund</a> <br>
 Community Fisheries Program<br>
-171 <ns0:address><ns0:street>Forest Ave</ns0:street><br>
-<ns0:city>Palo Alto</ns0:city>, <ns0:state>CA</ns0:state> <ns0:postalcode>94301</ns0:postalcode><br>
-<st1:country-region st="on" w:st="on">USA</st1:country-region></ns0:address><br>
-alison.cross@wwfus.org</p>
+171 <ns0:address><ns0:street><st1:address><st1:Street>Forest Ave</ns0:street></st1:Street><br>
+<st1:City><ns0:city>Palo Alto</ns0:city></st1:City>, <ns0:state><st1:State>CA</ns0:state></st1:State>
+ <st1:PostalCode><ns0:postalcode>94301</ns0:postalcode></st1:PostalCode><br>
+<st1:country-region>USA</st1:country-region></st1:address><br>
+alison.cross@wwfus.org<o:p></o:p></p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<p><o:p>&nbsp;</o:p></p>
+
+<p style='text-indent:0in;mso-text-indent-alt:0in;mso-list:none;mso-list-ins:
+"Alison Cross" 20080111T1302'><o:p>&nbsp;</o:p></p>
 
 </div>
 
