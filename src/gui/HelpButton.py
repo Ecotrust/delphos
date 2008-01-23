@@ -30,4 +30,5 @@ class HelpButton(QPushButton):
 	
 	def __help_click(self):
 		#Call for help and use button name to specify what kind of help
-		self.emit(SIGNAL("help_button_clicked"), self.objectName())
+		#Spanish name is stored in accessibleName, very much a hack
+		self.emit(SIGNAL("help_button_clicked"), self.objectName(), self.accessibleDescription())

@@ -343,6 +343,9 @@
      </item>
      <item>
       <widget class="HelpButton" name="help_define_criteria" >
+       <property name="accessibleName" >
+        <string>help_definir_los_criterios</string>
+       </property>
        <property name="text" >
         <string/>
        </property>

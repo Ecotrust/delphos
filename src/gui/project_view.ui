@@ -349,6 +349,12 @@
             </item>
             <item>
              <widget class="HelpButton" name="help_define_alternatives" >
+              <property name="accessibleName" >
+               <string/>
+              </property>
+              <property name="accessibleDescription" >
+               <string>help_definir_las_alternativas</string>
+              </property>
               <property name="text" >
                <string/>
               </property>
@@ -566,6 +572,12 @@
               </item>
               <item>
                <widget class="HelpButton" name="help_define_criteria" >
+                <property name="accessibleName" >
+                 <string/>
+                </property>
+                <property name="accessibleDescription" >
+                 <string>help_definir_los_criterios</string>
+                </property>
                 <property name="text" >
                  <string/>
                 </property>
@@ -711,6 +723,12 @@
          </item>
          <item>
           <widget class="HelpButton" name="help_input_data" >
+           <property name="accessibleName" >
+            <string/>
+           </property>
+           <property name="accessibleDescription" >
+            <string>help_ingresar_datos</string>
+           </property>
            <property name="text" >
             <string/>
            </property>
@@ -895,6 +913,12 @@
               </item>
               <item>
                <widget class="HelpButton" name="help_8_run_analysis" >
+                <property name="accessibleName" >
+                 <string/>
+                </property>
+                <property name="accessibleDescription" >
+                 <string>help_8_corra_el_análisis</string>
+                </property>
                 <property name="text" >
                  <string/>
                 </property>
@@ -1058,6 +1082,9 @@
               </item>
               <item>
                <widget class="HelpButton" name="help_run_the_program" >
+                <property name="accessibleDescription" >
+                 <string>correr_el_programa</string>
+                </property>
                 <property name="text" >
                  <string/>
                 </property>

@@ -122,10 +122,14 @@ class GuiManager(QObject):
 	
 	def finish_language_selection(self, language):
 		self.config_manager.set_language(language)
+		cur_proj_type = self.project_manager.get_current_project_type()
+		
 		self.language_dialog.hide()
 		self.language_dialog.deleteLater()
-		#Load doc browser with correct documentation
-		self.win.ui.doc_browser.load_doc(self.project_manager.get_current_project_type(), language)
+		#Load doc browser
+		self.win.ui.doc_browser.load_doc(cur_proj_type, language)
+		#Load the table of contents
+		self.win.load_toc(cur_proj_type, language)
 		self.win.ui.dock_doc.show()
 	
 	def handle_intro_selection(self):

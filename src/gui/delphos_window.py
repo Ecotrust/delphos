@@ -22,6 +22,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 from main_window_ui import Ui_MainWindow
+from core.data.toc_data import *
 
 import os
 import urllib
@@ -51,12 +52,10 @@ class DelphosWindow(QMainWindow):
 		QObject.connect(self.ui.menu_open_full_doc, SIGNAL("triggered()"), self.load_full_doc)
 
 		#self.ui.dock_doc.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-		self.load_toc()
 
 	def load_full_doc(self):
 		"""Load full documentation in help window
 		"""
-
 		#Find which documentation subdir to look in
 		project_type = self.gui_manager.project_manager.get_current_project_type()
 		language = self.gui_manager.config_manager.get_language()
@@ -77,52 +76,21 @@ class DelphosWindow(QMainWindow):
 		#file:///U|/dev/delphos/src/documentation/fisheries/english/letter_to_experts.doc
 		self.gui_manager.desktop_services.openUrl(QUrl(doc_url))
 									  
-	def load_toc(self):
+	def load_toc(self, project_type, language):
 		"""Loads the table of contents within the dock widget
 		"""
-		fisheries_toc = [
-			"Introduction",
-			{"Background": [
-			    "Program History",
-			]}, 
-			{"Multicriteria Analysis/Evamix": [
-				"References"
-			]},
-			{"The Delphos Process": [
-				"1. Define Your Goals",
-				"2. Define Your Timeline",
-				"3. Define the Region",
-				"4. Identify Experts",
-				{"5. Consult the Experts": [
-					"Pre-Analysis Workshop",
-					"The Questionnaire"
-				]},
-				"6. Review Recommendations",
-				{"7. Design Your Database": [
-					"Create New Project",
-					"Define Alternatives",
-					"Define Criteria",
-					{"Input Data": [
-					    "Inputting Data Directly",
-					    "Importing Data",
-					    "Data Gaps"
-					]}
-				]},
-				{"8. Run Analysis":[
-					"Select Alternatives",
-					"Select Criteria",
-					"Input MCA Data",
-					"Weight Criteria",
-					"Run the Program"
-				]}
-			]},
-			"Evaluating Your Results",
-			"Next Steps",
-			"Conclusion",
-			"Contact Information",
-		]
-		
-		self.process_toc(fisheries_toc)
+		print fisheries_spanish_toc
+
+		if project_type == 'fisheries':
+			if language == 'english':
+				self.process_toc(fisheries_english_toc)
+			else:
+				self.process_toc(fisheries_spanish_toc)
+		elif project_type == 'mpa':
+			if language == 'english':
+				pass
+			else:
+				pass
 		
 	def process_toc(self, toc):
 		self.ui.toc_tree.clear()
@@ -158,15 +126,21 @@ class DelphosWindow(QMainWindow):
 		#Load URL and go to anchor within it
 		self.ui.doc_browser.load_anchor(label, project_type, language)
 
-	def process_help_click(self, name):
+	def process_help_click(self, en_name, sp_name):
 		"""Uses the help type given to load a section of the documentation
 		"""
-		label = name.replace('help_', '')
+		en_label = en_name.replace('help_', '')
+		sp_label = sp_name.replace('help_', '')
+		
 		#Build URL
 		project_type = self.gui_manager.project_manager.get_current_project_type()
 		language = self.gui_manager.config_manager.get_language()
 		#Load URL and go to anchor within it
-		self.ui.doc_browser.load_anchor(label, project_type, language)
+		if language == 'english':
+			self.ui.doc_browser.load_anchor(en_label, project_type, language)
+		elif language == 'spanish':
+			self.ui.doc_browser.load_anchor(sp_label, project_type, language)
+			
 		#Show the documentation if its hidden		
 		if not self.ui.dock_doc.isVisible():
 			self.ui.menu_dock_visible.trigger()

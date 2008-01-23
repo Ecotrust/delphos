@@ -27,8 +27,11 @@
    </property>
    <item>
     <widget class="QStackedWidget" name="mca_stack" >
+     <property name="accessibleDescription" >
+      <string>help_seleccionar_criterios</string>
+     </property>
      <property name="currentIndex" >
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="select_altern_page" >
       <layout class="QVBoxLayout" >
@@ -52,6 +55,9 @@
          </item>
          <item>
           <widget class="HelpButton" name="help_select_alternatives" >
+           <property name="accessibleDescription" >
+            <string>help_seleccionar_alternativas</string>
+           </property>
            <property name="text" >
             <string/>
            </property>
@@ -441,6 +447,9 @@
          </item>
          <item>
           <widget class="HelpButton" name="help_input_mca_data" >
+           <property name="accessibleDescription" >
+            <string>help_ingresar_datos</string>
+           </property>
            <property name="text" >
             <string/>
            </property>
@@ -579,6 +588,9 @@
          </item>
          <item>
           <widget class="HelpButton" name="help_weight_criteria" >
+           <property name="accessibleDescription" >
+            <string>help_ponderar_criterios</string>
+           </property>
            <property name="text" >
             <string/>
            </property>
@@ -754,6 +766,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>WeightMcaTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>WeightMcaTableWidget.h</header>
+  </customwidget>
+  <customwidget>
    <class>HelpButton</class>
    <extends>QPushButton</extends>
    <header location="global" >HelpButton.h</header>
@@ -772,11 +789,6 @@
    <class>InputMcaTableWidget</class>
    <extends>QTableWidget</extends>
    <header>InputMcaTableWidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>WeightMcaTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header>WeightMcaTableWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>

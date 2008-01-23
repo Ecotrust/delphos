@@ -132,6 +132,9 @@
         </item>
         <item>
          <widget class="HelpButton" name="help_define_alternatives" >
+          <property name="accessibleDescription" >
+           <string>help_definir_las_alternativas</string>
+          </property>
           <property name="text" >
            <string/>
           </property>
