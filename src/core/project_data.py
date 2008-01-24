@@ -111,4 +111,4 @@ if __name__ == '__main__':
 	db = create_engine('sqlite:///db/project23.del')
 	meta = BoundMetaData(db)	#Basically a schema, or table collection
 	proj_data = ProjectData('project_data', meta)
-	print proj_data.to_string()
+	#print proj_data.to_string()

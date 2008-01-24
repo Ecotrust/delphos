@@ -1,13 +1,14 @@
 ===================
-Open Delphos Readme
+Delphos Development
 ===================
 
-Open Delphos is designed to provide a complete solution for performing 
+Delphos is designed to provide a complete solution for performing 
 multi-criteria analysis (MCA).  It is cross-platform and able to run on
 Linux, Mac OSX and Windows.
 
-Open Delphos Homepage: 
-http://trac.infodrizzle.org/opendelphos/
+Delphos development site: http://trac.infodrizzle.org/opendelphos/
+
+Check the dev site for the latest build information
 
 ============
 Requirements
@@ -20,25 +21,27 @@ Python Modules required:
   - PyQT
   - SIP
   - SQLAlchemy
-  - PyExcelerator
   - SQLite (Already built into Python 2.5)
+  - Matplotlib
 
 Running Open Delphos from source:
-  - Run make from the src directory to build all of the PyQT interfaces
-  - Run start_gui.py
+  - Run make from the src directory to build all of the PyQT interfaces.  mingw32-make works well on Windows.
+  - Run Delphos.py (#python Delphos.py)
 
-Building Open Delphos into a standalone application
+Building Delphos into a standalone application
 
   Additional packages needed for compiling a standalone Delphos executable:
   - py2app (Max OS X)
   - py2exe (Windows)
-  
-  Max OSX
+  - InnoSetup Installer (Windows)
+    
+  Mac OSX
   >python macsetup.py py2app
   - app will be in the dist directory
   
   Windows
-  >python winsetup.py py2exe
+  >python winsetup.py py2exe (just executable)
+  >python win_inno_setup.py py2exe (executable + installer)
   - executable will be in the dist directory
-  - the db and data directories will need to be copied to where the 
-	executable is located (needs to be automated in future)
+  - installer will be in the dist\Output directory
+  - The installer script that's generated will automatically copy in all of the necessary documentation and data files.  If you just generate the executable you will need to manually copy the db and data directories into the dist directory. 

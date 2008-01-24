@@ -33,7 +33,7 @@ class HelpTextBrowser(QTextBrowser):
 		self.doc_style_str = str(doc_style_qss.readAll())
 		doc_style_qss.close()
 		
-		print self.doc_style_str
+		#print self.doc_style_str
 		
 
 	
@@ -86,13 +86,13 @@ if __name__ == "__main__":
 			QObject.connect(self.help_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
 
 		def anchor_click_handler(self, url):
-			print url.path()
+			#print url.path()
 			list = url.path().split('/')
 			
 			#If less than 3 elements it's not a URL we care about
-			for item in list:
-				print item
-			print len(list)
+			#for item in list:
+			#	print item
+			#print len(list)
 			if len(list) < 3:
 				return
 			#Extract 'keywords' from path
@@ -105,10 +105,10 @@ if __name__ == "__main__":
 			
 			elif type == 'doc':
 				doc_path = os.getcwd()+os.sep+"documentation"+os.sep+action
-				print doc_path
+				#print doc_path
 				doc_url = "file:"+urllib.pathname2url(unicode(doc_path))
-				print "doc_url"
-				print doc_url
+				#print "doc_url"
+				#print doc_url
 				self.desktop_services.openUrl(QUrl(doc_url))
 
 	a = QApplication(sys.argv)

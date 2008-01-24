@@ -228,7 +228,7 @@ class TestEvamix(unittest.TestCase):
         self.evamix.debug = True
         result = self.evamix.do_analysis(input, crit_weights, crit_types)
         self.evamix.debug = False
-        print result
+        #print result
         for i in range(len(result)):
             self.assertAlmostEqual(result[i], expected_result[i], 6)
         

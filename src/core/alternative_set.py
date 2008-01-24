@@ -161,4 +161,4 @@ if __name__ == '__main__':
 	meta = BoundMetaData(db)	#Basically a schema, or table collection
 	altern_set = AlternativeSet('alternatives', meta)
 	altern_set.add_alternative("testy")
-	print altern_set.to_string()
+	#print altern_set.to_string()

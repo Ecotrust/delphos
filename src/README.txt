@@ -1,25 +1,36 @@
---------------
-DELPHOS README
---------------
+*** DELPHOS 0.2 README ***
 
 Delphos is an analysis tool used for selecting potential fisheries for MSC certification and for selecting potential regions for designation as marine protected areas (MPAs).  Step-by-step documentation is provided.
 
 This software has been developed by Ecotrust, Comunidad y Biodiversidad and World Wildlife Fund
 
--------------------
-SYSTEM REQUIREMENTS
--------------------
+Delphos development site: http://trac.infodrizzle.org/opendelphos/
+
+** SYSTEM REQUIREMENTS **
 
 Delphos is cross-platform and able to run on Windows, Max OSX and Linux.  Your system should have at least 40Mb of disk space and probably at least 64mb of memory.
 
--------
-LICENSE
--------
+** CHANGELOG **
+
+* 0.2 - 12/27/2007 *
+- Dropped main menu dialog for conventional top menu.
+- Rerun analysis with modifications
+- Export analysis to CSV
+- Delete analysis
+- Extensive analysis summary, not just the output.
+- Plotting of alternative rank not score.  (plot still needs work)
+- Color association with alternatives
+- Language selection dialog
+- MCA wizard updates including no loss of input when moving forward and backward
+- Improved evamix algorithm input checking.  Many special cases found that cause failure.
+
+* 0.1 - 8/17/2007 *
+- Initial release including complete multicriteria analysis ability, export/import input data from CSV, basic result plotting
+
+** LICENSE **
 
 Delphos is released open source under the GPL 2 license.  The source code is available on the Delphos development site at http://trac.infodrizzle.org/opendelphos/.  Under the license you may use the Delphos code in other open source projects, but not in proprietary software.
 
----------------------------
-Copyright (c) 2007 Ecotrust
----------------------------
+**** Copyright (c) 2007 Ecotrust ****
 
 

@@ -78,7 +78,7 @@ class InnoScript:
 
         print >> ofi, r"[Icons]"
         for path in self.windows_exe_files:
-            print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"; WorkingDir: {app}' % \
+            print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"; IconFilename: "{app}\images\delphos_icon.ico"; WorkingDir: {app}' % \
                   (self.name, path)
             #print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"' % \
             #      (self.name, path)

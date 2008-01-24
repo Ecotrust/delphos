@@ -79,8 +79,6 @@ class DelphosWindow(QMainWindow):
 	def load_toc(self, project_type, language):
 		"""Loads the table of contents within the dock widget
 		"""
-		print fisheries_spanish_toc
-
 		if project_type == 'fisheries':
 			if language == 'english':
 				self.process_toc(fisheries_english_toc)
@@ -131,10 +129,7 @@ class DelphosWindow(QMainWindow):
 		"""
 		en_label = en_name.replace('help_', '')
 		sp_label = sp_name.replace('help_', '')
-		
-		print en_name
-		print sp_name
-		
+			
 		#Build URL
 		project_type = self.gui_manager.project_manager.get_current_project_type()
 		language = self.gui_manager.config_manager.get_language()
@@ -188,8 +183,6 @@ class DelphosWindow(QMainWindow):
 			self.ui.dock_doc.setFloating(True)
 
 	def toggle_dock_floating_menu(self, isFloating):
-		print "got here"
-		print isFloating
 		if isFloating:
 			self.ui.menu_dock_floating.setChecked(False)
 		else:			

@@ -43,6 +43,6 @@ class ProgressDialog2(QDialog, Ui_ProgressDialog2):
 		self.timer.stop()
 
 	def increment_progress(self):
-		print "timeout!"
+		#print "timeout!"
 		self.counter += 1
 		self.progress_bar.setValue(self.counter % 4)

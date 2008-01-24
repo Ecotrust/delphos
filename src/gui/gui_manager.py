@@ -265,13 +265,13 @@ class GuiManager(QObject):
 		might look like 'qrc:/app/create_new_project'
 		"""
 		
-		print url.path()
+		#print url.path()
 		list = url.path().split('/')
 		
 		#If less than 3 elements it's not a URL we care about
-		for item in list:
-			print item
-		print len(list)
+		#for item in list:
+		#	print item
+		#print len(list)
 		if len(list) < 3:
 			return
 		#Extract 'keywords' from path
@@ -286,8 +286,8 @@ class GuiManager(QObject):
 			#Find which documentation subdir to look in
 			project_type = self.project_manager.get_current_project_type()
 			language = self.config_manager.get_language()
-			print "my language"
-			print language
+			#print "my language"
+			#print language
 			if project_type == 'fisheries':
 				if language == 'english':
 					doc_subdir = 'fisheries'+os.sep+'english'+os.sep
@@ -301,8 +301,8 @@ class GuiManager(QObject):
 			
 			doc_path = os.getcwd()+os.sep+"documentation"+os.sep+doc_subdir+os.sep+action
 			doc_url = "file:"+urllib.pathname2url(unicode(doc_path))
-			print "doc url"
-			print doc_url
+			#print "doc url"
+			#print doc_url
 			self.desktop_services.openUrl(QUrl(doc_url))
 	
 #Testing purposes

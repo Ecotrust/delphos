@@ -44,7 +44,7 @@ class McaRuns(object):
         else:
             self.__create_table()
         
-        print list(self.table.columns)
+        #print list(self.table.columns)
 
     def __create_table(self):
         """Create a new mca runs table in the DB

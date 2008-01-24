@@ -168,8 +168,8 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
                         self.ordinal_option_list.insert(i, option_info)
                         break
 
-            for row in self.ordinal_option_list:
-                print row
+            #for row in self.ordinal_option_list:
+            #    print row
             self.ordinal_option_table.load(self.ordinal_option_list)
 
     def handle_remove_ordinal_option(self):

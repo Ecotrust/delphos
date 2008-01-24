@@ -25,7 +25,7 @@ from copy import deepcopy
 class Evamix(object):
     
     def __init__(self):
-        self.debug = True
+        self.debug = False
 
     def do_analysis(self, in_matrix, crit_weights, crit_types, crit_bc):
         """Performs multicriteria analysis using the Evamix algorithm

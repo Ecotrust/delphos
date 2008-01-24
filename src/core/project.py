@@ -230,7 +230,7 @@ class Project:
         """Load criteria from the given filename into the DB table.
         """
         for row in self.default_criteria:
-            print row
+            #print row
             self.crit_set.add_criteria((row[0],row[1],row[2], row[3]))
 
     def add_criteria(self, criteria_info):

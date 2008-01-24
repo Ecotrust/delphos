@@ -235,7 +235,9 @@ class McaWizard(QDialog, Ui_McaWizard):
         elif not self.input_data:
             #Create input set
             self.input_data = InputDataSet(self.selected_altern_data, self.selected_crit_data)
-            self.input_data.load_values(self.project.get_all_input())
+            saved_input = self.project.get_all_input()
+            if saved_input:
+                self.input_data.load_values(saved_input)
         else:
             #Update input set with any changes in criteria/alternatives
             self.input_data.update_headings(self.selected_altern_data, self.selected_crit_data)
