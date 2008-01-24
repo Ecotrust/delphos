@@ -1,44 +1,25 @@
-===================
-Open Delphos Readme
-===================
+--------------
+DELPHOS README
+--------------
 
-Open Delphos is designed to provide a complete solution for performing 
-multi-criteria analysis (MCA).  It is cross-platform and able to run on
-Linux, Mac OSX and Windows.
+Delphos is an analysis tool used for selecting potential fisheries for MSC certification and for selecting potential regions for designation as marine protected areas (MPAs).  Step-by-step documentation is provided.
 
-Open Delphos Homepage: 
-http://trac.infodrizzle.org/opendelphos/
+This software has been developed by Ecotrust, Comunidad y Biodiversidad and World Wildlife Fund
 
-============
-Requirements
-============
+-------------------
+SYSTEM REQUIREMENTS
+-------------------
 
-Open Delphos is known to work with Python 4.2.3 and later
+Delphos is cross-platform and able to run on Windows, Max OSX and Linux.  Your system should have at least 40Mb of disk space and probably at least 64mb of memory.
 
-Python Modules required:
-  - QT 4.2
-  - PyQT
-  - SIP
-  - SQLAlchemy
-  - PyExcelerator
-  - SQLite (Already built into Python 2.5)
+-------
+LICENSE
+-------
 
-Running Open Delphos from source:
-  - Run make from the src directory to build all of the PyQT interfaces
-  - Run start_gui.py
+Delphos is released open source under the GPL 2 license.  The source code is available on the Delphos development site at http://trac.infodrizzle.org/opendelphos/.  Under the license you may use the Delphos code in other open source projects, but not in proprietary software.
 
-Building Open Delphos into a standalone application
+---------------------------
+Copyright (c) 2007 Ecotrust
+---------------------------
 
-  Additional packages needed for compiling a standalone Delphos executable:
-  - py2app (Max OS X)
-  - py2exe (Windows)
-  
-  Max OSX
-  >python macsetup.py py2app
-  - app will be in the dist directory
-  
-  Windows
-  >python winsetup.py py2exe
-  - executable will be in the dist directory
-  - the db and data directories will need to be copied to where the 
-	executable is located (needs to be automated in future)
+

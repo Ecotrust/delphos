@@ -132,6 +132,9 @@ class DelphosWindow(QMainWindow):
 		en_label = en_name.replace('help_', '')
 		sp_label = sp_name.replace('help_', '')
 		
+		print en_name
+		print sp_name
+		
 		#Build URL
 		project_type = self.gui_manager.project_manager.get_current_project_type()
 		language = self.gui_manager.config_manager.get_language()

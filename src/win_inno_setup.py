@@ -19,7 +19,8 @@ def tree(src):
     list = [(root, map(lambda f: os.path.join(root, f), files)) for (root, dirs, files) in os.walk(os.path.normpath(src))]
     new_list = []
     for (root, files) in list:
-        if len(files) > 0:
+    #print "%s , %s" % (root,files)
+        if len(files) > 0 and root.count('.svn') == 0:
             new_list.append((root, files))
     return new_list 
 
@@ -56,20 +57,35 @@ class InnoScript:
         print >> ofi, r"AppVerName=%s %s" % (self.name, self.version)
         print >> ofi, r"DefaultDirName={pf}\%s" % self.name
         print >> ofi, r"DefaultGroupName=%s" % self.name
+        print >> ofi, r"VersionInfoVersion=%s" % self.version
+        print >> ofi, r"VersionInfoCompany=Ecotrust"
+        print >> ofi, r"VersionInfoDescription=Delphos"
+        print >> ofi, r"VersionInfoCopyright=Ecotrust"
+        print >> ofi, r"AppCopyright=Ecotrust"
+        print >> ofi, r"InfoAfterFile=README.TXT"
+        print >> ofi, r"LicenseFile=LICENSE.TXT"
+        print >> ofi, r"WizardImageBackColor=clBlack"
+        print >> ofi, r"WizardImageFile=images\delphos_vert.bmp"
+        print >> ofi, r"WizardSmallImageFile=images\delphos_upper_right.bmp"
+        print >> ofi, r"SetupIconFile=images\delphos_icon.ico"
         print >> ofi
 
         print >> ofi, r"[Files]"
         for path in self.windows_exe_files + self.lib_files:
             print >> ofi, r'Source: "%s"; DestDir: "{app}\%s"; Flags: ignoreversion' % (path, os.path.dirname(path))
+        print >> ofi, r'Source: lib\MSVCP71.dll; DestDir: {app}\lib; Flags: ignoreversion'
         print >> ofi
 
         print >> ofi, r"[Icons]"
         for path in self.windows_exe_files:
-            print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"' % \
+            print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"; WorkingDir: {app}' % \
                   (self.name, path)
+            #print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"' % \
+            #      (self.name, path)
                   
         print >> ofi, r'Name: "{group}\Delphos Fisheries Documentation - English"; Filename: "{app}\documentation\fisheries\english\documentation.html"'
-                  
+        print >> ofi, r'Name: "{group}\Delphos Fisheries Documentation - Spanish"; Filename: "{app}\documentation\fisheries\spanish\documentation.html"'                  
+        
         print >> ofi, 'Name: "{group}\Uninstall %s"; Filename: "{uninstallexe}"' % self.name
 
     def compile(self):
@@ -114,7 +130,7 @@ class build_installer(py2exe):
         dist_dir = self.dist_dir
         
         # create the Installer, using the files py2exe has created.
-        script = InnoScript("Delphos",
+        script = InnoScript("Delphos 0.2",
                             lib_dir,
                             dist_dir,
                             self.windows_exe_files,
@@ -143,8 +159,10 @@ options = {
 
 matplotlib_data_files = tree('lib\matplotlibdata')
 doc_data_files = tree('documentation')
-base_files = ("",["LICENSE.txt", "README.txt"])
-data_files = matplotlib_data_files + doc_data_files
+base_files = [(".",[".\\LICENSE.txt", ".\\README.txt"])]
+lib_files = [("lib",["lib\\MSVCP71.dll"])]
+image_files = [("images",["images\\delphos_icon.ico","images\\delphos_upper_right.bmp","images\\delphos_vert.bmp"])]
+data_files = matplotlib_data_files + doc_data_files + base_files + lib_files + image_files 
  
 setup(
     options = options,

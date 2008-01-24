@@ -31,7 +31,7 @@
       <string>help_seleccionar_criterios</string>
      </property>
      <property name="currentIndex" >
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="select_altern_page" >
       <layout class="QVBoxLayout" >
@@ -260,6 +260,9 @@
          </item>
          <item>
           <widget class="HelpButton" name="help_select_criteria" >
+           <property name="accessibleDescription" >
+            <string>help_seleccionar_criterios</string>
+           </property>
            <property name="text" >
             <string/>
            </property>
