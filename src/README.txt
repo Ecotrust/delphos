@@ -14,7 +14,7 @@ Delphos is cross-platform and able to run on Windows, Max OSX and Linux.  Your s
 
 ** CHANGELOG **
 
-* 0.2 - 12/27/2007 *
+* 0.2 - 12/27/2007 - revision 147 *
 - Dropped main menu dialog for conventional top menu.
 - Rerun analysis with modifications
 - Export analysis to CSV
@@ -26,7 +26,7 @@ Delphos is cross-platform and able to run on Windows, Max OSX and Linux.  Your s
 - MCA wizard updates including no loss of input when moving forward and backward
 - Improved evamix algorithm input checking.  Many special cases found that cause failure.
 
-* 0.1 - 8/17/2007 *
+* 0.1 - 8/17/2007 - revision 67 *
 - Initial release including complete multicriteria analysis ability, export/import input data from CSV, basic result plotting
 
 ** LICENSE **
