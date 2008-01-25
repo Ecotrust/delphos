@@ -79,12 +79,12 @@ class WeightMcaTableWidget(QTableWidget):
             #print table_item
             value = table_item.text()
             #Check for no value
-            if value is None and input_required:
+            if (value is None or value == '') and input_required:
                 QMessageBox.critical(self,"Error", "Missing input in row "+str(i+1))
                 return None                
             #Check for non-integer
             if value and not strIsInt(value):
-                QMessageBox.critical(self,"Error", "Invalid input in row "+str(i+1)+"\nExpected an integer, received "+str(value))
+                QMessageBox.critical(self,"Error", "Invalid input in row "+str(i+1)+"\nExpected an integer, received '"+str(value)+"'")
                 return None                
             #print "value: "+str(value)
             #print "from i:"+str(i)+" j:"+str(j)
