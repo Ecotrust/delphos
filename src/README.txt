@@ -10,6 +10,8 @@ Delphos development site: http://trac.infodrizzle.org/opendelphos/
 
 Delphos is cross-platform and able to run on Windows, Max OSX and Linux.  Your system should have at least 40Mb of disk space and probably at least 64mb of memory.
 
+*Note when errors occur in Delphos they are output to a file in the installation folder called Delphos.exe.log.  If the user does not have the necessary permissions to create files in the installation directory then an occur will occur.  In this case an administrator will need to create this file and set the necessary permissions.
+
 ** CHANGELOG **
 
 * 0.2 - 12/27/2007 *

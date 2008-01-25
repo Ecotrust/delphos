@@ -130,15 +130,19 @@ class InputGlobalTableWidget(QTableWidget):
                     try:
                         value = self.get_combo_value(row, column)
                     except InputError, e:
-                        raise DelphosError, unicode(e)+" Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
-                        return False
+                        raise DelphosError, unicode(e)+"Missing or Invalid input in Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
+                        return False 
                     
                 elif crit_type == "Ratio":
                     try:                    
                         value = self.get_cell_value(row, column)
                     except InputError, e:
-                        raise DelphosError, unicode(e)+" Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
+                        raise DelphosError, unicode(e)+"Missing or Invalid input in Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
                         return False
+                    else:
+                        if value is not None and value < 0:
+                            raise DelphosError, "Ratio value must be greater than zero in Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
+                            return False
     
                 if value == None and input_required:
                     raise DelphosError, "Missing input for row "+unicode(row)+" '"+unicode(crit_name)+"', column "+unicode(column)+" '"+unicode(altern_name)+"'"
@@ -152,20 +156,25 @@ class InputGlobalTableWidget(QTableWidget):
         update_input_value signal is sent for each cell that is changed.
         """
         if not self.crit_data or not self.altern_data:
-            return
-    
-        new_input_vals = self.get_input_vals(input_required)
-                
-        #Traverse again updating each cell value in DB and creating new input_set
-        for i in range(self.num_rows):
-            (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = self.crit_data[i]
-            row = i
-            for j in range(self.num_cols):
-                (altern_id, altern_name, altern_color) = self.altern_data[j]
-                column = j
+            return False
 
-                new_value = new_input_vals[row][column]
-                self.emit(SIGNAL("update_input_value"), altern_id, crit_id, new_value)
+        try:
+            new_input_vals = self.get_input_vals(input_required)
+        except DelphosError, e:
+            QMessageBox.critical(self,"Input Error", unicode(e.value))
+            return False
+        else:
+            #Traverse again updating each cell value in DB and creating new input_set
+            for i in range(self.num_rows):
+                (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = self.crit_data[i]
+                row = i
+                for j in range(self.num_cols):
+                    (altern_id, altern_name, altern_color) = self.altern_data[j]
+                    column = j
+    
+                    new_value = new_input_vals[row][column]
+                    self.emit(SIGNAL("update_input_value"), altern_id, crit_id, new_value)
+        return True
         
     def get_combo_value(self, row, column):
         #Get value from combo box

@@ -34,5 +34,8 @@ class McaRerunDialog(QDialog, Ui_McaRerunDialog):
 
 	def process_input(self):
 		name = self.analysis_name_edit.text()
+		if not name:
+			QMessageBox.critical(self,"Analysis Error", "You must enter a name for this analysis")
+			return False;
 		description = self.analysis_description_edit.text()
 		self.emit(SIGNAL("mca_rerun_info_collected"), name, description)

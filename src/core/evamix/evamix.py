@@ -40,7 +40,7 @@ class Evamix(object):
             raise DelphosError, "Bad in_matrix matrix"
         if not crit_weights:
             raise DelphosError, "No criteria weights given"
-        print "crit weights: "+str(crit_weights)
+        #print "crit weights: "+str(crit_weights)
         if type(crit_weights) is not type([]):
             raise DelphosError, "Expected list of crit_weights"
         if not crit_types:
@@ -248,17 +248,17 @@ class Evamix(object):
                     #for each pair of alternatives A and B for each alternatives
                     Ni_vals = []
                     for k in quant_cols:
-                        print "i:"+str(i)+" j:"+str(j)+" k:"+str(k)
+                        #print "i:"+str(i)+" j:"+str(j)+" k:"+str(k)
                         crit_weight = float(crit_weights[k])
-                        print "crit weight: "+str(crit_weight)
+                        #print "crit weight: "+str(crit_weight)
                         std_val_A = float(in_matrix[i][k])
-                        print "std_val_A: "+str(std_val_A)
+                        #print "std_val_A: "+str(std_val_A)
                         std_val_B = float(in_matrix[j][k])
-                        print "std_val_B: "+str(std_val_B)
+                        #print "std_val_B: "+str(std_val_B)
                         Ni = crit_weight * (std_val_A - std_val_B)
-                        print "Ni: "+str(Ni)
+                        #print "Ni: "+str(Ni)
                         Ni_vals.append(Ni)
-                    print "Sum: "+str(sum(Ni_vals))
+                    #print "Sum: "+str(sum(Ni_vals))
                     mat[i][j] = sum(Ni_vals)
         return mat
 
@@ -308,8 +308,8 @@ class Evamix(object):
         if self.num_quant_criteria > 0:       
             for i in range(dim):
                 for j in range(dim):
-                    print quant_impact_matrix[i][j]
-                    print quant_abs_sum
+                    #print quant_impact_matrix[i][j]
+                    #print quant_abs_sum
                     final_matrix[i][j] = quant_impact_matrix[i][j]/quant_abs_sum
         return final_matrix
 

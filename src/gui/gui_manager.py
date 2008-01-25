@@ -25,6 +25,8 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+from sqlalchemy import *
+
 from delphos_exceptions import *
 from delphos_window import DelphosWindow
 from select_type_dialog import SelectTypeDialog
@@ -175,9 +177,9 @@ class GuiManager(QObject):
 		try:
 			self.create_dialog.show()
 			self.project_manager.create_project(project_filename, project_path, load_default_altern, load_default_crit, self.config_manager.get_language())
-		except DelphosError, e:
+		except (DelphosError, exceptions.DBAPIError), e:
 			self.create_dialog.hide()
-			QMessageBox.critical(self.create_proj_dialog, "Project Creation Error", str(e))
+			QMessageBox.critical(self.create_proj_dialog, "Project Creation Error", "Error creating/opening project file. Try again.  Do you have the correct permissions to create a project in that location?\n\n"+str(e))
 		else:
 			self.create_proj_dialog.close()
 			self.create_proj_dialog.deleteLater()

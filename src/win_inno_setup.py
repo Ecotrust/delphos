@@ -72,7 +72,12 @@ class InnoScript:
 
         print >> ofi, r"[Files]"
         for path in self.windows_exe_files + self.lib_files:
-            print >> ofi, r'Source: "%s"; DestDir: "{app}\%s"; Flags: ignoreversion' % (path, os.path.dirname(path))
+            if (path == '.\\Delphos.exe.log'):
+                #Special case need world write access to error log
+                print >> ofi, r'Source: "%s"; DestDir: "{app}\%s"; Flags: ignoreversion; Permissions: users-modify' % (path, os.path.dirname(path))
+            else:
+                print >> ofi, r'Source: "%s"; DestDir: "{app}\%s"; Flags: ignoreversion' % (path, os.path.dirname(path))
+
         print >> ofi, r'Source: lib\MSVCP71.dll; DestDir: {app}\lib; Flags: ignoreversion'
         print >> ofi
 
@@ -80,8 +85,6 @@ class InnoScript:
         for path in self.windows_exe_files:
             print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"; IconFilename: "{app}\images\delphos_icon.ico"; WorkingDir: {app}' % \
                   (self.name, path)
-            #print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"' % \
-            #      (self.name, path)
                   
         print >> ofi, r'Name: "{group}\Delphos Fisheries Documentation - English"; Filename: "{app}\documentation\fisheries\english\documentation.html"'
         print >> ofi, r'Name: "{group}\Delphos Fisheries Documentation - Spanish"; Filename: "{app}\documentation\fisheries\spanish\documentation.html"'                  
@@ -159,10 +162,11 @@ options = {
 
 matplotlib_data_files = tree('lib\matplotlibdata')
 doc_data_files = tree('documentation')
-base_files = [(".",[".\\LICENSE.txt", ".\\README.txt"])]
+sample_data_files = tree('sample')
+base_files = [(".",[".\\LICENSE.txt", ".\\README.txt", ".\\Delphos.exe.log"])]
 lib_files = [("lib",["lib\\MSVCP71.dll"])]
 image_files = [("images",["images\\delphos_icon.ico","images\\delphos_upper_right.bmp","images\\delphos_vert.bmp"])]
-data_files = matplotlib_data_files + doc_data_files + base_files + lib_files + image_files 
+data_files = matplotlib_data_files + doc_data_files + sample_data_files + base_files + lib_files + image_files 
  
 setup(
     options = options,

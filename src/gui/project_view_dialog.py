@@ -94,6 +94,9 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         
         self.altern_table.load(all_alternatives)
         self.crit_table.load(all_criteria)
+        
+        self.load_data_input()
+        
         #self.input_table.load(all_alternatives, all_criteria, all_input)
         self.mca_runs_table.load(self.project.get_mca_runs_basic())
 
@@ -192,9 +195,10 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.save_button.setEnabled(False)
 
     def save_input(self):
-        self.save_button.setDisabled(True)
         self.gui_manager.save_dialog.show()
-        self.input_table.save_input_data()
+        success = self.input_table.save_input_data()
+        if success:
+            self.save_button.setDisabled(True)
         self.gui_manager.save_dialog.hide()
 
     def load_data_input(self):
@@ -208,25 +212,29 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.gui_manager.load_dialog.hide()
 
     def get_current_input(self):
-        cur_input_vals = self.input_table.get_input_vals(input_required=False)
-                
-        #Associate current values with their altern and crit id's
-        cur_input_set = []
-        num_rows = self.project.num_criteria()
-        num_columns = self.project.num_alternatives()
-        altern_data = self.project.get_all_alternatives()
-        crit_data = self.project.get_all_criteria()
-        
-        for i in range(num_rows):
-            (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = crit_data[i]
-            row = i
-            for j in range(num_columns):
-                (altern_id, altern_name, altern_color) = altern_data[j]
-                column = j
-
-                cur_val = cur_input_vals[row][column]
-                cur_input_set.append((altern_id, crit_id, cur_val)) 
-        return cur_input_set      
+        try:
+            cur_input_vals = self.input_table.get_input_vals(input_required=False)
+        except DelphosError, e:
+            QMessageBox.critical(self,"Input Error", unicode(e.value))
+            return False
+        else:     
+            #Associate current values with their altern and crit id's
+            cur_input_set = []
+            num_rows = self.project.num_criteria()
+            num_columns = self.project.num_alternatives()
+            altern_data = self.project.get_all_alternatives()
+            crit_data = self.project.get_all_criteria()
+            
+            for i in range(num_rows):
+                (crit_id, crit_name, crit_type, crit_options_units, cost_benefit) = crit_data[i]
+                row = i
+                for j in range(num_columns):
+                    (altern_id, altern_name, altern_color) = altern_data[j]
+                    column = j
+    
+                    cur_val = cur_input_vals[row][column]
+                    cur_input_set.append((altern_id, crit_id, cur_val)) 
+            return cur_input_set      
 
     def process_template_export(self):
         """Creates a unicode CSV containing alternatives and criteria for quickly inputting data
@@ -426,17 +434,22 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.analysis_description = self.analysis_description_edit.text()
         if not self.analysis_name:
             QMessageBox.critical(self,"Analysis Error", "You must enter a name for this analysis")
+            return False;
         else:
             #Fire up MCA Wizard.
             self.gui_manager.load_dialog.show()           
             if self.input_table.loaded:
-                self.mca_wizard = McaWizard(self.gui_manager, self, self.project, global_input_data=self.get_current_input())
+                cur_input_data = self.get_current_input()
+                if not cur_input_data:
+                    self.gui_manager.load_dialog.hide()
+                    return False;
+                self.mca_wizard = McaWizard(self.gui_manager, self, self.project, global_input_data=cur_input_data)
             else:
                 self.mca_wizard = McaWizard(self.gui_manager, self, self.project)
                 
             self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
             self.mca_wizard.show()
-            self.gui_manager.load_dialog.hide()
+        self.gui_manager.load_dialog.hide()
             
     def finish_new_analysis(self, altern_data, crit_data, input_data, input_weights, selected_crit_types, selected_crit_bc):
         try:
