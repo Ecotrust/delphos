@@ -44,7 +44,8 @@
          <widget class="QPushButton" name="browse_button" >
           <property name="font" >
            <font>
-            <pointsize>9</pointsize>
+            <family>Arial</family>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
@@ -84,7 +85,7 @@
         <property name="font" >
          <font>
           <family>Arial</family>
-          <pointsize>8</pointsize>
+          <pointsize>11</pointsize>
          </font>
         </property>
         <property name="text" >

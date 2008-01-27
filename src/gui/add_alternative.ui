@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>296</width>
-    <height>160</height>
+    <width>307</width>
+    <height>196</height>
    </rect>
   </property>
   <property name="font" >
@@ -41,7 +41,8 @@
            <widget class="QLabel" name="name_label" >
             <property name="font" >
              <font>
-              <pointsize>10</pointsize>
+              <family>Lucida Grande</family>
+              <pointsize>13</pointsize>
              </font>
             </property>
             <property name="text" >
@@ -51,6 +52,12 @@
           </item>
           <item>
            <widget class="QLabel" name="color_label" >
+            <property name="font" >
+             <font>
+              <family>Lucida Grande</family>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
             <property name="text" >
              <string>Color:</string>
             </property>
@@ -104,6 +111,12 @@
             </item>
             <item>
              <widget class="QPushButton" name="change_color_button" >
+              <property name="font" >
+               <font>
+                <family>Lucida Grande</family>
+                <pointsize>13</pointsize>
+               </font>
+              </property>
               <property name="text" >
                <string>New Color</string>
               </property>
@@ -154,6 +167,12 @@
         </item>
         <item>
          <widget class="QDialogButtonBox" name="add_alternative_box" >
+          <property name="font" >
+           <font>
+            <family>Lucida Grande</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
           <property name="standardButtons" >
            <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
           </property>

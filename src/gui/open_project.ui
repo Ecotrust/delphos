@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>442</width>
-    <height>135</height>
+    <width>458</width>
+    <height>139</height>
    </rect>
   </property>
   <property name="font" >
@@ -27,7 +27,7 @@
      <property name="font" >
       <font>
        <family>Arial</family>
-       <pointsize>10</pointsize>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="title" >
@@ -41,7 +41,7 @@
           <property name="font" >
            <font>
             <family>Arial</family>
-            <pointsize>9</pointsize>
+            <pointsize>13</pointsize>
            </font>
           </property>
           <property name="text" >

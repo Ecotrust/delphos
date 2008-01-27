@@ -42,7 +42,7 @@
            <property name="font" >
             <font>
              <family>Arial</family>
-             <pointsize>12</pointsize>
+             <pointsize>13</pointsize>
              <weight>75</weight>
              <bold>true</bold>
              <underline>false</underline>
@@ -210,7 +210,8 @@
                <widget class="QPushButton" name="altern_next_button" >
                 <property name="font" >
                  <font>
-                  <pointsize>9</pointsize>
+                  <family>Arial</family>
+                  <pointsize>13</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -222,7 +223,8 @@
                <widget class="QPushButton" name="altern_cancel_button" >
                 <property name="font" >
                  <font>
-                  <pointsize>9</pointsize>
+                  <family>Arial</family>
+                  <pointsize>13</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -247,7 +249,8 @@
           <widget class="QLabel" name="label_14" >
            <property name="font" >
             <font>
-             <pointsize>12</pointsize>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
              <weight>75</weight>
              <bold>true</bold>
              <underline>false</underline>
@@ -437,7 +440,8 @@
           <widget class="QLabel" name="label_15" >
            <property name="font" >
             <font>
-             <pointsize>12</pointsize>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
              <weight>75</weight>
              <bold>true</bold>
              <underline>false</underline>
@@ -578,7 +582,8 @@
           <widget class="QLabel" name="label_17" >
            <property name="font" >
             <font>
-             <pointsize>12</pointsize>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
              <weight>75</weight>
              <bold>true</bold>
              <underline>false</underline>
@@ -769,14 +774,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>WeightMcaTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header>WeightMcaTableWidget.h</header>
-  </customwidget>
-  <customwidget>
    <class>HelpButton</class>
    <extends>QPushButton</extends>
    <header location="global" >HelpButton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>WeightMcaTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>WeightMcaTableWidget.h</header>
   </customwidget>
   <customwidget>
    <class>AlternativeMcaTableWidget</class>

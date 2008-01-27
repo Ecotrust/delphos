@@ -15,6 +15,11 @@
   <layout class="QHBoxLayout" >
    <item>
     <widget class="QGroupBox" name="groupBox" >
+     <property name="font" >
+      <font>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
      <property name="title" >
       <string>Select a Language:</string>
      </property>

@@ -30,6 +30,11 @@
   <layout class="QHBoxLayout" >
    <item>
     <widget class="QTabWidget" name="summary_tab" >
+     <property name="font" >
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
      <property name="currentIndex" >
       <number>0</number>
      </property>
@@ -57,7 +62,8 @@
           <widget class="QLabel" name="label_2" >
            <property name="font" >
             <font>
-             <pointsize>10</pointsize>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
              <weight>75</weight>
              <bold>true</bold>
             </font>
@@ -119,6 +125,11 @@
            <width>120</width>
            <height>60</height>
           </size>
+         </property>
+         <property name="font" >
+          <font>
+           <pointsize>12</pointsize>
+          </font>
          </property>
          <property name="mouseTracking" >
           <bool>false</bool>

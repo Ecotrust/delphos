@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>379</width>
-    <height>354</height>
+    <height>417</height>
    </rect>
   </property>
   <property name="font" >
@@ -34,7 +34,8 @@
          <widget class="QLabel" name="label" >
           <property name="font" >
            <font>
-            <pointsize>10</pointsize>
+            <family>Arial</family>
+            <pointsize>13</pointsize>
            </font>
           </property>
           <property name="text" >
@@ -62,7 +63,8 @@
          <widget class="QRadioButton" name="benefit_button" >
           <property name="font" >
            <font>
-            <pointsize>10</pointsize>
+            <family>Arial</family>
+            <pointsize>13</pointsize>
            </font>
           </property>
           <property name="text" >
@@ -74,7 +76,8 @@
          <widget class="QRadioButton" name="cost_button" >
           <property name="font" >
            <font>
-            <pointsize>10</pointsize>
+            <family>Arial</family>
+            <pointsize>13</pointsize>
            </font>
           </property>
           <property name="text" >
@@ -102,6 +105,12 @@
    </item>
    <item>
     <widget class="QTabWidget" name="criteria_type_tab" >
+     <property name="font" >
+      <font>
+       <family>Lucida Grande</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
      <property name="currentIndex" >
       <number>0</number>
      </property>
@@ -119,7 +128,8 @@
           <widget class="QLabel" name="label_2" >
            <property name="font" >
             <font>
-             <pointsize>10</pointsize>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
             </font>
            </property>
            <property name="text" >
@@ -148,7 +158,8 @@
           <widget class="QLabel" name="label_3" >
            <property name="font" >
             <font>
-             <pointsize>10</pointsize>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
             </font>
            </property>
            <property name="text" >
