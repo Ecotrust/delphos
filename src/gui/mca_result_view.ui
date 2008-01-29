@@ -32,7 +32,7 @@
     <widget class="QTabWidget" name="summary_tab" >
      <property name="font" >
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>9</pointsize>
       </font>
      </property>
      <property name="currentIndex" >
@@ -63,7 +63,7 @@
            <property name="font" >
             <font>
              <family>Arial</family>
-             <pointsize>13</pointsize>
+             <pointsize>10</pointsize>
              <weight>75</weight>
              <bold>true</bold>
             </font>
@@ -104,6 +104,11 @@
              <height>800</height>
             </size>
            </property>
+           <property name="font" >
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
           </widget>
          </item>
         </layout>
@@ -128,7 +133,7 @@
          </property>
          <property name="font" >
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="mouseTracking" >
@@ -186,6 +191,11 @@
            <width>300</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font" >
+          <font>
+           <pointsize>10</pointsize>
+          </font>
          </property>
          <property name="editTriggers" >
           <set>QAbstractItemView::NoEditTriggers</set>
@@ -245,6 +255,11 @@
          <property name="enabled" >
           <bool>true</bool>
          </property>
+         <property name="font" >
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="mouseTracking" >
           <bool>false</bool>
          </property>
@@ -288,6 +303,11 @@
            <width>400</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="font" >
+          <font>
+           <pointsize>10</pointsize>
+          </font>
          </property>
          <property name="mouseTracking" >
           <bool>false</bool>
@@ -337,6 +357,11 @@
            <width>1677777</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="font" >
+          <font>
+           <pointsize>10</pointsize>
+          </font>
          </property>
          <property name="editTriggers" >
           <set>QAbstractItemView::NoEditTriggers</set>

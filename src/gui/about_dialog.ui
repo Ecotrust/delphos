@@ -27,7 +27,8 @@
         <widget class="QLabel" name="label" >
          <property name="font" >
           <font>
-           <pointsize>12</pointsize>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
            <weight>50</weight>
            <bold>false</bold>
           </font>
@@ -63,24 +64,25 @@ Website: http://trac.infodrizzle.org/opendelphos</string>
     <widget class="QTextBrowser" name="textBrowser" >
      <property name="font" >
       <font>
-       <pointsize>13</pointsize>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="html" >
       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Lucida Grande'; font-size:13pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8pt;">&lt;span style=" font-family:'Times New Roman, serif'; font-size:12pt;">Copyright(C) 2007 Ecotrust&lt;/span>&lt;/p>
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:12pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:12pt;">This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by theFree Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;/p>
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:12pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:12pt;">&lt;span style=" font-family:'Times New Roman, serif';">This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNUGeneral Public License for more details.&lt;/span>&lt;/p>
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:12pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:12pt;">&lt;span style=" font-family:'Times New Roman, serif';">You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation,Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA&lt;/span>&lt;/p>
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:12pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:12pt;">&lt;span style=" font-family:'Times New Roman, serif';">This General Public License does not permit incorporating your program into proprietary programs.&lt;/span>&lt;/p>
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:12pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:12pt;">&lt;span style=" font-family:'Times New Roman, serif';">Ecotrust&lt;br />Jean Vollum Natural Capital Center&lt;br />Suite 200&lt;br />721 NW NinthAvenue&lt;br />Portland, OR 97209&lt;br />USA&lt;br />http://www.ecotrust.orgs&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8pt;">&lt;span style=" font-family:'Times New Roman, serif'; font-size:10pt;">Copyright(C) 2007 Ecotrust&lt;/span>&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:10pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:10pt;">This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by theFree Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:10pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:10pt;">&lt;span style=" font-family:'Times New Roman, serif';">This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNUGeneral Public License for more details.&lt;/span>&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:10pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:10pt;">&lt;span style=" font-family:'Times New Roman, serif';">You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation,Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA&lt;/span>&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:10pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:10pt;">&lt;span style=" font-family:'Times New Roman, serif';">This General Public License does not permit incorporating your program into proprietary programs.&lt;/span>&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman, serif'; font-size:10pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:10pt;">&lt;span style=" font-family:'Times New Roman, serif';">Ecotrust&lt;br />Jean Vollum Natural Capital Center&lt;br />Suite 200&lt;br />721 NW NinthAvenue&lt;br />Portland, OR 97209&lt;br />USA&lt;br />http://www.ecotrust.orgs&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
      </property>
     </widget>
    </item>
@@ -101,6 +103,12 @@ p, li { white-space: pre-wrap; }
      </item>
      <item>
       <widget class="QPushButton" name="close_button" >
+       <property name="font" >
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="text" >
         <string>Close Window</string>
        </property>

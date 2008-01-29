@@ -86,9 +86,9 @@ class DelphosWindow(QMainWindow):
 				self.process_toc(fisheries_spanish_toc)
 		elif project_type == 'mpa':
 			if language == 'english':
-				pass
+				self.process_toc(fisheries_english_toc)
 			else:
-				pass
+				self.process_toc(fisheries_spanish_toc)
 		
 	def process_toc(self, toc):
 		self.ui.toc_tree.clear()

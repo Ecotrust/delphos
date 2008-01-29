@@ -33,7 +33,7 @@
      <property name="font" >
       <font>
        <family>Arial</family>
-       <pointsize>13</pointsize>
+       <pointsize>9</pointsize>
       </font>
      </property>
      <property name="currentIndex" >
@@ -64,7 +64,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>10</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -77,7 +77,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>10</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -86,11 +86,24 @@
                </widget>
               </item>
               <item>
+               <widget class="QLabel" name="label_8" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string>Project Sub-type:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QLabel" name="label_3" >
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>10</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -103,7 +116,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>10</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -126,7 +139,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>10</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -139,7 +152,20 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text" >
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="project_sub_type" >
+                <property name="font" >
+                 <font>
+                  <family>Arial</family>
+                  <pointsize>10</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -152,7 +178,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>10</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -165,7 +191,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>10</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -200,6 +226,11 @@
                   <height>0</height>
                  </size>
                 </property>
+                <property name="font" >
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Click buttons, like the one to the right, to get detailed help.</string>
                 </property>
@@ -231,19 +262,6 @@
             </item>
            </layout>
           </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>26</width>
-             <height>184</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </item>
@@ -295,6 +313,11 @@
                 <height>0</height>
                </size>
               </property>
+              <property name="font" >
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="focusPolicy" >
                <enum>Qt::StrongFocus</enum>
               </property>
@@ -310,6 +333,11 @@
                 <width>100</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="font" >
+               <font>
+                <pointsize>9</pointsize>
+               </font>
               </property>
               <property name="text" >
                <string>Remove</string>
@@ -421,6 +449,11 @@
              <height>300</height>
             </size>
            </property>
+           <property name="font" >
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="mouseTracking" >
             <bool>false</bool>
            </property>
@@ -521,6 +554,11 @@
                   <height>0</height>
                  </size>
                 </property>
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
                 <property name="text" >
                  <string>Add</string>
                 </property>
@@ -533,6 +571,11 @@
                   <width>100</width>
                   <height>0</height>
                  </size>
+                </property>
+                <property name="font" >
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
                 </property>
                 <property name="text" >
                  <string>Remove</string>
@@ -635,6 +678,11 @@
            <height>0</height>
           </size>
          </property>
+         <property name="font" >
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
          <property name="editTriggers" >
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -701,6 +749,11 @@
               <property name="enabled" >
                <bool>false</bool>
               </property>
+              <property name="font" >
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="text" >
                <string>Save</string>
               </property>
@@ -711,6 +764,11 @@
               <property name="enabled" >
                <bool>false</bool>
               </property>
+              <property name="font" >
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="text" >
                <string>Reset</string>
               </property>
@@ -718,6 +776,11 @@
             </item>
             <item>
              <widget class="QPushButton" name="export_button" >
+              <property name="font" >
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="text" >
                <string>Export</string>
               </property>
@@ -725,6 +788,11 @@
             </item>
             <item>
              <widget class="QPushButton" name="import_button" >
+              <property name="font" >
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="text" >
                <string>Import</string>
               </property>
@@ -825,7 +893,7 @@
            <property name="font" >
             <font>
              <family>Arial</family>
-             <pointsize>13</pointsize>
+             <pointsize>11</pointsize>
             </font>
            </property>
            <property name="title" >
@@ -841,6 +909,11 @@
                 </property>
                 <item>
                  <widget class="QLabel" name="label_5" >
+                  <property name="font" >
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
                   <property name="text" >
                    <string>Name:</string>
                   </property>
@@ -848,6 +921,11 @@
                 </item>
                 <item>
                  <widget class="QLabel" name="label_4" >
+                  <property name="font" >
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
                   <property name="text" >
                    <string>Description:</string>
                   </property>
@@ -874,6 +952,11 @@
                     <height>16777215</height>
                    </size>
                   </property>
+                  <property name="font" >
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -889,6 +972,11 @@
                     <width>150</width>
                     <height>16777215</height>
                    </size>
+                  </property>
+                  <property name="font" >
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
                   </property>
                  </widget>
                 </item>
@@ -916,7 +1004,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>9</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -974,7 +1062,7 @@
          <property name="font" >
           <font>
            <family>Arial</family>
-           <pointsize>13</pointsize>
+           <pointsize>11</pointsize>
           </font>
          </property>
          <property name="title" >
@@ -1032,7 +1120,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>9</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -1051,7 +1139,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>9</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -1070,7 +1158,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>9</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -1089,7 +1177,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>9</pointsize>
                  </font>
                 </property>
                 <property name="text" >

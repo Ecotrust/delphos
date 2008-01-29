@@ -44,7 +44,7 @@ class Project:
     lower level core objects directly
     """
     
-    def __init__(self, name, path, type=None, load_default_altern=False, load_default_crit=False, language=None):
+    def __init__(self, name, path, type=None, sub_type=None, load_default_altern=False, load_default_crit=False, language=None):
         """new_project = Project(string, string, string, boolean, boolean)
         
         Default criteria are a predetermined set of criteria thought to be common to
@@ -54,6 +54,7 @@ class Project:
         self.name = name
         self.path = path
         self.type = type    #Fisheries or MPA
+        self.sub_type = sub_type    #MPA - Regions, MPA - Communities
         self.db_driver = 'sqlite'
         self.db_file_ext = '.dlp'
         self.status_ok = False     #1-OK, 0-Error
@@ -81,12 +82,20 @@ class Project:
                 self.default_alternatives = default_alternative_data.fisheries_spanish_default_alternatives
                 self.default_criteria = default_criteria_data.fisheries_spanish_default_criteria            
         elif self.type == "mpa":
-            if language == "english":
-                self.default_alternatives = default_alternative_data.mpa_english_default_alternatives
-                self.default_criteria = default_criteria_data.mpa_english_default_criteria
-            if language == "spanish":
-                self.default_alternatives = default_alternative_data.mpa_spanish_default_alternatives
-                self.default_criteria = default_criteria_data.mpa_spanish_default_criteria 
+            if self.sub_type == "communities":
+                if language == "english":
+                    self.default_alternatives = default_alternative_data.mpa_communities_english_default_alternatives
+                    self.default_criteria = default_criteria_data.mpa_communities_english_default_criteria
+                if language == "spanish":
+                    self.default_alternatives = default_alternative_data.mpa_communities_spanish_default_alternatives
+                    self.default_criteria = default_criteria_data.mpa_communities_spanish_default_criteria 
+            elif self.sub_type == "regions":
+                if language == "english":
+                    self.default_alternatives = default_alternative_data.mpa_regions_english_default_alternatives
+                    self.default_criteria = default_criteria_data.mpa_regions_english_default_criteria
+                if language == "spanish":
+                    self.default_alternatives = default_alternative_data.mpa_regions_spanish_default_alternatives
+                    self.default_criteria = default_criteria_data.mpa_regions_spanish_default_criteria 
         
         self.__create_project_db()
         if self.status_ok:
@@ -133,13 +142,16 @@ class Project:
 
     def __create_project_data(self):
         project_name = self.name[:-4]
-        self.project_data = ProjectData(self.meta, self.project_table_name, project_name, self.type)
+        self.project_data = ProjectData(self.meta, self.project_table_name, project_name, self.type, self.sub_type)
 
     def get_project_data(self):
         return self.project_data.get_project_data()
 
     def get_project_type(self):
         return self.project_data.get_project_type()
+
+    def get_project_sub_type(self):
+        return self.project_data.get_project_sub_type()
 
     ################################# Alternatives ##############################
 

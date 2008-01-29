@@ -21,7 +21,7 @@
      <property name="font" >
       <font>
        <family>Arial</family>
-       <pointsize>13</pointsize>
+       <pointsize>9</pointsize>
       </font>
      </property>
      <property name="title" >
@@ -37,6 +37,11 @@
           </property>
           <item>
            <widget class="QLabel" name="label_8" >
+            <property name="font" >
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
             <property name="text" >
              <string>Name:</string>
             </property>
@@ -44,6 +49,11 @@
           </item>
           <item>
            <widget class="QLabel" name="label_9" >
+            <property name="font" >
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="text" >
              <string>Description:</string>
             </property>
@@ -64,6 +74,11 @@
               <height>0</height>
              </size>
             </property>
+            <property name="font" >
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
            </widget>
           </item>
           <item>
@@ -73,6 +88,11 @@
               <width>150</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="font" >
+             <font>
+              <pointsize>9</pointsize>
+             </font>
             </property>
            </widget>
           </item>
@@ -100,7 +120,7 @@
           <property name="font" >
            <font>
             <family>Arial</family>
-            <pointsize>13</pointsize>
+            <pointsize>9</pointsize>
            </font>
           </property>
           <property name="text" >

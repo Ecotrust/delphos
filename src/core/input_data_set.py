@@ -167,15 +167,18 @@ class InputDataSet():
 	def check_qual_rows(self):
 		"""Check if all rows with qualitative criteria have the same values
 		within a given row"""
-		qual_rows = self.get_qual_rows()	   
-		row_same_list = []
-		for row in qual_rows:		   
-			crit_name = self.get_crit_name(row)
-			row_same_list.append(self.check_same_values_by_row(row))
-			 
-		all_same = reduce(lambda x, y: x and y, row_same_list) 
-		if all_same: 
-			raise InputError, ""
+		qual_rows = self.get_qual_rows()
+		if len(qual_rows) > 0:	   
+			row_same_list = []
+			for row in qual_rows:		   
+				crit_name = self.get_crit_name(row)
+				row_same_list.append(self.check_same_values_by_row(row))
+				 
+			all_same = reduce(lambda x, y: x and y, row_same_list) 
+			if all_same: 
+				raise InputError, ""
+		else:
+			return None
 			
 	def check_same_values_by_row(self, row):
 		"""Check if the cells in any row all have the same values

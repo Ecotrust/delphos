@@ -45,5 +45,7 @@ fisheries_spanish_default_alternatives = [
     "Silver Pomfrets"
 ]
 
-mpa_english_default_alternatives = []
-mpa_spanish_default_alternatives = []
+mpa_communities_english_default_alternatives = []
+mpa_communities_spanish_default_alternatives = []
+mpa_regions_english_default_alternatives = []
+mpa_regions_spanish_default_alternatives = []

@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>428</width>
-    <height>250</height>
+    <width>438</width>
+    <height>262</height>
    </rect>
   </property>
   <property name="font" >
@@ -22,51 +22,54 @@
   </property>
   <layout class="QHBoxLayout" >
    <item>
-    <layout class="QHBoxLayout" >
+    <layout class="QVBoxLayout" >
      <item>
-      <layout class="QVBoxLayout" >
+      <layout class="QHBoxLayout" >
        <item>
-        <layout class="QVBoxLayout" >
-         <item>
-          <layout class="QHBoxLayout" >
-           <item>
-            <widget class="QGroupBox" name="groupBox_2" >
-             <property name="font" >
-              <font>
-               <family>Arial</family>
-               <pointsize>13</pointsize>
-               <weight>50</weight>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="title" >
-              <string>Select Project Type:</string>
-             </property>
+        <widget class="QGroupBox" name="groupBox_2" >
+         <property name="font" >
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title" >
+          <string>Select Project Type:</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <layout class="QVBoxLayout" >
+            <item>
+             <widget class="QRadioButton" name="fisheries_type_button" >
+              <property name="font" >
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text" >
+               <string>Fisheries</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <layout class="QVBoxLayout" >
-              <item>
-               <widget class="QRadioButton" name="fisheries_type_button" >
-                <property name="font" >
-                 <font>
-                  <family>Arial</family>
-                  <pointsize>13</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text" >
-                 <string>Fisheries</string>
-                </property>
-               </widget>
-              </item>
+              <property name="spacing" >
+               <number>0</number>
+              </property>
               <item>
                <widget class="QRadioButton" name="mpa_type_button" >
                 <property name="enabled" >
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>10</pointsize>
                   <weight>50</weight>
                   <bold>false</bold>
                  </font>
@@ -80,196 +83,275 @@
                </widget>
               </item>
               <item>
-               <spacer>
-                <property name="orientation" >
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" >
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
+               <layout class="QHBoxLayout" >
+                <item>
+                 <layout class="QHBoxLayout" >
+                  <item>
+                   <spacer>
+                    <property name="orientation" >
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" >
+                     <size>
+                      <width>20</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" >
+                    <property name="spacing" >
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QRadioButton" name="communities_sub_type_button" >
+                      <property name="enabled" >
+                       <bool>false</bool>
+                      </property>
+                      <property name="font" >
+                       <font>
+                        <family>Arial</family>
+                        <pointsize>9</pointsize>
+                        <weight>50</weight>
+                        <bold>false</bold>
+                       </font>
+                      </property>
+                      <property name="text" >
+                       <string>Communities</string>
+                      </property>
+                      <property name="checkable" >
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QRadioButton" name="regions_sub_type_button" >
+                      <property name="enabled" >
+                       <bool>false</bool>
+                      </property>
+                      <property name="font" >
+                       <font>
+                        <family>Arial</family>
+                        <pointsize>9</pointsize>
+                        <weight>50</weight>
+                        <bold>false</bold>
+                       </font>
+                      </property>
+                      <property name="text" >
+                       <string>Regions</string>
+                      </property>
+                      <property name="checkable" >
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer>
+                  <property name="orientation" >
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" >
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
              </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_3" >
-             <property name="font" >
-              <font>
-               <family>Arial</family>
-               <pointsize>13</pointsize>
-               <weight>50</weight>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="title" >
-              <string>Project Options:</string>
-             </property>
-             <layout class="QVBoxLayout" >
-              <item>
-               <widget class="QCheckBox" name="default_crit_check" >
-                <property name="font" >
-                 <font>
-                  <family>Arial</family>
-                  <pointsize>13</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text" >
-                 <string>Load Suggested Criteria</string>
-                </property>
-                <property name="checked" >
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="default_altern_check" >
-                <property name="font" >
-                 <font>
-                  <family>Arial</family>
-                  <pointsize>13</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text" >
-                 <string>Load Sample Alternatives</string>
-                </property>
-                <property name="checked" >
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer>
-                <property name="orientation" >
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" >
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </widget>
-           </item>
-          </layout>
-         </item>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" >
          <item>
-          <widget class="QGroupBox" name="groupBox_4" >
-           <property name="windowModality" >
-            <enum>Qt::NonModal</enum>
-           </property>
+          <widget class="QGroupBox" name="groupBox_3" >
            <property name="font" >
             <font>
              <family>Arial</family>
-             <pointsize>13</pointsize>
+             <pointsize>10</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="title" >
-            <string>Save Project As:</string>
+            <string>Project Options:</string>
            </property>
-           <layout class="QHBoxLayout" >
+           <layout class="QVBoxLayout" >
             <item>
-             <widget class="QPushButton" name="project_browse_button" >
+             <widget class="QCheckBox" name="default_crit_check" >
               <property name="font" >
                <font>
                 <family>Arial</family>
-                <pointsize>13</pointsize>
+                <pointsize>10</pointsize>
                 <weight>50</weight>
                 <bold>false</bold>
                </font>
               </property>
               <property name="text" >
-               <string>Browse...</string>
+               <string>Load Suggested Criteria</string>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="project_path_edit" >
-              <property name="font" >
-               <font>
-                <pointsize>9</pointsize>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="text" >
-               <string/>
-              </property>
-              <property name="readOnly" >
+              <property name="checked" >
                <bool>true</bool>
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QCheckBox" name="default_altern_check" >
+              <property name="font" >
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text" >
+               <string>Load Sample Alternatives</string>
+              </property>
+              <property name="checked" >
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
            </layout>
           </widget>
          </item>
-         <item>
-          <layout class="QHBoxLayout" >
-           <item>
-            <spacer>
-             <property name="orientation" >
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" >
-              <size>
-               <width>246</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QDialogButtonBox" name="create_button_box" >
-             <property name="standardButtons" >
-              <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
         </layout>
        </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_4" >
+       <property name="windowModality" >
+        <enum>Qt::NonModal</enum>
+       </property>
+       <property name="font" >
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="title" >
+        <string>Save Project As:</string>
+       </property>
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QPushButton" name="project_browse_button" >
+          <property name="font" >
+           <font>
+            <family>Arial</family>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Browse...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="project_path_edit" >
+          <property name="font" >
+           <font>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+          <property name="readOnly" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" >
        <item>
         <spacer>
          <property name="orientation" >
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="sizeHint" >
           <size>
-           <width>20</width>
-           <height>40</height>
+           <width>246</width>
+           <height>20</height>
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="QDialogButtonBox" name="create_button_box" >
+         <property name="font" >
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="standardButtons" >
+          <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
      <item>
       <spacer>
        <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Vertical</enum>
        </property>
        <property name="sizeHint" >
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>412</width>
+         <height>16</height>
         </size>
        </property>
       </spacer>
      </item>
     </layout>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>40</width>
+       <height>230</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

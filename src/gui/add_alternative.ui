@@ -26,7 +26,8 @@
     <widget class="QGroupBox" name="groupBox_4" >
      <property name="font" >
       <font>
-       <pointsize>9</pointsize>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="title" >
@@ -41,8 +42,8 @@
            <widget class="QLabel" name="name_label" >
             <property name="font" >
              <font>
-              <family>Lucida Grande</family>
-              <pointsize>13</pointsize>
+              <family>Arial</family>
+              <pointsize>10</pointsize>
              </font>
             </property>
             <property name="text" >
@@ -54,8 +55,8 @@
            <widget class="QLabel" name="color_label" >
             <property name="font" >
              <font>
-              <family>Lucida Grande</family>
-              <pointsize>13</pointsize>
+              <family>Arial</family>
+              <pointsize>10</pointsize>
              </font>
             </property>
             <property name="text" >
@@ -77,6 +78,7 @@
             </property>
             <property name="font" >
              <font>
+              <family>Arial</family>
               <pointsize>9</pointsize>
              </font>
             </property>
@@ -104,6 +106,12 @@
                 <height>20</height>
                </size>
               </property>
+              <property name="font" >
+               <font>
+                <family>Arial</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
               <property name="text" >
                <string/>
               </property>
@@ -113,8 +121,8 @@
              <widget class="QPushButton" name="change_color_button" >
               <property name="font" >
                <font>
-                <family>Lucida Grande</family>
-                <pointsize>13</pointsize>
+                <family>Arial</family>
+                <pointsize>9</pointsize>
                </font>
               </property>
               <property name="text" >
@@ -132,6 +140,12 @@
        <layout class="QHBoxLayout" >
         <item>
          <spacer>
+          <property name="font" >
+           <font>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="orientation" >
            <enum>Qt::Horizontal</enum>
           </property>
@@ -145,6 +159,12 @@
         </item>
         <item>
          <widget class="HelpButton" name="help_define_alternatives" >
+          <property name="font" >
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="accessibleDescription" >
            <string>help_definir_las_alternativas</string>
           </property>
@@ -169,8 +189,8 @@
          <widget class="QDialogButtonBox" name="add_alternative_box" >
           <property name="font" >
            <font>
-            <family>Lucida Grande</family>
-            <pointsize>13</pointsize>
+            <family>Arial</family>
+            <pointsize>9</pointsize>
            </font>
           </property>
           <property name="standardButtons" >

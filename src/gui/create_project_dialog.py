@@ -38,13 +38,31 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 		self.isError = False	#Error flag for form processing
 		self.errorMsg = ""
 		self.default_file_extension = ".dlp"
+		self.project_path = None
+		
+		type_group = QButtonGroup(self)
+		type_group.addButton(self.mpa_type_button)
+		type_group.addButton(self.fisheries_type_button)
+		sub_type_group = QButtonGroup(self)
+		sub_type_group.addButton(self.communities_sub_type_button)
+		sub_type_group.addButton(self.regions_sub_type_button)
 		
 		#Connect slots to signals
 		QObject.connect(self.project_browse_button,QtCore.SIGNAL("clicked()"), self.process_browse)
+		QObject.connect(self.fisheries_type_button,QtCore.SIGNAL("clicked()"), self.process_fisheries_click)
+		QObject.connect(self.mpa_type_button,QtCore.SIGNAL("clicked()"), self.process_mpa_click)
 		QObject.connect(self.create_button_box,QtCore.SIGNAL("accepted()"), self.process_accept)
 		QObject.connect(self.create_button_box,QtCore.SIGNAL("rejected()"), self.process_reject)
 		self.default_altern_check.hide()
-		
+
+	def process_fisheries_click(self):
+		self.communities_sub_type_button.setEnabled(False)
+		self.regions_sub_type_button.setEnabled(False)
+	
+	def process_mpa_click(self):
+		self.communities_sub_type_button.setEnabled(True)
+		self.regions_sub_type_button.setEnabled(True)
+	
 	def process_browse(self):
 		"""Processes clicking of browse button
 		"""
@@ -75,9 +93,18 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 		"""Processes clicking of OK button in dialog
 		"""
 		self.project_type = ""
+		self.project_sub_type = ""
 		
 		if self.mpa_type_button.isChecked():
 			self.project_type = "mpa"
+			if self.communities_sub_type_button.isChecked():
+				self.project_sub_type = "communities"
+			elif self.regions_sub_type_button.isChecked():
+				self.project_sub_type = "regions"
+			else:
+				self.isError = True
+				self.errorMsg += "Please select \"Communities\" or \"Regions\n"
+				
 		elif self.fisheries_type_button.isChecked():
 			self.project_type = "fisheries"
 		else:
@@ -90,9 +117,10 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 
 		if self.isError:
 			QMessageBox.critical(self,"Delphos",self.errorMsg)
+			self.errorMsg = ""
 			self.isError = False
 		else:
-			self.emit(SIGNAL("create_project_info_collected"), self.filename, self.project_path, self.project_type, self.default_altern_check.checkState(), self.default_crit_check.checkState())
+			self.emit(SIGNAL("create_project_info_collected"), self.filename, self.project_path, self.project_type, self.project_sub_type, self.default_altern_check.checkState(), self.default_crit_check.checkState())
 			
 	def process_reject(self):
 		"""Processes clicking of Cancel button in dialog

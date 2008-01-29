@@ -33,7 +33,7 @@ from delphos_exceptions import *
 class InputGlobalTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
-        self.vertical_header_width = 300 #criteria descriptions are so freaking long!
+        self.vertical_header_width = 400 #criteria descriptions are so freaking long!
         self.loaded = False
 
     def load(self, altern_data, crit_data, input_data):

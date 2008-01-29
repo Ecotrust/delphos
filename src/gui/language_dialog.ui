@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>152</width>
-    <height>105</height>
+    <height>111</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,7 +17,8 @@
     <widget class="QGroupBox" name="groupBox" >
      <property name="font" >
       <font>
-       <pointsize>13</pointsize>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
       </font>
      </property>
      <property name="title" >
@@ -26,6 +27,12 @@
      <layout class="QVBoxLayout" >
       <item>
        <widget class="QPushButton" name="english_button" >
+        <property name="font" >
+         <font>
+          <family>Arial</family>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
         <property name="text" >
          <string>English</string>
         </property>
@@ -33,6 +40,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="spanish_button" >
+        <property name="font" >
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="text" >
          <string>Español</string>
         </property>

@@ -42,7 +42,7 @@
            <property name="font" >
             <font>
              <family>Arial</family>
-             <pointsize>13</pointsize>
+             <pointsize>11</pointsize>
              <weight>75</weight>
              <bold>true</bold>
              <underline>false</underline>
@@ -94,6 +94,11 @@
         <layout class="QHBoxLayout" >
          <item>
           <widget class="QPushButton" name="check_all_altern_button" >
+           <property name="font" >
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="text" >
             <string>Check All</string>
            </property>
@@ -101,6 +106,11 @@
          </item>
          <item>
           <widget class="QPushButton" name="uncheck_all_altern_button" >
+           <property name="font" >
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="text" >
             <string>Uncheck All</string>
            </property>
@@ -211,7 +221,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>9</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -224,7 +234,7 @@
                 <property name="font" >
                  <font>
                   <family>Arial</family>
-                  <pointsize>13</pointsize>
+                  <pointsize>9</pointsize>
                  </font>
                 </property>
                 <property name="text" >
@@ -250,7 +260,7 @@
            <property name="font" >
             <font>
              <family>Arial</family>
-             <pointsize>13</pointsize>
+             <pointsize>11</pointsize>
              <weight>75</weight>
              <bold>true</bold>
              <underline>false</underline>
@@ -441,7 +451,7 @@
            <property name="font" >
             <font>
              <family>Arial</family>
-             <pointsize>13</pointsize>
+             <pointsize>11</pointsize>
              <weight>75</weight>
              <bold>true</bold>
              <underline>false</underline>
@@ -583,7 +593,7 @@
            <property name="font" >
             <font>
              <family>Arial</family>
-             <pointsize>13</pointsize>
+             <pointsize>11</pointsize>
              <weight>75</weight>
              <bold>true</bold>
              <underline>false</underline>

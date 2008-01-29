@@ -21,6 +21,10 @@ from delphos_exceptions import *
 from sqlalchemy import *
 from project import *
 
+from PyQt4 import QtCore, QtGui
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
 class ProjectManager:
 	"""Provides access to, handles and maintins delphos projects.
 	"""
@@ -28,11 +32,12 @@ class ProjectManager:
 		self.current_project_name = ""
 		self.current_project_path = ""
 		self.current_project_type = ""
+		self.current_project_sub_type = ""
 		self.current_project = None
 		self.default_project_path = "db"
 		self.default_file_extension = "del"
 
-	def create_project(self, name, path, load_default_altern, load_default_crit, language=None):
+	def create_project(self, name, path, type, sub_type, load_default_altern, load_default_crit, language=None):
 		"""Create a new delphos Project
 	
 		name (string) - name of the project
@@ -55,8 +60,11 @@ class ProjectManager:
 		elif not self.current_project_type:
 			raise DelphosError, "Analysis type not found"
 		
+		self.current_project_type = type
+		self.current_project_sub_type = sub_type
+		
 		#Create project
-		proj = Project(name, path, self.current_project_type, load_default_altern, load_default_crit, language)
+		proj = Project(name, path, type, sub_type, load_default_altern, load_default_crit, language)
 		if not proj:
 			raise DelphosError, "Project creation failed"
 		
@@ -85,15 +93,22 @@ class ProjectManager:
 		
 		#Check if project type changed
 		project_type = proj.get_project_type()
+		project_sub_type = proj.get_project_sub_type()
  
 		if not project_type:
 			raise DelphosError, "Project type not found"
 		elif project_type != self.current_project_type:
 			#print "type changed to "+project_type+", notify!"
 			self.current_project_type = project_type
-			#Notify to reload the documentation
-			self.emit(SIGNAL("project_type_changed"), project_type)
-		
+			#@todo - Notify to reload the documentation
+			#self.emit(SIGNAL("project_type_changed"), project_type)
+
+		if project_sub_type != self.current_project_sub_type:
+			#print "type changed to "+project_type+", notify!"
+			self.current_project_sub_type = project_sub_type
+			#@todo - Notify to reload the documentation
+			#self.emit(SIGNAL("project_sub_type_changed"), project_sub_type)
+
 		self.current_project = proj
 		self.current_project_name = name
 		return True
@@ -120,13 +135,24 @@ class ProjectManager:
 		else:
 			return False
 
+	#Fisheries, MPA
 	def set_current_project_type(self, type):
 		if not type:
 			return False
 		else:
 			self.current_project_type = type
+
+	#MPA - Communities, MPA - Regions
+	def set_current_project_sub_type(self, sub_type):
+		if not sub_type:
+			return False
+		else:
+			self.current_project_sub_type = sub_type
 	
 	def get_current_project_type(self):
+		return self.current_project_type
+
+	def get_current_project_sub_type(self):
 		return self.current_project_type
 
 	def get_current_project_name(self):

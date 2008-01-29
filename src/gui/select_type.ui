@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>499</width>
-    <height>223</height>
+    <width>426</width>
+    <height>206</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -42,8 +42,8 @@
         </property>
         <property name="font" >
          <font>
-          <family>Lucida Grande</family>
-          <pointsize>14</pointsize>
+          <family>Arial</family>
+          <pointsize>13</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -58,7 +58,7 @@
           <x>10</x>
           <y>42</y>
           <width>200</width>
-          <height>151</height>
+          <height>161</height>
          </rect>
         </property>
         <property name="maximumSize" >
@@ -69,8 +69,8 @@
         </property>
         <property name="font" >
          <font>
-          <family>Lucida Grande</family>
-          <pointsize>13</pointsize>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text" >
@@ -89,7 +89,7 @@
       <widget class="QGroupBox" name="groupBox_2" >
        <property name="minimumSize" >
         <size>
-         <width>200</width>
+         <width>180</width>
          <height>160</height>
         </size>
        </property>
@@ -114,8 +114,8 @@
             </property>
             <property name="sizeHint" >
              <size>
-              <width>10</width>
-              <height>20</height>
+              <width>16</width>
+              <height>181</height>
              </size>
             </property>
            </spacer>
@@ -138,13 +138,26 @@
             <item>
              <layout class="QHBoxLayout" >
               <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
                <widget class="QLabel" name="label" >
                 <property name="font" >
                  <font>
-                  <family>Lucida Grande</family>
-                  <pointsize>13</pointsize>
-                  <weight>75</weight>
-                  <bold>true</bold>
+                  <family>Arial</family>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -176,8 +189,8 @@
                <widget class="QPushButton" name="fisheries_type_button" >
                 <property name="font" >
                  <font>
-                  <family>Lucida Grande</family>
-                  <pointsize>13</pointsize>
+                  <family>Arial</family>
+                  <pointsize>9</pointsize>
                  </font>
                 </property>
                 <property name="toolTip" >
@@ -194,12 +207,12 @@
               <item>
                <widget class="QPushButton" name="mpa_type_button" >
                 <property name="enabled" >
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="font" >
                  <font>
-                  <family>Lucida Grande</family>
-                  <pointsize>13</pointsize>
+                  <family>Arial</family>
+                  <pointsize>9</pointsize>
                  </font>
                 </property>
                 <property name="toolTip" >
@@ -234,8 +247,8 @@
             </property>
             <property name="sizeHint" >
              <size>
-              <width>10</width>
-              <height>20</height>
+              <width>16</width>
+              <height>181</height>
              </size>
             </property>
            </spacer>

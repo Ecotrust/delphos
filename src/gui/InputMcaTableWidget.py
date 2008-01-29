@@ -30,7 +30,7 @@ from delphos_exceptions import *
 class InputMcaTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
-        self.vertical_header_width = 300 #criteria descriptions are so freaking long!
+        self.vertical_header_width = 400 #criteria descriptions are so freaking long!
 
     def load(self, input_data_set):
         """Given list of alternative/criteria pair info and an input value for that 

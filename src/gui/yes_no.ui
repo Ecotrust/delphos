@@ -21,6 +21,12 @@
      <property name="windowModality" >
       <enum>Qt::NonModal</enum>
      </property>
+     <property name="font" >
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text" >
       <string>Are you sure?</string>
      </property>
@@ -28,6 +34,12 @@
    </item>
    <item>
     <widget class="QDialogButtonBox" name="confirm_box" >
+     <property name="font" >
+      <font>
+       <family>Arial</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>
      </property>

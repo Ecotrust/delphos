@@ -267,8 +267,8 @@ fisheries_spanish_default_criteria = [
     ],[
        u"Desarrollo costero", 
        u"Ordinal", 
-       [[u"Altamente desarrollado e industrializado",1],[u"Desarrollado",2],[u"Semi-rural",3],[u"Rural",4]], 
-       u"C"
+       [[u"Rural",4],[u"Semi-rural",3],[u"Desarrollado",2],[u"Altamente desarrollado e industrializado",1]], 
+       u"B"
     ],[
        u"Nivel socioeconómico de la comunidad de la pesca", 
        u"Ordinal", 
@@ -291,6 +291,278 @@ fisheries_spanish_default_criteria = [
        u"B"
     ]
 ]
+
+
+
+mpa_communities_english_default_criteria = [
+    [
+        "Defined users with legal access rights to the fishing area",
+        "Ordinal",
+        [["Strong",4],["Mediocre",3],["Poor",2],["Open Access Resources",1]], 
+        "B"
+    ],[
+        "Resilience in the fishing management system regarding political change in the country's authority structure",
+        "Ordinal",
+        [["Good",4],["Mediocre",3],["Poor",2],["None",1]], 
+        "B"
+    ],[
+        "Community interest and willingness to establish a network of fully-protected marine reserves",
+        "Ordinal",
+        [["Yes",4],["Yes, but need more information",3],["Indecisive",2],["Against",1]], 
+        "B"
+    ],[
+        "Community involvement in fishing management",
+        "Ordinal",
+        [["Good",4],["Mediocre",3],["Poor",2],["None",1]], 
+        "B"
+    ],[
+       "Balance in benefit distribution of fishing exploitation", 
+       "Binary", 
+       [["Balanced",2],["Unbalanced",1]], 
+       "B"
+    ],[
+        "Fishers levels of organization",
+        "Ordinal",
+        [["High",3],["Medium",2],["Low",1]], 
+        "B"
+    ],[
+        "Number of fishers working in the fishing area", 
+        "Ratio", 
+       ["# of fishers"], 
+        "C"
+    ],[
+        "Community's investment capacity in fully-protected marine reserves",
+        "Ordinal",
+        [["High",3],["Average",2],["Low",1]], 
+        "B"
+    ],[
+        "Level of ecosystem's scientific knowledge",
+        "Ordinal",
+        [["High",3],["Medium",2],["Low",1]], 
+        "B"
+    ],[
+        "Coastal Development",
+        "Ordinal",
+        [["Underdeveloped",4],["Developing",3],["Developed",2],["Highly Industrialized and Developed",1]], 
+        "C"
+    ],[
+        "Area being considered for establishing a network of community reserves (sq.km OR km of coastline)", 
+        "Ratio", 
+       ["sq.km or km of coastline"], 
+        "B"
+    ],[
+        "Connectivity of the possible network of the fully-protected community marine reserves in a regional system of fully-protected marine reserves",
+        "Ordinal",
+        [["Appropriate",4],["Moderately Appropriate",3],["Hardly Relevant",2],["Isolated",1]], 
+        "B"
+    ],[
+        "Number of essential habitats for highly migratory species (# of habitats)", 
+        "Ratio", 
+       ["# of habitats"], 
+        "B"
+    ],[
+        "Representation of different habitats in the biogeographic region (# of habitats)", 
+        "Ratio", 
+       ["# of habitats"], 
+        "B"
+    ],[
+       "Opportunity to connect (by being adjacent) this marine area with a terrestrial protected area", 
+       "Binary", 
+       [["Present",2],["Absent",1]], 
+       "B"
+    ],[
+       "Is a zone part of a high priority conservation site according to another national or international project?", 
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+        "Number of species included in national or international lists under any special protection category (# of species)", 
+        "Ratio", 
+       ["# of species"], 
+        "B"
+    ],[
+        "Number of species subject to fishing exploitation (# of species)", 
+        "Ratio", 
+       ["# of species"], 
+        "B"
+    ],[
+        "Zone's vulnerability to natural disasters",
+        "Ordinal",
+        [["None",3],["Medium",2],["High",1]], 
+        "C"
+    ],[
+       "Does UNESCO consider the zone a Human Heritage Site?", 
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Is the zone considered part of a culturally significant national category?",
+       "Binary",  
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Is there a native culture with a limited territorial representation living in this zone or using it as priority for fishing or extracting natural resources?",
+       "Binary",  
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Is the fishing culture for this zone part of any maritime culture with a limited geographic representation?",
+       "Binary",  
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Are there sites with archaeological value in the zone?",
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Does this zone have an exceptional aesthetic value?",
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Does this zone have an exceptional educational value?",
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"
+    ]
+]
+
+mpa_communities_spanish_default_criteria = [
+    [
+        "Defined users with legal access rights to the fishing area",
+        "Ordinal",
+        [["Strong",4],["Mediocre",3],["Poor",2],["Open Access Resources",1]], 
+        "B"
+    ],[
+        "Resilience in the fishing management system regarding political change in the country's authority structure",
+        "Ordinal",
+        [["Good",4],["Mediocre",3],["Poor",2],["None",1]], 
+        "B"
+    ],[
+        "Community interest and willingness to establish a network of fully-protected marine reserves",
+        "Ordinal",
+        [["Yes",4],["Yes, but need more information",3],["Indecisive",2],["Against",1]], 
+        "B"
+    ],[
+        "Community involvement in fishing management",
+        "Ordinal",
+        [["Good",4],["Mediocre",3],["Poor",2],["None",1]], 
+        "B"
+    ],[
+       "Balance in benefit distribution of fishing exploitation", 
+       "Binary", 
+       [["Balanced",2],["Unbalanced",1]], 
+       "B"
+    ],[
+        "Fishers levels of organization",
+        "Ordinal",
+        [["High",3],["Medium",2],["Low",1]], 
+        "B"
+    ],[
+        "Number of fishers working in the fishing area", 
+        "Ratio", 
+       ["# of fishers"], 
+        "C"
+    ],[
+        "Community's investment capacity in fully-protected marine reserves",
+        "Ordinal",
+        [["High",3],["Average",2],["Low",1]], 
+        "B"
+    ],[
+        "Level of ecosystem's scientific knowledge",
+        "Ordinal",
+        [["High",3],["Medium",2],["Low",1]], 
+        "B"
+    ],[
+        "Coastal Development",
+        "Ordinal",
+        [["Highly Industrialized and Developed",4],["Developed",3],["Developing",2],["Underdeveloped",1]], 
+        "C"
+    ],[
+        "Area being considered for establishing a network of community reserves (sq.km OR km of coastline)", 
+        "Ratio", 
+       ["sq.km or km of coastline"], 
+        "B"
+    ],[
+        "Connectivity of the possible network of the fully-protected community marine reserves in a regional system of fully-protected marine reserves",
+        "Ordinal",
+        [["Appropriate",4],["Moderately Appropriate",3],["Hardly Relevant",2],["Isolated",1]], 
+        "B"
+    ],[
+        "Number of essential habitats for highly migratory species (# of habitats)", 
+        "Ratio", 
+       ["# of habitats"], 
+        "B"
+    ],[
+        "Representation of different habitats in the biogeographic region (# of habitats)", 
+        "Ratio", 
+       ["# of habitats"], 
+        "B"
+    ],[
+       "Opportunity to connect (by being adjacent) this marine area with a terrestrial protected area", 
+       "Binary", 
+       [["Present",2],["Absent",1]], 
+       "B"
+    ],[
+       "Is a zone part of a high priority conservation site according to another national or international project?", 
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+        "Number of species included in national or international lists under any special protection category (# of species)", 
+        "Ratio", 
+       ["# of species"], 
+        "B"
+    ],[
+        "Number of species subject to fishing exploitation (# of species)", 
+        "Ratio", 
+       ["# of species"], 
+        "B"
+    ],[
+        "Zone's vulnerability to natural disasters",
+        "Ordinal",
+        [["None",1],["Medium",2],["High",3]], 
+        "C"
+    ],[
+       "Does UNESCO consider the zone a Human Heritage Site?", 
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Is the zone considered part of a culturally significant national category?",
+       "Binary",  
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Is there a native culture with a limited territorial representation living in this zone or using it as priority for fishing or extracting natural resources?",
+       "Binary",  
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Is the fishing culture for this zone part of any maritime culture with a limited geographic representation?",
+       "Binary",  
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Are there sites with archaeological value in the zone?",
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Does this zone have an exceptional aesthetic value?",
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"
+    ],[
+       "Does this zone have an exceptional educational value?",
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"
+    ]
+]
+
+
 
 #Taken from original version of Delphos for windows.  Deprecated
 india1_fisheries_english_default_criteria = [
@@ -327,7 +599,7 @@ india1_fisheries_english_default_criteria = [
     ],[
        "Coastal development", 
        "Ordinal", 
-       [["Highly industrialized and developed",1],["Developed",2],["Semi-rural",3],["Rural",4]], 
+       [["Rural",4],["Semi-rural",3],["Developed",2],["Highly developed and industrialized",1]], 
        "C"
     ],[
        "Local perception of fishery's impact on the ecosystem", 
@@ -396,6 +668,3 @@ india1_fisheries_english_default_criteria = [
        "B"
     ]
 ]
-
-mpa_english_default_criteria = []
-mpa_spanish_default_criteria = []

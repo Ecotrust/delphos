@@ -27,7 +27,7 @@
      <property name="font" >
       <font>
        <family>Arial</family>
-       <pointsize>13</pointsize>
+       <pointsize>10</pointsize>
       </font>
      </property>
      <property name="title" >
@@ -41,7 +41,7 @@
           <property name="font" >
            <font>
             <family>Arial</family>
-            <pointsize>13</pointsize>
+            <pointsize>10</pointsize>
            </font>
           </property>
           <property name="text" >
@@ -81,6 +81,11 @@
         </item>
         <item>
          <widget class="QDialogButtonBox" name="open_button_box" >
+          <property name="font" >
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="standardButtons" >
            <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
           </property>
