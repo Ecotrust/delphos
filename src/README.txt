@@ -14,7 +14,7 @@ Delphos is cross-platform and able to run on Windows, Max OSX and Linux.  Your s
 
 ** CHANGELOG **
 
-* 0.2 - 12/27/2007 - revision 150 *
+* 0.2 - 12/27/2007 *
 - Dropped main menu dialog for conventional top menu.
 - Rerun analysis with modifications
 - Export analysis to CSV

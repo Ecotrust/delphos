@@ -317,6 +317,8 @@ class McaWizard(QDialog, Ui_McaWizard):
             input_required = False
             
         new_input_weights = self.weight_table.get_input_weights(input_required)
+        if not new_input_weights:
+            return False
         self.input_weights.update_weights(new_input_weights)            
         if self.input_weights:
             return True
@@ -331,7 +333,10 @@ class McaWizard(QDialog, Ui_McaWizard):
     def process_run(self):
             """Processes clicking of 'Run Analysis' button
             """
-            self.process_weight_input("forward")
+            success = self.process_weight_input("forward")
+            if not success:
+                return False
+            #reset error flag
             if self.isError:
                 self.isError = False
             else:

@@ -19,7 +19,7 @@
 
 import sys
 import copy
-from util.log import *
+#from util.log import *
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import *
@@ -32,7 +32,7 @@ class InputResultViewTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
         self.vertical_header_width = 300 #criteria descriptions are so freaking long!
-        self.log = DelphosLog()
+        #self.log = DelphosLog()
 
     def load(self, input_data_set):
         """Given list of alternative/criteria pair info and an input value for that 
