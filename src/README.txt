@@ -1,4 +1,4 @@
-*** DELPHOS 0.2 README ***
+*** DELPHOS 0.3 README ***
 
 Delphos is an analysis tool used for selecting potential fisheries for MSC certification and for selecting potential regions for designation as marine protected areas (MPAs).  Step-by-step documentation is provided.
 
@@ -14,7 +14,11 @@ Delphos is cross-platform and able to run on Windows, Max OSX and Linux.  Your s
 
 ** CHANGELOG **
 
-* 0.2 - 12/27/2007 *
+* 0.3 - 1/29/2008
+- Enabled delphos for marine protected areas
+- Added criteria for communities and regions
+
+* 0.2 - 1/20/2008 *
 - Dropped main menu dialog for conventional top menu.
 - Rerun analysis with modifications
 - Export analysis to CSV

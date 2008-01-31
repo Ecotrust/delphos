@@ -33,7 +33,7 @@ class InnoScript:
                  dist_dir,
                  windows_exe_files = [],
                  lib_files = [],
-                 version = "0.2"):
+                 version = "0.3"):
         self.lib_dir = lib_dir
         self.dist_dir = dist_dir
         if not self.dist_dir[-1] in "\\/":
@@ -133,7 +133,7 @@ class build_installer(py2exe):
         dist_dir = self.dist_dir
         
         # create the Installer, using the files py2exe has created.
-        script = InnoScript("Delphos 0.2",
+        script = InnoScript("Delphos 0.3",
                             lib_dir,
                             dist_dir,
                             self.windows_exe_files,
