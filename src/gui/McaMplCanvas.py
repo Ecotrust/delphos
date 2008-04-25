@@ -76,16 +76,20 @@ class McaMplCanvas(MyMplCanvas):
         #colors = [rand(3) for x in colors]
 
         #pure matplotlib figure
-        p1 = bar(ind, scores, width, color=altern_colors, edgecolor='k')
+        print ind
+        print ranks
+        print scores
+        
+        p1 = bar(ranks, scores, width, color=altern_colors, edgecolor='k')
 
         #pyqt matplotlib widget (subplot)
-        self.axes.bar(ind, ranks, width, color=altern_colors)
+        self.axes.bar(ranks, scores, width, color=altern_colors)
         #Y-axis ticks should be whole integers
         majorLocator = MultipleLocator(1)
-        self.axes.yaxis.set_major_locator(majorLocator)
+        self.axes.xaxis.set_major_locator(majorLocator)
         #X-axis should have no ticks
-        self.axes.xaxis.set_major_locator(NullLocator())
+        #self.axes.xaxis.set_major_locator(NullLocator())
 #       self.axes.set_ylabel("Rank")
-#       self.axes.set_xlabel("Alternative")
+        #self.axes.set_xlabel("Rank")
         self.axes.legend(p1, altern_names, 'best', pad=0.1, prop=FontProperties(size='small'))
 #       self.axes.set_title ('MCA Results', va='top')

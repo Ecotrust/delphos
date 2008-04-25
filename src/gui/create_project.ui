@@ -75,7 +75,7 @@
                  </font>
                 </property>
                 <property name="text" >
-                 <string>Marine Protected Areas</string>
+                 <string>Marine Reserves</string>
                 </property>
                 <property name="checkable" >
                  <bool>true</bool>
@@ -139,7 +139,7 @@
                        </font>
                       </property>
                       <property name="text" >
-                       <string>Regions</string>
+                       <string>Sites</string>
                       </property>
                       <property name="checkable" >
                        <bool>true</bool>

@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>350</height>
+    <height>387</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -42,24 +42,101 @@
       <attribute name="title" >
        <string>Chart</string>
       </attribute>
-      <layout class="QHBoxLayout" >
+      <layout class="QVBoxLayout" >
        <item>
-        <layout class="QVBoxLayout" >
+        <layout class="QHBoxLayout" >
+         <item>
+          <layout class="QVBoxLayout" >
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_2" >
+             <property name="font" >
+              <font>
+               <family>Arial</family>
+               <pointsize>10</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text" >
+              <string>Score</string>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" >
+           <item>
+            <widget class="McaMplCanvas" native="1" name="mca_plot_canvas" >
+             <property name="minimumSize" >
+              <size>
+               <width>380</width>
+               <height>250</height>
+              </size>
+             </property>
+             <property name="maximumSize" >
+              <size>
+               <width>980</width>
+               <height>800</height>
+              </size>
+             </property>
+             <property name="font" >
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" >
          <item>
           <spacer>
            <property name="orientation" >
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeHint" >
             <size>
-             <width>20</width>
-             <height>40</height>
+             <width>40</width>
+             <height>20</height>
             </size>
            </property>
           </spacer>
          </item>
          <item>
-          <widget class="QLabel" name="label_2" >
+          <widget class="QLabel" name="label_3" >
            <property name="font" >
             <font>
              <family>Arial</family>
@@ -76,40 +153,15 @@
          <item>
           <spacer>
            <property name="orientation" >
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeHint" >
             <size>
-             <width>20</width>
-             <height>40</height>
+             <width>40</width>
+             <height>20</height>
             </size>
            </property>
           </spacer>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" >
-         <item>
-          <widget class="McaMplCanvas" native="1" name="mca_plot_canvas" >
-           <property name="minimumSize" >
-            <size>
-             <width>380</width>
-             <height>250</height>
-            </size>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>980</width>
-             <height>800</height>
-            </size>
-           </property>
-           <property name="font" >
-            <font>
-             <pointsize>10</pointsize>
-            </font>
-           </property>
-          </widget>
          </item>
         </layout>
        </item>

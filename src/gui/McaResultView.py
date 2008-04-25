@@ -75,8 +75,11 @@ class McaResultView(QDialog, Ui_McaResultView):
 
         #Build results list using altern id as key
         final_results = initialize_list(len(results), None)
+        final_sorted = initialize_list(len(results), None)
         rank = None
         prev_s_score = None
+        print sorted_results
+        
         for i in range(len(sorted_results)):
             #Get current score in sorted list
             (s_altern_id, s_score) = sorted_results[i]
@@ -101,9 +104,13 @@ class McaResultView(QDialog, Ui_McaResultView):
                     	else:
                         	rank += 1
                         break
-                
-            final_results[j] = [altern_id, altern_name, rank, round(score,4), altern_color]
-        
-        self.final_table.load(final_results)
-        self.mca_plot_canvas.draw_bar_chart(final_results)
+
+            #original order                
+            final_results[j] = [altern_id, altern_name, rank, round(score,2), altern_color]
+            #ordered by rank
+            final_sorted[i] = [altern_id, altern_name, rank, round(score,2), altern_color]
+
+        print final_sorted            
+        self.final_table.load(final_sorted)
+        self.mca_plot_canvas.draw_bar_chart(final_sorted)
         #self.mca_plot_canvas.compute_initial_figure()
