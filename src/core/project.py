@@ -97,6 +97,13 @@ class Project:
                     self.default_alternatives = default_alternative_data.mpa_regions_spanish_default_alternatives
                     self.default_criteria = default_criteria_data.mpa_regions_spanish_default_criteria 
         
+        if not self.default_alternatives:
+            load_default_altern = False
+            print "no alternatives to load"
+        if not self.default_criteria:
+            load_default_crit = False
+            print "no criteria to load"
+        
         self.__create_project_db()
         if self.status_ok:
             self.__create_project_data()

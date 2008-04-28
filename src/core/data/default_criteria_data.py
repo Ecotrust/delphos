@@ -562,6 +562,8 @@ mpa_communities_english_default_criteria = [
     ]
 ]
 
+mpa_communities_spanish_default_criteria = None
+
 #Problems
 #4, 7 multiple versions, one quantitative if possible, one qualitative.  Use whichever you want
 #3, 6, 9 are these criteria or just instructions for consulting experts?  if a criterion what type?  what options?
@@ -805,7 +807,7 @@ mpa_regions_english_default_criteria = [
     ]
 ]
 
-
+mpa_regions_spanish_default_criteria = None
 
 #Taken from original version of Delphos for windows.  Deprecated
 india1_fisheries_english_default_criteria = [
