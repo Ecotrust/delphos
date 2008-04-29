@@ -123,7 +123,7 @@ class GuiManager(QObject):
             self.start_language_selection()
 
     def start_mpa_type_selection(self):
-        """Loads dialog allowing user to select mpa project type (eg. Community, Region)
+        """Loads dialog allowing user to select mpa project type (eg. Community, site)
         """
         #Create startup dialog
         self.select_mpa_type_dialog = SelectMpaTypeDialog(self, self.win)
@@ -311,7 +311,9 @@ class GuiManager(QObject):
         elif type == 'doc':
             #Find which documentation subdir to look in
             project_type = self.project_manager.get_current_project_type()
+            sub_type = self.project_manager.get_current_project_sub_type()
             language = self.config_manager.get_language()
+            doc_subdir = ""
             #print "my language"
             #print language
             if project_type == 'fisheries':
@@ -319,16 +321,22 @@ class GuiManager(QObject):
                     doc_subdir = 'fisheries'+os.sep+'english'+os.sep
                 else:
                     doc_subdir = 'fisheries'+os.sep+'spanish'+os.sep
-            else:
-                if language == 'english':
-                    doc_subdir = 'mpa'+os.sep+'english'+os.sep
-                else:
-                    doc_subdir = 'mpa'+os.sep+'spanish'+os.sep
+            elif project_type == "mpa":
+                if sub_type == "communities":
+                    if language == 'english':
+                        doc_subdir = 'mpa'+os.sep+'communities'+os.sep+'english'+os.sep
+                    else:
+                        doc_subdir = 'mpa'+os.sep+'communities'+os.sep+'spanish'+os.sep
+                elif sub_type == "sites":
+                    if language == 'english':
+                        doc_subdir = 'mpa'+os.sep+'sites'+os.sep+'english'+os.sep
+                    else:
+                        doc_subdir = 'mpa'+os.sep+'sites'+os.sep+'spanish'+os.sep                                            
             
             doc_path = os.getcwd()+os.sep+"documentation"+os.sep+doc_subdir+os.sep+action
             doc_url = "file:"+urllib.pathname2url(unicode(doc_path))
             #print "doc url"
-            #print doc_url
+            print doc_url
             self.desktop_services.openUrl(QUrl(doc_url))
     
 #Testing purposes

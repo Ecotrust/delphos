@@ -69,7 +69,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="regions_type_button" >
+           <widget class="QPushButton" name="sites_type_button" >
             <property name="font" >
              <font>
               <family>Arial</family>

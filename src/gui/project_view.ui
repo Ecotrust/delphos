@@ -107,7 +107,7 @@
                  </font>
                 </property>
                 <property name="text" >
-                 <string>Created (UTC):</string>
+                 <string>Date Created:</string>
                 </property>
                </widget>
               </item>
@@ -1235,11 +1235,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>HelpButton</class>
-   <extends>QPushButton</extends>
-   <header location="global" >HelpButton.h</header>
-  </customwidget>
-  <customwidget>
    <class>AlternativeTableWidget</class>
    <extends>QTableWidget</extends>
    <header>AlternativeTableWidget.h</header>
@@ -1248,6 +1243,11 @@
    <class>CriteriaTableWidget</class>
    <extends>QTableWidget</extends>
    <header>CriteriaTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>HelpButton</class>
+   <extends>QPushButton</extends>
+   <header location="global" >HelpButton.h</header>
   </customwidget>
   <customwidget>
    <class>McaRunsTableWidget</class>

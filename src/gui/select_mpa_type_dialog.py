@@ -38,7 +38,7 @@ class SelectMpaTypeDialog(QDialog, Ui_SelectMpaTypeDialog):
 		
 		#Connect slots to signals
 		QObject.connect(self.communities_type_button,QtCore.SIGNAL("clicked()"), self.communities_selection)
-		QObject.connect(self.regions_type_button,QtCore.SIGNAL("clicked()"), self.regions_selection)
+		QObject.connect(self.sites_type_button,QtCore.SIGNAL("clicked()"), self.sites_selection)
 
 	def closeEvent(self, event):
 		"""Don't allow dialog to be closed without making a selection
@@ -48,5 +48,5 @@ class SelectMpaTypeDialog(QDialog, Ui_SelectMpaTypeDialog):
 	def communities_selection(self):
 		self.emit(SIGNAL("mpa_type_selected"), "communities")
 		
-	def regions_selection(self):
-		self.emit(SIGNAL("mpa_type_selected"), "regions")
+	def sites_selection(self):
+		self.emit(SIGNAL("mpa_type_selected"), "sites")

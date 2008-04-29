@@ -142,7 +142,7 @@ class ProjectManager:
 		else:
 			self.current_project_type = type
 
-	#MPA - Communities, MPA - Regions
+	#MPA - Communities, MPA - sites
 	def set_current_project_sub_type(self, sub_type):
 		if not sub_type:
 			return False
@@ -153,7 +153,7 @@ class ProjectManager:
 		return self.current_project_type
 
 	def get_current_project_sub_type(self):
-		return self.current_project_type
+		return self.current_project_sub_type
 
 	def get_current_project_name(self):
 		"""Returns name of current project

@@ -54,11 +54,13 @@ class Project:
         self.name = name
         self.path = path
         self.type = type    #Fisheries or MPA
-        self.sub_type = sub_type    #MPA - Regions, MPA - Communities
+        self.sub_type = sub_type    #MPA - sites, MPA - Communities
         self.db_driver = 'sqlite'
         self.db_file_ext = '.dlp'
         self.status_ok = False     #1-OK, 0-Error
         self.error = ""        #Error message
+        self.default_alternatives = None
+        self.default_criteria = None
         
         self.project_table_name = 'project_data'
         self.project_data = None    #General ProjectData
@@ -69,7 +71,7 @@ class Project:
         self.input_table_name = 'input'
         self.input_set = None
         self.mca_runs_table_name = 'mca_runs'
-        self.mca_runs = None	#Holds analysis runs for project
+        self.mca_runs = None	#Holds analysis runs for project        
         
         #Calculate timezone offset from UTC (greenwich mean time)
         self.utc_offset = time.altzone / 3600
@@ -89,13 +91,13 @@ class Project:
                 if language == "spanish":
                     self.default_alternatives = default_alternative_data.mpa_communities_spanish_default_alternatives
                     self.default_criteria = default_criteria_data.mpa_communities_spanish_default_criteria 
-            elif self.sub_type == "regions":
+            elif self.sub_type == "sites":
                 if language == "english":
-                    self.default_alternatives = default_alternative_data.mpa_regions_english_default_alternatives
-                    self.default_criteria = default_criteria_data.mpa_regions_english_default_criteria
+                    self.default_alternatives = default_alternative_data.mpa_sites_english_default_alternatives
+                    self.default_criteria = default_criteria_data.mpa_sites_english_default_criteria
                 if language == "spanish":
-                    self.default_alternatives = default_alternative_data.mpa_regions_spanish_default_alternatives
-                    self.default_criteria = default_criteria_data.mpa_regions_spanish_default_criteria 
+                    self.default_alternatives = default_alternative_data.mpa_sites_spanish_default_alternatives
+                    self.default_criteria = default_criteria_data.mpa_sites_spanish_default_criteria 
         
         if not self.default_alternatives:
             load_default_altern = False

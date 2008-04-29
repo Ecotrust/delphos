@@ -126,7 +126,7 @@
                      </widget>
                     </item>
                     <item>
-                     <widget class="QRadioButton" name="regions_sub_type_button" >
+                     <widget class="QRadioButton" name="sites_sub_type_button" >
                       <property name="enabled" >
                        <bool>false</bool>
                       </property>

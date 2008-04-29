@@ -573,7 +573,7 @@ mpa_communities_spanish_default_criteria = None
 #For every criteria type a higher value will score better in analysis 
 #particularly costs
 #29 visibility made a benefit
-mpa_regions_english_default_criteria = [
+mpa_sites_english_default_criteria = [
     [
         "Total number of species", 
         "Ratio", 
@@ -807,7 +807,7 @@ mpa_regions_english_default_criteria = [
     ]
 ]
 
-mpa_regions_spanish_default_criteria = None
+mpa_sites_spanish_default_criteria = None
 
 #Taken from original version of Delphos for windows.  Deprecated
 india1_fisheries_english_default_criteria = [

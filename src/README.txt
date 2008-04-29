@@ -1,6 +1,6 @@
 *** DELPHOS 0.3 README ***
 
-Delphos is an analysis tool used for selecting potential fisheries for MSC certification and for selecting potential regions for designation as marine protected areas (MPAs).  Step-by-step documentation is provided.
+Delphos is an analysis tool used for selecting potential fisheries for MSC certification and for selecting potential sites for designation as marine protected areas (MPAs).  Step-by-step documentation is provided.
 
 This software has been developed by Ecotrust, Comunidad y Biodiversidad and World Wildlife Fund
 

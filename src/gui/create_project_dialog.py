@@ -45,7 +45,7 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 		type_group.addButton(self.fisheries_type_button)
 		sub_type_group = QButtonGroup(self)
 		sub_type_group.addButton(self.communities_sub_type_button)
-		sub_type_group.addButton(self.regions_sub_type_button)
+		sub_type_group.addButton(self.sites_sub_type_button)
 		
 		#Connect slots to signals
 		QObject.connect(self.project_browse_button,QtCore.SIGNAL("clicked()"), self.process_browse)
@@ -57,11 +57,11 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 
 	def process_fisheries_click(self):
 		self.communities_sub_type_button.setEnabled(False)
-		self.regions_sub_type_button.setEnabled(False)
+		self.sites_sub_type_button.setEnabled(False)
 	
 	def process_mpa_click(self):
 		self.communities_sub_type_button.setEnabled(True)
-		self.regions_sub_type_button.setEnabled(True)
+		self.sites_sub_type_button.setEnabled(True)
 	
 	def process_browse(self):
 		"""Processes clicking of browse button
@@ -99,11 +99,11 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 			self.project_type = "mpa"
 			if self.communities_sub_type_button.isChecked():
 				self.project_sub_type = "communities"
-			elif self.regions_sub_type_button.isChecked():
-				self.project_sub_type = "regions"
+			elif self.sites_sub_type_button.isChecked():
+				self.project_sub_type = "sites"
 			else:
 				self.isError = True
-				self.errorMsg += "Please select \"Communities\" or \"Regions\n"
+				self.errorMsg += "Please select \"Communities\" or \"Sites\n"
 				
 		elif self.fisheries_type_button.isChecked():
 			self.project_type = "fisheries"
