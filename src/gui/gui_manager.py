@@ -78,6 +78,7 @@ class GuiManager(QObject):
         QObject.connect(self.win.ui.toc_tree, SIGNAL("itemClicked(QTreeWidgetItem*,int)"), self.win.process_toc_click)
         
         #Top menu slots
+        QObject.connect(self.win.ui.menu_main_menu, SIGNAL("triggered()"), self.get_started)
         QObject.connect(self.win.ui.menu_exit_delphos, SIGNAL("triggered()"), self.stop_gui)
         QObject.connect(self.win.ui.menu_open_project, SIGNAL("triggered()"), self.handle_open_existing_selection)
         QObject.connect(self.win.ui.menu_create_project, SIGNAL("triggered()"), self.handle_design_new_selection)
@@ -95,34 +96,38 @@ class GuiManager(QObject):
         #Show main window
         self.win.show()        
         #Display dialog for user to select project type
-        self.start_type_selection()
+        self.get_started()
         #Start main loop
         sys.exit(self.qapp.exec_())
 
     def stop_gui(self):
         self.qapp.closeAllWindows()
 
-    def start_type_selection(self):
+    def get_started(self):
         """Loads dialog allowing user to select overall project type (eg. Fisheries, MPAs)
         """
         #Create startup dialog
         self.select_type_dialog = SelectTypeDialog(self, self.win)
         #Connect handler for type selection
-        self.connect(self.select_type_dialog, SIGNAL("type_selected"), self.handle_type_selection)
+        self.connect(self.select_type_dialog, SIGNAL("get_started"), self.handle_get_started)
         #Show startup dialog
         self.select_type_dialog.show()
 
-    def handle_type_selection(self, type):
+    def handle_get_started(self, action):
         """Save analysis type or continue type selection
         """              
         self.select_type_dialog.hide()
         self.select_type_dialog.deleteLater()
-        
-        if type == 'mpa':
-            self.start_mpa_type_selection()
-        else:
-            self.project_manager.set_current_project_type(type)
-            self.start_language_selection()
+
+        if action == 'open_project':
+            self.handle_open_existing_selection()
+        elif action == 'create_project':
+            self.handle_design_new_selection()
+        elif action == 'fisheries_doc':
+            self.project_manager.set_current_project_type("fisheries")
+            self.start_language_selection()        
+        elif action == 'mpa_doc':
+            self.start_mpa_type_selection()       
 
     def start_mpa_type_selection(self):
         """Loads dialog allowing user to select mpa project type (eg. Community, site)
@@ -143,6 +148,7 @@ class GuiManager(QObject):
         self.start_language_selection()
 
     def start_language_selection(self):
+        """Used for selecting language to load for documentation"""
         self.language_dialog = LanguageDialog(self, self.win)
         self.connect(self.language_dialog, SIGNAL("language_selected"), self.finish_language_selection)
         self.language_dialog.show()
@@ -154,10 +160,9 @@ class GuiManager(QObject):
         self.language_dialog.hide()
         self.language_dialog.deleteLater()
         #Load doc browser
-        self.win.ui.doc_browser.load_doc(cur_proj_type, language)
-        #Load the table of contents
-        self.win.load_toc(cur_proj_type, language)
-        self.win.ui.dock_doc.show()
+        #self.win.ui.doc_browser.load_doc(cur_proj_type, language)
+        self.get_started()
+        self.win.load_full_doc()
 
     def reload_doc(self):
         language = self.config_manager.get_language()
@@ -247,6 +252,9 @@ class GuiManager(QObject):
         self.project_view = ProjectViewDialog(self, self.project_manager.get_current_project())
         self.win.setCentralWidget(self.project_view)
         self.project_view.show()
+        #Load the table of contents
+        self.win.load_toc()
+        self.win.ui.dock_doc.show()
     
     def show_credits(self):
         """Show credits dialog

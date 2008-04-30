@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>182</width>
+    <width>199</width>
     <height>126</height>
    </rect>
   </property>
@@ -22,7 +22,7 @@
       </font>
      </property>
      <property name="title" >
-      <string>Select MPA project type:</string>
+      <string>Select Marine Reserve Type</string>
      </property>
      <layout class="QVBoxLayout" >
       <item>

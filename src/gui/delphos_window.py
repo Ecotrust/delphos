@@ -54,12 +54,15 @@ class DelphosWindow(QMainWindow):
 
         #self.ui.dock_doc.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-    def load_full_doc(self):
+    def load_full_doc(self, project_type=None, language=None):
         """Load full documentation in external application
         """
         #Find which documentation subdir to look in
-        project_type = self.gui_manager.project_manager.get_current_project_type()
-        language = self.gui_manager.config_manager.get_language()
+        if not project_type:
+            project_type = self.gui_manager.project_manager.get_current_project_type()
+        if not language:
+            language = self.gui_manager.config_manager.get_language()
+            
         if project_type == 'fisheries':
             if language == 'english':
                 doc_subdir = 'fisheries'+os.sep+'english'+os.sep
@@ -82,9 +85,15 @@ class DelphosWindow(QMainWindow):
         #file:///U|/dev/delphos/src/documentation/fisheries/english/letter_to_experts.doc
         self.gui_manager.desktop_services.openUrl(QUrl(doc_url))
                                       
-    def load_toc(self, project_type, language):
+    def load_toc(self, project_type=None, language=None):
         """Loads the table of contents within the dock widget
         """
+        #Find which toc data to load
+        if not project_type:
+            project_type = self.gui_manager.project_manager.get_current_project_type()
+        if not language:
+            language = self.gui_manager.config_manager.get_language()
+        
         toc = ""
         if project_type == 'fisheries':
             if language == 'english':

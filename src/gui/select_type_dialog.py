@@ -1,10 +1,10 @@
 #===============================================================================
 # Delphos - a decision-making tool for community-based marine conservation.
 # 
-# @copyright	2007 Ecotrust
-# @author		Tim Welch
-# @contact		twelch at ecotrust dot org
-# @license		GNU GPL 2 
+# @copyright    2007 Ecotrust
+# @author        Tim Welch
+# @contact        twelch at ecotrust dot org
+# @license        GNU GPL 2 
 # 
 # This program is free software; you can redistribute it and/or 
 # modify it under the terms of the GNU General Public License as published by
@@ -28,25 +28,33 @@ from PyQt4.QtGui import *
 from select_type_ui import Ui_SelectTypeDialog
 
 class SelectTypeDialog(QDialog, Ui_SelectTypeDialog):
-	"""Dialog allowing user to select type of analysis to perform
-	"""
-	def __init__(self, gui_manager, parent):
-		QDialog.__init__(self, parent)
-		self.setupUi(self)
-		self.parent = parent
-		self.gui_manager = gui_manager
-		
-		#Connect slots to signals
-		QObject.connect(self.fisheries_type_button,QtCore.SIGNAL("clicked()"), self.fisheries_selection)
-		QObject.connect(self.mpa_type_button,QtCore.SIGNAL("clicked()"), self.mpa_selection)
+    """Dialog allowing user to select type of analysis to perform
+    """
+    def __init__(self, gui_manager, parent):
+        QDialog.__init__(self, parent)
+        self.setupUi(self)
+        self.parent = parent
+        self.gui_manager = gui_manager
+        
+        #Connect slots to signals
+        QObject.connect(self.open_project_button,QtCore.SIGNAL("clicked()"), self.open_selection)
+        QObject.connect(self.create_project_button,QtCore.SIGNAL("clicked()"), self.create_selection)
+        QObject.connect(self.fisheries_type_button,QtCore.SIGNAL("clicked()"), self.fisheries_selection)        
+        QObject.connect(self.mpa_type_button,QtCore.SIGNAL("clicked()"), self.mpa_selection)
 
-	def closeEvent(self, event):
-		"""Don't allow dialog to be closed without making a selection
-		"""
-		event.ignore()
+    def closeEvent(self, event):
+        """Don't allow dialog to be closed without making a selection
+        """
+        event.ignore()
 
-	def fisheries_selection(self):
-		self.emit(SIGNAL("type_selected"), "fisheries")
-		
-	def mpa_selection(self):
-		self.emit(SIGNAL("type_selected"), "mpa")
+    def open_selection(self):
+        self.emit(SIGNAL("get_started"), "open_project")
+
+    def create_selection(self):
+        self.emit(SIGNAL("get_started"), "create_project")        
+
+    def fisheries_selection(self):
+        self.emit(SIGNAL("get_started"), "fisheries_doc")
+        
+    def mpa_selection(self):
+        self.emit(SIGNAL("get_started"), "mpa_doc")

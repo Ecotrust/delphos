@@ -35,8 +35,11 @@
     <property name="title" >
      <string>&amp;File</string>
     </property>
-    <addaction name="menu_create_project" />
+    <addaction name="menu_main_menu" />
+    <addaction name="separator" />
     <addaction name="menu_open_project" />
+    <addaction name="menu_create_project" />
+    <addaction name="separator" />
     <addaction name="menu_exit_delphos" />
    </widget>
    <widget class="QMenu" name="menuAbout" >
@@ -174,7 +177,7 @@
                <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=" font-family:'Times New Roman'; font-size:9pt; font-weight:400; font-style:normal;">
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:9pt;">&lt;/p>&lt;/body>&lt;/html></string>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial';">&lt;/p>&lt;/body>&lt;/html></string>
               </property>
               <property name="openExternalLinks" >
                <bool>true</bool>
@@ -315,6 +318,11 @@ p, li { white-space: pre-wrap; }
   <action name="menu_about" >
    <property name="text" >
     <string>&amp;About Delphos</string>
+   </property>
+  </action>
+  <action name="menu_main_menu" >
+   <property name="text" >
+    <string>Main Menu</string>
    </property>
   </action>
  </widget>
