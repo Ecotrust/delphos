@@ -67,11 +67,12 @@ class CriteriaTableWidget(QTableWidget):
 
                 self.resizeColumnsToContents()
 
-    def get_current_row_items(self):
-        selected_row = self.selectedItems()
-        if selected_row:
+    def get_selected_row_indexes(self):
+        model = self.selectionModel()
+        indexes = model.selectedRows(0)
+        if indexes:
             #Return the unique criteria description
-            return selected_row[0]
+            return indexes
         else:
             raise DelphosError, "You must first select a criterion"
         

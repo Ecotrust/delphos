@@ -173,18 +173,19 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 
     def start_remove_criteria(self):
         try:
-            cur_item = self.crit_table.get_current_row_items()
+            indexes = self.crit_table.get_selected_row_indexes()
         except DelphosError, e:
             QMessageBox.critical(self,"Error Removing Criterion", unicode(e.value))
         else:
-            crit_desc = unicode(cur_item.text())
-            crit_id = self.project.get_criteria_id_by_name(crit_desc)            
-            crit_success = self.project.remove_criteria_by_description(crit_desc)
-            input_success = self.project.remove_input_by_criteria(crit_id)
-            if not crit_success or not input_success:
-                QMessageBox.critical(self,"Remove Criteria Error", "Failed to remove criteria and all associated input data.")
-            else:
-                self.crit_table.load(self.project.get_all_criteria())
+            for cur_index in indexes:
+                name = (cur_index.data()).toString()
+                crit_desc = unicode(name)
+                crit_id = self.project.get_criteria_id_by_name(crit_desc)            
+                crit_success = self.project.remove_criteria_by_description(crit_desc)
+                input_success = self.project.remove_input_by_criteria(crit_id)
+                if not crit_success or not input_success:
+                    QMessageBox.critical(self,"Remove Criteria Error", "Failed to remove criteria ("+name+") and all associated input data.")
+            self.crit_table.load(self.project.get_all_criteria())
 
     ################################# Input Data ##############################
 
