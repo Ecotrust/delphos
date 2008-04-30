@@ -103,3 +103,19 @@ fisheries_spanish_toc = [
     {u"Conclusión":[]},
     {u"Información de los contactos":[]},
 ]
+
+communities_english_toc = [
+    {u"Not Available":[]}
+]
+
+communities_spanish_toc = [
+    {u"Not Available":[]}
+]
+
+sites_english_toc = [
+    {u"Not Available":[]}
+]
+
+sites_spanish_toc = [
+    {u"Not Available":[]}
+]

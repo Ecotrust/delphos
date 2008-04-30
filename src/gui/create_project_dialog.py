@@ -93,14 +93,12 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 		"""Processes clicking of OK button in dialog
 		"""
 		self.project_type = ""
-		self.project_sub_type = ""
 		
 		if self.mpa_type_button.isChecked():
-			self.project_type = "mpa"
 			if self.communities_sub_type_button.isChecked():
-				self.project_sub_type = "communities"
+				self.project_type = "communities"
 			elif self.sites_sub_type_button.isChecked():
-				self.project_sub_type = "sites"
+				self.project_type = "sites"
 			else:
 				self.isError = True
 				self.errorMsg += "Please select \"Communities\" or \"Sites\n"
@@ -120,7 +118,7 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 			self.errorMsg = ""
 			self.isError = False
 		else:
-			self.emit(SIGNAL("create_project_info_collected"), self.filename, self.project_path, self.project_type, self.project_sub_type, self.default_altern_check.checkState(), self.default_crit_check.checkState())
+			self.emit(SIGNAL("create_project_info_collected"), self.filename, self.project_path, self.project_type, self.default_altern_check.checkState(), self.default_crit_check.checkState())
 			
 	def process_reject(self):
 		"""Processes clicking of Cancel button in dialog

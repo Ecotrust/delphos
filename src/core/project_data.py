@@ -24,20 +24,18 @@ from util.common_functions import *
 class ProjectData(object):
     """Provides access to a projects info
     """
-    def __init__(self, metadata, db_name, project_name, type, sub_type):
+    def __init__(self, metadata, db_name, project_name, type):
         """project_data = ProjectData(BoundMetadata, string, string, string)
         
         metadata - SQLAlchemy metadata object providing access to DB engine and tables
         db_name - name to give DB
         project_name - name of project
-        type - analaysis type (eg. fisheries or mpa)
-        sub_type - eg. mpa communities or mpa regions
+        type - analaysis type (eg. fisheries, communities or sites)
         """
         self.metadata = metadata
         self.db_name = db_name
         self.project_name = project_name
         self.project_type = type
-        self.project_sub_type = sub_type
         self.project_created = ""
         
         self.table = None
@@ -65,7 +63,6 @@ class ProjectData(object):
         return Table(self.db_name, self.metadata,
             Column('name', String(200), primary_key=True),
             Column('type', String(200)),
-            Column('sub_type', String(200)),
             Column('created', DateTime(timezone=True))
         )
 
@@ -74,26 +71,20 @@ class ProjectData(object):
         """
         i = self.table.select().execute()
         data = i.fetchone()
-        (self.project_name, self.project_type, self.project_sub_type, self.project_created) = data
+        (self.project_name, self.project_type, self.project_created) = data
 
     def insert_project_data(self):
-        self.table.insert().execute({'name':self.project_name, 'type':self.project_type, 'sub_type':self.project_sub_type, 'created':func.current_timestamp()})
+        self.table.insert().execute({'name':self.project_name, 'type':self.project_type, 'created':func.current_timestamp()})
 
     def get_project_data(self):
         if not self.project_created:
             self.load_project_data()
             
-        return (self.project_name, self.project_type, self.project_sub_type, utc_to_local_time(self.project_created))
+        return (self.project_name, self.project_type, utc_to_local_time(self.project_created))
 
     def get_project_type(self):
         if self.project_type:
             return self.project_type
-        else:
-            return None
-
-    def get_project_sub_type(self):
-        if self.project_sub_type:
-            return self.project_sub_type
         else:
             return None
 

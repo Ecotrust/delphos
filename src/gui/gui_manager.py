@@ -84,6 +84,8 @@ class GuiManager(QObject):
         QObject.connect(self.win.ui.menu_credits, SIGNAL("triggered()"), self.show_credits)
         QObject.connect(self.win.ui.menu_about, SIGNAL("triggered()"), self.show_about)
         
+        QObject.connect(self.project_manager, SIGNAL("project_changed"), self.reload_doc)
+        
         #Flag indicating whether dock_doc widget is currently full screen
         self.dock_doc_is_full_screen = False
 
@@ -111,15 +113,15 @@ class GuiManager(QObject):
         self.select_type_dialog.show()
 
     def handle_type_selection(self, type):
-        """Stores the analaysis type selected and loads the documentation window
-        """
-        self.project_manager.set_current_project_type(type)          
+        """Save analysis type or continue type selection
+        """              
         self.select_type_dialog.hide()
         self.select_type_dialog.deleteLater()
         
         if type == 'mpa':
             self.start_mpa_type_selection()
         else:
+            self.project_manager.set_current_project_type(type)
             self.start_language_selection()
 
     def start_mpa_type_selection(self):
@@ -135,8 +137,7 @@ class GuiManager(QObject):
     def handle_mpa_type_selection(self, mpa_type):
         """Stores the analaysis type selected and loads the documentation window
         """
-        print mpa_type
-        self.project_manager.set_current_project_sub_type(mpa_type)          
+        self.project_manager.set_current_project_type(mpa_type)          
         self.select_mpa_type_dialog.hide()
         self.select_mpa_type_dialog.deleteLater()
         self.start_language_selection()
@@ -157,6 +158,14 @@ class GuiManager(QObject):
         #Load the table of contents
         self.win.load_toc(cur_proj_type, language)
         self.win.ui.dock_doc.show()
+
+    def reload_doc(self):
+        language = self.config_manager.get_language()
+        cur_proj_type = self.project_manager.get_current_project_type()
+        #Load doc browser
+        self.win.ui.doc_browser.load_doc(cur_proj_type, language)
+        #Load the table of contents
+        self.win.load_toc(cur_proj_type, language)
     
     def handle_intro_selection(self):
         """Loads up the documentation in the dock window, displays the intro page
@@ -197,10 +206,10 @@ class GuiManager(QObject):
         load_default_altern (boolean) - whether to load default alternatives into new project DB
         load_default_crit (boolean) whether to load default criteries into new project DB
         """
-        project_filename, project_path, project_type, project_sub_type, load_default_altern, load_default_crit = args
+        project_filename, project_path, project_type, load_default_altern, load_default_crit = args
         try:
             self.create_dialog.show()
-            self.project_manager.create_project(project_filename, project_path, project_type, project_sub_type, load_default_altern, load_default_crit, self.config_manager.get_language())
+            self.project_manager.create_project(project_filename, project_path, project_type, load_default_altern, load_default_crit, self.config_manager.get_language())
         except (DelphosError, exceptions.DBAPIError), e:
             self.create_dialog.hide()
             QMessageBox.critical(self.create_proj_dialog, "Project Creation Error", "Error creating/opening project file. Try again.  Do you have the correct permissions to create a project in that location?\n\n"+str(e))
@@ -311,7 +320,6 @@ class GuiManager(QObject):
         elif type == 'doc':
             #Find which documentation subdir to look in
             project_type = self.project_manager.get_current_project_type()
-            sub_type = self.project_manager.get_current_project_sub_type()
             language = self.config_manager.get_language()
             doc_subdir = ""
             #print "my language"
@@ -321,17 +329,16 @@ class GuiManager(QObject):
                     doc_subdir = 'fisheries'+os.sep+'english'+os.sep
                 else:
                     doc_subdir = 'fisheries'+os.sep+'spanish'+os.sep
-            elif project_type == "mpa":
-                if sub_type == "communities":
-                    if language == 'english':
-                        doc_subdir = 'mpa'+os.sep+'communities'+os.sep+'english'+os.sep
-                    else:
-                        doc_subdir = 'mpa'+os.sep+'communities'+os.sep+'spanish'+os.sep
-                elif sub_type == "sites":
-                    if language == 'english':
-                        doc_subdir = 'mpa'+os.sep+'sites'+os.sep+'english'+os.sep
-                    else:
-                        doc_subdir = 'mpa'+os.sep+'sites'+os.sep+'spanish'+os.sep                                            
+            elif project_type == "communities":
+                if language == 'english':
+                    doc_subdir = 'mpa'+os.sep+'communities'+os.sep+'english'+os.sep
+                else:
+                    doc_subdir = 'mpa'+os.sep+'communities'+os.sep+'spanish'+os.sep
+            elif project_type == "sites":
+                if language == 'english':
+                    doc_subdir = 'mpa'+os.sep+'sites'+os.sep+'english'+os.sep
+                else:
+                    doc_subdir = 'mpa'+os.sep+'sites'+os.sep+'spanish'+os.sep                                            
             
             doc_path = os.getcwd()+os.sep+"documentation"+os.sep+doc_subdir+os.sep+action
             doc_url = "file:"+urllib.pathname2url(unicode(doc_path))

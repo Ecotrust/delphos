@@ -102,13 +102,12 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 
     def load_project_data_tab(self):
         try:
-            (project_name, project_type, project_sub_type, project_created) = self.project.get_project_data()
+            (project_name, project_type, project_created) = self.project.get_project_data()
         except DelphosError, r:
             QMessageBox.critical(self,"Delphos", "Project data not found")
         else:            
             self.project_name.setText(project_name)
             self.project_type.setText(project_type)
-            self.project_sub_type.setText(project_sub_type)
             self.project_created.setText(unicode(project_created))
             self.num_runs_label.setText(unicode(self.project.get_num_mca_runs()))
 

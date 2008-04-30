@@ -86,19 +86,6 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_8" >
-                <property name="font" >
-                 <font>
-                  <family>Arial</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
-                <property name="text" >
-                 <string>Project Sub-type:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
                <widget class="QLabel" name="label_3" >
                 <property name="font" >
                  <font>
@@ -149,19 +136,6 @@
               </item>
               <item>
                <widget class="QLabel" name="project_type" >
-                <property name="font" >
-                 <font>
-                  <family>Arial</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
-                <property name="text" >
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="project_sub_type" >
                 <property name="font" >
                  <font>
                   <family>Arial</family>

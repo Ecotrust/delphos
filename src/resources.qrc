@@ -2,8 +2,10 @@
     <qresource prefix="/" >
         <file>documentation/fisheries/english/documentation.html</file>
         <file>documentation/fisheries/spanish/documentation.html</file>
-        <file>documentation/mpa/english/documentation.html</file>
-        <file>documentation/mpa/spanish/documentation.html</file>
+        <file>documentation/communities/english/documentation.html</file>
+        <file>documentation/communities/spanish/documentation.html</file>
+        <file>documentation/sites/english/documentation.html</file>
+        <file>documentation/sites/spanish/documentation.html</file>        
         <file>qss/main_style.css</file>
         <file>images/help.png</file>
         <file>images/ecotrust_logo.gif</file>
