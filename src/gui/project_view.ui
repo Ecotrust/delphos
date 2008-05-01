@@ -690,7 +690,7 @@
          </property>
          <column>
           <property name="text" >
-           <string>Name</string>
+           <string>Description</string>
           </property>
          </column>
          <column>
