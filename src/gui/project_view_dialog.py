@@ -63,6 +63,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QObject.connect(self.add_altern_button,QtCore.SIGNAL("clicked()"), self.start_add_alternative)
         QObject.connect(self.remove_altern_button,QtCore.SIGNAL("clicked()"), self.start_remove_alternative)
         QObject.connect(self.add_criteria_button,QtCore.SIGNAL("clicked()"), self.start_add_criteria)
+        QObject.connect(self.edit_criteria_button,QtCore.SIGNAL("clicked()"), self.start_edit_criteria)
         QObject.connect(self.remove_criteria_button,QtCore.SIGNAL("clicked()"), self.start_remove_criteria)        
         QObject.connect(self.view_analysis_button,QtCore.SIGNAL("clicked()"), self.start_view_analysis)
         QObject.connect(self.rerun_analysis_button,QtCore.SIGNAL("clicked()"), self.start_rerun_analysis1)
@@ -169,6 +170,34 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         else:
             self.add_criteria_dialog.close()
             self.add_criteria_dialog.deleteLater()
+            self.crit_table.load(self.project.get_all_criteria())
+
+    def start_edit_criteria(self):
+        """Create dialog for editing criteria
+        """
+        try:
+            item = self.crit_table.get_first_selected_row_item()
+        except DelphosError, e:
+            QMessageBox.critical(self,"Error editing Criterion", unicode(e.value))
+        else:            
+            desc = item.text()
+            crit_data = self.project.get_criteria_by_name(unicode(desc))   
+            #Load add criteria dialog form
+            self.edit_criteria_dialog = AddCriteriaDialog(self.gui_manager, self)
+            self.edit_criteria_dialog.load_crit_data(crit_data)            
+            #Register handler for signal that alternative info has been collected and can be updated
+            self.connect(self.edit_criteria_dialog, SIGNAL("criteria_changed"), self.finish_edit_criteria)
+            self.edit_criteria_dialog.show()
+
+    def finish_edit_criteria(self, crit_id, criteria_info):
+        try:
+            #Add criterion to DB
+            self.project.edit_criteria(crit_id, criteria_info)
+        except DelphosError, e:
+            QMessageBox.critical(self.add_criteria_dialog,"Criteria Error", str(e.value))
+        else:
+            self.edit_criteria_dialog.close()
+            self.edit_criteria_dialog.deleteLater()
             self.crit_table.load(self.project.get_all_criteria())
 
     def start_remove_criteria(self):

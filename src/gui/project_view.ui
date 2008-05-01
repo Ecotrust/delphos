@@ -37,7 +37,7 @@
       </font>
      </property>
      <property name="currentIndex" >
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
@@ -539,6 +539,13 @@
                </widget>
               </item>
               <item>
+               <widget class="QPushButton" name="edit_criteria_button" >
+                <property name="text" >
+                 <string>Edit</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="remove_criteria_button" >
                 <property name="minimumSize" >
                  <size>
@@ -693,7 +700,7 @@
          </column>
          <column>
           <property name="text" >
-           <string>Options/Units</string>
+           <string>Options or Units</string>
           </property>
          </column>
          <column>

@@ -50,6 +50,54 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
         QObject.connect(self.add_ordinal_option_button,QtCore.SIGNAL("clicked()"), self.start_add_ordinal_option)
         QObject.connect(self.remove_ordinal_option_button,QtCore.SIGNAL("clicked()"), self.handle_remove_ordinal_option)
 
+    def load_crit_data(self, crit_data):        
+        #Binary Example
+        #[
+        #   16, 
+        #   u'Compliance with international regulations for species conservation', 
+        #   u'Binary', 
+        #   [['Compliant', 2], ['Not compliant', 1]], 
+        #   u'B'
+        #]
+        #Ordinal Example
+        #[
+        #    22, 
+        #    u'test', 
+        #    u'Ordinal', 
+        #    [('fewa', 1), ('blort', 2), ('foow', 3), ('eaw', 5), ('cracvk', 6)], 
+        #    u'C'
+        #]
+        
+        self.editing = True
+        
+        self.id = crit_data[0]
+        name = crit_data[1]
+        type = crit_data[2]
+        options = crit_data[3]
+        cb = crit_data[4]
+
+        self.ordinal_option_list = options
+        
+        self.criteria_description_edit.setText(name)
+        if cb == 'B':
+            self.benefit_button.click()            
+        elif cb == 'C':
+            self.cost_button.click()        
+
+        if type == 'Binary':  
+            self.criteria_type_tab.setCurrentIndex(0)
+            self.binary_yes_edit.setText(options[0][0])
+            self.binary_no_edit.setText(options[1][0])         
+        if type == 'Ordinal':
+            self.criteria_type_tab.setCurrentIndex(1)
+            if cb == 'C':
+                options.reverse()
+            self.ordinal_option_table.load(options)
+                        
+        elif type == 'Ratio':
+            self.criteria_type_tab.setCurrentIndex(2)
+            self.ratio_description_edit.setText(options)                        
+
     def process_accept(self):
         """Processes clicking of OK button in dialog
         
@@ -129,7 +177,11 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
             QMessageBox.critical(self,"Error adding criteria",self.errorMsg)
         else:
             criteria_info = [unicode(criteria_description), unicode(current_tab_name), type_info, cost_benefit]
-            self.emit(SIGNAL("add_criteria_info_collected"), criteria_info)
+            
+            if self.editing:
+                self.emit(SIGNAL("criteria_changed"), self.id, criteria_info)
+            else:
+                self.emit(SIGNAL("add_criteria_info_collected"), criteria_info)
 
     def start_add_ordinal_option(self):
         self.add_ordinal_option_dialog = AddOrdinalOptionDialog(self.gui_manager, self)
@@ -171,6 +223,9 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
             #for row in self.ordinal_option_list:
             #    print row
             self.ordinal_option_table.load(self.ordinal_option_list)
+
+    def load_ordinal_option(self):
+        pass
 
     def handle_remove_ordinal_option(self):
         if not self.ordinal_option_list:

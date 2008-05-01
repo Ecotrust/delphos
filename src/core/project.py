@@ -256,6 +256,9 @@ class Project:
         """
         self.crit_set.add_criteria(criteria_info)
 
+    def edit_criteria(self, crit_id, criteria_info):
+        self.crit_set.edit_criteria(crit_id, criteria_info)
+
     def remove_criteria_by_id(self, criteria_id):
         """Remove criteria from the project CriteriaSet given its unique criteria id
         """
@@ -296,6 +299,10 @@ class Project:
         """Returns criteria id given a criteria description"""
         if self.crit_set:
             return self.crit_set.get_criteria_id_by_description(desc)
+    
+    def get_criteria_by_name(self, name):
+        if name:
+            return self.crit_set.get_criteria_by_description(name)
 
     ################################# Input ##############################
 

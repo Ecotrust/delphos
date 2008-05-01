@@ -75,4 +75,10 @@ class CriteriaTableWidget(QTableWidget):
             return indexes
         else:
             raise DelphosError, "You must first select a criterion"
-        
+
+    def get_first_selected_row_item(self):
+        selected_row = self.selectedItems() 
+        if selected_row:
+            return selected_row[0]  
+        else:
+            raise DelphosError, "You must first select a criterion"               
