@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>746</width>
-    <height>405</height>
+    <height>430</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -20,24 +20,163 @@
   </property>
   <property name="font" >
    <font>
-    <family>Arial</family>
-    <pointsize>9</pointsize>
+    <family>arial</family>
    </font>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
+  </property>
+  <property name="styleSheet" >
+   <string>.QWidget {
+   background-color: #E1EDF5;
+}
+
+/*Non-main window popup widgets
+QWidget {
+     background-color: #f0f0f5;
+}
+*/
+
+
+	
+QWidget {
+     background-color: #f0f0f5;
+	font-family: arial;
+    color: #333333;	
+}
+
+
+QHeaderView::section {
+    padding-left: 2px;
+    padding-right: 4px;
+    background-color: #FFF7DB;
+    border-width: 1px;
+    border-color: darkkhaki;
+    border-style: solid;
+}
+
+QHeaderView::section:hover {
+   background-color: #FFDF94;
+}
+
+/* Increase the padding, so the text is shifted when the button is
+   pressed. */
+QHeaderView::section:pressed {
+    padding-left: 4px;
+    padding-top: 4px;
+    background-color: #E6A84C;
+}
+
+QMainWindow {
+    background-color: gainsboro;
+    background-position: top right;
+    background-repeat: no-repeat
+}
+
+
+/* Nice Windows-XP-style password character. */
+QLineEdit[echoMode="2"] {
+    lineedit-password-character: 9679;
+}
+
+/* We provide a min-width and min-height for push buttons
+   so that they look elegant regardless of the width of the text. */
+QPushButton {
+    background-color: #FFF2C9;
+    border-width: 1px;
+    border-color: darkkhaki;
+    border-style: solid;
+    border-radius: 5;
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    min-width: 9ex;
+    min-height: 2.5ex;
+}
+
+QPushButton:hover {
+   background-color: #FFDF94;
+}
+
+/* Increase the padding, so the text is shifted when the button is
+   pressed. */
+QPushButton:pressed {
+    padding-left: 4px;
+    padding-top: 4px;
+    background-color: #E6A84C;
+}
+
+QLabel, QAbstractButton {
+    font: normal;
+}
+
+/* Mark mandatory fields with a brownish color. */
+.mandatory {
+    color: brown;
+}
+
+/* Bold text on status bar looks awful. */
+QStatusBar QLabel {
+   font: normal;
+}
+
+QStatusBar::item {
+    border-width: 1;
+    border-color: darkkhaki;
+    border-style: solid;
+    border-radius: 2;
+}
+
+QComboBox, QLineEdit, QSpinBox, QTextEdit, QListView {
+    background-color: #fafbfc;
+    selection-color: #0a214c;
+    selection-background-color: #FFF2C9;
+}
+
+/* We reserve 1 pixel space in padding. When we get the focus,
+   we kill the padding and enlarge the border. This makes the items
+   glow. */
+QLineEdit {
+    border-width: 1px;
+    padding: 1px;
+    border-style: solid;
+    border-color: #5f66a1;
+    border-radius: 4px;
+}
+
+/* As mentioned above, eliminate the padding and increase the border. */
+QLineEdit:focus, QFrame:focus {
+    border-width: 2px;
+    padding: 0px;
+}
+
+/* Nice to have the background color change when hovered. */
+QRadioButton:hover, QCheckBox:hover {
+    background-color: #FFDF94;
+}
+
+/* Force the dialog's buttons to follow the Windows guidelines. */
+QDialogButtonBox {
+    button-layout: 0;
+}
+
+QToolTip {
+    padding: 5px;
+    border-radius: 3px;
+    opacity: 200;
+}
+</string>
   </property>
   <layout class="QHBoxLayout" >
    <item>
     <widget class="QTabWidget" name="tabProject" >
      <property name="font" >
       <font>
-       <family>Arial</family>
-       <pointsize>9</pointsize>
+       <family>arial</family>
       </font>
      </property>
      <property name="currentIndex" >
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_3" >
       <attribute name="title" >
@@ -50,7 +189,7 @@
           <widget class="QGroupBox" name="groupBox_3" >
            <property name="font" >
             <font>
-             <pointsize>9</pointsize>
+             <family>arial</family>
             </font>
            </property>
            <property name="title" >
@@ -63,8 +202,10 @@
                <widget class="QLabel" name="label" >
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>10</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -76,8 +217,10 @@
                <widget class="QLabel" name="label_2" >
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>10</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -89,8 +232,10 @@
                <widget class="QLabel" name="label_3" >
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>10</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -102,8 +247,10 @@
                <widget class="QLabel" name="label_6" >
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>10</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -125,8 +272,10 @@
                 </property>
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>10</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -138,8 +287,10 @@
                <widget class="QLabel" name="project_type" >
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>10</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -151,8 +302,10 @@
                <widget class="QLabel" name="project_created" >
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>10</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -164,8 +317,10 @@
                <widget class="QLabel" name="num_runs_label" >
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>10</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -202,7 +357,10 @@
                 </property>
                 <property name="font" >
                  <font>
-                  <pointsize>10</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -215,6 +373,12 @@
               </item>
               <item>
                <widget class="HelpButton" name="help_test" >
+                <property name="maximumSize" >
+                 <size>
+                  <width>40</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="text" >
                  <string/>
                 </property>
@@ -289,7 +453,10 @@
               </property>
               <property name="font" >
                <font>
-                <pointsize>9</pointsize>
+                <family>arial</family>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="focusPolicy" >
@@ -310,7 +477,10 @@
               </property>
               <property name="font" >
                <font>
-                <pointsize>9</pointsize>
+                <family>arial</family>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text" >
@@ -425,7 +595,7 @@
            </property>
            <property name="font" >
             <font>
-             <pointsize>9</pointsize>
+             <family>arial</family>
             </font>
            </property>
            <property name="mouseTracking" >
@@ -491,7 +661,7 @@
          </property>
          <property name="sizeHint" >
           <size>
-           <width>800</width>
+           <width>200</width>
            <height>316</height>
           </size>
          </property>
@@ -530,7 +700,10 @@
                 </property>
                 <property name="font" >
                  <font>
-                  <pointsize>9</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -555,7 +728,10 @@
                 </property>
                 <property name="font" >
                  <font>
-                  <pointsize>9</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -661,7 +837,7 @@
          </property>
          <property name="font" >
           <font>
-           <pointsize>9</pointsize>
+           <family>arial</family>
           </font>
          </property>
          <property name="editTriggers" >
@@ -732,7 +908,10 @@
               </property>
               <property name="font" >
                <font>
-                <pointsize>9</pointsize>
+                <family>arial</family>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text" >
@@ -747,7 +926,10 @@
               </property>
               <property name="font" >
                <font>
-                <pointsize>9</pointsize>
+                <family>arial</family>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text" >
@@ -759,7 +941,10 @@
              <widget class="QPushButton" name="export_button" >
               <property name="font" >
                <font>
-                <pointsize>9</pointsize>
+                <family>arial</family>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text" >
@@ -771,7 +956,10 @@
              <widget class="QPushButton" name="import_button" >
               <property name="font" >
                <font>
-                <pointsize>9</pointsize>
+                <family>arial</family>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text" >
@@ -873,8 +1061,7 @@
            </property>
            <property name="font" >
             <font>
-             <family>Arial</family>
-             <pointsize>11</pointsize>
+             <family>arial</family>
             </font>
            </property>
            <property name="title" >
@@ -892,7 +1079,10 @@
                  <widget class="QLabel" name="label_5" >
                   <property name="font" >
                    <font>
-                    <pointsize>10</pointsize>
+                    <family>arial</family>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text" >
@@ -904,7 +1094,10 @@
                  <widget class="QLabel" name="label_4" >
                   <property name="font" >
                    <font>
-                    <pointsize>10</pointsize>
+                    <family>arial</family>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text" >
@@ -935,7 +1128,7 @@
                   </property>
                   <property name="font" >
                    <font>
-                    <pointsize>9</pointsize>
+                    <family>arial</family>
                    </font>
                   </property>
                  </widget>
@@ -956,7 +1149,7 @@
                   </property>
                   <property name="font" >
                    <font>
-                    <pointsize>9</pointsize>
+                    <family>arial</family>
                    </font>
                   </property>
                  </widget>
@@ -984,8 +1177,10 @@
                <widget class="QPushButton" name="new_analysis_button" >
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>9</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -1042,8 +1237,7 @@
         <widget class="QGroupBox" name="groupBox_5" >
          <property name="font" >
           <font>
-           <family>Arial</family>
-           <pointsize>11</pointsize>
+           <family>arial</family>
           </font>
          </property>
          <property name="title" >
@@ -1060,7 +1254,7 @@
             </property>
             <property name="font" >
              <font>
-              <pointsize>9</pointsize>
+              <family>arial</family>
              </font>
             </property>
             <property name="editTriggers" >
@@ -1100,8 +1294,10 @@
                 </property>
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>9</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -1119,8 +1315,10 @@
                 </property>
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>9</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -1138,8 +1336,10 @@
                 </property>
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>9</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >
@@ -1157,8 +1357,10 @@
                 </property>
                 <property name="font" >
                  <font>
-                  <family>Arial</family>
-                  <pointsize>9</pointsize>
+                  <family>arial</family>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text" >

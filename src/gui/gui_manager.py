@@ -52,18 +52,20 @@ class GuiManager(QObject):
         self.qapp = QApplication(sys.argv)
         QTextCodec.setCodecForTr(QTextCodec.codecForName("utf-8"))
 
-        qss = QFile(":/qss/main_style.css")
-        qss.open(QIODevice.ReadOnly)
-        stylesheet = str(qss.readAll())
-        qss.close()
-            
-        #self.qapp.setStyleSheet(stylesheet)
-
         #Create DesktopService for accessing services provided by desktop (eg. web browser) 
         self.desktop_services = QDesktopServices()
             
         #Create main delphos window
         self.win = DelphosWindow(self)
+        
+        qss = QFile(":/qss/main_style.css")
+        qss.open(QIODevice.ReadOnly)
+        stylesheet = str(qss.readAll())
+        qss.close()
+            
+        #print "stylesheet"+str(self.qapp.styleSheet())
+        #self.win.setStyleSheet(stylesheet)        
+        
         #Hide the docked widget initially
         self.win.ui.dock_doc.hide()
         
@@ -96,7 +98,7 @@ class GuiManager(QObject):
         #Show main window
         self.win.show()        
         #Display dialog for user to select project type
-        self.get_started()
+        self.start_language_selection()
         #Start main loop
         sys.exit(self.qapp.exec_())
 
@@ -125,7 +127,8 @@ class GuiManager(QObject):
             self.handle_design_new_selection()
         elif action == 'fisheries_doc':
             self.project_manager.set_current_project_type("fisheries")
-            self.start_language_selection()        
+            self.get_started()
+            self.win.load_full_doc()
         elif action == 'mpa_doc':
             self.start_mpa_type_selection()       
 
@@ -145,7 +148,8 @@ class GuiManager(QObject):
         self.project_manager.set_current_project_type(mpa_type)          
         self.select_mpa_type_dialog.hide()
         self.select_mpa_type_dialog.deleteLater()
-        self.start_language_selection()
+        self.get_started()
+        self.win.load_full_doc()
 
     def start_language_selection(self):
         """Used for selecting language to load for documentation"""
@@ -162,7 +166,6 @@ class GuiManager(QObject):
         #Load doc browser
         #self.win.ui.doc_browser.load_doc(cur_proj_type, language)
         self.get_started()
-        self.win.load_full_doc()
 
     def reload_doc(self):
         language = self.config_manager.get_language()

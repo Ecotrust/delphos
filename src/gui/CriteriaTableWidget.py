@@ -36,6 +36,17 @@ class CriteriaTableWidget(QTableWidget):
             self.setRowCount(len(criteria_recs))
         
             for i in range(len(criteria_recs)):
+                
+                if i == 0:
+                    hi = self.horizontalHeaderItem(0)
+                    hi.setToolTip("Explicit description of the criterion")
+                    hi = self.horizontalHeaderItem(1)
+                    hi.setToolTip("General criteria type: Binary, Ordinal, Ratio\nClick help icon for more information")
+                    hi = self.horizontalHeaderItem(2)
+                    hi.setToolTip("Options are the possible choices for a Binary or Ordinal criterion.\nUnits refers to the unit of measure for a Ratio criterion eg. tons per year")
+                    hi = self.horizontalHeaderItem(3)
+                    hi.setToolTip("Each criterion can be a Benefit or a Cost.  Click the help icon for more information")
+                                        
                 name_val = unicode(criteria_recs[i][1])
                 type_val = unicode(criteria_recs[i][2])
                 type_opt_val = u""

@@ -42,6 +42,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
         self.isError = False    #Error flag for form processing
         self.errorMsg = ""
         self.ordinal_option_list = []
+        self.editing = False
         
         #Connect slots to signals
         QObject.connect(self.help_define_criteria, QtCore.SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)

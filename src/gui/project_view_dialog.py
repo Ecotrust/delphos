@@ -262,8 +262,9 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
                     (altern_id, altern_name, altern_color) = altern_data[j]
                     column = j
     
-                    cur_val = cur_input_vals[row][column]
-                    cur_input_set.append((altern_id, crit_id, cur_val)) 
+                    if row < len(cur_input_vals):
+                        cur_val = cur_input_vals[row][column]
+                        cur_input_set.append((altern_id, crit_id, cur_val)) 
             return cur_input_set      
 
     def process_template_export(self):

@@ -10,6 +10,6 @@
         <file>images/help.png</file>
         <file>images/ecotrust_logo.gif</file>
         <file>images/wwf_logo.gif</file>
-        <file>images/cobi_logo.jpg</file>
+        <file>images/cobi_logo.jpg</file>    
     </qresource>
 </RCC>
