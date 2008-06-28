@@ -54,14 +54,14 @@ class ProjectManager(QObject):
             path = self.default_project_path
 
         #Check if DB already exists
-        db_path = path+os.sep+name
+        db_path = path+'/'+name
+
+        self.current_project_type = type
         
         if os.path.exists(db_path):
             raise DelphosError, "Project named "+name+" already exists at "+path
         elif not self.current_project_type:
-            raise DelphosError, "Analysis type not found"
-        
-        self.current_project_type = type
+            raise DelphosError, "Analysis type not found"        
         
         #Create project
         proj = Project(name, path, type, load_default_altern, load_default_crit, language)
