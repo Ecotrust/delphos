@@ -64,6 +64,12 @@ class McaResultView(QDialog, Ui_McaResultView):
             score = results[i]
             interm_results[altern_id] = score
 
+	score_list = interm_results.values()
+	low_score = min(score_list)
+	#print 'low: '+str(low_score)
+	#high_score = max(score_list)
+	#print 'high: '+str(high_score)
+
         #Sort alterns by score
         from operator import itemgetter
         sorted_results = sorted(interm_results.items(), key=itemgetter(1), reverse=True)
@@ -104,6 +110,10 @@ class McaResultView(QDialog, Ui_McaResultView):
                     	else:
                         	rank += 1
                         break
+
+	    #Normalize score
+	    #score = (score + abs(low_score))/abs(high_score)
+	    score = score+abs(low_score)+0.1
 
             #original order                
             final_results[j] = [altern_id, altern_name, rank, round(score,2), altern_color]

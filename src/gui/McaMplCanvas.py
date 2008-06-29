@@ -26,8 +26,8 @@ from matplotlib.font_manager import FontProperties
 from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 
 from pylab import * #Keep
-import pytz.zoneinfo #Keep
-from pytz.zoneinfo import UTC #Keep
+#import pytz.zoneinfo #Keep
+#from pytz.zoneinfo import UTC #Keep
 
 class MyMplCanvas(FigureCanvas):
     """Ultimately, this is a QWidget (as well as a FigureCanvasAgg, etc.)."""
@@ -80,16 +80,15 @@ class McaMplCanvas(MyMplCanvas):
         print ranks
         print scores
         
-        p1 = bar(ranks, scores, width, color=altern_colors, edgecolor='k')
+        p1 = bar(range(len(scores)), scores, width, color=altern_colors, edgecolor='k')
 
         #pyqt matplotlib widget (subplot)
-        self.axes.bar(ranks, scores, width, color=altern_colors)
+        self.axes.bar(range(len(scores)), scores, width, color=altern_colors)
         #Y-axis ticks should be whole integers
         majorLocator = MultipleLocator(1)
         self.axes.xaxis.set_major_locator(majorLocator)
+        #self.axes.yaxis.set_major_locator(majorLocator)
         #X-axis should have no ticks
-        #self.axes.xaxis.set_major_locator(NullLocator())
-#       self.axes.set_ylabel("Rank")
-        #self.axes.set_xlabel("Rank")
-        self.axes.legend(p1, altern_names, 'best', pad=0.1, prop=FontProperties(size='small'))
+        self.axes.xaxis.set_major_locator(NullLocator())
+        #self.axes.legend(p1, altern_names, 'best', pad=0.1, prop=FontProperties(size='small'))
 #       self.axes.set_title ('MCA Results', va='top')

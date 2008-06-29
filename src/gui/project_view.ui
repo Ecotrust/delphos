@@ -27,7 +27,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet" >
-   <string>.QWidget {
+   <string notr="true" >.QWidget {
    background-color: #E1EDF5;
 }
 
@@ -40,8 +40,144 @@ QWidget {
 
 	
 QWidget {
+    font-family: arial;
+    color: #333333;	
+}
+
+
+QHeaderView::section {
+    padding-left: 2px;
+    padding-right: 4px;
+    background-color: #FFF7DB;
+    border-width: 1px;
+    border-color: darkkhaki;
+    border-style: solid;
+}
+
+QHeaderView::section:hover {
+   background-color: #FFDF94;
+}
+
+/* Increase the padding, so the text is shifted when the button is
+   pressed. */
+QHeaderView::section:pressed {
+    padding-left: 4px;
+    padding-top: 4px;
+    background-color: #E6A84C;
+}
+
+QMainWindow {
+    background-color: gainsboro;
+    background-position: top right;
+    background-repeat: no-repeat
+}
+
+
+/* Nice Windows-XP-style password character. */
+QLineEdit[echoMode="2"] {
+    lineedit-password-character: 9679;
+}
+
+/* We provide a min-width and min-height for push buttons
+   so that they look elegant regardless of the width of the text. */
+QPushButton {
+    background-color: #FFF2C9;
+    border-width: 1px;
+    border-color: darkkhaki;
+    border-style: solid;
+    border-radius: 5;
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    min-width: 9ex;
+    min-height: 2.5ex;
+}
+
+QPushButton:hover {
+   background-color: #FFDF94;
+}
+
+/* Increase the padding, so the text is shifted when the button is
+   pressed. */
+QPushButton:pressed {
+    padding-left: 4px;
+    padding-top: 4px;
+    background-color: #E6A84C;
+}
+
+QLabel, QAbstractButton {
+    font: normal;
+}
+
+/* Mark mandatory fields with a brownish color. */
+.mandatory {
+    color: brown;
+}
+
+/* Bold text on status bar looks awful. */
+QStatusBar QLabel {
+   font: normal;
+}
+
+QStatusBar::item {
+    border-width: 1;
+    border-color: darkkhaki;
+    border-style: solid;
+    border-radius: 2;
+}
+
+QComboBox, QLineEdit, QSpinBox, QTextEdit, QListView {
+    background-color: #fafbfc;
+    selection-color: #0a214c;
+    selection-background-color: #FFF2C9;
+}
+
+/* We reserve 1 pixel space in padding. When we get the focus,
+   we kill the padding and enlarge the border. This makes the items
+   glow. */
+QLineEdit {
+    border-width: 1px;
+    padding: 1px;
+    border-style: solid;
+    border-color: #5f66a1;
+    border-radius: 4px;
+}
+
+/* As mentioned above, eliminate the padding and increase the border. */
+QLineEdit:focus, QFrame:focus {
+    border-width: 2px;
+    padding: 0px;
+}
+
+/* Nice to have the background color change when hovered. */
+QRadioButton:hover, QCheckBox:hover {
+    background-color: #FFDF94;
+}
+
+/* Force the dialog's buttons to follow the Windows guidelines. */
+QDialogButtonBox {
+    button-layout: 0;
+}
+
+QToolTip {
+    padding: 5px;
+    border-radius: 3px;
+    opacity: 200;
+}
+.QWidget {
+   background-color: #E1EDF5;
+}
+
+/*Non-main window popup widgets
+QWidget {
      background-color: #f0f0f5;
-	font-family: arial;
+}
+*/
+
+
+	
+QWidget {
+    font-family: arial;
     color: #333333;	
 }
 
@@ -175,10 +311,21 @@ QToolTip {
        <family>arial</family>
       </font>
      </property>
+     <property name="styleSheet" >
+      <string notr="true" />
+     </property>
      <property name="currentIndex" >
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>722</width>
+        <height>384</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Project Info</string>
       </attribute>
@@ -383,7 +530,8 @@ QToolTip {
                  <string/>
                 </property>
                 <property name="icon" >
-                 <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+                 <iconset resource="../resources.qrc" >
+                  <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
                 </property>
                 <property name="iconSize" >
                  <size>
@@ -408,7 +556,7 @@ QToolTip {
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>348</width>
            <height>71</height>
@@ -419,6 +567,14 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="tab" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>722</width>
+        <height>384</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Alternatives</string>
       </attribute>
@@ -447,8 +603,8 @@ QToolTip {
              <widget class="QPushButton" name="add_altern_button" >
               <property name="minimumSize" >
                <size>
-                <width>100</width>
-                <height>0</height>
+                <width>37</width>
+                <height>14</height>
                </size>
               </property>
               <property name="font" >
@@ -471,8 +627,8 @@ QToolTip {
              <widget class="QPushButton" name="remove_altern_button" >
               <property name="minimumSize" >
                <size>
-                <width>100</width>
-                <height>0</height>
+                <width>37</width>
+                <height>14</height>
                </size>
               </property>
               <property name="font" >
@@ -506,16 +662,7 @@ QToolTip {
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QHBoxLayout" >
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -523,7 +670,7 @@ QToolTip {
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>61</width>
                 <height>16</height>
@@ -543,7 +690,8 @@ QToolTip {
                <string/>
               </property>
               <property name="icon" >
-               <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+               <iconset resource="../resources.qrc" >
+                <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -564,7 +712,7 @@ QToolTip {
            <property name="orientation" >
             <enum>Qt::Vertical</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>40</width>
              <height>101</height>
@@ -622,11 +770,7 @@ QToolTip {
            <property name="columnCount" >
             <number>2</number>
            </property>
-           <row>
-            <property name="text" >
-             <string>1</string>
-            </property>
-           </row>
+           <row/>
            <column>
             <property name="text" >
              <string>Name</string>
@@ -644,7 +788,7 @@ QToolTip {
            <property name="orientation" >
             <enum>Qt::Vertical</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>20</width>
              <height>40</height>
@@ -659,7 +803,7 @@ QToolTip {
          <property name="orientation" >
           <enum>Qt::Horizontal</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>200</width>
            <height>316</height>
@@ -670,6 +814,14 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="tab_2" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>722</width>
+        <height>384</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Criteria</string>
       </attribute>
@@ -694,8 +846,8 @@ QToolTip {
                <widget class="QPushButton" name="add_criteria_button" >
                 <property name="minimumSize" >
                  <size>
-                  <width>100</width>
-                  <height>0</height>
+                  <width>37</width>
+                  <height>14</height>
                  </size>
                 </property>
                 <property name="font" >
@@ -722,8 +874,8 @@ QToolTip {
                <widget class="QPushButton" name="remove_criteria_button" >
                 <property name="minimumSize" >
                  <size>
-                  <width>100</width>
-                  <height>0</height>
+                  <width>37</width>
+                  <height>14</height>
                  </size>
                 </property>
                 <property name="font" >
@@ -757,16 +909,7 @@ QToolTip {
               <enum>QFrame::Raised</enum>
              </property>
              <layout class="QHBoxLayout" >
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
+              <property name="margin" >
                <number>0</number>
               </property>
               <item>
@@ -774,7 +917,7 @@ QToolTip {
                 <property name="orientation" >
                  <enum>Qt::Horizontal</enum>
                 </property>
-                <property name="sizeHint" >
+                <property name="sizeHint" stdset="0" >
                  <size>
                   <width>21</width>
                   <height>16</height>
@@ -794,7 +937,8 @@ QToolTip {
                  <string/>
                 </property>
                 <property name="icon" >
-                 <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+                 <iconset resource="../resources.qrc" >
+                  <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
                 </property>
                 <property name="iconSize" >
                  <size>
@@ -817,7 +961,7 @@ QToolTip {
            <property name="orientation" >
             <enum>Qt::Vertical</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>95</width>
              <height>111</height>
@@ -889,6 +1033,14 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="tab_5" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>722</width>
+        <height>384</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Input Data</string>
       </attribute>
@@ -982,7 +1134,8 @@ QToolTip {
             <string/>
            </property>
            <property name="icon" >
-            <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+            <iconset resource="../resources.qrc" >
+             <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
            </property>
            <property name="iconSize" >
             <size>
@@ -1000,7 +1153,7 @@ QToolTip {
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>361</width>
              <height>44</height>
@@ -1045,6 +1198,14 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="tab_4" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>722</width>
+        <height>384</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Analysis</string>
       </attribute>
@@ -1165,7 +1326,7 @@ QToolTip {
                 <property name="orientation" >
                  <enum>Qt::Horizontal</enum>
                 </property>
-                <property name="sizeHint" >
+                <property name="sizeHint" stdset="0" >
                  <size>
                   <width>40</width>
                   <height>20</height>
@@ -1200,7 +1361,8 @@ QToolTip {
                  <string/>
                 </property>
                 <property name="icon" >
-                 <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+                 <iconset resource="../resources.qrc" >
+                  <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
                 </property>
                 <property name="iconSize" >
                  <size>
@@ -1223,7 +1385,7 @@ QToolTip {
            <property name="orientation" >
             <enum>Qt::Vertical</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0" >
             <size>
              <width>251</width>
              <height>161</height>
@@ -1288,8 +1450,8 @@ QToolTip {
                <widget class="QPushButton" name="view_analysis_button" >
                 <property name="minimumSize" >
                  <size>
-                  <width>80</width>
-                  <height>0</height>
+                  <width>37</width>
+                  <height>14</height>
                  </size>
                 </property>
                 <property name="font" >
@@ -1309,8 +1471,8 @@ QToolTip {
                <widget class="QPushButton" name="rerun_analysis_button" >
                 <property name="minimumSize" >
                  <size>
-                  <width>70</width>
-                  <height>0</height>
+                  <width>37</width>
+                  <height>14</height>
                  </size>
                 </property>
                 <property name="font" >
@@ -1330,8 +1492,8 @@ QToolTip {
                <widget class="QPushButton" name="export_analysis_button" >
                 <property name="minimumSize" >
                  <size>
-                  <width>70</width>
-                  <height>0</height>
+                  <width>37</width>
+                  <height>14</height>
                  </size>
                 </property>
                 <property name="font" >
@@ -1351,8 +1513,8 @@ QToolTip {
                <widget class="QPushButton" name="delete_analysis_button" >
                 <property name="minimumSize" >
                  <size>
-                  <width>70</width>
-                  <height>0</height>
+                  <width>37</width>
+                  <height>14</height>
                  </size>
                 </property>
                 <property name="font" >
@@ -1377,7 +1539,8 @@ QToolTip {
                  <string/>
                 </property>
                 <property name="icon" >
-                 <iconset resource="../resources.qrc" >:/images/help.png</iconset>
+                 <iconset resource="../resources.qrc" >
+                  <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
                 </property>
                 <property name="iconSize" >
                  <size>
@@ -1397,7 +1560,7 @@ QToolTip {
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>

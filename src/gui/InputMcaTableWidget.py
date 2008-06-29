@@ -81,11 +81,9 @@ class InputMcaTableWidget(QTableWidget):
                     cb_text = 'Benefit'
                 
                 crit_text = ""
-                if crit_type == "Ratio":
-                    crit_text = crit_options_units
-                else: 
-                    for option in crit_options_units:
-                        crit_text = crit_text+'"'+option[0]+'" '
+
+                for option in crit_options_units:
+                    crit_text = crit_text+'"'+option[0]+'" '
                                             
                 tool_text = "Description: "+crit_name+"\nCriteria Type: "+crit_type+"\nOptions/Units: "+crit_text+"\n"+cb_text                    
                 header_item.setToolTip(tool_text)
