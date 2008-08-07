@@ -528,9 +528,87 @@ mpa_sites_english_default_criteria = [
     ]
 ]
 
+mpa_sites_spanish_default_criteria = [
+    [
+        u"Número total de especies", 
+        "Ratio", 
+        ["# de especies"], 
+        "B"
+    ],[
+        u"Número de especies con una relevancia particular", 
+        "Ratio", 
+        ["# de especies"], 
+        "B"
+    ],[
+        u"Representación de cada hábitat importante dentro de toda el área de estudio", 
+        "Ordinal",
+        [["Alto: 80-100%",4],["Medio: 50-79%",3],["Bajo: <50%",2],["Ninguno",1]], 
+        "B"
+    ],[
+        u"Número de rangos en profundidades", 
+        "Ratio", 
+        ["# de rangos"], 
+        "B"
+    ],[
+        u"Potencial de dispersión larval a otras redes (reservas?)", 
+        "Ordinal",
+        [["Alto",4],["Medio",3],["Bajo",2],["Ninguno",1]], 
+        "B"
+    ],[
+        u"Potencial de retención larval dentro de la red de reservas ",
+        "Ordinal",
+        [["Alto",4],["Medium",3],["Low",2],["None",1]], 
+        "B"
+    ],[
+        "Potencial para aumentar la productividad pesquera afuera de la red (reservas)", 
+        "Ordinal",
+        [["Alto",4],["Medio",3],["Bajo",2],["Ninguno",1]], 
+        "B"
+    ],[
+        u"Resilencia de la red de reservas  a desastres naturales o cambios climático (i.e. El Niño) ", 
+        "Ordinal",
+        [["Alto",4],["Medio",3],["Bajo",2],["Ninguno",1]], 
+        "B"
+    ],[
+        u"Área total representada por la red  de reservas", 
+        "Ratio", 
+        ["sq.mi"],
+        "B"
+    ],[
+        "Viabilidad para realizar evaluaciones del desempeño de las reservas", 
+        "Ordinal",
+        [["Alto",4],["Medio",3],["Bajo",2],["Ninguno",1]], 
+        "B"
+    ],[
+        "Porcentaje en el ingreso de la comunidad que proviene de la red (reservas?)", 
+        "Ratio", 
+        ["Porcentaje"], 
+        "C"
+    ],[
+        "Valor de la pesca recreativa en la red de reservas)", 
+        "Ordinal",
+        [["Alto",1],["Medio",2],["Bajo",3],["Ninguno",4]],
+        "C"
+    ],[
+        "Valor de la pesca comercial en la red de reservas", 
+        "Ordinal",
+        [["Alto",1],["Medio",2],["Bajo",3],["Ninguno",4]],
+        "C"
+    ],[
+        "Valor potencial del ecoturismo en la red de reservas", 
+        "Ordinal",
+        [["Alto",1],["Medio",2],["Bajo",3],["Ninguno",4]],
+        "B"
+    ],[
+        "Viabilidad de vigilancia  y manejo de la red de reservas", 
+        "Ordinal",
+        [["Alto",4],["Medio",3],["Bajo",2],["Ninguno",1]],
+        "B"
+    ]
+]
 
 
-mpa_sites_spanish_default_criteria = None
+#mpa_sites_spanish_default_criteria = None
 
 
 
