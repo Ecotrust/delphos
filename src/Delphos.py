@@ -23,9 +23,7 @@ import os
 
 #Third-party modules
 import sip
-import pyExcelerator
 import sqlalchemy
-from pyExcelerator import *
 from sqlite3 import dbapi2 as sqlite
 
 #Delphos modules

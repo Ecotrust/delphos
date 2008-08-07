@@ -90,5 +90,5 @@ class McaMplCanvas(MyMplCanvas):
         #self.axes.yaxis.set_major_locator(majorLocator)
         #X-axis should have no ticks
         self.axes.xaxis.set_major_locator(NullLocator())
-        #self.axes.legend(p1, altern_names, 'best', pad=0.1, prop=FontProperties(size='small'))
+        self.axes.legend(p1, altern_names, 'best', pad=0.1, prop=FontProperties(size='small'))
 #       self.axes.set_title ('MCA Results', va='top')

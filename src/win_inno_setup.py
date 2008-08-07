@@ -33,7 +33,7 @@ class InnoScript:
                  dist_dir,
                  windows_exe_files = [],
                  lib_files = [],
-                 version = "0.3"):
+                 version = ""):
         self.lib_dir = lib_dir
         self.dist_dir = dist_dir
         if not self.dist_dir[-1] in "\\/":
@@ -58,7 +58,7 @@ class InnoScript:
         print >> ofi, r"DefaultDirName={pf}\%s" % self.name
         print >> ofi, r"DefaultGroupName=%s" % self.name
         print >> ofi, r"VersionInfoVersion=%s" % self.version
-        print >> ofi, r"VersionInfoCompany=Ecotrust"
+        print >> ofi, r"VersionInfoCompany=Ecotrust/COBI/WWF"
         print >> ofi, r"VersionInfoDescription=Delphos"
         print >> ofi, r"VersionInfoCopyright=Ecotrust"
         print >> ofi, r"AppCopyright=Ecotrust"
@@ -133,7 +133,7 @@ class build_installer(py2exe):
         dist_dir = self.dist_dir
         
         # create the Installer, using the files py2exe has created.
-        script = InnoScript("Delphos 0.3",
+        script = InnoScript("Delphos 0.4",
                             lib_dir,
                             dist_dir,
                             self.windows_exe_files,
@@ -152,10 +152,10 @@ options = {
     "py2exe": {
         "compressed": 1,
         "optimize": 2,
-        "includes": ['sip','matplotlib.numerix.random_array', 'matplotlib.backends.backend_tkagg', 'sqlalchemy.databases.sqlite'],
+        "includes": ['sip', 'PyQt4', 'matplotlib.numerix.random_array', 'matplotlib.backends.backend_tkagg', 'sqlalchemy.databases.sqlite'],
         "excludes": ['backend_gtkagg', 'backend_wxagg'],
         "dll_excludes": ['libgdk_pixbuf-2.0-0.dll', 'libgobject-2.0-0.dll', 'libgdk-win32-2.0-0.dll'],
-        "packages": ["sqlalchemy", "pyExcelerator", "matplotlib", "pytz", "PyQt4._qt"],
+        "packages": ["sqlalchemy", "matplotlib", "pytz", "PyQt4"],
         "dist_dir": "dist",
     }
 }

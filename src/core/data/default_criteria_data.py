@@ -1,4 +1,4 @@
-﻿# *-* coding: utf-8 *-*
+# *-* coding: utf-8 *-*
 
 #===============================================================================
 # Delphos - a decision-making tool for community-based marine conservation.
@@ -296,153 +296,29 @@ fisheries_spanish_default_criteria = [
 
 mpa_communities_english_default_criteria = [
     [
+       "Declared interest from communities", 
+       "Binary", 
+       [["Yes",2],["No",1]], 
+       "B"   
+    ],[
         "Defined users with legal access rights to the fishing area",
         "Ordinal",
         [["Strong",4],["Mediocre",3],["Poor",2],["Open Access Resources",1]], 
         "B"
     ],[
-        "Resilience in the fishing management system regarding political change in the country's authority structure",
+        "High degree of community organization/cohesion",
         "Ordinal",
         [["Good",4],["Mediocre",3],["Poor",2],["None",1]], 
         "B"
     ],[
-        "Community interest and willingness to establish a network of fully-protected marine reserves",
-        "Ordinal",
-        [["Yes",4],["Yes, but need more information",3],["Indecisive",2],["Against",1]], 
-        "B"
-    ],[
-        "Community involvement in fishing management",
+        "Society attachment and insight of their environment",
         "Ordinal",
         [["Good",4],["Mediocre",3],["Poor",2],["None",1]], 
-        "B"
-    ],[
-       "Balance in benefit distribution of fishing exploitation", 
-       "Binary", 
-       [["Balanced",2],["Unbalanced",1]], 
-       "B"
-    ],[
-        "Fishers levels of organization",
-        "Ordinal",
-        [["High",3],["Medium",2],["Low",1]], 
-        "B"
-    ],[
-        "Number of fishers working in the fishing area", 
-        "Ratio", 
-       ["# of fishers"], 
-        "C"
-    ],[
-        "Community's investment capacity in fully-protected marine reserves",
-        "Ordinal",
-        [["High",3],["Average",2],["Low",1]], 
-        "B"
-    ],[
-        "Level of ecosystem's scientific knowledge",
-        "Ordinal",
-        [["High",3],["Medium",2],["Low",1]], 
-        "B"
-    ],[
-        "Coastal Development",
-        "Ordinal",
-        [["Underdeveloped",4],["Developing",3],["Developed",2],["Highly Industrialized and Developed",1]], 
-        "C"
-    ],[
-        "Area being considered for establishing a network of community reserves (sq.km OR km of coastline)", 
-        "Ratio", 
-       ["sq.km or km of coastline"], 
-        "B"
-    ],[
-        "Connectivity of the possible network of the fully-protected community marine reserves in a regional system of fully-protected marine reserves",
-        "Ordinal",
-        [["Appropriate",4],["Moderately Appropriate",3],["Hardly Relevant",2],["Isolated",1]], 
-        "B"
-    ],[
-        "Number of essential habitats for highly migratory species (# of habitats)", 
-        "Ratio", 
-       ["# of habitats"], 
-        "B"
-    ],[
-        "Representation of different habitats in the biogeographic region (# of habitats)", 
-        "Ratio", 
-       ["# of habitats"], 
-        "B"
-    ],[
-       "Opportunity to connect (by being adjacent) this marine area with a terrestrial protected area", 
-       "Binary", 
-       [["Present",2],["Absent",1]], 
-       "B"
-    ],[
-       "Is a zone part of a high priority conservation site according to another national or international project?", 
-       "Binary", 
-       [["Yes",2],["No",1]], 
-       "B"
-    ],[
-        "Number of species included in national or international lists under any special protection category (# of species)", 
-        "Ratio", 
-       ["# of species"], 
-        "B"
-    ],[
-        "Number of species subject to fishing exploitation (# of species)", 
-        "Ratio", 
-       ["# of species"], 
-        "B"
-    ],[
-        "Zone's vulnerability to natural disasters",
-        "Ordinal",
-        [["None",3],["Medium",2],["High",1]], 
-        "C"
-    ],[
-       "Does UNESCO consider the zone a Human Heritage Site?", 
-       "Binary", 
-       [["Yes",2],["No",1]], 
-       "B"
-    ],[
-       "Is the zone considered part of a culturally significant national category?",
-       "Binary",  
-       [["Yes",2],["No",1]], 
-       "B"
-    ],[
-       "Is there a native culture with a limited territorial representation living in this zone or using it as priority for fishing or extracting natural resources?",
-       "Binary",  
-       [["Yes",2],["No",1]], 
-       "B"
-    ],[
-       "Is the fishing culture for this zone part of any maritime culture with a limited geographic representation?",
-       "Binary",  
-       [["Yes",2],["No",1]], 
-       "B"
-    ],[
-       "Are there sites with archaeological value in the zone?",
-       "Binary", 
-       [["Yes",2],["No",1]], 
-       "B"
-    ],[
-       "Does this zone have an exceptional aesthetic value?",
-       "Binary", 
-       [["Yes",2],["No",1]], 
-       "B"
-    ],[
-       "Does this zone have an exceptional educational value?",
-       "Binary", 
-       [["Yes",2],["No",1]], 
-       "B"
-    ]
-]
-
-mpa_communities_english_default_criteria = [
-    [
-        "Defined users with legal access rights to the fishing area",
-        "Ordinal",
-        [["Strong",4],["Mediocre",3],["Poor",2],["Open Access Resources",1]], 
         "B"
     ],[
         "Resilience in the fishing management system regarding political change in the country's authority structure",
         "Ordinal",
         [["Good",4],["Mediocre",3],["Poor",2],["None",1]], 
-        "B"
-    ],[
-        "Community interest and willingness to establish a network of fully-protected marine reserves",
-        "Ordinal",
-        [["Yes",4],["Yes, but need more information",3],["Indecisive",2],["Against",1]], 
         "B"
     ],[
         "Community involvement in fishing management",
@@ -580,74 +456,14 @@ mpa_sites_english_default_criteria = [
         ["# of species"], 
         "B"
     ],[
-        "Number of species included in national or international listings under a special protection category", 
-        "Ratio", 
-        ["# of species"], 
-        "B"
-    ],[
-        "Density or abundance of each species included in national or international listings under a special protection category (A) (actual value)", 
-        "Ratio", 
-        ["density/abundance"], 
-        "B"
-    ],[
-        "Density or abundance of each species included in national or international listings under a special protection category (B)",
-        "Ordinal",
-        [["High",4],["Medium",3],["Low",2],["None",1]], 
-        "B"
-    ],[
         "Number of key species", 
         "Ratio", 
         ["# of species"], 
         "B"
     ],[
-        "Density or abundance of each key species (A) (actual value)", 
-        "Ratio", 
-        ["density/abundance"], 
-        "B"
-    ],[
-        "Density or abundance of each key species (B)",
-        "Ordinal",
-        [["High",4],["Medium",3],["Low",2],["None",1]], 
-        "B"
-    ],[
-        "Density or abundance of each species subject to fishing exploitation (A) (actual value)", 
-        "Ratio", 
-        ["density/abundance"], 
-        "B"
-    ],[
-        "Density or abundance of each species subject to fishing exploitation (B)", 
-        "Ordinal",
-        [["High",4],["Medium",3],["Low",2],["None",1]], 
-        "B"
-    ],[
-        "Percentage of fishing production extracted by the community from each site with respect to total production (eg. 0, 28, 100)", 
-        "Ratio", 
-        ["percentage"], 
-        "B"
-    ],[
-        "Number of critical environments (substrates) at the site", 
-        "Ratio", 
-        ["# of environments"], 
-        "B"
-    ],[
-        "Cover (density) of each environment within every site (A) (percentage)", 
-        "Ratio", 
-        ["percentage"], 
-        "B"
-    ],[
-        "Cover (density) of each environment within every site (B)", 
+        "Representation of each important habitat within the whole study area", 
         "Ordinal",
         [["High: 80-100%",4],["Medium: 50-79%",3],["Low: <50%",2],["None",1]], 
-        "B"
-    ],[
-        "Size of every environment within each site (A) (area, eg. sq.mi)", 
-        "Ratio", 
-        ["area"], 
-        "B"
-    ],[
-        "Size of every environment within each site (B)", 
-        "Ordinal",
-        [["High",4],["Medium",3],["Low",2],["None",1]], 
         "B"
     ],[
         "Number of depth ranges", 
@@ -655,17 +471,17 @@ mpa_sites_english_default_criteria = [
         ["# of ranges"], 
         "B"
     ],[
-        "Number of sites within every critical environment selected", 
-        "Ratio", 
-        ["# of sites"], 
-        "B"
-    ],[
-        "Presence of currents for larval diffusion", 
+        "Potential for dispersal of larva to other networks", 
         "Ordinal",
         [["High",4],["Medium",3],["Low",2],["None",1]], 
         "B"
     ],[
-        "Presence of currents for larval retention", 
+        "Potential for retention of larva within the network", 
+        "Ordinal",
+        [["High",4],["Medium",3],["Low",2],["None",1]], 
+        "B"
+    ],[
+        "Potential to enhance fishing productivity outside the network", 
         "Ordinal",
         [["High",4],["Medium",3],["Low",2],["None",1]], 
         "B"
@@ -675,139 +491,48 @@ mpa_sites_english_default_criteria = [
         [["High",4],["Medium",3],["Low",2],["None",1]], 
         "B"
     ],[
-        "Total area per each site (eg. sq.mi)", 
+        "Total area represented by the network", 
         "Ratio", 
-        ["area sq.mi"],
-        "B"
-    ],[
-        "Percentage of area proposed as reserve, with respect to the total fishing area (eg. 13, 40, 100)", 
-        "Ratio", 
-        ["% of area"],
-        "B"
-    ],[
-        "Distance from the nearest reserve (miles, km)", 
-        "Ratio", 
-        ["miles/km"],
-        "B"
-    ],[
-        "Number of critical environments included in each site", 
-        "Ratio", 
-        ["# of environments"],
-        "B"
-    ],[
-        "Number of critical environments considered within different potential networks of marine reserves", 
-        "Ratio", 
-        ["# of environments"],
-        "B"
-    ],[
-        "Cover (density) of each critical environment within each site (A) (area, eg. sq.mi)", 
-        "Ratio", 
-        ["area"], 
-        "B"
-    ],[
-        "Cover (density) of each critical environment within each site (B)", 
-        "Ordinal",
-        [["High: 80-100%",4],["Medium: 50-79%",3],["Low: <50%",2],["None",1]], 
+        ["sq.mi"],
         "B"
     ],[
         "Feasibility to conduct assessments", 
         "Ordinal",
         [["High",4],["Medium",3],["Low",2],["None",1]], 
-        "C"
-    ],[
-        "Currents to conduct assessments (A)", 
-        "Ordinal",
-        [["High: always present",1],["Medium: 50% of time",2],["Low: 25% of time",3],["None",4]], 
-        "C"
-    ],[
-       "Currents to conduct assessments (B) (presence or absence)",
-       "Binary",  
-       [["Yes",1],["No",2]], 
-       "C"
-    ],[
-       "Currents to conduct assessments (C) (speed)",
-        "Ratio", 
-        ["speed"], 
-        "C"
-    ],[
-       "Depth to conduct assessments (maximum depth)",
-        "Ratio", 
-        ["depth"], 
-        "C"
-    ],[
-        "Visibility to conduct assessments (A)", 
-        "Ordinal",
-        [["High: always adequate",4],["Medium: adequate 50% of time",3],["Low: adequate 25% of time",2],["Visibility not adequate",1]], 
         "B"
     ],[
-       "Visibility to conduct assessments (B) (presence or absence)",
-       "Binary",  
-       [["Yes",2],["No",1]], 
-       "B"
-    ],[
-       "Visibility to conduct assessments (C) (average visibility value eg. sq.mi)",
+        "Percentage of community's revenue that comes from the network", 
         "Ratio", 
-        ["speed"], 
-        "B"
-    ],[
-        "Effect from exposure to swell when conducting assessments", 
-        "Ordinal",
-        [["High: completely exposed",1],["Medium: moderately exposed",2],["Low: little exposed",3],["None: not exposed",4]], 
+        ["percentage"], 
         "C"
     ],[
-        "Effect of wind when conducting assessments", 
-        "Ordinal",
-        [["High: always exposed",1],["Medium: exposed half of time",2],["Low: exposed on few occasions",3],["None: not exposed",4]], 
-        "C"
-    ],[
-       "Abundance of fragile environments (corals, algae, among others) to conduct assessments",
-        "Ratio", 
-        ["abundance"], 
-        "C"
-    ],[
-       "Total value of product extracted from each site (A) (monetary value)",
-        "Ratio", 
-        ["monetary unit"], 
-        "C"
-    ],[
-        "Total value of product extracted from each site (B)", 
+        "Recreational fishing value of the network", 
         "Ordinal",
         [["High",1],["Medium",2],["Low",3],["None",4]],
         "C"
     ],[
-       "Recreational value of each site (A) (monetary value)",
-        "Ratio", 
-        ["monetary unit"], 
-        "C"
-    ],[
-        "Recreational value of each site (B)", 
+        "Commercial fishing value of the network", 
         "Ordinal",
         [["High",1],["Medium",2],["Low",3],["None",4]],
         "C"
     ],[
-        "Acceptance by fishers outside the community", 
+        "Potential value of ecotourism of the network", 
         "Ordinal",
-        [["High",4],["Medium",3],["Low",2],["None",1]],
+        [["High",1],["Medium",2],["Low",3],["None",4]],
         "B"
-    ],[
-        "Illegal Fishing", 
-        "Ordinal",
-        [["Constant",4],["Moderate",3],["Little",2],["None",1]],
-        "C"
     ],[
         "Surveillance (management) feasibility", 
-        "Ordinal",
-        [["High",4],["Medium",3],["Low",2],["None",1]],
-        "B"
-    ],[
-        "Robustness to develop the scientific experiment", 
         "Ordinal",
         [["High",4],["Medium",3],["Low",2],["None",1]],
         "B"
     ]
 ]
 
+
+
 mpa_sites_spanish_default_criteria = None
+
+
 
 #Taken from original version of Delphos for windows.  Deprecated
 india1_fisheries_english_default_criteria = [
