@@ -90,12 +90,7 @@ class InputGlobalTableWidget(QTableWidget):
                     
                     crit_text = ""
                     for option in crit_options_units:
-                        crit_text = crit_text+'"'+option[0]+'" '
-                    
-                    print crit_name
-                    print crit_type
-                    print crit_text
-                    print cb_text
+                        crit_text = crit_text+'"'+option[0]+'" '                    
                     
                     tool_text = "Description: "+crit_name+"\nCriteria Type: "+crit_type+"\nOptions/Units: "+crit_text+"\n"+cb_text                    
                     header_item.setToolTip(tool_text)
