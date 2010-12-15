@@ -438,7 +438,149 @@ mpa_communities_english_default_criteria = [
     ]
 ]
 
-mpa_communities_spanish_default_criteria = None
+mpa_communities_spanish_default_criteria = [
+    [
+       u"Interés comunitario y disposición para establecer una red de reservas completamente protegidas", 
+       u"Ordinal", 
+       [[u"Si",4],[u"Si pero necesita más información",3],[u"No está seguro",2],[u"Están en contra",1]],
+       u"B"  
+    ],[
+        u"Usuarios definidos y con derechos legales de acceso al área pesquera",
+        u"Ordinal",
+        [[u"Robusto",4],[u"Mediocre",3],[u"Pobre",2],[u"Recursos de acceso libre",1]], 
+        u"B"
+    ],[
+        u"High degree of community organization/cohesion",
+        u"Ordinal",
+        [[u"Good",4],[u"Mediocre",3],[u"Poor",2],[u"None",1]], 
+        u"B"
+    ],[
+        u"Conocimiento y apego de la comunidad a su entorno natural",
+        u"Ordinal",
+        [[u"Bueno",4],[u"Mediocre",3],[u"Pobre",2],[u"Ninguno",1]], 
+        u"B"
+    ],[
+        u"Resiliencia del sistema de manejo pesquero a los cambios políticos en la estructura de poder del país",
+        u"Ordinal",
+        [[u"Bueno",4],[u"Mediocre",3],[u"Pobre",2],[u"Ninguno",1]], 
+        u"B"
+    ],[
+        u"Participación comunitaria en el manejo pesquero",
+        u"Ordinal",
+        [[u"Bueno",4],[u"Mediocre",3],[u"Pobre",2],[u"Ninguno",1]], 
+        u"B"
+    ],[
+       u"Equidad en la distribución de los beneficios por la explotación pesquera", 
+       u"Binary", 
+       [[u"Equitativo",2],[u"No equitativo",1]], 
+       u"B"
+    ],[
+        u"Nivel de organización de los pescadores",
+        u"Ordinal",
+        [[u"Alto",3],[u"Medio",2],[u"Bajo",1]], 
+        u"B"
+    ],[
+        u"Número de pescadores que trabajan en el área pesquera", 
+        u"Ratio", 
+       [u"# de pescadores"], 
+        u"C"
+    ],[
+        u"Capacidad de inversión de la comunidad en reservas marinas completamente protegidas",
+        u"Ordinal",
+        [[u"Alta",3],[u"Promedio",2],[u"Baja",1]], 
+        u"B"
+    ],[
+        u"Nivel de conocimiento científico del ecosistema",
+        u"Ordinal",
+        [[u"Alto",3],[u"Medio",2],[u"Pobre",1]], 
+        u"B"
+    ],[
+        u"Desarrollo costero",
+        u"Ordinal",
+        [[u"Sin desarrollo",4],[u"Poco desarrollo",3],[u"Desarrollado",2],[u"Altamente industrializado y desarrollado",1]], 
+        u"C"
+   ],[
+        u"Área que está considerando para establecer una red de reservas comunitarias (km cuadrados o km de línea de costa)", 
+        u"Ratio", 
+       [u"km cuadrados o km de línea de costa"], 
+        u"B"
+    ],[
+        u"Conectividad de la posible red de áreas marinas comunitarias completamente protegidas en un sistema regional de áreas marinas completamente protegidas",
+        u"Ordinal",
+        [[u"Oportuno",4],[u"Medianamente oportuno",3],[u"Poco relevante",2],[u"Aislado",1]], 
+        u"B"
+    ],[
+        u"Número de hábitats esenciales para especies altamente migratorias", 
+        u"Ratio", 
+       [u"# de hábitats"], 
+        u"B"
+    ],[
+        u"Representación de los diferentes hábitats que se encuentran en la región biogeográfica (# de hábitats)", 
+        u"Ratio", 
+       [u"# de hábitats"], 
+        u"B"
+    ],[
+       u"Oportunidad de conectar (por estar adyacente) esta área marina con un área protegida terrestre", 
+       u"Binary", 
+       [[u"Presente",2],[u"Ausente",1]], 
+       u"B"
+    ],[
+       u"¿Es una zona parte de un sitio prioritario para la conservación de acuerdo a algún otro trabajo internacional o nacional?", 
+       u"Binary", 
+       [[u"Si",2],[u"No",1]], 
+       u"B"
+    ],[
+        u"Número de especies a incluidas en listas nacionales o internacionales bajo alguna categoría de protección especial", 
+        u"Ratio", 
+       [u"# de especies"], 
+        u"B"
+    ],[
+        u"Número de especies sujetas a explotación pesquera", 
+        u"Ratio", 
+       [u"# de especies"], 
+        u"B"
+    ],[
+        u"Vulnerabilidad de la zona a catástrofes naturales",
+        u"Ordinal",
+        [[u"Nula",3],[u"Media",2],[u"Alta",1]], 
+        u"C"
+    ],[
+       u"¿Es la zona considerada por la UNESCO patrimonio de la humanidad?", 
+       u"Binary", 
+       [[u"Si",2],[u"No",1]], 
+       u"B"
+    ],[
+       u"¿Esta considerada la zona bajo alguna categoría nacional de importancia cultural?",
+       u"Binary",  
+       [[u"Si",2],[u"No",1]], 
+       u"B"
+    ],[
+       u"¿Reside en esta zona o la usa de manera prioritaria, para pescar o extraer recursos naturales, alguna cultura nativa con representación territorial limitada?",
+       u"Binary",  
+       [[u"Si",2],[u"No",1]], 
+       u"B"
+    ],[
+       u"¿La cultura pesquera de la zona es parte de alguna cultura marítima que tenga una representación geográfica limitada?",
+       u"Binary",  
+       [[u"Si",2],[u"No",1]], 
+       u"B"
+    ],[
+       u"¿Hay presencia de sitios con valor arqueológico en la zona?",
+       u"Binary", 
+       [[u"Presencia",2],[u"Ausencia",1]], 
+       u"B"
+    ],[
+       u"¿Cuenta la zona con un excepcional valor estético?",
+       u"Binary", 
+       [[u"Si",2],[u"No",1]], 
+       u"B"
+    ],[
+       u"¿Cuenta la zona con un excepcional valor educativo?",
+       u"Binary", 
+       [[u"Si",2],[u"No",1]], 
+       u"B"
+    ]
+]
 
 #Problems
 #4, 7 multiple versions, one quantitative if possible, one qualitative.  Use whichever you want
@@ -606,11 +748,6 @@ mpa_sites_spanish_default_criteria = [
         "B"
     ]
 ]
-
-
-#mpa_sites_spanish_default_criteria = None
-
-
 
 #Taken from original version of Delphos for windows.  Deprecated
 india1_fisheries_english_default_criteria = [
