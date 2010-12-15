@@ -166,7 +166,7 @@ doc_data_files = tree('documentation')
 sample_data_files = tree('sample')
 base_files = [(".",[".\\LICENSE.txt", ".\\README.txt", ".\\Delphos.exe.log"])]
 lib_files = [("lib",["lib\\MSVCP71.dll"])]
-image_files = [("images",["images\\delphos_icon.ico","images\\delphos_upper_right.bmp","images\\delphos_vert.bmp"])]
+image_files = tree('images')
 data_files = matplotlib_data_files + tcl_data_files + doc_data_files + sample_data_files + base_files + lib_files + image_files 
  
 setup(
