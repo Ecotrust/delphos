@@ -32,6 +32,7 @@ from core.config_manager import *
 from gui.gui_manager import *
 
 import warnings
+pyqtRemoveInputHook() #Allow debugger to be used
 
 warnings.simplefilter('ignore', RuntimeWarning) 
 project_manager = ProjectManager()
