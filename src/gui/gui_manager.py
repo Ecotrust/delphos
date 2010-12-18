@@ -39,6 +39,9 @@ from credits_dialog import CreditsDialog
 from about_dialog import AboutDialog
 from progress_dialog2 import ProgressDialog2
 
+#PyQt modules
+from PyQt4.QtCore import *
+
 class GuiManager(QObject):
     """Provides access to, handles and maintins the Delphos GUI interface
     """
@@ -50,6 +53,17 @@ class GuiManager(QObject):
         self.config_manager = config_manager
         #Create new QT application object
         self.qapp = QApplication(sys.argv)
+        
+        #Setup translation
+        self.appTranslator = QTranslator()        
+        #locale_name = QLocale.system().name()  #Get system locale
+        locale_name = 'es_MX'  #Start with spanish, this is hackish
+        if self.appTranslator.load("i18n/"+locale_name+".qm"):
+            self.qapp.installTranslator(self.appTranslator)
+            print 'translator installed'        
+        else:
+            print 'translator not found'
+                
         QTextCodec.setCodecForTr(QTextCodec.codecForName("utf-8"))
 
         #Create DesktopService for accessing services provided by desktop (eg. web browser) 

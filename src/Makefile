@@ -13,6 +13,14 @@ clean:
 cleandoc:
 	rm -f resources_rc.py
 
+build_translate:
+	qmake -project -o delphos.pro
+	pylupdate4 -verbose delphos.pro
+	pylupdate4 -verbose  core/*.py gui/*.py util/*.py -ts i18n/es_MX.ts
+
+update_translate:
+	pylupdate4 -verbose  core/*.py gui/*.py util/*.py -ts i18n/es_MX.ts
+    
 doc: resources_rc.py
 
 resources_rc.py: resources.qrc
