@@ -88,6 +88,7 @@ class InnoScript:
                   
         print >> ofi, r'Name: "{group}\Delphos Fisheries Documentation - English"; Filename: "{app}\documentation\fisheries\english\documentation.html"'
         print >> ofi, r'Name: "{group}\Delphos Fisheries Documentation - Spanish"; Filename: "{app}\documentation\fisheries\spanish\documentation.html"'                  
+        print >> ofi, r'Name: "{group}\Supplementary Documents"; Filename: "{app}\documentation"'                          
         
         print >> ofi, 'Name: "{group}\Uninstall %s"; Filename: "{uninstallexe}"' % self.name
 
