@@ -38,7 +38,7 @@ class OrdinalOptionTableWidget(QTableWidget):
 
         for i in range(len(option_recs)):
             description_item = QTableWidgetItem()
-            description_item.setText(str(option_recs[i][description_col]))
+            description_item.setText(QString(option_recs[i][description_col]))
             self.setItem(i, description_col, description_item)
 
             value_item = QTableWidgetItem()
