@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="en_US">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -64,6 +64,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="add_alternative_ui.py" line="256"/>
         <source>help_definir_las_alternativas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_alternative_dialog.py" line="91"/>
+        <source>Please enter an alternative name</source>
+        <comment>Error message when alternative name not provide</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_alternative_dialog.py" line="92"/>
+        <source>Sorry, there are no predefined colors left.. Please click &apos;New Color&apos; until you find a suitable one.</source>
+        <comment>Error message when there are no pre-defined colors left</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -188,7 +200,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="create_project_ui.py" line="319"/>
         <source>Marine Reserves</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Las Reservas Marinas</translation>
     </message>
     <message>
         <location filename="create_project_ui.py" line="320"/>
@@ -446,166 +458,24 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>LanguageDialog</name>
     <message>
-        <location filename="language_dialog_ui.py" line="49"/>
+        <location filename="language_dialog_ui.py" line="187"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Idioma</translation>
     </message>
     <message>
         <location filename="language_dialog_ui.py" line="188"/>
         <source>Select a Language:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Selecciona un idioma:</translation>
     </message>
     <message>
         <location filename="language_dialog_ui.py" line="189"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="language_dialog_ui.py" line="190"/>
-        <source>Español</source>
-        <translation type="unfinished"></translation>
+        <translation>Inglés</translation>
     </message>
     <message>
-        <location filename="language_dialog_ui.py" line="187"/>
-        <source>.QWidget {
-background-color: #E1EDF5;
-}
-
-/*Non-main window popup widgets
-QWidget {
-background-color: #f0f0f5;
-}
-*/
-
-
-QWidget {
-background-color: #f0f0f5;
-font-family: arial;
-color: #333333;    
-}
-
-
-QHeaderView::section {
-padding-left: 6px;
-padding-right: 4px;
-background-color: #FFF7DB;
-border-width: 1px;
-border-color: darkkhaki;
-border-style: solid;
-}
-
-QHeaderView::section:hover {
-background-color: #FFDF94;
-}
-
-/* Increase the padding, so the text is shifted when the button is
-pressed. */
-QHeaderView::section:pressed {
-padding-left: 4px;
-padding-top: 4px;
-background-color: #E6A84C;
-}
-
-QMainWindow {
-background-color: gainsboro;
-background-position: top right;
-background-repeat: no-repeat
-}
-
-
-/* Nice Windows-XP-style password character. */
-QLineEdit[echoMode=&quot;2&quot;] {
-lineedit-password-character: 9679;
-}
-
-/* We provide a min-width and min-height for push buttons
-so that they look elegant regardless of the width of the text. */
-QPushButton {
-background-color: #FFF2C9;
-border-width: 1px;
-border-color: darkkhaki;
-border-style: solid;
-border-radius: 5;
-padding: 2px;
-padding-left: 4px;
-padding-right: 4px;
-min-width: 9ex;
-min-height: 2.5ex;
-}
-
-QPushButton:hover {
-background-color: #FFDF94;
-}
-
-/* Increase the padding, so the text is shifted when the button is
-pressed. */
-QPushButton:pressed {
-padding-left: 4px;
-padding-top: 4px;
-background-color: #E6A84C;
-}
-
-QLabel, QAbstractButton {
-font: normal;
-}
-
-/* Mark mandatory fields with a brownish color. */
-.mandatory {
-color: brown;
-}
-
-/* Bold text on status bar looks awful. */
-QStatusBar QLabel {
-font: normal;
-}
-
-QStatusBar::item {
-border-width: 1;
-border-color: darkkhaki;
-border-style: solid;
-border-radius: 2;
-}
-
-QComboBox, QLineEdit, QSpinBox, QTextEdit, QListView {
-background-color: #fafbfc;
-selection-color: #0a214c;
-selection-background-color: #FFF2C9;
-}
-
-/* We reserve 1 pixel space in padding. When we get the focus,
-we kill the padding and enlarge the border. This makes the items
-glow. */
-QLineEdit {
-border-width: 1px;
-padding: 1px;
-border-style: solid;
-border-color: #5f66a1;
-border-radius: 4px;
-}
-
-/* As mentioned above, eliminate the padding and increase the border. */
-QLineEdit:focus, QFrame:focus {
-border-width: 2px;
-padding: 0px;
-}
-
-/* Nice to have the background color change when hovered. */
-QRadioButton:hover, QCheckBox:hover {
-background-color: #FFDF94;
-}
-
-/* Force the dialog&apos;s buttons to follow the Windows guidelines. */
-QDialogButtonBox {
-button-layout: 0;
-}
-
-QToolTip {
-padding: 5px;
-border-radius: 3px;
-opacity: 200;
-}
-</source>
-        <translation type="unfinished"></translation>
+        <location filename="language_dialog_ui.py" line="190"/>
+        <source>Spanish</source>
+        <translation>Español</translation>
     </message>
 </context>
 <context>
@@ -613,7 +483,7 @@ opacity: 200;
     <message>
         <location filename="main_window_ui.py" line="152"/>
         <source>Delphos</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Delphos</translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="291"/>
@@ -633,7 +503,7 @@ opacity: 200;
     <message>
         <location filename="main_window_ui.py" line="294"/>
         <source>&amp;Documentation Window</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Documentación Ventana</translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="295"/>
@@ -643,7 +513,7 @@ opacity: 200;
     <message>
         <location filename="main_window_ui.py" line="296"/>
         <source>Documentation Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Documentación Ventana</translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="297"/>
@@ -656,7 +526,7 @@ opacity: 200;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;arial&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Arial&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="302"/>
@@ -908,7 +778,7 @@ QToolTip {
     opacity: 200;
 }
 </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1161,17 +1031,17 @@ QToolTip {
     <message>
         <location filename="open_project_ui.py" line="64"/>
         <source>Open Existing Project</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Proyecto Existente Abierta</translation>
     </message>
     <message>
         <location filename="open_project_ui.py" line="203"/>
         <source>Select Project:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seleccione Proyecto:</translation>
     </message>
     <message>
         <location filename="open_project_ui.py" line="204"/>
         <source>&amp;Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Ver...</translation>
     </message>
     <message>
         <location filename="open_project_ui.py" line="202"/>
@@ -1313,7 +1183,7 @@ border-radius: 3px;
 opacity: 200;
 }
 </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1533,12 +1403,12 @@ opacity: 200;
         <location filename="select_type_ui.py" line="290"/>
         <source>font-size: 16px;
 font-weight: bold;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="select_type_ui.py" line="291"/>
         <source>Welcome To Delphos</source>
-        <translation type="unfinished"></translation>
+        <translation>Bienvenido a Delphos</translation>
     </message>
     <message>
         <location filename="select_type_ui.py" line="292"/>
@@ -1548,7 +1418,7 @@ font-weight: bold;</source>
     <message>
         <location filename="select_type_ui.py" line="293"/>
         <source>Get Started</source>
-        <translation type="unfinished"></translation>
+        <translation>A empezar</translation>
     </message>
     <message>
         <location filename="select_type_ui.py" line="302"/>
@@ -1578,22 +1448,22 @@ font-weight: bold;</source>
     <message>
         <location filename="select_type_ui.py" line="299"/>
         <source>Create Project</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Crear proyecto</translation>
     </message>
     <message>
         <location filename="select_type_ui.py" line="300"/>
         <source>View Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ver la Documentación</translation>
     </message>
     <message>
         <location filename="select_type_ui.py" line="303"/>
         <source>Fisheries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">La Pesca</translation>
     </message>
     <message>
         <location filename="select_type_ui.py" line="305"/>
         <source>Marine Reserves</source>
-        <translation type="unfinished"></translation>
+        <translation>Las Reservas Marinas</translation>
     </message>
     <message>
         <location filename="select_type_ui.py" line="307"/>
@@ -1741,7 +1611,7 @@ QToolTip {
     opacity: 200;
 }
 </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
