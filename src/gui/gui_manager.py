@@ -174,12 +174,17 @@ class GuiManager(QObject):
     def finish_language_selection(self, language):
         self.config_manager.set_language(language)
         cur_proj_type = self.project_manager.get_current_project_type()
+
+        if language == 'english': 
+            #Remove translation and in theory switch back to English, seems like a dirty hack
+            self.qapp.removeTranslator(self.appTranslator)
+            self.win.ui.retranslateUi(self.win)  
         
         self.language_dialog.hide()
         self.language_dialog.deleteLater()
         #Load doc browser
         #self.win.ui.doc_browser.load_doc(cur_proj_type, language)
-        self.get_started()
+        self.get_started()        
 
     def reload_doc(self):
         language = self.config_manager.get_language()

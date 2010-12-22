@@ -32,7 +32,7 @@ class DelphosWindow(QMainWindow):
     """Manages the main Delphos window interface (Ui_MainWindow)
     """
     def __init__(self, gui_manager):
-        QWidget.__init__(self, None)    #Initialize myself as a widget
+        QMainWindow.__init__(self, None)    #Initialize myself as a widget
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)    #Create the components of the window
         
