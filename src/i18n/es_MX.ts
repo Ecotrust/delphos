@@ -283,6 +283,36 @@ p, li { white-space: pre-wrap; }
         <source>Rank:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="gui_manager.py" line="384"/>
+        <source>Creating...</source>
+        <comment>Status message when project getting created</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_manager.py" line="385"/>
+        <source>Project Open Error</source>
+        <comment>Error when project does not open properly</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_manager.py" line="386"/>
+        <source>Project opening failed: </source>
+        <comment>Error when project open fails</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_manager.py" line="387"/>
+        <source>Project Creation Error</source>
+        <comment>Error when not able to create project</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_manager.py" line="390"/>
+        <source>Error creating project.  Do you have the correct permissions to create a project in that folder?  Try again in another location</source>
+        <comment>Error when not able to create project</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AlternativeMcaTableWidget</name>
@@ -619,6 +649,12 @@ Click help icon for more information</source>
         <location filename="CriteriaTableWidget.py" line="102"/>
         <source>Benefit/Cost - Tells you whether the criterion is a Benefit (positive) or a Cost (negative).  Click the help icon for more information</source>
         <comment>Explanation of the &apos;cost/benefit&apos; crit table column</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="CriteriaTableWidget.py" line="102"/>
+        <source>You must first select a criterion</source>
+        <comment>Error when a crit was not selected</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -74,9 +74,9 @@ class AddOrdinalOptionDialog(QDialog, Ui_AddOrdinalOptionDialog):
             self.emit(SIGNAL("ordinal_option_info_collected"), option_info)
             
     def retranslate(self):
-        #Example self. = QApplicationpplication.translate("AddOrdinalOptionDialog", "english_text", "description", QApplication.UnicodeUTF8)                    
-        self.option_error = QApplicationpplication.translate("AddOrdinalOptionDialog", "* Please enter an option description.\n", "Error when no description provided for option", QApplication.UnicodeUTF8)                           
-        self.rank_error = QApplicationpplication.translate("AddOrdinalOptionDialog", "* Please enter an option rank.\n", "Error when no rank provided", QApplication.UnicodeUTF8)                            
-        self.rank_int_error = QApplicationpplication.translate("AddOrdinalOptionDialog", "* Option rank is not an integer", "Error when rank is not an integer", QApplication.UnicodeUTF8)                            
-        self.pos_int_error = QApplicationpplication.translate("AddOrdinalOptionDialog", "* Option rank must be a positive integer greater than zero, you entered ", "Error when rank is not greater than zero", QApplication.UnicodeUTF8) 
-        self.ord_add_error = QApplicationpplication.translate("AddOrdinalOptionDialog", "Error adding ordinal criteria option", "Error when option is not added properly", QApplication.UnicodeUTF8) 
+        #Example self. = QApplication.translate("AddOrdinalOptionDialog", "english_text", "description", QApplication.UnicodeUTF8)                    
+        self.option_error = QApplication.translate("AddOrdinalOptionDialog", "* Please enter an option description.\n", "Error when no description provided for option", QApplication.UnicodeUTF8)                           
+        self.rank_error = QApplication.translate("AddOrdinalOptionDialog", "* Please enter an option rank.\n", "Error when no rank provided", QApplication.UnicodeUTF8)                            
+        self.rank_int_error = QApplication.translate("AddOrdinalOptionDialog", "* Option rank is not an integer", "Error when rank is not an integer", QApplication.UnicodeUTF8)                            
+        self.pos_int_error = QApplication.translate("AddOrdinalOptionDialog", "* Option rank must be a positive integer greater than zero, you entered ", "Error when rank is not greater than zero", QApplication.UnicodeUTF8) 
+        self.ord_add_error = QApplication.translate("AddOrdinalOptionDialog", "Error adding ordinal criteria option", "Error when option is not added properly", QApplication.UnicodeUTF8) 

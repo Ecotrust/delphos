@@ -237,11 +237,11 @@ class GuiManager(QObject):
         """
         project_filename, project_path, project_type, load_default_altern, load_default_crit = args
         try:
-            self.set_status_bar("Creating...")
+            self.set_status_bar(self.create_str)
             self.project_manager.create_project(project_filename, project_path, project_type, load_default_altern, load_default_crit, self.config_manager.get_language())
         except (DelphosError, exceptions.DBAPIError), e:
             self.clear_status_bar()
-            QMessageBox.critical(self.create_proj_dialog, "Project Creation Error", "Error creating/opening project file. Try again.  Do you have the correct permissions to create a project in that location?\n\n"+str(e))
+            QMessageBox.critical(self.create_proj_dialog, self.proj_create_error, self.proj_long_error+"\n\n"+str(e))
         else:
             self.create_proj_dialog.close()
             self.create_proj_dialog.deleteLater()
@@ -264,7 +264,7 @@ class GuiManager(QObject):
             self.project_manager.open_project(project_filename, project_path)
         except DelphosError, e:
             self.clear_status_bar()
-            QMessageBox.critical(self.open_proj_dialog,"Project Open Error", "Project opening failed: "+str(e))
+            QMessageBox.critical(self.open_proj_dialog,self.open_error_str, self.open_fail_str+str(e))
         else:
             self.open_proj_dialog.close()
             self.start_project_display()
@@ -377,7 +377,15 @@ class GuiManager(QObject):
             #print "doc url"
             print doc_url
             self.desktop_services.openUrl(QUrl(doc_url))
-    
+
+    def retranslate(self):
+        #Example self. = QApplication.translate("AddOrdinalOptionDialog", "english_text", "description", QApplication.UnicodeUTF8)                                
+        self.create_str = QApplication.translate("AddOrdinalOptionDialog", "Creating...", "Status message when project getting created", QApplication.UnicodeUTF8)        
+        self.open_error_str = QApplication.translate("AddOrdinalOptionDialog", "Project Open Error", "Error when project does not open properly", QApplication.UnicodeUTF8)      
+        self.open_fail_str = QApplication.translate("AddOrdinalOptionDialog", "Project opening failed: ", "Error when project open fails", QApplication.UnicodeUTF8)        
+        self.proj_create_error = QApplication.translate("AddOrdinalOptionDialog", "Project Creation Error", "Error when not able to create project", QApplication.UnicodeUTF8)        
+        self.proj_long_error = QApplication.translate("AddOrdinalOptionDialog", "Error creating project.  Do you have the correct permissions to create a project in that folder?  Try again in another location", "Error when not able to create project", QApplication.UnicodeUTF8)       
+            
 #Testing purposes
 if __name__ == '__main__':
     os.chdir('..')    #Go to top-level directory
