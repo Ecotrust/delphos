@@ -1,10 +1,8 @@
-*** DELPHOS 0.3 README ***
+*** DELPHOS 1.0 README ***
 
 Delphos is an analysis tool used for selecting potential fisheries for MSC certification and for selecting potential sites for designation as marine protected areas (MPAs).  Step-by-step documentation is provided.
 
 This software has been developed by Ecotrust, Comunidad y Biodiversidad and World Wildlife Fund
-
-Delphos development site: http://trac.infodrizzle.org/opendelphos/
 
 ** SYSTEM REQUIREMENTS **
 
@@ -13,6 +11,9 @@ Delphos is cross-platform and able to run on Windows, Max OSX and Linux.  Your s
 *Note when errors occur in Delphos they are output to a file in the installation folder called Delphos.exe.log.  If the user does not have the necessary permissions to create files in the installation directory then an occur will occur.  In this case an administrator will need to create this file and set the necessary permissions.
 
 ** CHANGELOG **
+* 1.0 - 1/14/2010
+
+* 0.4 - ...
 
 * 0.3 - 1/29/2008
 - Enabled delphos for marine protected areas

@@ -11,7 +11,7 @@ Delphos development site: http://trac.infodrizzle.org/opendelphos/
 Check the dev site for the latest build information
 
 ============
-Requirements
+Development Requirements
 ============
 
 Open Delphos is known to work with Python 4.2.3 and later
@@ -20,12 +20,13 @@ Python Modules required:
   - QT 4.2
   - PyQT
   - SIP
-  - SQLAlchemy
+  - SQLAlchemy 0.2 (API changes in 0.3 means you cannot use anything later than 0.2 currently)
   - SQLite (Already built into Python 2.5)
   - Matplotlib
 
 Running Open Delphos from source:
-  - Run make from the src directory to build all of the PyQT interfaces.  mingw32-make works well on Windows.
+  - Run make from the src directory to build all of the PyQT interfaces.  mingw32-make works well on Windows.  This will compile all of the user interfaces 
+  - Run make release_translate to compile a new release of the spanish translation
   - Run Delphos.py (#python Delphos.py)
 
 Building Delphos into a standalone application
