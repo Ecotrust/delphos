@@ -1,0 +1,480 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1010</width>
+    <height>719</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="font" >
+   <font>
+    <family>arial</family>
+   </font>
+  </property>
+  <property name="windowTitle" >
+   <string>Delphos</string>
+  </property>
+  <property name="styleSheet" >
+   <string notr="true" >.QWidget {
+   background-color: #E1EDF5;
+}
+
+/*Non-main window popup widgets
+QWidget {
+     background-color: #f0f0f5;
+}
+*/
+
+
+	
+QWidget {
+	font-family: arial;
+    color: #333333;	
+}
+
+
+QHeaderView::section {
+    padding-left: 6px;
+    padding-right: 4px;
+    background-color: #FFF7DB;
+    border-width: 1px;
+    border-color: darkkhaki;
+    border-style: solid;
+}
+
+QHeaderView::section:hover {
+   background-color: #FFDF94;
+}
+
+/* Increase the padding, so the text is shifted when the button is
+   pressed. */
+QHeaderView::section:pressed {
+    padding-left: 4px;
+    padding-top: 4px;
+    background-color: #E6A84C;
+}
+
+QMainWindow {
+    background-color: gainsboro;
+    background-position: top right;
+    background-repeat: no-repeat
+}
+
+
+/* Nice Windows-XP-style password character. */
+QLineEdit[echoMode="2"] {
+    lineedit-password-character: 9679;
+}
+
+/* We provide a min-width and min-height for push buttons
+   so that they look elegant regardless of the width of the text. */
+QPushButton {
+    background-color: #FFF2C9;
+    border-width: 1px;
+    border-color: darkkhaki;
+    border-style: solid;
+    border-radius: 5;
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    min-width: 9ex;
+    min-height: 2.5ex;
+}
+
+QPushButton:hover {
+   background-color: #FFDF94;
+}
+
+/* Increase the padding, so the text is shifted when the button is
+   pressed. */
+QPushButton:pressed {
+    padding-left: 4px;
+    padding-top: 4px;
+    background-color: #E6A84C;
+}
+
+QLabel, QAbstractButton {
+    font: normal;
+}
+
+/* Mark mandatory fields with a brownish color. */
+.mandatory {
+    color: brown;
+}
+
+/* Bold text on status bar looks awful. */
+QStatusBar QLabel {
+   font: normal;
+}
+
+QStatusBar::item {
+    border-width: 1;
+    border-color: darkkhaki;
+    border-style: solid;
+    border-radius: 2;
+}
+
+QComboBox, QLineEdit, QSpinBox, QTextEdit, QListView {
+    background-color: #fafbfc;
+    selection-color: #0a214c;
+    selection-background-color: #FFF2C9;
+}
+
+/* We reserve 1 pixel space in padding. When we get the focus,
+   we kill the padding and enlarge the border. This makes the items
+   glow. */
+QLineEdit {
+    border-width: 1px;
+    padding: 1px;
+    border-style: solid;
+    border-color: #5f66a1;
+    border-radius: 4px;
+}
+
+/* As mentioned above, eliminate the padding and increase the border. */
+QLineEdit:focus, QFrame:focus {
+    border-width: 2px;
+    padding: 0px;
+}
+
+/* Nice to have the background color change when hovered. */
+QRadioButton:hover, QCheckBox:hover {
+    background-color: #FFDF94;
+}
+
+/* Force the dialog's buttons to follow the Windows guidelines. */
+QDialogButtonBox {
+    button-layout: 0;
+}
+
+QToolTip {
+    padding: 5px;
+    border-radius: 3px;
+    opacity: 200;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" />
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1010</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="menu_main_menu" />
+    <addaction name="separator" />
+    <addaction name="menu_open_project" />
+    <addaction name="menu_create_project" />
+    <addaction name="separator" />
+    <addaction name="menu_exit_delphos" />
+   </widget>
+   <widget class="QMenu" name="menuAbout" >
+    <property name="title" >
+     <string>&amp;About</string>
+    </property>
+    <addaction name="menu_about" />
+    <addaction name="menu_credits" />
+   </widget>
+   <widget class="QMenu" name="menuView" >
+    <property name="title" >
+     <string>&amp;View</string>
+    </property>
+    <widget class="QMenu" name="menuDocumentation" >
+     <property name="title" >
+      <string>&amp;Documentation Window</string>
+     </property>
+     <addaction name="menu_dock_visible" />
+     <addaction name="menu_dock_floating" />
+    </widget>
+    <addaction name="menuDocumentation" />
+   </widget>
+   <widget class="QMenu" name="menuOptions" >
+    <property name="title" >
+     <string>&amp;Options</string>
+    </property>
+    <addaction name="menu_open_full_doc" />
+   </widget>
+   <addaction name="menuFile" />
+   <addaction name="menuView" />
+   <addaction name="menuOptions" />
+   <addaction name="menuAbout" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QDockWidget" name="dock_doc" >
+   <property name="minimumSize" >
+    <size>
+     <width>300</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="font" >
+    <font>
+     <family>arial</family>
+    </font>
+   </property>
+   <property name="styleSheet" >
+    <string notr="true" />
+   </property>
+   <property name="features" >
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas" >
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle" >
+    <string>Documentation Window</string>
+   </property>
+   <attribute name="dockWidgetArea" >
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents" >
+    <layout class="QVBoxLayout" >
+     <item>
+      <layout class="QVBoxLayout" >
+       <property name="spacing" >
+        <number>8</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="toc_box" >
+         <property name="minimumSize" >
+          <size>
+           <width>0</width>
+           <height>120</height>
+          </size>
+         </property>
+         <property name="maximumSize" >
+          <size>
+           <width>16777215</width>
+           <height>170</height>
+          </size>
+         </property>
+         <property name="title" >
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QTreeWidget" name="toc_tree" >
+            <property name="minimumSize" >
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize" >
+             <size>
+              <width>400</width>
+              <height>167775</height>
+             </size>
+            </property>
+            <property name="font" >
+             <font>
+              <family>arial</family>
+             </font>
+            </property>
+            <column>
+             <property name="text" >
+              <string>Table of Contents</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="doc_box" >
+         <property name="title" >
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" >
+          <item>
+           <layout class="QVBoxLayout" >
+            <item>
+             <widget class="HelpTextBrowser" name="doc_browser" >
+              <property name="font" >
+               <font>
+                <family>arial</family>
+               </font>
+              </property>
+              <property name="html" >
+               <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'arial'; font-size:8.25pt; font-weight:400; font-style:normal;">
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:9pt;">&lt;/p>&lt;/body>&lt;/html></string>
+              </property>
+              <property name="openExternalLinks" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionFile" >
+   <property name="text" >
+    <string>File</string>
+   </property>
+  </action>
+  <action name="actionImport" >
+   <property name="text" >
+    <string>Import</string>
+   </property>
+  </action>
+  <action name="menu_open_project" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>&amp;Open Project</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
+   <property name="visible" >
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionExit_Delphos" >
+   <property name="text" >
+    <string>Print</string>
+   </property>
+  </action>
+  <action name="menu_credits" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>&amp;Credits</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionDelphos_Help" >
+   <property name="text" >
+    <string>Show Documentation Window</string>
+   </property>
+   <property name="visible" >
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="menu_exit_delphos" >
+   <property name="text" >
+    <string>E&amp;xit Delphos</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="menu_open_full_doc" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>&amp;View Documentation In Browser</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="menu_create_project" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Create &amp;New Project</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+N</string>
+   </property>
+   <property name="visible" >
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="menu_file" >
+   <property name="text" >
+    <string>New Project</string>
+   </property>
+  </action>
+  <action name="actionClose_Project" >
+   <property name="text" >
+    <string>Open Project</string>
+   </property>
+  </action>
+  <action name="actionAbout_Delphos_2" >
+   <property name="text" >
+    <string>About Delphos</string>
+   </property>
+  </action>
+  <action name="menu_dock_visible" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>&amp;Visible</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="menu_dock_floating" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Docked</string>
+   </property>
+  </action>
+  <action name="menu_about" >
+   <property name="text" >
+    <string>&amp;About Delphos</string>
+   </property>
+  </action>
+  <action name="menu_main_menu" >
+   <property name="text" >
+    <string>Main Menu</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HelpTextBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header>help_text_browser.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resources.qrc" />
+ </resources>
+ <connections/>
+</ui>
