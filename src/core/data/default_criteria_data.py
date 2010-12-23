@@ -155,9 +155,6 @@ fisheries_english_default_criteria = [
     ]
 ]
 
-
-
-
 fisheries_spanish_default_criteria = [
     [
         u"Interés actual de la comunidad en la certificación del MSC",
@@ -292,23 +289,16 @@ fisheries_spanish_default_criteria = [
     ]
 ]
 
-
-
 mpa_communities_english_default_criteria = [
     [
-       "Declared interest from communities", 
-       "Binary", 
-       [["Yes",2],["No",1]], 
+       "Community interest and willingness to establish a network of fully-protected marine reserves", 
+       "Ordinal", 
+       [["Yes",4],["Yes, but need more information",3],["Indecisive",2],["Against",1]],
        "B"   
     ],[
         "Defined users with legal access rights to the fishing area",
         "Ordinal",
         [["Strong",4],["Mediocre",3],["Poor",2],["Open Access Resources",1]], 
-        "B"
-    ],[
-        "High degree of community organization/cohesion",
-        "Ordinal",
-        [["Good",4],["Mediocre",3],["Poor",2],["None",1]], 
         "B"
     ],[
         "Society attachment and insight of their environment",
@@ -448,11 +438,6 @@ mpa_communities_spanish_default_criteria = [
         u"Usuarios definidos y con derechos legales de acceso al área pesquera",
         u"Ordinal",
         [[u"Robusto",4],[u"Mediocre",3],[u"Pobre",2],[u"Recursos de acceso libre",1]], 
-        u"B"
-    ],[
-        u"High degree of community organization/cohesion",
-        u"Ordinal",
-        [[u"Good",4],[u"Mediocre",3],[u"Poor",2],[u"None",1]], 
         u"B"
     ],[
         u"Conocimiento y apego de la comunidad a su entorno natural",
