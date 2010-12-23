@@ -111,4 +111,4 @@ class CriteriaMcaTableWidget(QTableWidget):
             raise DelphosError, self.sel_crit_error
 
     def retranslate(self):
-        self.sel_crit_error = QApplicationpplication.translate("CriteriaMcaTableWidget", "You must first select a criterion", "Error when user did not select a criterion", QApplication.UnicodeUTF8)                                                        
+        self.sel_crit_error = QApplication.translate("CriteriaMcaTableWidget", "You must first select a criterion", "Error when user did not select a criterion", QApplication.UnicodeUTF8)                                                        

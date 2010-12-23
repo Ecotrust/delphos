@@ -228,7 +228,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         and input values in one place.  Perhaps not a good implementation, but
         encapsulates a lot of the logic to work with them.
         """
-        self.gui_manager.load_dialog.show()
+        self.gui_manager.set_status_bar("Loading...")
         if not self.input_data and self.global_input_data:
             self.input_data = InputDataSet(self.altern_data, self.crit_data)
             self.input_data.load_values(self.global_input_data)
@@ -243,7 +243,7 @@ class McaWizard(QDialog, Ui_McaWizard):
             self.input_data.update_headings(self.selected_altern_data, self.selected_crit_data)
         #Load the weight input table
         self.input_table.load(self.input_data)
-        self.gui_manager.load_dialog.hide()
+        self.gui_manager.clear_status_bar()
 
     def process_data_input(self, direction='forward'):
         input_required = True

@@ -43,6 +43,18 @@ class DelphosWindow(QMainWindow):
         
         #Maximize the display to full size
         #self.showMaximized()
+
+        #Add status bar at bottom of window
+        self.statusbar = QtGui.QStatusBar(self)
+        self.statusbar.setObjectName("statusbar")
+        self.setStatusBar(self.statusbar)
+        
+        #Add progress bar to status bar
+        self.pb = QProgressBar(self.statusBar())
+        self.pb.setMinimum(0)
+        self.pb.setMaximum(0)
+        self.statusbar.addPermanentWidget(self.pb)        
+        self.pb.hide()
         
         QObject.connect(self.ui.menu_dock_visible, SIGNAL("triggered()"), self.toggle_documentation_window)
         QObject.connect(self.ui.dock_doc, SIGNAL("visibilityChanged(bool)"), self.toggle_dock_visible_menu)

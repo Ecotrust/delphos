@@ -225,21 +225,21 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.save_button.setEnabled(False)
 
     def save_input(self):
-        self.gui_manager.save_dialog.show()
+        self.gui_manager.set_status_bar('Saving project...')
         success = self.input_table.save_input_data()
         if success:
             self.save_button.setDisabled(True)
-        self.gui_manager.save_dialog.hide()
+        self.gui_manager.clear_status_bar()
 
     def load_data_input(self):
-        self.gui_manager.load_dialog.show()
+        self.gui_manager.set_status_bar('Loading project...')
         all_alternatives = self.project.get_all_alternatives()
         all_criteria = self.project.get_all_criteria()
         all_input = self.project.get_all_input()
         self.input_table.load(all_alternatives, all_criteria, all_input)
         #Loading of input will trigger enabling of save button, needs to default to diabled
         self.disable_input_save()
-        self.gui_manager.load_dialog.hide()
+        self.gui_manager.clear_status_bar()
 
     def get_current_input(self):
         try:
@@ -468,11 +468,11 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
             return False;
         else:
             #Fire up MCA Wizard.
-            self.gui_manager.load_dialog.show()           
+            self.gui_manager.set_status_bar("Loading...")
             if self.input_table.loaded:
                 cur_input_data = self.get_current_input()
                 if not cur_input_data:
-                    self.gui_manager.load_dialog.hide()
+                    self.gui_manager.clear_status_bar()
                     return False;
                 self.mca_wizard = McaWizard(self.gui_manager, self, self.project, global_input_data=cur_input_data)
             else:
@@ -480,18 +480,18 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
                 
             self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
             self.mca_wizard.show()
-        self.gui_manager.load_dialog.hide()
+        self.gui_manager.clear_status_bar()
             
     def finish_new_analysis(self, altern_data, crit_data, input_data, input_weights, selected_crit_types, selected_crit_bc):
         try:
             input_weights_copy = copy.deepcopy(input_weights)
-            self.gui_manager.process_dialog.show()
+            self.gui_manager.set_status_bar("Processing...")
             [final_scores, int_data] = self.project.run_mca(input_data, input_weights_copy, selected_crit_types, selected_crit_bc)
         except DelphosError, e:
-            self.gui_manager.process_dialog.hide()
+            self.gui_manager.clear_status_bar()
             QMessageBox.critical(self,"Evamix Error", str(e))
         except ZeroDivisionError, e:
-            self.gui_manager.process_dialog.hide()
+            self.gui_manager.clear_status_bar()
             QMessageBox.critical(self,"Evamix Error", "Division by zero: "+str(e))
         else:
             if final_scores:
@@ -499,7 +499,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
                 self.mca_wizard.deleteLater()       
                 self.project.save_analysis(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, final_scores, int_data)
                 self.mca_runs_table.load(self.project.get_mca_runs_basic())
-                self.gui_manager.process_dialog.hide()
+                self.gui_manager.clear_status_bar()
                 self.show_analysis_results(self.analysis_name, self.analysis_description, altern_data, crit_data, input_data, input_weights, final_scores)
             else:
                 QMessageBox.critical(self,"Analysis Error", "MCA analysis failed.")

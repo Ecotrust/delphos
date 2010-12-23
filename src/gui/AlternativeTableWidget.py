@@ -60,4 +60,4 @@ class AlternativeTableWidget(QTableWidget):
             raise DelphosError, self.sel_alt_error
 
     def retranslate(self):
-        self.sel_alt_error = QApplicationpplication.translate("AlternativeTableWidget", "You must first select an alternative", "Error when user did not select an alternative", QApplication.UnicodeUTF8)                                            
+        self.sel_alt_error = QApplication.translate("AlternativeTableWidget", "You must first select an alternative", "Error when user did not select an alternative", QApplication.UnicodeUTF8)                                            

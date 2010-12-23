@@ -37,7 +37,6 @@ from project_view_dialog import ProjectViewDialog
 from language_dialog import LanguageDialog
 from credits_dialog import CreditsDialog
 from about_dialog import AboutDialog
-from progress_dialog2 import ProgressDialog2
 
 #PyQt modules
 from PyQt4.QtCore import *
@@ -62,7 +61,7 @@ class GuiManager(QObject):
             self.qapp.installTranslator(self.appTranslator)
             print 'translator installed'        
         else:
-            print 'translator not found'
+            print 'translation not found'
                 
         QTextCodec.setCodecForTr(QTextCodec.codecForName("utf-8"))
 
@@ -81,12 +80,7 @@ class GuiManager(QObject):
         #self.win.setStyleSheet(stylesheet)        
         
         #Hide the docked widget initially
-        self.win.ui.dock_doc.hide()
-        
-        self.save_dialog = ProgressDialog2("Saving...")
-        self.load_dialog = ProgressDialog2("Loading...")
-        self.create_dialog = ProgressDialog2("Creating...")
-        self.process_dialog = ProgressDialog2("Processing...")
+        self.win.ui.dock_doc.hide()        
         
         #Signal to capture qrc link clicks in text browsers or labels
         QObject.connect(self.win.ui.doc_browser, SIGNAL("anchorClicked(QUrl)"), self.anchor_click_handler)
@@ -146,6 +140,14 @@ class GuiManager(QObject):
         elif action == 'mpa_doc':
             self.start_mpa_type_selection()       
 
+    def set_status_bar(self, msg):
+        self.win.statusbar.showMessage(msg)
+        self.win.pb.show()
+    
+    def clear_status_bar(self):
+        self.win.statusbar.showMessage("")
+        self.win.pb.hide()
+            
     def start_mpa_type_selection(self):
         """Loads dialog allowing user to select mpa project type (eg. Community, site)
         """
@@ -235,16 +237,16 @@ class GuiManager(QObject):
         """
         project_filename, project_path, project_type, load_default_altern, load_default_crit = args
         try:
-            self.create_dialog.show()
+            self.set_status_bar("Creating...")
             self.project_manager.create_project(project_filename, project_path, project_type, load_default_altern, load_default_crit, self.config_manager.get_language())
         except (DelphosError, exceptions.DBAPIError), e:
-            self.create_dialog.hide()
+            self.clear_status_bar()
             QMessageBox.critical(self.create_proj_dialog, "Project Creation Error", "Error creating/opening project file. Try again.  Do you have the correct permissions to create a project in that location?\n\n"+str(e))
         else:
             self.create_proj_dialog.close()
             self.create_proj_dialog.deleteLater()
             self.start_project_display()
-            self.create_dialog.hide()
+            self.clear_status_bar()
             
     def start_project_opening(self):
         """Create dialog for opening an existing project
@@ -258,15 +260,15 @@ class GuiManager(QObject):
         """
         project_filename, project_path = args
         try:
-            self.load_dialog.show()
+            self.clear_status_bar()
             self.project_manager.open_project(project_filename, project_path)
         except DelphosError, e:
-            self.load_dialog.hide()
+            self.clear_status_bar()
             QMessageBox.critical(self.open_proj_dialog,"Project Open Error", "Project opening failed: "+str(e))
         else:
             self.open_proj_dialog.close()
             self.start_project_display()
-            self.load_dialog.hide()    
+            self.clear_status_bar()    
     
     def start_project_display(self):
         """Create widget displaying project
