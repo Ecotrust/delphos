@@ -43,6 +43,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
         self.errorMsg = ""
         self.ordinal_option_list = []
         self.editing = False
+        self.new_crit_type = ""
         
         #Connect slots to signals
         QObject.connect(self.help_define_criteria, QtCore.SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
@@ -50,6 +51,8 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
         QObject.connect(self.add_criteria_box,QtCore.SIGNAL("rejected()"), self.close)
         QObject.connect(self.add_ordinal_option_button,QtCore.SIGNAL("clicked()"), self.start_add_ordinal_option)
         QObject.connect(self.remove_ordinal_option_button,QtCore.SIGNAL("clicked()"), self.handle_remove_ordinal_option)
+        
+        self.retranslate() #Translate text
 
     def load_crit_data(self, crit_data):        
         #Binary Example
@@ -114,14 +117,14 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
         criteria_description = self.criteria_description_edit.text()
         if not criteria_description:
             self.isError = True
-            self.errorMsg += "* Please enter a description of the criterion.\n"
+            self.errorMsg += self.desc_error + '\n'
         
         current_tab = self.criteria_type_tab.currentWidget()        
         if not current_tab:
             self.isError = True
-            self.errorMsg += "* Please select a criteria type (ratio, binary, ordinal) and enter the appropriate information\n"
+            self.errorMsg += self.crit_type_error + '\n'
         
-        current_tab_name = self.criteria_type_tab.tabText(self.criteria_type_tab.currentIndex())
+        current_tab_name = self.criteria_type_tab.currentWidget().objectName()
 
         if self.benefit_button.isChecked():
             cost_benefit = "B"
@@ -129,25 +132,27 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
             cost_benefit = "C"
         else:
             self.isError = True
-            self.errorMsg += "* Please define criterion as a \"Benefit\" or \"Cost\"\n"
+            self.errorMsg += self.b_or_c_error + '\n'
 
-        if current_tab_name == "Ratio":
+        if current_tab_name == "ratio_tab":
+            self.new_crit_type = 'Ratio'
             ratio_description = self.ratio_description_edit.text()
             if not ratio_description:
                 self.isError = True
-                self.errorMsg += "* Please enter a description of the quantitative ratio value.\n"
+                self.errorMsg += self.quant_desc_error + '\n'
             if not self.isError:
                 type_info = unicode(ratio_description)
                 
-        elif current_tab_name == "Binary":
+        elif current_tab_name == "binary_tab":
+            self.new_crit_type = 'Binary'
             binary_yes_description = self.binary_yes_edit.text()
             binary_no_description = self.binary_no_edit.text()
             if not binary_yes_description:
                 self.isError = True
-                self.errorMsg += "* Please enter a description for Option 1\n"
+                self.errorMsg += self.bin_desc_1_error + '\n'
             if not binary_no_description:
                 self.isError = True
-                self.errorMsg += "* Please enter a description for Option 2\n"
+                self.errorMsg += self.bin_desc_2_error + '\n'
             if not self.isError:
                 if cost_benefit == 'B':
                     #If benefit then yes should be valued higher
@@ -158,10 +163,11 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 
             
                 
-        elif current_tab_name == "Ordinal":
+        elif current_tab_name == "ordinal_tab":
+            self.new_crit_type = 'Ordinal'
             if len(self.ordinal_option_list) < 2:
                 self.isError = True
-                self.errorMsg += "* Your ordinal criterion must have at least two options\n"
+                self.errorMsg += self.ord_two_error + '\n'
             
             #if cost option then reverse option list to low-high
             if cost_benefit == 'C':
@@ -171,13 +177,13 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
             
         else:
             self.isError = True
-            self.errorMsg += "Criteria add failed unexpectedly.\n"
+            self.errorMsg += self.crit_fail_error + '\n'
 
         if self.isError:
             self.isError = False
-            QMessageBox.critical(self,"Error adding criteria",self.errorMsg)
+            QMessageBox.critical(self,self.crit_box_error,self.errorMsg)
         else:
-            criteria_info = [unicode(criteria_description), unicode(current_tab_name), type_info, cost_benefit]
+            criteria_info = [unicode(criteria_description), unicode(new_crit_type), type_info, cost_benefit]
             
             if self.editing:
                 self.emit(SIGNAL("criteria_changed"), self.id, criteria_info)
@@ -196,11 +202,11 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
             (name, value) = option
             if new_value == value:
                 self.isError = True
-                self.errorMsg += "The option '"+unicode(name)+"' already has the rank of '"+unicode(value)+"'. Please choose another rank value."    
+                self.errorMsg += self.dup_rank_error
         
         if self.isError:
             self.isError = False
-            QMessageBox.critical(self,"Error adding criteria",self.errorMsg)
+            QMessageBox.critical(self,self.crit_box_error,self.errorMsg)
         else:
             self.add_ordinal_option_dialog.hide()
             self.add_ordinal_option_dialog.deleteLater()
@@ -230,13 +236,13 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 
     def handle_remove_ordinal_option(self):
         if not self.ordinal_option_list:
-            QMessageBox.critical(self,"Error Removing Option", "There are no options")
+            QMessageBox.critical(self,self.opt_rem_error, self.no_opt_error)
             return
         
         try:
             cur_row = self.ordinal_option_table.get_current_row()
         except DelphosError, e:
-            QMessageBox.critical(self,"Error Removing Option", unicode(e))
+            QMessageBox.critical(self,self.opt_remove_error, unicode(e))
         else:
             #Remove selected row
             self.ordinal_option_list.pop(cur_row)
@@ -248,3 +254,18 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
         """
         self.deleteLater()
         self.hide()             
+
+    def retranslate(self):
+        #Example self. = QApplicationpplication.translate("AddCriteriaDialog", "english_text", "description", QApplication.UnicodeUTF8)        
+        self.desc_error = QApplication.translate("AddCriteriaDialog", "* Please enter a description of the criterion.", "Error message", QApplication.UnicodeUTF8)        
+        self.crit_type_error = QApplication.translate("AddCriteriaDialog", "* Please select a criteria type (ratio, binary, ordinal) and enter the appropriate information", "Error message", QApplication.UnicodeUTF8)
+        self.b_or_c_error = QApplication.translate("AddCriteriaDialog", "* Please define criterion as a 'Benefit' or 'Cost'", "Error message", QApplication.UnicodeUTF8)
+        self.quant_desc_error = QApplication.translate("AddCriteriaDialog", "* Please enter a description of the quantitative ratio value.","Error message when description not entered", QApplication.UnicodeUTF8)
+        self.bin_desc_1_error = QApplication.translate("AddCriteriaDialog", "* Please enter a description for Option 1", "Error message when description not entered", QApplication.UnicodeUTF8)        
+        self.bin_desc_2_error = QApplication.translate("AddCriteriaDialog", "* Please enter a description for Option 2", "Error message when description not entered", QApplication.UnicodeUTF8)
+        self.ord_two_error = QApplication.translate("AddCriteriaDialog", "* Your ordinal criterion must have at least two options", "Error message when less than two options given", QApplication.UnicodeUTF8)
+        self.crit_fail_error = QApplication.translate("AddCriteriaDialog", "Criteria add failed unexpectedly.", "Error message adding of criteria suddenly fails", QApplication.UnicodeUTF8)
+        self.crit_box_error = QApplication.translate("AddCriteriaDialog", "Error adding criteria", "Error message", QApplication.UnicodeUTF8)
+        self.dup_rank_error = QApplication.translate("AddCriteriaDialog", "That rank value is already assigned to another option.  Choose another value or change your other options first.", "Error message when a rank value is already used by another option", QApplication.UnicodeUTF8)
+        self.opt_remove_error = QApplication.translate("AddCriteriaDialog", "Error Removing Option", "Error message when a criterion does not remove itself properly", QApplication.UnicodeUTF8)
+        self.no_opt_error = QApplication.translate("AddCriteriaDialog", "There are no options", "Error message when no options are provided", QApplication.UnicodeUTF8)              

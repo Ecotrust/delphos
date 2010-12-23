@@ -42,6 +42,18 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AddAlternDialog</name>
     <message>
+        <location filename="add_alternative_dialog.py" line="92"/>
+        <source>Please enter an alternative name</source>
+        <comment>Error message when alternative name not provide</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_alternative_dialog.py" line="92"/>
+        <source>Sorry, there are no predefined colors left.. Please click &apos;New Color&apos; until you find a suitable one.</source>
+        <comment>Error message when there are no pre-defined colors left</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="add_alternative_ui.py" line="252"/>
         <source>Add Alternative</source>
         <translation type="unfinished"></translation>
@@ -66,104 +78,196 @@ p, li { white-space: pre-wrap; }
         <source>help_definir_las_alternativas</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="add_alternative_dialog.py" line="91"/>
-        <source>Please enter an alternative name</source>
-        <comment>Error message when alternative name not provide</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="add_alternative_dialog.py" line="92"/>
-        <source>Sorry, there are no predefined colors left.. Please click &apos;New Color&apos; until you find a suitable one.</source>
-        <comment>Error message when there are no pre-defined colors left</comment>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AddCriteriaDialog</name>
     <message>
+        <location filename="add_criteria_ui.py" line="375"/>
+        <source>Benefit</source>
+        <translation type="unfinished">Beneficio</translation>
+    </message>
+    <message>
         <location filename="add_criteria_ui.py" line="376"/>
+        <source>Cost</source>
+        <translation type="unfinished">Costo</translation>
+    </message>
+    <message>
+        <location filename="add_criteria_ui.py" line="377"/>
+        <source>Option 1: (example: &apos;yes&apos;, &apos;true&apos;)</source>
+        <translation type="unfinished">Opción 1: (ejemplo: &apos;sí&apos;, &apos;cierto&apos;)</translation>
+    </message>
+    <message>
+        <location filename="add_criteria_ui.py" line="378"/>
+        <source>Option 2: (example: &apos;no&apos;, &apos;false&apos;)</source>
+        <translation type="unfinished">Opción 2: (ejemplo: &apos;no&apos;, &apos;falsos&apos;)</translation>
+    </message>
+    <message>
+        <location filename="add_criteria_ui.py" line="379"/>
+        <source>Binary</source>
+        <translation type="unfinished">Binaria</translation>
+    </message>
+    <message>
+        <location filename="add_criteria_ui.py" line="385"/>
+        <source>Ordinal</source>
+        <translation type="unfinished">Ordinal</translation>
+    </message>
+    <message>
+        <location filename="add_criteria_ui.py" line="387"/>
+        <source>Ratio</source>
+        <translation type="unfinished">Coeficiente</translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="261"/>
+        <source>* Please enter a description of the criterion.</source>
+        <comment>Error message</comment>
+        <translation>* Por favor, introduzca una descripción del criterio.</translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="263"/>
+        <source>* Please define criterion as a &apos;Benefit&apos; or &apos;Cost&apos;</source>
+        <comment>Error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="264"/>
+        <source>* Please enter a description of the quantitative ratio value.</source>
+        <comment>Error message when description not entered</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="265"/>
+        <source>* Please enter a description for Option 1</source>
+        <comment>Error message when description not entered</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="266"/>
+        <source>* Please enter a description for Option 2</source>
+        <comment>Error message when description not entered</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="267"/>
+        <source>* Your ordinal criterion must have at least two options</source>
+        <comment>Error message when less than two options given</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="268"/>
+        <source>Criteria add failed unexpectedly.</source>
+        <comment>Error message adding of criteria suddenly fails</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="269"/>
+        <source>Error adding criteria</source>
+        <comment>Error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="270"/>
+        <source>That rank value is already assigned to another option.  Choose another value or change your other options first.</source>
+        <comment>Error message when a rank value is already used by another option</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="271"/>
+        <source>Error Removing Option</source>
+        <comment>Error message when a criterion does not remove itself properly</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="271"/>
+        <source>There are no options</source>
+        <comment>Error message when no options are provided</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_dialog.py" line="262"/>
+        <source>* Please select a criteria type (ratio, binary, ordinal) and enter the appropriate information</source>
+        <comment>Error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="add_criteria_ui.py" line="373"/>
         <source>Add Criteria</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="add_criteria_ui.py" line="377"/>
+        <location filename="add_criteria_ui.py" line="374"/>
         <source>Criteria description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="add_criteria_ui.py" line="378"/>
-        <source>Benefit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="add_criteria_ui.py" line="379"/>
-        <source>Cost</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="add_criteria_ui.py" line="380"/>
-        <source>Option 1: (example: &apos;yes&apos;, &apos;true&apos;)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="add_criteria_ui.py" line="381"/>
-        <source>Option 2: (example: &apos;no&apos;, &apos;false&apos;)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="add_criteria_ui.py" line="382"/>
-        <source>Binary</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="add_criteria_ui.py" line="383"/>
         <source>Add Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="add_criteria_ui.py" line="384"/>
+        <location filename="add_criteria_ui.py" line="381"/>
         <source>Remove Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="add_criteria_ui.py" line="385"/>
+        <location filename="add_criteria_ui.py" line="382"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="add_criteria_ui.py" line="386"/>
+        <location filename="add_criteria_ui.py" line="383"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="add_criteria_ui.py" line="387"/>
+        <location filename="add_criteria_ui.py" line="384"/>
         <source>Rank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="add_criteria_ui.py" line="388"/>
-        <source>Ordinal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="add_criteria_ui.py" line="389"/>
+        <location filename="add_criteria_ui.py" line="386"/>
         <source>Description of quantitative value (units):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="add_criteria_ui.py" line="390"/>
-        <source>Ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="add_criteria_ui.py" line="391"/>
+        <location filename="add_criteria_ui.py" line="388"/>
         <source>help_definir_los_criterios</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AddOrdinalOptionDialog</name>
+    <message>
+        <location filename="AddOrdinalOptionDialog.py" line="79"/>
+        <source>* Please enter an option description.
+</source>
+        <comment>Error when no description provided for option</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AddOrdinalOptionDialog.py" line="80"/>
+        <source>* Please enter an option rank.
+</source>
+        <comment>Error when no rank provided</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AddOrdinalOptionDialog.py" line="81"/>
+        <source>* Option rank is not an integer</source>
+        <comment>Error when rank is not an integer</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AddOrdinalOptionDialog.py" line="82"/>
+        <source>* Option rank must be a positive integer greater than zero, you entered </source>
+        <comment>Error when rank is not greater than zero</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AddOrdinalOptionDialog.py" line="82"/>
+        <source>Error adding ordinal criteria option</source>
+        <comment>Error when option is not added properly</comment>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="add_ordinal_option_ui.py" line="233"/>
         <source>Add Ordinal Option</source>
@@ -181,60 +285,63 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AlternativeMcaTableWidget</name>
+    <message>
+        <location filename="AlternativeMcaTableWidget.py" line="101"/>
+        <source>You must first select an alternative</source>
+        <comment>Error when user did not select an alternative</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AlternativeTableWidget</name>
+    <message>
+        <location filename="AlternativeTableWidget.py" line="63"/>
+        <source>You must first select an alternative</source>
+        <comment>Error when user did not select an alternative</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CreateProjectDialog</name>
-    <message>
-        <location filename="create_project_ui.py" line="178"/>
-        <source>Create New Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="create_project_ui.py" line="317"/>
-        <source>Select Project Type:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="create_project_ui.py" line="318"/>
-        <source>Fisheries</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="create_project_ui.py" line="319"/>
         <source>Marine Reserves</source>
         <translation type="unfinished">Las Reservas Marinas</translation>
     </message>
     <message>
-        <location filename="create_project_ui.py" line="320"/>
-        <source>Communities</source>
+        <location filename="create_project_dialog.py" line="133"/>
+        <source>File Error</source>
+        <comment>Error</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="create_project_ui.py" line="321"/>
-        <source>Sites</source>
+        <location filename="create_project_dialog.py" line="134"/>
+        <source>Error while overwriting the existing project </source>
+        <comment>Error</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="create_project_ui.py" line="322"/>
-        <source>Project Options:</source>
+        <location filename="create_project_dialog.py" line="135"/>
+        <source>Please select &apos;Communities&apos; or &apos;Sites&apos;</source>
+        <comment>Error</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="create_project_ui.py" line="323"/>
-        <source>Load Suggested Criteria</source>
+        <location filename="create_project_dialog.py" line="136"/>
+        <source>Please select &apos;Fisheries&apos; or &apos;Marine Protected Areas</source>
+        <comment>Error</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="create_project_ui.py" line="324"/>
-        <source>Load Sample Alternatives</source>
+        <location filename="create_project_dialog.py" line="137"/>
+        <source>Please enter a project path and name by clicking the browse button</source>
+        <comment>Error</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="create_project_ui.py" line="325"/>
-        <source>Save Project As:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="create_project_ui.py" line="326"/>
-        <source>Browse...</source>
+        <location filename="create_project_ui.py" line="178"/>
+        <source>Create New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -379,6 +486,51 @@ opacity: 200;
 </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="create_project_ui.py" line="317"/>
+        <source>Select Project Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="create_project_ui.py" line="318"/>
+        <source>Fisheries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="create_project_ui.py" line="320"/>
+        <source>Communities</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="create_project_ui.py" line="321"/>
+        <source>Sites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="create_project_ui.py" line="322"/>
+        <source>Project Options:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="create_project_ui.py" line="323"/>
+        <source>Load Suggested Criteria</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="create_project_ui.py" line="324"/>
+        <source>Load Sample Alternatives</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="create_project_ui.py" line="325"/>
+        <source>Save Project As:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="create_project_ui.py" line="326"/>
+        <source>Browse...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CreditsDialog</name>
@@ -432,6 +584,44 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>CriteriaMcaTableWidget</name>
+    <message>
+        <location filename="CriteriaMcaTableWidget.py" line="114"/>
+        <source>You must first select a criterion</source>
+        <comment>Error when user did not select a criterion</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CriteriaTableWidget</name>
+    <message>
+        <location filename="CriteriaTableWidget.py" line="99"/>
+        <source>Description - this column provides a detailed explanation of the criterion</source>
+        <comment>Explanation of how to interpret the &apos;description&apos; criteria table column</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="CriteriaTableWidget.py" line="100"/>
+        <source>Criteria Type - this column gives you the overall type of the criterion.  Possible types include: Binary, Ordinal or Ratio
+Click help icon for more information</source>
+        <comment>Explanation of how to interpret &apos;criteria type&apos; table column</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="CriteriaTableWidget.py" line="101"/>
+        <source>Options/Units - for Binary or Ordinal criterion this column will give you the list of available options to answer with.
+  For Ratio criteria this column will give you the unit of measure that answers must be in.  For example &apos;tons per year&apos; or &apos;pounds&apos;,</source>
+        <comment>Explanation of how to interpret &apos;options/units&apos; crit table column</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="CriteriaTableWidget.py" line="102"/>
+        <source>Benefit/Cost - Tells you whether the criterion is a Benefit (positive) or a Cost (negative).  Click the help icon for more information</source>
+        <comment>Explanation of the &apos;cost/benefit&apos; crit table column</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context encoding="UTF-8">
     <name>ExportAnalysisDialog</name>
     <message>
@@ -470,20 +660,30 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="language_dialog_ui.py" line="189"/>
         <source>English</source>
-        <translation>Inglés</translation>
+        <translation type="unfinished">English</translation>
     </message>
     <message>
         <location filename="language_dialog_ui.py" line="190"/>
         <source>Spanish</source>
-        <translation>Español</translation>
+        <translation type="unfinished">Español</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="main_window_ui.py" line="152"/>
+        <location filename="main_window_ui.py" line="290"/>
         <source>Delphos</source>
         <translation type="unfinished">Delphos</translation>
+    </message>
+    <message>
+        <location filename="main_window_ui.py" line="294"/>
+        <source>&amp;Documentation Window</source>
+        <translation type="unfinished">&amp;Documentación Ventana</translation>
+    </message>
+    <message>
+        <location filename="main_window_ui.py" line="296"/>
+        <source>Documentation Window</source>
+        <translation type="unfinished">Documentación Ventana</translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="291"/>
@@ -501,19 +701,9 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main_window_ui.py" line="294"/>
-        <source>&amp;Documentation Window</source>
-        <translation>&amp;Documentación Ventana</translation>
-    </message>
-    <message>
         <location filename="main_window_ui.py" line="295"/>
         <source>&amp;Options</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window_ui.py" line="296"/>
-        <source>Documentation Window</source>
-        <translation>Documentación Ventana</translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="297"/>
@@ -521,264 +711,123 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main_window_ui.py" line="301"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <location filename="main_window_ui.py" line="302"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;arial&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Arial&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="main_window_ui.py" line="302"/>
-        <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="303"/>
-        <source>Import</source>
+        <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="304"/>
-        <source>&amp;Open Project</source>
+        <source>Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="305"/>
-        <source>Ctrl+O</source>
+        <source>&amp;Open Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="306"/>
-        <source>Print</source>
+        <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="307"/>
-        <source>&amp;Credits</source>
+        <source>Print</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="308"/>
-        <source>Ctrl+A</source>
+        <source>&amp;Credits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="309"/>
-        <source>Show Documentation Window</source>
+        <source>Ctrl+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="310"/>
-        <source>E&amp;xit Delphos</source>
+        <source>Show Documentation Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="311"/>
-        <source>Ctrl+X</source>
+        <source>E&amp;xit Delphos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="312"/>
-        <source>&amp;View Documentation In Browser</source>
+        <source>Ctrl+X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="313"/>
-        <source>Ctrl+L</source>
+        <source>&amp;View Documentation In Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="314"/>
-        <source>Create &amp;New Project</source>
+        <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="315"/>
-        <source>Ctrl+N</source>
+        <source>Create &amp;New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="316"/>
-        <source>New Project</source>
+        <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="317"/>
-        <source>Open Project</source>
+        <source>New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="318"/>
-        <source>About Delphos</source>
+        <source>Open Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="319"/>
-        <source>&amp;Visible</source>
+        <source>About Delphos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="320"/>
-        <source>Ctrl+V</source>
+        <source>&amp;Visible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="321"/>
-        <source>Docked</source>
+        <source>Ctrl+V</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="322"/>
-        <source>&amp;About Delphos</source>
+        <source>Docked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main_window_ui.py" line="323"/>
-        <source>Main Menu</source>
+        <source>&amp;About Delphos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main_window_ui.py" line="290"/>
-        <source>.QWidget {
-   background-color: #E1EDF5;
-}
-
-/*Non-main window popup widgets
-QWidget {
-     background-color: #f0f0f5;
-}
-*/
-
-
-    
-QWidget {
-    font-family: arial;
-    color: #333333;    
-}
-
-
-QHeaderView::section {
-    padding-left: 6px;
-    padding-right: 4px;
-    background-color: #FFF7DB;
-    border-width: 1px;
-    border-color: darkkhaki;
-    border-style: solid;
-}
-
-QHeaderView::section:hover {
-   background-color: #FFDF94;
-}
-
-/* Increase the padding, so the text is shifted when the button is
-   pressed. */
-QHeaderView::section:pressed {
-    padding-left: 4px;
-    padding-top: 4px;
-    background-color: #E6A84C;
-}
-
-QMainWindow {
-    background-color: gainsboro;
-    background-position: top right;
-    background-repeat: no-repeat
-}
-
-
-/* Nice Windows-XP-style password character. */
-QLineEdit[echoMode=&quot;2&quot;] {
-    lineedit-password-character: 9679;
-}
-
-/* We provide a min-width and min-height for push buttons
-   so that they look elegant regardless of the width of the text. */
-QPushButton {
-    background-color: #FFF2C9;
-    border-width: 1px;
-    border-color: darkkhaki;
-    border-style: solid;
-    border-radius: 5;
-    padding: 2px;
-    padding-left: 4px;
-    padding-right: 4px;
-    min-width: 9ex;
-    min-height: 2.5ex;
-}
-
-QPushButton:hover {
-   background-color: #FFDF94;
-}
-
-/* Increase the padding, so the text is shifted when the button is
-   pressed. */
-QPushButton:pressed {
-    padding-left: 4px;
-    padding-top: 4px;
-    background-color: #E6A84C;
-}
-
-QLabel, QAbstractButton {
-    font: normal;
-}
-
-/* Mark mandatory fields with a brownish color. */
-.mandatory {
-    color: brown;
-}
-
-/* Bold text on status bar looks awful. */
-QStatusBar QLabel {
-   font: normal;
-}
-
-QStatusBar::item {
-    border-width: 1;
-    border-color: darkkhaki;
-    border-style: solid;
-    border-radius: 2;
-}
-
-QComboBox, QLineEdit, QSpinBox, QTextEdit, QListView {
-    background-color: #fafbfc;
-    selection-color: #0a214c;
-    selection-background-color: #FFF2C9;
-}
-
-/* We reserve 1 pixel space in padding. When we get the focus,
-   we kill the padding and enlarge the border. This makes the items
-   glow. */
-QLineEdit {
-    border-width: 1px;
-    padding: 1px;
-    border-style: solid;
-    border-color: #5f66a1;
-    border-radius: 4px;
-}
-
-/* As mentioned above, eliminate the padding and increase the border. */
-QLineEdit:focus, QFrame:focus {
-    border-width: 2px;
-    padding: 0px;
-}
-
-/* Nice to have the background color change when hovered. */
-QRadioButton:hover, QCheckBox:hover {
-    background-color: #FFDF94;
-}
-
-/* Force the dialog&apos;s buttons to follow the Windows guidelines. */
-QDialogButtonBox {
-    button-layout: 0;
-}
-
-QToolTip {
-    padding: 5px;
-    border-radius: 3px;
-    opacity: 200;
-}
-</source>
-        <translation></translation>
+        <location filename="main_window_ui.py" line="324"/>
+        <source>Main Menu</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1183,7 +1232,7 @@ border-radius: 3px;
 opacity: 200;
 }
 </source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1400,50 +1449,14 @@ opacity: 200;
 <context>
     <name>SelectTypeDialog</name>
     <message>
-        <location filename="select_type_ui.py" line="290"/>
-        <source>font-size: 16px;
-font-weight: bold;</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="select_type_ui.py" line="291"/>
         <source>Welcome To Delphos</source>
-        <translation>Bienvenido a Delphos</translation>
-    </message>
-    <message>
-        <location filename="select_type_ui.py" line="292"/>
-        <source>A decision-making tool for community-based marine conservation. Developed by Comunidad y Biodiversidad (COBI), World Wildlife Fund (WWF) and Ecotrust.  Released free and open source under the GPL2 license</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bienvenido a Delphos</translation>
     </message>
     <message>
         <location filename="select_type_ui.py" line="293"/>
         <source>Get Started</source>
-        <translation>A empezar</translation>
-    </message>
-    <message>
-        <location filename="select_type_ui.py" line="302"/>
-        <source>For selecting suitable candidates for MSC certification</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="select_type_ui.py" line="295"/>
-        <source>Open an existing project file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="select_type_ui.py" line="296"/>
-        <source>Open Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="select_type_ui.py" line="306"/>
-        <source>For selecting suitable regions as Marine Protected Areas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="select_type_ui.py" line="298"/>
-        <source>Create a new project</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">A empezar</translation>
     </message>
     <message>
         <location filename="select_type_ui.py" line="299"/>
@@ -1463,12 +1476,7 @@ font-weight: bold;</source>
     <message>
         <location filename="select_type_ui.py" line="305"/>
         <source>Marine Reserves</source>
-        <translation>Las Reservas Marinas</translation>
-    </message>
-    <message>
-        <location filename="select_type_ui.py" line="307"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Las Reservas Marinas</translation>
     </message>
     <message>
         <location filename="select_type_ui.py" line="288"/>
@@ -1611,7 +1619,48 @@ QToolTip {
     opacity: 200;
 }
 </source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="select_type_ui.py" line="290"/>
+        <source>font-size: 16px;
+font-weight: bold;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="select_type_ui.py" line="292"/>
+        <source>A decision-making tool for community-based marine conservation. Developed by Comunidad y Biodiversidad (COBI), World Wildlife Fund (WWF) and Ecotrust.  Released free and open source under the GPL2 license</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="select_type_ui.py" line="302"/>
+        <source>For selecting suitable candidates for MSC certification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="select_type_ui.py" line="295"/>
+        <source>Open an existing project file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="select_type_ui.py" line="296"/>
+        <source>Open Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="select_type_ui.py" line="306"/>
+        <source>For selecting suitable regions as Marine Protected Areas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="select_type_ui.py" line="298"/>
+        <source>Create a new project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="select_type_ui.py" line="307"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

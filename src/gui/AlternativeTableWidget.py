@@ -29,6 +29,7 @@ class AlternativeTableWidget(QTableWidget):
         QTextBrowser.__init__(self, parent)
         self.altern_name_column = 1;        #Column containing alternative names
         self.altern_color_column = 2;        #Color to visually associate with altern
+        self.retranslate() #Translate UI text
         
     def load(self, alternative_recs):
         """Loads the table with alternatives, given an array of records
@@ -56,5 +57,7 @@ class AlternativeTableWidget(QTableWidget):
         if selected_row:
             return selected_row[0]
         else:
-            raise DelphosError, "You must first select an alternative"
-        
+            raise DelphosError, self.sel_alt_error
+
+    def retranslate(self):
+        self.sel_alt_error = QApplicationpplication.translate("AlternativeTableWidget", "You must first select an alternative", "Error when user did not select an alternative", QApplication.UnicodeUTF8)                                            

@@ -32,6 +32,7 @@ class CriteriaMcaTableWidget(QTableWidget):
         self.crit_type_column = 2
         self.crit_options_column = 3
         self.cost_benefit_column = 4
+        self.retranslate() #Translate UI text
 
     def load(self, criteria_recs):
         """Loads the table in the criteria tab with the existing project criteria
@@ -107,5 +108,7 @@ class CriteriaMcaTableWidget(QTableWidget):
             #Return the unique criteria description
             return selected_row[0]
         else:
-            raise DelphosError, "You must first select a criterion"
-        
+            raise DelphosError, self.sel_crit_error
+
+    def retranslate(self):
+        self.sel_crit_error = QApplicationpplication.translate("CriteriaMcaTableWidget", "You must first select a criterion", "Error when user did not select a criterion", QApplication.UnicodeUTF8)                                                        

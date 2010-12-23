@@ -37,8 +37,8 @@ class AddOrdinalOptionDialog(QDialog, Ui_AddOrdinalOptionDialog):
         self.gui_manager = gui_manager
         self.isError = False	#Error flag for form processing
         self.errorMsg = ""
-        
         QObject.connect(self.add_ordinal_option_box,QtCore.SIGNAL("accepted()"), self.process_accept)
+        self.retranslate() #Translate the text
         
     def process_accept(self):
         """Processes clicking of OK button in dialog
@@ -49,26 +49,34 @@ class AddOrdinalOptionDialog(QDialog, Ui_AddOrdinalOptionDialog):
         option_description = self.option_description_edit.text()
         if not option_description:
             self.isError = True
-            self.errorMsg += "* Please enter an option description.\n"
+            self.errorMsg += self.option_error
         
         option_value = self.option_value_edit.text()
         if not option_value:
             self.isError = True
-            self.errorMsg += "* Please enter an option rank.\n"
+            self.errorMsg += self.rank_error
         else:
             try:
                 option_value = int(option_value)
             except:
                 self.isError = True
-                self.errorMsg += "* Option rank is not an integer"
+                self.errorMsg += self.rank_int_error
 
             if option_value < 1 and not self.isError:
                 self.isError = True
-                self.errorMsg += "* Option rank must be a positive integer greater than zero, you entered "+unicode(option_value)
+                self.errorMsg += self.pos_int_error+unicode(option_value)
 
         if self.isError:
             self.isError = False
-            QMessageBox.critical(self,"Error adding ordinal criteria option",self.errorMsg)
+            QMessageBox.critical(self,self.ord_add_error,self.errorMsg)
         else:
             option_info = (option_description, option_value)
             self.emit(SIGNAL("ordinal_option_info_collected"), option_info)
+            
+    def retranslate(self):
+        #Example self. = QApplicationpplication.translate("AddOrdinalOptionDialog", "english_text", "description", QApplication.UnicodeUTF8)                    
+        self.option_error = QApplicationpplication.translate("AddOrdinalOptionDialog", "* Please enter an option description.\n", "Error when no description provided for option", QApplication.UnicodeUTF8)                           
+        self.rank_error = QApplicationpplication.translate("AddOrdinalOptionDialog", "* Please enter an option rank.\n", "Error when no rank provided", QApplication.UnicodeUTF8)                            
+        self.rank_int_error = QApplicationpplication.translate("AddOrdinalOptionDialog", "* Option rank is not an integer", "Error when rank is not an integer", QApplication.UnicodeUTF8)                            
+        self.pos_int_error = QApplicationpplication.translate("AddOrdinalOptionDialog", "* Option rank must be a positive integer greater than zero, you entered ", "Error when rank is not greater than zero", QApplication.UnicodeUTF8) 
+        self.ord_add_error = QApplicationpplication.translate("AddOrdinalOptionDialog", "Error adding ordinal criteria option", "Error when option is not added properly", QApplication.UnicodeUTF8) 

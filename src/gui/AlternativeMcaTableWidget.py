@@ -35,6 +35,8 @@ class AlternativeMcaTableWidget(QTableWidget):
         self.altern_check_display_column = 0
         self.altern_name_display_column = 1
         self.altern_color_display_column = 2
+        
+        self.retranslate() #Translate the text
 
     def load(self, alternative_recs):
         """Loads the table with alternatives, given a list of records
@@ -93,5 +95,7 @@ class AlternativeMcaTableWidget(QTableWidget):
         if selected_row:
             return selected_row[0]
         else:
-            raise DelphosError, "You must first select an alternative"
-        
+            raise DelphosError, self.sel_alt_error
+
+    def retranslate(self):
+        self.sel_alt_error = QApplicationpplication.translate("AlternativeMcaTableWidget", "You must first select an alternative", "Error when user did not select an alternative", QApplication.UnicodeUTF8)                                

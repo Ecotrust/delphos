@@ -54,6 +54,8 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 		QObject.connect(self.create_button_box,QtCore.SIGNAL("accepted()"), self.process_accept)
 		QObject.connect(self.create_button_box,QtCore.SIGNAL("rejected()"), self.process_reject)
 		self.default_altern_check.hide()
+        
+        self.retranslate() #Translate the UI
 
 	def process_fisheries_click(self):
 		self.communities_sub_type_button.setEnabled(False)
@@ -83,7 +85,7 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 			try:
 				os.remove(full_name)
 			except OSError, e:
-				QMessageBox.critical(self,"File Error", "Error while overwriting the existing project "+e)
+				QMessageBox.critical(self,self.file_error, self.overwrite_error+e)
 
 		#Put path & filename into textbox
 		
@@ -101,17 +103,17 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 				self.project_type = "sites"
 			else:
 				self.isError = True
-				self.errorMsg += "Please select \"Communities\" or \"Sites\n"
+				self.errorMsg += self.com_or_sites_error
 				
 		elif self.fisheries_type_button.isChecked():
 			self.project_type = "fisheries"
 		else:
 			self.isError = True
-			self.errorMsg += "Please select \"Fisheries\" or \"Marine Protected Areas\n"
+			self.errorMsg += self.fish_or_mpa_error + '\n'
 
 		if not self.project_path:
 			self.isError = True;
-			self.errorMsg += "Please enter a project path and name by clicking the browse button"
+			self.errorMsg += self.proj_path_error
 
 		if self.isError:
 			QMessageBox.critical(self,"Delphos",self.errorMsg)
@@ -124,3 +126,12 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
 		"""Processes clicking of Cancel button in dialog
 		"""
 		self.hide()
+        
+    def retranslate(self):
+        #Example self. = QApplicationpplication.translate("CreateProjectDialog", "", "Error", QApplication.UnicodeUTF8)                            
+        self.file_error = QApplicationpplication.translate("CreateProjectDialog", "File Error", "Error", QApplication.UnicodeUTF8)                                    
+        self.overwrite_error = QApplicationpplication.translate("CreateProjectDialog", "Error while overwriting the existing project ", "Error", QApplication.UnicodeUTF8)                                    
+        self.com_or_sites_error = QApplicationpplication.translate("CreateProjectDialog", "Please select 'Communities' or 'Sites'", "Error", QApplication.UnicodeUTF8)                                    
+        self.fish_or_mpa_error = QApplicationpplication.translate("CreateProjectDialog", "Please select 'Fisheries' or 'Marine Protected Areas", "Error", QApplication.UnicodeUTF8)                                   
+        self.proj_path_error = QApplicationpplication.translate("CreateProjectDialog", "Please enter a project path and name by clicking the browse button", "Error", QApplication.UnicodeUTF8)                            
+        

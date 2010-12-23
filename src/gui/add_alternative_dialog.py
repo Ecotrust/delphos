@@ -38,9 +38,9 @@ class AddAlternDialog(QDialog, Ui_AddAlternDialog):
         self.gui_manager = gui_manager
         self.isError = False	#Error flag for form processing
         self.errorMsg = ""
-
         self.project = self.gui_manager.project_manager.get_current_project()
-
+        self.retranslate() #Translate text
+        
         #Setup initial altern color
         label_palette = self.new_color_label.palette();
         self.altern_color = self.project.get_next_altern_color()
@@ -88,5 +88,5 @@ class AddAlternDialog(QDialog, Ui_AddAlternDialog):
         self.deleteLater()
 
     def retranslate(self):
-        self.alt_missing_str = QA.translate("AddAlternDialog", "Please enter an alternative name", "Error message when alternative name not provide", QA.UnicodeUTF8)
-        self.alt_color_str = QA.translate("AddAlternDialog", "Sorry, there are no predefined colors left.. Please click 'New Color' until you find a suitable one.", "Error message when there are no pre-defined colors left", QA.UnicodeUTF8)        
+        self.alt_missing_str = QApplication.translate("AddAlternDialog", "Please enter an alternative name", "Error message when alternative name not provide", QApplication.UnicodeUTF8)
+        self.alt_color_str = QApplication.translate("AddAlternDialog", "Sorry, there are no predefined colors left.. Please click 'New Color' until you find a suitable one.", "Error message when there are no pre-defined colors left", QApplication.UnicodeUTF8)        
