@@ -35,6 +35,8 @@ class McaRunsTableWidget(QTableWidget):
         self.name_display_column = 0
         self.description_display_column = 1
         self.date_display_column = 2
+        
+        self.retranslate() #Translate the UI
 
     def load(self, mca_recs):
         """Loads the table with info on past analysis runs
@@ -62,7 +64,7 @@ class McaRunsTableWidget(QTableWidget):
         if index is not None:
             return self.mca_recs[index][self.id_column]
         else:
-            raise InputError, "You have not selected an analysis run"
+            raise InputError, self.analysis_select_error
 
     def get_current_index(self):
         cur_row_item = self.get_current_row_items()
@@ -78,4 +80,6 @@ class McaRunsTableWidget(QTableWidget):
             return selected_row[0]
         else:
             return None
-        
+
+    def retranslate(self):
+       self.analysis_select_error = QApplication.translate("McaRunsTableWidget", "You have not selected an analysis run", "", QApplication.UnicodeUTF8)            

@@ -682,6 +682,202 @@ Click help icon for more information</source>
     </message>
 </context>
 <context>
+    <name>InputGlobalTableWidget</name>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="260"/>
+        <source>Description:</source>
+        <comment>part of tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="261"/>
+        <source>Criteria Type:</source>
+        <comment>part of tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="262"/>
+        <source>Options/Units:</source>
+        <comment>part of tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="263"/>
+        <source>Combo Error</source>
+        <comment>error name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="264"/>
+        <source>Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="265"/>
+        <source>Column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="266"/>
+        <source>Input Error</source>
+        <comment>error name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="267"/>
+        <source>Missing or Invalid input in Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="268"/>
+        <source>Ratio value must be greater than zero in Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="269"/>
+        <source>Missing input for row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="270"/>
+        <source>Unable to access combo box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="271"/>
+        <source>Invalid input, expected an integer but found:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputGlobalTableWidget.py" line="271"/>
+        <source>Invalid option:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>InputMcaTableWidget</name>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="209"/>
+        <source>Description:</source>
+        <comment>part of tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="210"/>
+        <source>Criteria Type:</source>
+        <comment>part of tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="211"/>
+        <source>Options/Units:</source>
+        <comment>part of tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="212"/>
+        <source>Combo Error</source>
+        <comment>error name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="213"/>
+        <source>Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="214"/>
+        <source>Column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="215"/>
+        <source>Input Error</source>
+        <comment>error name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="216"/>
+        <source>Missing or Invalid input in Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="217"/>
+        <source>Ratio value must be greater than zero in Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="218"/>
+        <source>Missing input for row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="219"/>
+        <source>Unable to access combo box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="220"/>
+        <source>Invalid input, expected an integer but found:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputMcaTableWidget.py" line="221"/>
+        <source>Invalid option:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>InputResultViewTableWidget</name>
+    <message>
+        <location filename="InputResultViewTableWidget.py" line="201"/>
+        <source>Combo Error</source>
+        <comment>error name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputResultViewTableWidget.py" line="202"/>
+        <source>Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputResultViewTableWidget.py" line="203"/>
+        <source>Column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputResultViewTableWidget.py" line="204"/>
+        <source>Input Error</source>
+        <comment>error name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputResultViewTableWidget.py" line="205"/>
+        <source>Missing input for row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputResultViewTableWidget.py" line="206"/>
+        <source>Unable to access combo box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputResultViewTableWidget.py" line="207"/>
+        <source>Invalid input, expected an integer but found:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputResultViewTableWidget.py" line="208"/>
+        <source>Invalid option:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InputResultViewTableWidget.py" line="210"/>
+        <source>Missing input.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageDialog</name>
     <message>
         <location filename="language_dialog_ui.py" line="187"/>
@@ -893,6 +1089,17 @@ p, li { white-space: pre-wrap; }
         <source>Restart Analysis</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="mca_rerun_dialog.py" line="46"/>
+        <source>Analysis Error</source>
+        <comment>error name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mca_rerun_dialog.py" line="46"/>
+        <source>You must enter a name for this analysis</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>McaResultView</name>
@@ -980,6 +1187,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mca_result_view_ui.py" line="381"/>
         <source>Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>McaRunsTableWidget</name>
+    <message>
+        <location filename="McaRunsTableWidget.py" line="85"/>
+        <source>You have not selected an analysis run</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1108,6 +1323,41 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mca_wizard_ui.py" line="533"/>
         <source>help_button2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="McaWizard.py" line="388"/>
+        <source>Alternative Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="McaWizard.py" line="389"/>
+        <source>You must select at least two alternatives</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="McaWizard.py" line="390"/>
+        <source>Criteria Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="McaWizard.py" line="391"/>
+        <source>You must select at least one criteria</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="McaWizard.py" line="392"/>
+        <source>At least one of your ratio/ordinal criteria had the same value for every alternative.  Due to a limitation in the analysis, you must go back and exclude this criterion from the analysis or change one of the alternative values to be different from the others</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="McaWizard.py" line="393"/>
+        <source>Input Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="McaWizard.py" line="393"/>
+        <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1268,6 +1518,24 @@ border-radius: 3px;
 opacity: 200;
 }
 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="open_project_dialog.py" line="92"/>
+        <source>Open Project Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="open_project_dialog.py" line="93"/>
+        <source>Please select a project by clicking the browse button</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OpenProjectDialog </name>
+    <message>
+        <location filename="open_project_dialog.py" line="93"/>
+        <source>You did not choose a valid Delphos project file with an extension of: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

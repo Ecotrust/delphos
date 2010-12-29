@@ -35,6 +35,7 @@ class InputGlobalTableWidget(QTableWidget):
         QTableWidget.__init__(self, parent)
         self.vertical_header_width = 400 #criteria descriptions are so freaking long!
         self.loaded = False
+        self.retranslate() #Translate the UI
 
     def load(self, altern_data, crit_data, input_data):
         """Given altern, crit and input table data, loads a table widget with combo boxes 
@@ -92,7 +93,7 @@ class InputGlobalTableWidget(QTableWidget):
                     for option in crit_options_units:
                         crit_text = crit_text+'"'+option[0]+'" '                    
                     
-                    tool_text = "Description: "+crit_name+"\nCriteria Type: "+crit_type+"\nOptions/Units: "+crit_text+"\n"+cb_text                    
+                    tool_text = self.tool_desc+" "+crit_name+"\n"+self.tool_crit+" "+crit_type+"\n"+self.tool_opt+" "+crit_text+"\n"+cb_text                    
                     header_item.setToolTip(tool_text)
                     self.setVerticalHeaderItem(row, header_item)
 
@@ -109,14 +110,14 @@ class InputGlobalTableWidget(QTableWidget):
                     try:
                         self.set_combo_value(row, column, crit_options_units, input_value)
                     except InputError, e:
-                        QMessageBox.critical(self, "Combo Box Error", unicode(e)+" Row"+unicode(row+1)+" '"+unicode(crit_name)+"', Column "+unicode(column+1)+" '"+unicode(altern_name)+"'")
+                        QMessageBox.critical(self, self.combo_error_text, unicode(e)+" "+self.combo_row+unicode(row+1)+" '"+unicode(crit_name)+"', "+self.combo_column+" "+unicode(column+1)+" '"+unicode(altern_name)+"'")
                         return False
                     
                 elif crit_type == "Ratio":
                     try:
                         self.set_cell_value(row, column, input_value)
                     except InputError, e:
-                        QMessageBox.critical(self, "Input Error", unicode(e)+" Row "+unicode(row+1)+" '"+unicode(crit_name)+"', Column "+unicode(column+1)+" '"+unicode(altern_name)+"'")
+                        QMessageBox.critical(self, self.input_error_text, unicode(e)+" "+self.combo_row+unicode(row+1)+" '"+unicode(crit_name)+"',"+self.combo_column+" "+unicode(column+1)+" '"+unicode(altern_name)+"'")
                         return False        
         self.show()
         QObject.connect(self,QtCore.SIGNAL("itemChanged(QTableWidgetItem*)"), self.input_change)
@@ -141,22 +142,22 @@ class InputGlobalTableWidget(QTableWidget):
                     try:
                         value = self.get_combo_value(row, column)
                     except InputError, e:
-                        raise DelphosError, unicode(e)+"Missing or Invalid input in Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
+                        raise DelphosError, unicode(e)+self.missing_invalid_text+unicode(row+1)+": "+unicode(crit_name)+", "+self.combo_column+" "+unicode(column+1)+": "+unicode(altern_name)
                         return False 
                     
                 elif crit_type == "Ratio":
                     try:                    
                         value = self.get_cell_value(row, column)
                     except InputError, e:
-                        raise DelphosError, unicode(e)+"Missing or Invalid input in Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
+                        raise DelphosError, unicode(e)+self.missing_invalid_text+unicode(row+1)+": "+unicode(crit_name)+", "+self.combo_column+" "+unicode(column+1)+": "+unicode(altern_name)
                         return False
                     else:
                         if value is not None and value < 0:
-                            raise DelphosError, "Ratio value must be greater than zero in Row"+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)
+                            raise DelphosError, self.ratio_error_text+unicode(row+1)+": "+unicode(crit_name)+", "+self.combo_column+" "+unicode(column+1)+": "+unicode(altern_name)
                             return False
     
                 if value == None and input_required:
-                    raise DelphosError, "Missing input for row "+unicode(row)+" '"+unicode(crit_name)+"', column "+unicode(column)+" '"+unicode(altern_name)+"'"
+                    raise DelphosError, self.missing_text+" "+unicode(row)+" '"+unicode(crit_name)+"', "+self.combo_column+" "+unicode(column)+" '"+unicode(altern_name)+"'"
     
                 new_input_vals[row][column] = value
         return new_input_vals
@@ -172,7 +173,7 @@ class InputGlobalTableWidget(QTableWidget):
         try:
             new_input_vals = self.get_input_vals(input_required)
         except DelphosError, e:
-            QMessageBox.critical(self,"Input Error", unicode(e.value))
+            QMessageBox.critical(self,self.input_error_text, unicode(e.value))
             return False
         else:
             #Traverse again updating each cell value in DB and creating new input_set
@@ -193,15 +194,13 @@ class InputGlobalTableWidget(QTableWidget):
         #print cell_widget
 
         if not cell_widget:
-            raise InputError, "Unable to access combo box."
+            raise InputError, self.combo_access_error
         (value, ok) = cell_widget.itemData(cell_widget.currentIndex()).toInt()
         if not value:
             return None
         if not ok:
-            raise InputError, "Unable to read input. Expected an integer, received: "+unicode(value)+"."
+            raise InputError, self.non_integer_error+" "+unicode(value)
 
-        #print "value: "+unicode(value)
-        #print "ok: "+unicode(ok)   
         #Save the value from i,j to j,i
         return value
     
@@ -220,7 +219,7 @@ class InputGlobalTableWidget(QTableWidget):
             option_num = combo_box.findData(QVariant(input_value))
             #print "option num: "+unicode(option_num)
             if option_num < 0:
-                raise InputError, "Invalid option ("+unicode(input_value)+")."
+                raise InputError, self.invalid_option_text+" "+unicode(input_value)+")."
             else:
                 combo_box.setCurrentIndex(option_num)
         self.setCellWidget(row, column, combo_box)
@@ -243,7 +242,7 @@ class InputGlobalTableWidget(QTableWidget):
             return None       
         #Check for non-integer
         if not strIsInt(value):
-            raise InputError, "Invalid input. Expected an integer, received '"+unicode(value)+"'."           
+            raise InputError, self.non_integer_error+" "+unicode(value)
         #print "value: "+unicode(value)
         #print "from i:"+unicode(i)+" j:"+unicode(j)
         #Save the value from i,j to j,i
@@ -255,3 +254,18 @@ class InputGlobalTableWidget(QTableWidget):
         if strIsInt(value):
             table_item.setText(unicode(value))
         self.setItem(row, column, table_item)
+        
+    def retranslate(self):
+        self.tool_desc = QApplication.translate("InputGlobalTableWidget", "Description:", "part of tooltip", QApplication.UnicodeUTF8)
+        self.tool_crit = QApplication.translate("InputGlobalTableWidget", "Criteria Type:", "part of tooltip", QApplication.UnicodeUTF8)
+        self.tool_opt = QApplication.translate("InputGlobalTableWidget", "Options/Units:", "part of tooltip", QApplication.UnicodeUTF8)
+        self.combo_error_text = QApplication.translate("InputGlobalTableWidget", "Combo Error", "error name", QApplication.UnicodeUTF8)
+        self.combo_row = QApplication.translate("InputGlobalTableWidget", "Row", "", QApplication.UnicodeUTF8)
+        self.combo_column = QApplication.translate("InputGlobalTableWidget", "Column", "", QApplication.UnicodeUTF8)
+        self.input_error_text = QApplication.translate("InputGlobalTableWidget", "Input Error", "error name", QApplication.UnicodeUTF8)
+        self.missing_invalid_text = QApplication.translate("InputGlobalTableWidget", "Missing or Invalid input in Row", "", QApplication.UnicodeUTF8)
+        self.ratio_error_text = QApplication.translate("InputGlobalTableWidget", "Ratio value must be greater than zero in Row", "", QApplication.UnicodeUTF8)
+        self.missing_text = QApplication.translate("InputGlobalTableWidget", "Missing input for row", "", QApplication.UnicodeUTF8)
+        self.combo_access_error = QApplication.translate("InputGlobalTableWidget", "Unable to access combo box", "", QApplication.UnicodeUTF8)
+        self.non_integer_error = QApplication.translate("InputGlobalTableWidget", "Invalid input, expected an integer but found:", "", QApplication.UnicodeUTF8)
+        self.invalid_option_text = QApplication.translate("InputGlobalTableWidget", "Invalid option:", "", QApplication.UnicodeUTF8)

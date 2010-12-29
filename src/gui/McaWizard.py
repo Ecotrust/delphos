@@ -106,6 +106,8 @@ class McaWizard(QDialog, Ui_McaWizard):
         #Other signals
         QObject.connect(self.mca_stack,QtCore.SIGNAL("currentChanged(int)"), self.process_current_change)
         
+        self.retranslate() #Translate the UI
+        
         if prev_run_data:
             (prev_run_id, prev_run_name, prev_run_description, prev_altern_data, prev_crit_data, prev_input_data, prev_input_weights, prev_results, prev_creation_date, int_results) = prev_run_data
             #self.altern_data = prev_altern_data        
@@ -153,7 +155,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         self.selected_altern_names = []
         
         if len(selected_altern_indexes) < 2:
-            QMessageBox.critical(self,"Error", "You must select at least two alternatives")
+            QMessageBox.critical(self,self.alt_error, self.alt_error_text)
         else:
             for index in selected_altern_indexes:
                 self.selected_altern_data.append(self.altern_data[index])
@@ -185,7 +187,7 @@ class McaWizard(QDialog, Ui_McaWizard):
     def process_crit_select(self):
         selected_crit_indexes = self.crit_table.get_selected_indexes()
         if len(selected_crit_indexes) < 1:
-            QMessageBox.critical(self,"Error", "You must select at least one criteria")
+            QMessageBox.critical(self,self.crit_error, self.crit_error_text)
         else:
             #Build list of selected crit data
             self.selected_crit_data = []
@@ -228,7 +230,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         and input values in one place.  Perhaps not a good implementation, but
         encapsulates a lot of the logic to work with them.
         """
-        self.gui_manager.set_status_bar("Loading...")
+        self.gui_manager.set_status_bar(self.loading_str)
         if not self.input_data and self.global_input_data:
             self.input_data = InputDataSet(self.altern_data, self.crit_data)
             self.input_data.load_values(self.global_input_data)
@@ -259,7 +261,7 @@ class McaWizard(QDialog, Ui_McaWizard):
         try:
             self.input_table.get_input_data(input_required, new_input_data)
         except DelphosError, e:
-            QMessageBox.critical(self,"Input Error", unicode(e.value))
+            QMessageBox.critical(self,self.input_error, unicode(e.value))
         else:
             #Replace old input data with latest known good input data
             self.input_data = new_input_data
@@ -283,13 +285,13 @@ class McaWizard(QDialog, Ui_McaWizard):
         try:
             self.input_data.check_quant_rows()
         except InputError, e:
-            QMessageBox.critical(self,"Input Error", "Your inputs for a given quantitative criterion (Ratio) are all the same value.  This is a limitation of the Evamix algorithm, at least one value in a row must be different. "+unicode(e.value))
+            QMessageBox.critical(self,self.input_error, self.all_same_error+". "+unicode(e.value))
             return False
 
         try:
             self.input_data.check_qual_rows()
         except InputError, e:
-            QMessageBox.critical(self,"Input Error", "Your inputs for all qualitative criteria (Ordinal/Binary) are the same value.  This is not valid input for the Evamix algorithm, at least one value in one qualitative criteria row must be different."+unicode(e.value))
+            QMessageBox.critical(self,self.input_error, self.all_same_error+". "+unicode(e.value))
             return False
 
         return True
@@ -380,3 +382,12 @@ class McaWizard(QDialog, Ui_McaWizard):
                 self.setup_run()
                 
         self.cur_index = index
+        
+    def retranslate(self):
+        self.alt_error = QApplication.translate("McaWizard", "Alternative Error", "", QApplication.UnicodeUTF8)                           
+        self.alt_error_text = QApplication.translate("McaWizard", "You must select at least two alternatives", "", QApplication.UnicodeUTF8)                           
+        self.crit_error = QApplication.translate("McaWizard", "Criteria Error", "", QApplication.UnicodeUTF8)                           
+        self.crit_error_text = QApplication.translate("McaWizard", "You must select at least one criteria", "", QApplication.UnicodeUTF8)                           
+        self.all_same_error = QApplication.translate("McaWizard", "At least one of your ratio/ordinal criteria had the same value for every alternative.  Due to a limitation in the analysis, you must go back and exclude this criterion from the analysis or change one of the alternative values to be different from the others", "", QApplication.UnicodeUTF8)                           
+        self.input_error = QApplication.translate("McaWizard", "Input Error", "", QApplication.UnicodeUTF8)                           
+        self.loading_str = QApplication.translate("McaWizard", "Loading...", "", QApplication.UnicodeUTF8)

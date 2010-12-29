@@ -46,6 +46,8 @@ class OpenProjectDialog(QDialog, Ui_OpenProjectDialog):
 		QObject.connect(self.project_browse_button,QtCore.SIGNAL("clicked()"), self.process_browse)
 		QObject.connect(self.open_button_box,QtCore.SIGNAL("accepted()"), self.process_accept)
 		QObject.connect(self.open_button_box,QtCore.SIGNAL("rejected()"), self.process_reject)
+        
+        self.retranslate() #Translate the UI
 
 	def process_browse(self):
 		"""Processes clicking of browse button
@@ -68,10 +70,10 @@ class OpenProjectDialog(QDialog, Ui_OpenProjectDialog):
 
 		if not self.filename:
 			self.isError = True
-			QMessageBox.critical(self,"Delphos", "Please select a project by clicking the browse button")
+			QMessageBox.critical(self,self.open_project_error, self.sel_project_str)
 		elif not re.search('[.]'+self.default_file_extension+'$', self.filename):
 			self.isError = True
-			QMessageBox.critical(self,"Delphos", "You did not choose a valid Delphos project file.  A delphos project file should end in ."+self.default_file_extension)
+			QMessageBox.critical(self,self.open_project_error, self.valid_extension+self.default_file_extension)
 
 
 		if self.isError:
@@ -83,3 +85,9 @@ class OpenProjectDialog(QDialog, Ui_OpenProjectDialog):
 		"""Processes clicking of Cancel button in dialog
 		"""
 		self.hide()
+        
+    def retranslate(self):
+        #self. = QApplication.translate("", "", "", QApplication.UnicodeUTF8)   
+        self.open_project_error = QApplication.translate("OpenProjectDialog", "Open Project Error", "", QApplication.UnicodeUTF8)        
+        self.sel_project_str = QApplication.translate("OpenProjectDialog", "Please select a project by clicking the browse button", "", QApplication.UnicodeUTF8)        
+        self.valid_extension = QApplication.translate("OpenProjectDialog ", "You did not choose a valid Delphos project file with an extension of: ", "", QApplication.UnicodeUTF8)        

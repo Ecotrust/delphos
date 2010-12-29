@@ -31,6 +31,7 @@ class InputMcaTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
         self.vertical_header_width = 400 #criteria descriptions are so freaking long!
+        self.retranslate() #Translate the UI
 
     def load(self, input_data_set):
         """Given list of alternative/criteria pair info and an input value for that 
@@ -85,7 +86,7 @@ class InputMcaTableWidget(QTableWidget):
                 for option in crit_options_units:
                     crit_text = crit_text+'"'+option[0]+'" '
                                             
-                tool_text = "Description: "+crit_name+"\nCriteria Type: "+crit_type+"\nOptions/Units: "+crit_text+"\n"+cb_text                    
+                tool_text = self.tool_desc+" "+crit_name+"\n"+self.tool_crit+" "+crit_type+"\n"+self.tool_opt+" "+crit_text+"\n"+cb_text                    
                 header_item.setToolTip(tool_text)
                     
                 self.setVerticalHeaderItem(row, header_item)
@@ -95,14 +96,14 @@ class InputMcaTableWidget(QTableWidget):
                 try:
                     self.set_combo_value(row, column, crit_options_units, input_value)
                 except InputError, e:
-                    QMessageBox.critical(self, "Combo Box Error", unicode(e)+"Invalid input in row "+unicode(row+1)+" '"+unicode(crit_name)+"', Column "+unicode(column+1)+" '"+unicode(altern_name)+"'")
+                    QMessageBox.critical(self, self.combo_error_text, unicode(e)+self.missing_invalid_text+" "+unicode(row+1)+" '"+unicode(crit_name)+"', "+self.combo_column+" "+unicode(column+1)+" '"+unicode(altern_name)+"'")
                     return False
                 
             elif crit_type == "Ratio":
                 try:
                     self.set_cell_value(row, column, input_value)
                 except InputError, e:
-                    QMessageBox.critical(self, "Input Error", unicode(e)+"Invalid input in row "+unicode(row+1)+" '"+unicode(crit_name)+"', Column "+unicode(column+1)+" '"+unicode(altern_name)+"'")
+                    QMessageBox.critical(self, self.input_error_text, unicode(e)+" "+unicode(row+1)+" '"+unicode(crit_name)+"', "+self.combo_column+" "+unicode(column+1)+" '"+unicode(altern_name)+"'")
                     return False        
         self.show()
         return True      
@@ -125,18 +126,18 @@ class InputMcaTableWidget(QTableWidget):
                 try:
                     value = self.get_combo_value(row, column, input_required)
                 except InputError, e:
-                    raise DelphosError, unicode(e)+"Missing or Invalid input in row "+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)+".  Input is required for each cell in order to perform analysis."
+                    raise DelphosError, unicode(e)+self.missing_invalid_text+unicode(row+1)+": "+unicode(crit_name)+", "+self.combo_column+" "+unicode(column+1)+": "+unicode(altern_name)+". "+self.input_required_text
                     return False
                 
             elif crit_type == "Ratio":
                 try:                    
                     value = self.get_cell_value(row, column)
                 except InputError, e:
-                    raise DelphosError, unicode(e)+"Missing or Invalid input in row "+unicode(row+1)+": "+unicode(crit_name)+", Column "+unicode(column+1)+": "+unicode(altern_name)+".  Input is required for each cell in order to perform analysis."
+                    raise DelphosError, unicode(e)+self.ratio_error_text+" "+unicode(row+1)+": "+unicode(crit_name)+", "+self.combo_column+" "+unicode(column+1)+": "+unicode(altern_name)+". "+self.input_required_text
                     return False
                 
             if value == None and input_required:
-                raise DelphosError, "Missing input for row "+unicode(row)+" '"+unicode(crit_name)+"', column "+unicode(column)+" '"+unicode(altern_name)+"'"
+                raise DelphosError, self.missing_invalid_text+" "+unicode(row)+" '"+unicode(crit_name)+"', "+self.combo_column+" "+unicode(column)+" '"+unicode(altern_name)+"'"
 
             new_input_data.set_value(i, value)
         return new_input_data
@@ -146,12 +147,12 @@ class InputMcaTableWidget(QTableWidget):
         cell_widget = self.cellWidget(row, column)
         #print cell_widget
         if not cell_widget:
-            raise InputError, "Unable to access combo box."
+            raise InputError, self.combo_access_error
         (value, ok) = cell_widget.itemData(cell_widget.currentIndex()).toInt()
         if not value and input_required:
-            raise InputError, "Missing input in row "+unicode(row)+", column "+unicode(column)+"."
+            raise InputError, self.missing_text+" "+unicode(row)+", "+self.combo_column+" "+unicode(column)
         if not ok and input_required:
-            raise InputError, "Unable to read input. Expected an integer, received: "+unicode(value)+"."
+            raise InputError, self.non_integer_error+" "+unicode(value)
         #print "value: "+unicode(value)
         #print "ok: "+unicode(ok)   
         #Save the value from i,j to j,i
@@ -170,7 +171,7 @@ class InputMcaTableWidget(QTableWidget):
             option_num = combo_box.findData(QVariant(input_value))
             #print "option num: "+unicode(option_num)
             if option_num < 0:
-                raise InputError, "Invalid option ("+unicode(input_value)+")."
+                raise InputError, self.invalid_option_text+unicode(input_value)
             else:
                 combo_box.setCurrentIndex(option_num)
         self.setCellWidget(row, column, combo_box)
@@ -190,7 +191,7 @@ class InputMcaTableWidget(QTableWidget):
             return None       
         #Check for non-integer
         if not strIsInt(value):
-            raise InputError, "Invalid input. Expected an integer, received '"+unicode(value)+"'."           
+            raise InputError, self.non_integer_error+unicode(value)
         #print "value: "+unicode(value)
         #print "from i:"+unicode(i)+" j:"+unicode(j)
         #Save the value from i,j to j,i
@@ -203,7 +204,25 @@ class InputMcaTableWidget(QTableWidget):
             table_item.setText(unicode(value))
         self.setItem(row, column, table_item)
 
+    def retranslate(self):
+        self.tool_desc = QApplication.translate("InputMcaTableWidget", "Description:", "part of tooltip", QApplication.UnicodeUTF8)
+        self.tool_crit = QApplication.translate("InputMcaTableWidget", "Criteria Type:", "part of tooltip", QApplication.UnicodeUTF8)
+        self.tool_opt = QApplication.translate("InputMcaTableWidget", "Options/Units:", "part of tooltip", QApplication.UnicodeUTF8)
+        self.combo_error_text = QApplication.translate("InputMcaTableWidget", "Combo Error", "error name", QApplication.UnicodeUTF8)
+        self.combo_row = QApplication.translate("InputMcaTableWidget", "Row", "", QApplication.UnicodeUTF8)
+        self.combo_column = QApplication.translate("InputMcaTableWidget", "Column", "", QApplication.UnicodeUTF8)
+        self.input_error_text = QApplication.translate("InputMcaTableWidget", "Input Error", "error name", QApplication.UnicodeUTF8)
+        self.missing_invalid_text = QApplication.translate("InputMcaTableWidget", "Missing or Invalid input in Row", "", QApplication.UnicodeUTF8)
+        self.ratio_error_text = QApplication.translate("InputMcaTableWidget", "Ratio value must be greater than zero in Row", "", QApplication.UnicodeUTF8)
+        self.missing_text = QApplication.translate("InputMcaTableWidget", "Missing input for row", "", QApplication.UnicodeUTF8)
+        self.combo_access_error = QApplication.translate("InputMcaTableWidget", "Unable to access combo box", "", QApplication.UnicodeUTF8)
+        self.non_integer_error = QApplication.translate("InputMcaTableWidget", "Invalid input, expected an integer but found:", "", QApplication.UnicodeUTF8)
+        self.invalid_option_text = QApplication.translate("InputMcaTableWidget", "Invalid option:", "", QApplication.UnicodeUTF8)        
+        self.input_required_text = "Input is required for each cell in order to perform analysis"
+        
 if __name__ == "__main__":
     arr = initialize_int_array(2,4)
     print "blort"
     print arr
+    
+    
