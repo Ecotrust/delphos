@@ -30,6 +30,7 @@ class WeightMcaTableWidget(QTableWidget):
         QTableWidget.__init__(self, parent)
         self.weight_column = 0
         self.vertical_header_width = 300 #criteria descriptions are so freaking long!
+        self.retranslate() #Translate the UI
         
     def load(self, input_weight_set):
         """Loads the table with criteria, given a set of input weight data
@@ -60,7 +61,7 @@ class WeightMcaTableWidget(QTableWidget):
         for i in range(self.num_rows):
             table_item = self.item(i, 0)
             if not table_item:
-                QMessageBox.critical(self,"Error", "Error reading from row "+str(i+1))
+                QMessageBox.critical(self,self.weight_error, self.read_error_str+": "+str(i+1))
                 return None 
             table_item.setText("1")
     
@@ -74,17 +75,17 @@ class WeightMcaTableWidget(QTableWidget):
             #Get value from table item
             table_item = self.item(i,0) 
             if not table_item:
-                QMessageBox.critical(self,"Error", "Error reading from row "+str(i+1))
+                QMessageBox.critical(self,self.weight_error, self.read_error_str+": "+str(i+1))
                 return None  
             #print table_item
             value = table_item.text()
             #Check for no value
             if (value is None or value == '') and input_required:
-                QMessageBox.critical(self,"Error", "Missing input in row "+str(i+1))
+                QMessageBox.critical(self,self.weight_error, self.missing_input_str+": "+str(i+1))
                 return None                
             #Check for non-integer
             if value and not strIsInt(value):
-                QMessageBox.critical(self,"Error", "Invalid input in row "+str(i+1)+"\nExpected an integer, received '"+str(value)+"'")
+                QMessageBox.critical(self,self.weight_error, self.missing_input_str+": "+str(i+1)+". "+self.expected_str+" '"+str(value)+"'")
                 return None                
             #print "value: "+str(value)
             #print "from i:"+str(i)+" j:"+str(j)
@@ -95,4 +96,10 @@ class WeightMcaTableWidget(QTableWidget):
             else:
                 input_weights[i] = None
         return input_weights
-        
+
+    def retranslate(self):
+        #Example self. = QApplicationpplication.translate("AddCriteriaDialog", "", "", QApplication.UnicodeUTF8)		        
+        self.weight_error = QApplicationpplication.translate("AddCriteriaDialog", "Weight Error", "", QApplication.UnicodeUTF8)        
+        self.read_error_str = QApplicationpplication.translate("AddCriteriaDialog", "Error reading from row", "", QApplication.UnicodeUTF8)        
+        self.missing_input_str = QApplicationpplication.translate("AddCriteriaDialog", "Missing input in row", "", QApplication.UnicodeUTF8)       
+        self.expected_str = QApplicationpplication.translate("AddCriteriaDialog", "Expected a whole number but found", "", QApplication.UnicodeUTF8)        

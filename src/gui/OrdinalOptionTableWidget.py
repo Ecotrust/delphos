@@ -30,7 +30,8 @@ class OrdinalOptionTableWidget(QTableWidget):
         QTextBrowser.__init__(self, parent)
         self.resizeRowsToContents()
         self.selected_row = None     #The currently selected row as a list of items
-
+        self.retranslate() #Translate the UI
+        
     def load(self, option_recs):
         self.setRowCount(len(option_recs))        
         description_col = 0
@@ -52,4 +53,8 @@ class OrdinalOptionTableWidget(QTableWidget):
         if selected_row:
             return selected_row[0].row()
         else:
-            raise DelphosError, "You must first select an option"
+            raise DelphosError, self.sel_opt_str
+            
+    def retranslate(self):
+        #Example self. = QApplicationpplication.translate("OrdinalOptionTableWidget", "", "", QApplication.UnicodeUTF8)                            
+        self.sel_opt_str = QApplicationpplication.translate("OrdinalOptionTableWidget", "You must first select an option", "", QApplication.UnicodeUTF8)                            

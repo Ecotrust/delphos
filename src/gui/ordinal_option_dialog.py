@@ -42,6 +42,8 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 		QObject.connect(self.add_criteria_box,QtCore.SIGNAL("accepted()"), self.process_accept)
 		QObject.connect(self.add_ordinal_option_button,QtCore.SIGNAL("clicked()"), self.handle_add_ordinal_option)
 		QObject.connect(self.remove_ordinal_option_button,QtCore.SIGNAL("clicked()"), self.handle_remove_ordinal_option)
+        
+        retranslate() #Translate the UI
 
 	def process_accept(self):
 		"""Processes clicking of OK button in dialog
@@ -54,19 +56,19 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 		criteria_description = self.criteria_description_edit.text()
 		if not criteria_description:
 			self.isError = True
-			self.errorMsg += "* Please enter a description of the criterion.\n"
+			self.errorMsg += self.desc_str+"\n"
 		
 		current_tab = self.criteria_type_tab.currentWidget()		
 		if not current_tab:
 			self.isError = True
-			self.errorMsg += "* Please select a criteria type (ratio, binary, ordinal) and enter the appropriate information\n"
+			self.errorMsg += self.sel_crit_str+"\n"
 		
 		current_tab_name = self.criteria_type_tab.tabText(self.criteria_type_tab.currentIndex())
 		if current_tab_name == "Ratio":
 			ratio_description = self.ratio_description_edit.text()
 			if not ratio_description:
 				self.isError = True
-				self.errorMsg += "* Please enter a description of the quantitative ratio value.\n"
+				self.errorMsg += self.desc_ratio_str+"\n"
 			if not self.isError:
 				type_info = str(ratio_description)
 		elif current_tab_name == "Binary":
@@ -74,17 +76,17 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 			binary_no_description = self.binary_no_edit.text()
 			if not binary_yes_description:
 				self.isError = True
-				self.errorMsg += "* Please enter a \"Yes\" description\n"
+				self.errorMsg += self.yes_desc_str+"\n"
 			if not binary_no_description:
 				self.isError = True
-				self.errorMsg += "* Please enter a \"No\" description\n"
+				self.errorMsg += self.no_desc_str+"\n"
 			if not self.isError:
 				type_info = (str(binary_yes_description), str(binary_no_description))
 		elif current_tab_name == "Ordinal":
 			pass
 		else:
 			self.isError = True
-			self.errorMsg += "Delphos", "Criteria add failed unexpectedly.\n"
+			self.errorMsg += self.delphos_str, self.crit_fail_str+"\n"
 
 		if self.benefit_button.isChecked():
 			cost_benefit = "B"
@@ -92,11 +94,11 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 			cost_benefit = "C"
 		else:
 			self.isError = True
-			self.errorMsg += "* Please define criterion as a \"Benefit\" or \"Cost\n"
+			self.errorMsg += self.b_o_c_str+"\n"
 
 		if self.isError:
 			self.isError = False
-			QMessageBox.critical(self,"Error adding criteria",self.errorMsg)
+			QMessageBox.critical(self,self.crit_add_error,self.errorMsg)
 		else:
 			criteria_info = (str(criteria_description), str(current_tab_name), type_info, cost_benefit)
 			self.emit(SIGNAL("add_criteria_info_collected"), criteria_info)
@@ -111,3 +113,16 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
 		"""Processes clicking of Cancel button in dialog
 		"""
 		self.hide()
+        
+    def retranslate(self):
+        #Example self. = QApplicationpplication.translate("AddCriteriaDialog", "", "", QApplication.UnicodeUTF8)                
+        self.desc_str = QApplicationpplication.translate("AddCriteriaDialog", "* Please enter a description of the criterion", "", QApplication.UnicodeUTF8)                        
+        self.sel_crit_str = QApplicationpplication.translate("AddCriteriaDialog", "* Please select a criteria type (ratio, binary, ordinal) and enter the appropriate information", "", QApplication.UnicodeUTF8)                        
+        self.desc_ratio_str = QApplicationpplication.translate("AddCriteriaDialog", "* Please enter a description of the quantitative ratio value.", "", QApplication.UnicodeUTF8)                        
+        self.yes_desc_str = QApplicationpplication.translate("AddCriteriaDialog", "* Please enter a 'Yes' description", "", QApplication.UnicodeUTF8)                        
+        self.no_desc_str = QApplicationpplication.translate("AddCriteriaDialog", "* Please enter a 'No' description", "", QApplication.UnicodeUTF8)                        
+        self.delphos_str = QApplicationpplication.translate("AddCriteriaDialog", "Delphos", "", QApplication.UnicodeUTF8)                        
+        self.crit_fail_str = QApplicationpplication.translate("AddCriteriaDialog", "Criteria add failed unexpectedly.", "", QApplication.UnicodeUTF8)                        
+        self.b_o_c_str = QApplicationpplication.translate("AddCriteriaDialog", "* Please define criterion as a 'Benefit' or 'Cost'", "", QApplication.UnicodeUTF8)                       
+        self.crit_add_error = QApplicationpplication.translate("AddCriteriaDialog", "Error adding criteria", "", QApplication.UnicodeUTF8)                
+        

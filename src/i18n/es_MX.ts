@@ -233,6 +233,71 @@ p, li { white-space: pre-wrap; }
         <source>help_definir_los_criterios</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="ordinal_option_dialog.py" line="120"/>
+        <source>* Please enter a description of the criterion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ordinal_option_dialog.py" line="121"/>
+        <source>* Please select a criteria type (ratio, binary, ordinal) and enter the appropriate information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ordinal_option_dialog.py" line="122"/>
+        <source>* Please enter a description of the quantitative ratio value.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ordinal_option_dialog.py" line="123"/>
+        <source>* Please enter a &apos;Yes&apos; description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ordinal_option_dialog.py" line="124"/>
+        <source>* Please enter a &apos;No&apos; description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ordinal_option_dialog.py" line="125"/>
+        <source>Delphos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ordinal_option_dialog.py" line="126"/>
+        <source>Criteria add failed unexpectedly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ordinal_option_dialog.py" line="127"/>
+        <source>* Please define criterion as a &apos;Benefit&apos; or &apos;Cost&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ordinal_option_dialog.py" line="128"/>
+        <source>Error adding criteria</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="WeightMcaTableWidget.py" line="103"/>
+        <source>Weight Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="WeightMcaTableWidget.py" line="104"/>
+        <source>Error reading from row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="WeightMcaTableWidget.py" line="105"/>
+        <source>Missing input in row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="WeightMcaTableWidget.py" line="105"/>
+        <source>Expected a whole number but found</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddOrdinalOptionDialog</name>
@@ -1540,6 +1605,14 @@ opacity: 200;
     </message>
 </context>
 <context>
+    <name>OrdinalOptionTableWidget</name>
+    <message>
+        <location filename="OrdinalOptionTableWidget.py" line="60"/>
+        <source>You must first select an option</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ProjectView</name>
     <message>
         <location filename="project_view_ui.py" line="848"/>
@@ -1729,6 +1802,349 @@ opacity: 200;
     <message>
         <location filename="project_view_ui.py" line="890"/>
         <source>Analysis</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProjectViewDialog</name>
+    <message>
+        <location filename="project_view_dialog.py" line="708"/>
+        <source>Delphos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="709"/>
+        <source>Project data not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="710"/>
+        <source>Alternative Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="711"/>
+        <source>Please select or add an alternative first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="712"/>
+        <source>Remove Alternative Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="713"/>
+        <source>Failed to remove alternative and all associated input data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="714"/>
+        <source>Criteria Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="715"/>
+        <source>Error editing Criterion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="716"/>
+        <source>Error Removing Criterion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="717"/>
+        <source>Saving...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="718"/>
+        <source>Loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="720"/>
+        <source>Input Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="721"/>
+        <source>This file was generated by Delphos and should ONLY be used to input data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="722"/>
+        <source>Instructions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="723"/>
+        <source>1. Resize the spreadsheet columns as needed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="724"/>
+        <source>2. Find the matrix below.  You will see:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="725"/>
+        <source>Row 1: your alternatives</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="726"/>
+        <source>Column A: your criteria</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="727"/>
+        <source>Column B: summary of your criteria with options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="728"/>
+        <source>Any input data you provided</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="729"/>
+        <source>3. Now, enter or edit the cell values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="730"/>
+        <source>Ordinal/Binary: enter an option *number* from column B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="731"/>
+        <source>Ratio: enter a positive whole number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="732"/>
+        <source>4. When done, save this file as a CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="733"/>
+        <source>For Apple computers, save in &apos;CSV (Windows)&apos; format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="734"/>
+        <source>5. Finally, load this data back into Delphos:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="735"/>
+        <source>Click the Import button in the input data tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="736"/>
+        <source>If you change alternatives/criteria in Delphos, this template is no longer valid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="737"/>
+        <source>DO NOT alter criteria or alternatives in the CSV template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="738"/>
+        <source>DO NOT re-arrange rows/columns in the CSV template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="740"/>
+        <source>Failure to follow directions may produce unexpected results!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="741"/>
+        <source>CSV Template Exported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="742"/>
+        <source>A CSV file has been exported to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="743"/>
+        <source>Open this file in a spreadsheet program like OpenOffice Calc or MS Excel.  Follow the instructions at the bottom of the file.  Populate the template with data and import it back into Delphos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="744"/>
+        <source>Export Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="745"/>
+        <source>You did not select a CSV file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="746"/>
+        <source>Import Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="747"/>
+        <source>Missing or malformed values in CSV file, check all cells where input values are expected.  Make sure you are providing option *numbers* instead of option names.  See column B for option numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="748"/>
+        <source>Import Successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="749"/>
+        <source>CSV loaded successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="750"/>
+        <source>A bad value was found in the imported CSV file. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="751"/>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="752"/>
+        <source>Row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="754"/>
+        <source>Column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="758"/>
+        <source>Analysis Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="756"/>
+        <source>You must enter a name for this analysis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="757"/>
+        <source>Processing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="759"/>
+        <source>Division by zero</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="760"/>
+        <source>View Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="762"/>
+        <source>The analysis failed for unknown reasons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="763"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="764"/>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="765"/>
+        <source>Creation Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="766"/>
+        <source>Original Weight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="767"/>
+        <source>Standardized Weight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="768"/>
+        <source>Alternative</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="769"/>
+        <source>Original Input Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="770"/>
+        <source>Quantitative Impact Matrix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="771"/>
+        <source>Qualitative Impact Matrix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="772"/>
+        <source>Final Matrix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="773"/>
+        <source>Final Alternative Scores</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="774"/>
+        <source>Template Exported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="775"/>
+        <source>Analysis was successfully exported to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="776"/>
+        <source>Score (The higher the better)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="777"/>
+        <source>Are you sure you want to delete this analysis run?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="778"/>
+        <source>Delete Analysis Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="779"/>
+        <source>Save Input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="project_view_dialog.py" line="779"/>
+        <source>You have new or modified input values.  Do you want to save them now?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1964,6 +2380,19 @@ font-weight: bold;</source>
     <message>
         <location filename="select_type_ui.py" line="307"/>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StartDialog</name>
+    <message>
+        <location filename="start_dialog.py" line="58"/>
+        <source>Delphos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="start_dialog.py" line="58"/>
+        <source>Please choose whether you would like to start a new project or open an existing one</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

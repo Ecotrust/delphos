@@ -24,22 +24,22 @@ from PyQt4.QtGui import *
 from mca_rerun_ui import Ui_McaRerunDialog
 
 class McaRerunDialog(QDialog, Ui_McaRerunDialog):
-	"""Manages the add alternative dialog
-	"""
-	def __init__(self, parent):
-		QDialog.__init__(self, parent)
-		self.setupUi(self)
-		self.parent = parent	
-		QObject.connect(self.restart_analysis_button,QtCore.SIGNAL("clicked()"), self.process_input)
+    """Manages the add alternative dialog
+    """
+    def __init__(self, parent):
+        QDialog.__init__(self, parent)
+        self.setupUi(self)
+        self.parent = parent	
+        QObject.connect(self.restart_analysis_button,QtCore.SIGNAL("clicked()"), self.process_input)
         self.retranslate() #Translate the UI
         
-	def process_input(self):
-		name = self.analysis_name_edit.text()
-		if not name:
-			QMessageBox.critical(self,self.analysis_error, self.analysis_error_text)
-			return False;
-		description = self.analysis_description_edit.text()
-		self.emit(SIGNAL("mca_rerun_info_collected"), name, description)
+    def process_input(self):
+        name = self.analysis_name_edit.text()
+        if not name:
+            QMessageBox.critical(self,self.analysis_error, self.analysis_error_text)
+            return False;
+        description = self.analysis_description_edit.text()
+        self.emit(SIGNAL("mca_rerun_info_collected"), name, description)
         
     def retranslate(self):
        self.analysis_error = QApplication.translate("McaRerunDialog", "Analysis Error", "error name", QApplication.UnicodeUTF8)

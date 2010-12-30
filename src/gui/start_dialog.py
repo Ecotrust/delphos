@@ -33,6 +33,7 @@ class StartDialog(QDialog, Ui_StartDialog):
 		self.gui_manager = gui_manager
 		QObject.connect(self.start_button_box,QtCore.SIGNAL("accepted()"), self.process_accept)
 		QObject.connect(self.start_button_box,QtCore.SIGNAL("rejected()"), self.process_reject)
+        self.retranslate() #Translate the UI
 
 	def process_accept(self):
 		"""Processes clicking of OK button in startup dialog
@@ -44,10 +45,14 @@ class StartDialog(QDialog, Ui_StartDialog):
 			self.hide()
 			self.gui_manager.start_project_opening()
 		else:
-			QMessageBox.critical(self,"Delphos","Please choose whether you would like to start a new project or open an existing one")
+			QMessageBox.critical(self,self.delphos_str,self.open_or_new_str)
 
 	def process_reject(self):
 		"""Processes clicking of Cancel button in startup dialog
 		"""
 		self.hide()
-		
+
+    def retranslate(self):
+        #Example self. = QApplicationpplication.translate("AddCriteriaDialog", "", "", QApplication.UnicodeUTF8)		
+        self.delphos_str = QApplicationpplication.translate("StartDialog", "Delphos", "", QApplication.UnicodeUTF8)
+        self.open_or_new_str = QApplicationpplication.translate("StartDialog", "Please choose whether you would like to start a new project or open an existing one", "", QApplication.UnicodeUTF8)
