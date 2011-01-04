@@ -98,8 +98,8 @@ class WeightMcaTableWidget(QTableWidget):
         return input_weights
 
     def retranslate(self):
-        #Example self. = QApplicationpplication.translate("AddCriteriaDialog", "", "", QApplication.UnicodeUTF8)		        
-        self.weight_error = QApplicationpplication.translate("AddCriteriaDialog", "Weight Error", "", QApplication.UnicodeUTF8)        
-        self.read_error_str = QApplicationpplication.translate("AddCriteriaDialog", "Error reading from row", "", QApplication.UnicodeUTF8)        
-        self.missing_input_str = QApplicationpplication.translate("AddCriteriaDialog", "Missing input in row", "", QApplication.UnicodeUTF8)       
-        self.expected_str = QApplicationpplication.translate("AddCriteriaDialog", "Expected a whole number but found", "", QApplication.UnicodeUTF8)        
+        #Example self. = QApplication.translate("AddCriteriaDialog", "", "", QApplication.UnicodeUTF8)		        
+        self.weight_error = QApplication.translate("AddCriteriaDialog", "Weight Error", "", QApplication.UnicodeUTF8)        
+        self.read_error_str = QApplication.translate("AddCriteriaDialog", "Error reading from row", "", QApplication.UnicodeUTF8)        
+        self.missing_input_str = QApplication.translate("AddCriteriaDialog", "Missing input in row", "", QApplication.UnicodeUTF8)       
+        self.expected_str = QApplication.translate("AddCriteriaDialog", "Expected a whole number but found", "", QApplication.UnicodeUTF8)        

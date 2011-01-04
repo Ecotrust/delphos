@@ -318,14 +318,6 @@ QToolTip {
       <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>722</width>
-        <height>384</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Project Info</string>
       </attribute>
@@ -511,7 +503,7 @@ QToolTip {
                  </font>
                 </property>
                 <property name="text" >
-                 <string>Click buttons, like the one to the right, to get detailed help.</string>
+                 <string>Click buttons, like the one to the right, to get help.  You will see the documentation window on the left scroll to the appropriate section.</string>
                 </property>
                 <property name="wordWrap" >
                  <bool>true</bool>
@@ -567,14 +559,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="tab" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>722</width>
-        <height>384</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Alternatives</string>
       </attribute>
@@ -814,14 +798,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="tab_2" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>722</width>
-        <height>384</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Criteria</string>
       </attribute>
@@ -1033,14 +1009,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="tab_5" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>722</width>
-        <height>384</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Input Data</string>
       </attribute>
@@ -1198,14 +1166,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="tab_4" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>722</width>
-        <height>384</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Analysis</string>
       </attribute>
@@ -1581,6 +1541,11 @@ QToolTip {
  </widget>
  <customwidgets>
   <customwidget>
+   <class>HelpButton</class>
+   <extends>QPushButton</extends>
+   <header location="global" >HelpButton.h</header>
+  </customwidget>
+  <customwidget>
    <class>AlternativeTableWidget</class>
    <extends>QTableWidget</extends>
    <header>AlternativeTableWidget.h</header>
@@ -1589,11 +1554,6 @@ QToolTip {
    <class>CriteriaTableWidget</class>
    <extends>QTableWidget</extends>
    <header>CriteriaTableWidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>HelpButton</class>
-   <extends>QPushButton</extends>
-   <header location="global" >HelpButton.h</header>
   </customwidget>
   <customwidget>
    <class>McaRunsTableWidget</class>

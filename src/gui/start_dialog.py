@@ -53,6 +53,6 @@ class StartDialog(QDialog, Ui_StartDialog):
 		self.hide()
 
     def retranslate(self):
-        #Example self. = QApplicationpplication.translate("AddCriteriaDialog", "", "", QApplication.UnicodeUTF8)		
-        self.delphos_str = QApplicationpplication.translate("StartDialog", "Delphos", "", QApplication.UnicodeUTF8)
-        self.open_or_new_str = QApplicationpplication.translate("StartDialog", "Please choose whether you would like to start a new project or open an existing one", "", QApplication.UnicodeUTF8)
+        #Example self. = QApplication.translate("AddCriteriaDialog", "", "", QApplication.UnicodeUTF8)		
+        self.delphos_str = QApplication.translate("StartDialog", "Delphos", "", QApplication.UnicodeUTF8)
+        self.open_or_new_str = QApplication.translate("StartDialog", "Please choose whether you would like to start a new project or open an existing one", "", QApplication.UnicodeUTF8)

@@ -178,14 +178,6 @@ QToolTip {
       <number>0</number>
      </property>
      <widget class="QWidget" name="chart" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>476</width>
-        <height>340</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Chart</string>
       </attribute>
@@ -316,14 +308,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="alternatives" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>476</width>
-        <height>340</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Alternatives</string>
       </attribute>
@@ -388,14 +372,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="criteria" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>476</width>
-        <height>340</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Criteria</string>
       </attribute>
@@ -462,14 +438,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="input" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>476</width>
-        <height>340</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Input</string>
       </attribute>
@@ -513,14 +481,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="weights" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>476</width>
-        <height>340</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Weights</string>
       </attribute>
@@ -572,14 +532,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="results" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>476</width>
-        <height>340</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Results</string>
       </attribute>

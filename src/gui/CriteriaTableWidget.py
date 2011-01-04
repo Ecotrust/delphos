@@ -52,6 +52,8 @@ class CriteriaTableWidget(QTableWidget):
                 if type_val == 'Ordinal' or type_val == 'Binary':
                     for opt in criteria_recs[i][3]:
                         type_opt_val += u"("+opt[0]+u": "+unicode(opt[1])+u")"
+                else:
+                    type_opt_val += criteria_recs[i][3]
                 cb_val = unicode(criteria_recs[i][4])
                 
                 #print name_val

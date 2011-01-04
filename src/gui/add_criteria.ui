@@ -2,15 +2,21 @@
  <class>AddCriteriaDialog</class>
  <widget class="QDialog" name="AddCriteriaDialog" >
   <property name="windowModality" >
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
     <width>379</width>
-    <height>417</height>
+    <height>423</height>
    </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="font" >
    <font>
@@ -160,7 +166,7 @@ QToolTip {
 }
 </string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout" >
    <item>
     <widget class="QGroupBox" name="groupBox_2" >
      <property name="title" >
@@ -530,11 +536,12 @@ QToolTip {
         </spacer>
        </item>
       </layout>
+      <zorder>add_criteria_box</zorder>
      </widget>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" >
+    <layout class="QHBoxLayout" name="horizontalLayout" >
      <item>
       <spacer>
        <property name="orientation" >
@@ -542,14 +549,26 @@ QToolTip {
        </property>
        <property name="sizeHint" stdset="0" >
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>152</width>
+         <height>26</height>
         </size>
        </property>
       </spacer>
      </item>
      <item>
       <widget class="HelpButton" name="help_define_criteria" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="MinimumExpanding" hsizetype="Minimum" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize" >
+        <size>
+         <width>37</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="accessibleName" >
         <string/>
        </property>
@@ -576,6 +595,12 @@ QToolTip {
      </item>
      <item>
       <widget class="QDialogButtonBox" name="add_criteria_box" >
+       <property name="minimumSize" >
+        <size>
+         <width>0</width>
+         <height>26</height>
+        </size>
+       </property>
        <property name="font" >
         <font>
          <family>arial</family>

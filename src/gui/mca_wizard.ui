@@ -2,7 +2,7 @@
  <class>McaWizard</class>
  <widget class="QWidget" name="McaWizard" >
   <property name="windowModality" >
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry" >
    <rect>
@@ -173,14 +173,6 @@ QToolTip {
       <number>0</number>
      </property>
      <widget class="QWidget" name="select_altern_page" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>747</width>
-        <height>562</height>
-       </rect>
-      </property>
       <layout class="QVBoxLayout" >
        <item>
         <layout class="QHBoxLayout" >
@@ -408,14 +400,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="select_criteria_page" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>100</width>
-        <height>30</height>
-       </rect>
-      </property>
       <layout class="QVBoxLayout" >
        <item>
         <layout class="QHBoxLayout" >
@@ -607,14 +591,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="input_data_page" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>100</width>
-        <height>30</height>
-       </rect>
-      </property>
       <layout class="QVBoxLayout" >
        <item>
         <layout class="QHBoxLayout" >
@@ -757,14 +733,6 @@ QToolTip {
       </layout>
      </widget>
      <widget class="QWidget" name="weight_page" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>100</width>
-        <height>30</height>
-       </rect>
-      </property>
       <layout class="QVBoxLayout" >
        <item>
         <layout class="QHBoxLayout" >

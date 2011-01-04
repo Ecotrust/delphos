@@ -2,13 +2,13 @@
  <class>ExportAnalysisDialog</class>
  <widget class="QWidget" name="ExportAnalysisDialog" >
   <property name="windowModality" >
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>339</width>
+    <width>371</width>
     <height>285</height>
    </rect>
   </property>
@@ -163,9 +163,6 @@ QToolTip {
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QGroupBox" name="groupBox_4" >
-     <property name="windowModality" >
-      <enum>Qt::NonModal</enum>
-     </property>
      <property name="font" >
       <font>
        <family>arial</family>
@@ -226,7 +223,9 @@ QToolTip {
          </font>
         </property>
         <property name="text" >
-         <string>* Note, this will export a comma-separated-value (CSV) file in the 'utf-8' encoding.  This encoding allows for non-latin characters such as (ñ, ä, 字, etc.).  When opening the file in OpenOffice Calc, Notepad, etc. be sure to specify the 'utf-8' encoding.  If you use MS Excel you will need to open the CSV as a text file by clicking File->Open->Files of type: Text Files.  Specify the 'utf-8' encoding and 'comma' delimiter when asked.</string>
+         <string>* Note, this feature will export a comma-separated-value (CSV) file that supports characters from different languages such as (ñ, ä, 字, etc.).  If your alternatives or criteria are strictly English characters you can ignore the next instruction.
+
+ *If you do use non-english characters, when opening the exported CSV file in Excel, OpenOffice, Notepad, etc. be sure to specify the 'utf-8' encoding if it asks.  If you use MS Excel, it will not ask and you will need to open the CSV as a text file by clicking File->Open->Files of type: Text Files.  Specify the 'utf-8' encoding and 'comma' delimiter when asked.</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

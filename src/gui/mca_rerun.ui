@@ -2,14 +2,14 @@
  <class>McaRerunDialog</class>
  <widget class="QWidget" name="McaRerunDialog" >
   <property name="windowModality" >
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>296</width>
-    <height>151</height>
+    <width>338</width>
+    <height>169</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -155,7 +155,7 @@ QToolTip {
 }
 </string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout" >
    <item>
     <widget class="QGroupBox" name="groupBox_4" >
      <property name="font" >
@@ -164,9 +164,25 @@ QToolTip {
       </font>
      </property>
      <property name="title" >
-      <string>Please enter new information:</string>
+      <string/>
      </property>
      <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QLabel" name="label" >
+        <property name="maximumSize" >
+         <size>
+          <width>300</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text" >
+         <string>This will re-run the selected analysis and allow you to change some of the parameters. Please enter a new name and description.</string>
+        </property>
+        <property name="wordWrap" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
       <item>
        <layout class="QHBoxLayout" >
         <item>

@@ -99,6 +99,8 @@ class GuiManager(QObject):
         
         #Flag indicating whether dock_doc widget is currently full screen
         self.dock_doc_is_full_screen = False
+        
+        self.retranslate() #Translate the UI
 
     def start_gui(self):
         """Displays the main window and additional startup dialog

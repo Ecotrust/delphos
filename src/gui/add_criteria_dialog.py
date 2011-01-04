@@ -133,7 +133,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
         else:
             self.isError = True
             self.errorMsg += self.b_or_c_error + '\n'
-
+            
         if current_tab_name == "ratio_tab":
             self.new_crit_type = 'Ratio'
             ratio_description = self.ratio_description_edit.text()
@@ -183,7 +183,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
             self.isError = False
             QMessageBox.critical(self,self.crit_box_error,self.errorMsg)
         else:
-            criteria_info = [unicode(criteria_description), unicode(new_crit_type), type_info, cost_benefit]
+            criteria_info = [unicode(criteria_description), unicode(self.new_crit_type), type_info, cost_benefit]
             
             if self.editing:
                 self.emit(SIGNAL("criteria_changed"), self.id, criteria_info)
@@ -191,7 +191,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
                 self.emit(SIGNAL("add_criteria_info_collected"), criteria_info)
 
     def start_add_ordinal_option(self):
-        self.add_ordinal_option_dialog = AddOrdinalOptionDialog(self.gui_manager, self)
+        self.add_ordinal_option_dialog = AddOrdinalOptionDialog(self.gui_manager, self.gui_manager.win)
         self.connect(self.add_ordinal_option_dialog, SIGNAL("ordinal_option_info_collected"), self.finish_add_ordinal_option)
         self.add_ordinal_option_dialog.show()
     
@@ -256,7 +256,7 @@ class AddCriteriaDialog(QDialog, Ui_AddCriteriaDialog):
         self.hide()             
 
     def retranslate(self):
-        #Example self. = QApplicationpplication.translate("AddCriteriaDialog", "english_text", "description", QApplication.UnicodeUTF8)        
+        #Example self. = QApplication.translate("AddCriteriaDialog", "english_text", "description", QApplication.UnicodeUTF8)        
         self.desc_error = QApplication.translate("AddCriteriaDialog", "* Please enter a description of the criterion.", "Error message", QApplication.UnicodeUTF8)        
         self.crit_type_error = QApplication.translate("AddCriteriaDialog", "* Please select a criteria type (ratio, binary, ordinal) and enter the appropriate information", "Error message", QApplication.UnicodeUTF8)
         self.b_or_c_error = QApplication.translate("AddCriteriaDialog", "* Please define criterion as a 'Benefit' or 'Cost'", "Error message", QApplication.UnicodeUTF8)

@@ -128,10 +128,10 @@ class CreateProjectDialog(QDialog, Ui_CreateProjectDialog):
         self.hide()
         
     def retranslate(self):
-        #Example self. = QApplicationpplication.translate("CreateProjectDialog", "", "Error", QApplication.UnicodeUTF8)                            
-        self.file_error = QApplicationpplication.translate("CreateProjectDialog", "File Error", "Error", QApplication.UnicodeUTF8)                                    
-        self.overwrite_error = QApplicationpplication.translate("CreateProjectDialog", "Error while overwriting the existing project ", "Error", QApplication.UnicodeUTF8)                                    
-        self.com_or_sites_error = QApplicationpplication.translate("CreateProjectDialog", "Please select 'Communities' or 'Sites'", "Error", QApplication.UnicodeUTF8)                                    
-        self.fish_or_mpa_error = QApplicationpplication.translate("CreateProjectDialog", "Please select 'Fisheries' or 'Marine Protected Areas", "Error", QApplication.UnicodeUTF8)                                   
-        self.proj_path_error = QApplicationpplication.translate("CreateProjectDialog", "Please enter a project path and name by clicking the browse button", "Error", QApplication.UnicodeUTF8)                            
+        #Example self. = QApplication.translate("CreateProjectDialog", "", "Error", QApplication.UnicodeUTF8)                            
+        self.file_error = QApplication.translate("CreateProjectDialog", "File Error", "Error", QApplication.UnicodeUTF8)                                    
+        self.overwrite_error = QApplication.translate("CreateProjectDialog", "Error while overwriting the existing project ", "Error", QApplication.UnicodeUTF8)                                    
+        self.com_or_sites_error = QApplication.translate("CreateProjectDialog", "Please select 'Communities' or 'Sites'", "Error", QApplication.UnicodeUTF8)                                    
+        self.fish_or_mpa_error = QApplication.translate("CreateProjectDialog", "Please select 'Fisheries' or 'Marine Protected Areas", "Error", QApplication.UnicodeUTF8)                                   
+        self.proj_path_error = QApplication.translate("CreateProjectDialog", "Please enter a project path and name by clicking the browse button", "Error", QApplication.UnicodeUTF8)                            
         

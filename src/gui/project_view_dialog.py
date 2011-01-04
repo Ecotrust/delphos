@@ -59,7 +59,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 
         self.default_template_extension = "csv"
         self.output_encoding = 'latin-1'
-
+        
         QObject.connect(self.add_altern_button,QtCore.SIGNAL("clicked()"), self.start_add_alternative)
         QObject.connect(self.remove_altern_button,QtCore.SIGNAL("clicked()"), self.start_remove_alternative)
         QObject.connect(self.add_criteria_button,QtCore.SIGNAL("clicked()"), self.start_add_criteria)
@@ -71,6 +71,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QObject.connect(self.delete_analysis_button,QtCore.SIGNAL("clicked()"), self.start_delete_analysis)
         QObject.connect(self.new_analysis_button,QtCore.SIGNAL("clicked()"), self.start_new_analysis)
 
+        QObject.connect(self.help_test,QtCore.SIGNAL("clicked()"), self.help_test_click)        
         self.connect(self.help_define_alternatives, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_define_criteria, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
         self.connect(self.help_input_data, SIGNAL("help_button_clicked"), self.gui_manager.win.process_help_click)
@@ -87,6 +88,8 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         QObject.connect(self.export_button,QtCore.SIGNAL("clicked()"), self.process_template_export)
         QObject.connect(self.import_button,QtCore.SIGNAL("clicked()"), self.process_template_import)
 
+        self.retranslate() #Translate the UI        
+        
         self.load_project_data_tab()
         
         all_alternatives = self.project.get_all_alternatives()
@@ -99,10 +102,11 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.load_data_input()
         
         #self.input_table.load(all_alternatives, all_criteria, all_input)
-        self.mca_runs_table.load(self.project.get_mca_runs_basic())
-        
-        self.retranslate() #Translate the UI
+        self.mca_runs_table.load(self.project.get_mca_runs_basic())        
 
+    def help_test_click(self):
+        QMessageBox.information(self,self.help_clicked_str, self.help_success_str)
+        
     def load_project_data_tab(self):
         try:
             (project_name, project_type, project_created) = self.project.get_project_data()
@@ -120,7 +124,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         """Create dialog for adding an alternative
         """
         #Load add alternative dialog form
-        self.add_altern_dialog = AddAlternDialog(self.gui_manager, self)
+        self.add_altern_dialog = AddAlternDialog(self.gui_manager, self.gui_manager.win)
         #Register handler for signal that alternative info has been collected and can be added
         self.connect(self.add_altern_dialog, SIGNAL("add_alternative_info_collected"), self.finish_add_alternative)
         self.add_altern_dialog.show()
@@ -158,7 +162,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         """Create dialog for adding criteria
         """
         #Load add criteria dialog form
-        self.add_criteria_dialog = AddCriteriaDialog(self.gui_manager, self)
+        self.add_criteria_dialog = AddCriteriaDialog(self.gui_manager, self.gui_manager.win)
         #Register handler for signal that alternative info has been collected and can be added
         self.connect(self.add_criteria_dialog, SIGNAL("add_criteria_info_collected"), self.finish_add_criteria)
         self.add_criteria_dialog.show()
@@ -455,9 +459,9 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
                 if not cur_input_data:
                     self.gui_manager.clear_status_bar()
                     return False;
-                self.mca_wizard = McaWizard(self.gui_manager, self, self.project, global_input_data=cur_input_data)
+                self.mca_wizard = McaWizard(self.gui_manager, self.gui_manager.win, self.project, global_input_data=cur_input_data)
             else:
-                self.mca_wizard = McaWizard(self.gui_manager, self, self.project)
+                self.mca_wizard = McaWizard(self.gui_manager, self.gui_manager.win, self.project)
                 
             self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
             self.mca_wizard.show()
@@ -503,7 +507,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         except InputError, e:
             QMessageBox.critical(self,self.analysis_error, str(e.value))
         else:            
-            self.rerun_dialog = McaRerunDialog(self)
+            self.rerun_dialog = McaRerunDialog(self.gui_manager.win)
             self.connect(self.rerun_dialog, SIGNAL("mca_rerun_info_collected"), self.start_rerun_analysis2)
             self.rerun_dialog.show()
     
@@ -512,7 +516,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
         self.analysis_description = description
         self.rerun_dialog.hide()
         self.rerun_dialog.deleteLater()
-        self.mca_wizard = McaWizard(self.gui_manager, self, self.project, self.mca_data)
+        self.mca_wizard = McaWizard(self.gui_manager, self.gui_manager.win, self.project, self.mca_data)
         self.connect(self.mca_wizard, SIGNAL("mca_analysis_info_collected"), self.finish_new_analysis)
         self.mca_wizard.show()    
     
@@ -684,7 +688,7 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
     ################################# General ##############################
         
     def process_current_change(self, index):
-        """Loads the appropriate widget when the next button is clicked
+        """Loads the appropriate tab when it's first clicked
         """
         #if tab was 3
         if self.cur_tab == 3:
@@ -695,85 +699,123 @@ class ProjectViewDialog(QDialog, Ui_ProjectView):
 
         #if new tab is 3
         if index is 3:
+            #If there are no alternatives then user should not be able to input data
+            num_alterns = len(self.project.get_all_alternatives())
+            if num_alterns == 0:
+                self.tabProject.setCurrentIndex(self.cur_tab)
+                QMessageBox.critical(self,self.no_altern_error, self.no_altern_error_msg)
+                return
+            num_crits = len(self.project.get_all_criteria())
+            if num_crits == 0:
+                self.tabProject.setCurrentIndex(self.cur_tab)
+                QMessageBox.critical(self,self.no_crits_error, self.no_crits_error_msg)
+                return                
+
+            #Make sure data input tab is loaded
             if self.cur_tab > 3 and not self.input_table.loaded:
                 self.load_data_input()
             if self.cur_tab < 3:
                 self.load_data_input()
+
+        if index is 4:
+            #Must have at least two alternatives and one criterion to do analysis
+            num_alterns = len(self.project.get_all_alternatives())
+            if num_alterns < 2:
+                self.tabProject.setCurrentIndex(self.cur_tab)
+                QMessageBox.critical(self,self.anal_altern_error, self.anal_altern_error_msg)
+                return
+            num_crits = len(self.project.get_all_criteria())
+            if num_crits == 0:
+                self.tabProject.setCurrentIndex(self.cur_tab)
+                QMessageBox.critical(self,self.anal_crit_error, self.anal_crit_error_msg)
+                return          
                 
         self.cur_tab = index
 
     def retranslate(self):
-        #Example self. = QApplicationpplication.translate("ProjectViewDialog", "", "", QApplication.UnicodeUTF8)                                    
-        self.delphos_str = QApplicationpplication.translate("ProjectViewDialog", "Delphos", "", QApplication.UnicodeUTF8)        
-        self.data_error_str = QApplicationpplication.translate("ProjectViewDialog", "Project data not found", "", QApplication.UnicodeUTF8)        
-        self.alt_error = QApplicationpplication.translate("ProjectViewDialog", "Alternative Error", "", QApplication.UnicodeUTF8)        
-        self.select_alt_str = QApplicationpplication.translate("ProjectViewDialog", "Please select or add an alternative first.", "", QApplication.UnicodeUTF8)        
-        self.rem_alt_error = QApplicationpplication.translate("ProjectViewDialog", "Remove Alternative Error", "", QApplication.UnicodeUTF8)        
-        self.rem_alt_error_str = QApplicationpplication.translate("ProjectViewDialog", "Failed to remove alternative and all associated input data", "", QApplication.UnicodeUTF8)        
-        self.crit_error = QApplicationpplication.translate("ProjectViewDialog", "Criteria Error", "", QApplication.UnicodeUTF8)        
-        self.crit_edit_error = QApplicationpplication.translate("ProjectViewDialog", "Error editing Criterion", "", QApplication.UnicodeUTF8)        
-        self.crit_remove_error = QApplicationpplication.translate("ProjectViewDialog", "Error Removing Criterion", "", QApplication.UnicodeUTF8)        
-        self.save_str = QApplicationpplication.translate("ProjectViewDialog", "Saving...", "", QApplication.UnicodeUTF8)        
-        self.load_str = QApplicationpplication.translate("ProjectViewDialog", 'Loading...', "", QApplication.UnicodeUTF8)        
-        self.input_error = QApplicationpplication.translate("ProjectViewDialog", "Input Error", "", QApplication.UnicodeUTF8)        
-        
-        self.exp_1 = QApplicationpplication.translate("ProjectViewDialog", "This file was generated by Delphos and should ONLY be used to input data", "", QApplication.UnicodeUTF8)        
-        self.exp_2 = QApplicationpplication.translate("ProjectViewDialog", "Instructions", "", QApplication.UnicodeUTF8)        
-        self.exp_3 = QApplicationpplication.translate("ProjectViewDialog", "1. Resize the spreadsheet columns as needed", "", QApplication.UnicodeUTF8)        
-        self.exp_4 = QApplicationpplication.translate("ProjectViewDialog", "2. Find the matrix below.  You will see:", "", QApplication.UnicodeUTF8)        
-        self.exp_5 = QApplicationpplication.translate("ProjectViewDialog", "Row 1: your alternatives", "", QApplication.UnicodeUTF8)        
-        self.exp_6 = QApplicationpplication.translate("ProjectViewDialog", "Column A: your criteria", "", QApplication.UnicodeUTF8)        
-        self.exp_7 = QApplicationpplication.translate("ProjectViewDialog", "Column B: summary of your criteria with options", "", QApplication.UnicodeUTF8)        
-        self.exp_8 = QApplicationpplication.translate("ProjectViewDialog", "Any input data you provided", "", QApplication.UnicodeUTF8)        
-        self.exp_9 = QApplicationpplication.translate("ProjectViewDialog", "3. Now, enter or edit the cell values", "", QApplication.UnicodeUTF8)        
-        self.exp_10 = QApplicationpplication.translate("ProjectViewDialog", "Ordinal/Binary: enter an option *number* from column B", "", QApplication.UnicodeUTF8)        
-        self.exp_11 = QApplicationpplication.translate("ProjectViewDialog", "Ratio: enter a positive whole number", "", QApplication.UnicodeUTF8)        
-        self.exp_12 = QApplicationpplication.translate("ProjectViewDialog", "4. When done, save this file as a CSV", "", QApplication.UnicodeUTF8)        
-        self.exp_13 = QApplicationpplication.translate("ProjectViewDialog", "For Apple computers, save in 'CSV (Windows)' format", "", QApplication.UnicodeUTF8)        
-        self.exp_14 = QApplicationpplication.translate("ProjectViewDialog", "5. Finally, load this data back into Delphos:", "", QApplication.UnicodeUTF8)        
-        self.exp_15 = QApplicationpplication.translate("ProjectViewDialog", "Click the Import button in the input data tab", "", QApplication.UnicodeUTF8)        
-        self.exp_16 = QApplicationpplication.translate("ProjectViewDialog", "If you change alternatives/criteria in Delphos, this template is no longer valid", "", QApplication.UnicodeUTF8)        
-        self.exp_17 = QApplicationpplication.translate("ProjectViewDialog", "DO NOT alter criteria or alternatives in the CSV template", "", QApplication.UnicodeUTF8)        
-        self.exp_18 = QApplicationpplication.translate("ProjectViewDialog", "DO NOT re-arrange rows/columns in the CSV template", "", QApplication.UnicodeUTF8)        
-        self.exp_19 = QApplicationpplication.translate("ProjectViewDialog", "Failure to follow directions may produce unexpected results!", "", QApplication.UnicodeUTF8)        
-        
-        self.csv_exported = QApplicationpplication.translate("ProjectViewDialog", "CSV Template Exported", "", QApplication.UnicodeUTF8)       
-        self.csv_loc_1 = QApplicationpplication.translate("ProjectViewDialog", "A CSV file has been exported to ", "", QApplication.UnicodeUTF8)        
-        self.csv_loc_2 = QApplicationpplication.translate("ProjectViewDialog", "Open this file in a spreadsheet program like OpenOffice Calc or MS Excel.  Follow the instructions at the bottom of the file.  Populate the template with data and import it back into Delphos", "", QApplication.UnicodeUTF8)        
-        self.export_error = QApplicationpplication.translate("ProjectViewDialog", "Export Error", "", QApplication.UnicodeUTF8)        
-        self.not_csv_file = QApplicationpplication.translate("ProjectViewDialog", "You did not select a CSV file", "", QApplication.UnicodeUTF8)        
-        self.import_error = QApplicationpplication.translate("ProjectViewDialog", "Import Error", "", QApplication.UnicodeUTF8)        
-        self.import_error_msg = QApplicationpplication.translate("ProjectViewDialog", "Missing or malformed values in CSV file, check all cells where input values are expected.  Make sure you are providing option *numbers* instead of option names.  See column B for option numbers", "", QApplication.UnicodeUTF8)        
-        self.import_succes = QApplicationpplication.translate("ProjectViewDialog", "Import Successful", "", QApplication.UnicodeUTF8)        
-        self.import_success_msg = QApplicationpplication.translate("ProjectViewDialog", "CSV loaded successfully", "", QApplication.UnicodeUTF8)        
-        self.bad_value = QApplicationpplication.translate("ProjectViewDialog", "A bad value was found in the imported CSV file. ", "", QApplication.UnicodeUTF8)        
-        self.value_str = QApplicationpplication.translate("ProjectViewDialog", "Value", "", QApplication.UnicodeUTF8)        
-        self.row_str = QApplicationpplication.translate("ProjectViewDialog", "Row", "", QApplication.UnicodeUTF8)        
-        self.col_str = QApplicationpplication.translate("ProjectViewDialog", "Column", "", QApplication.UnicodeUTF8)       
-        
-        self.anal_error = QApplicationpplication.translate("ProjectViewDialog", "Analysis Error", "", QApplication.UnicodeUTF8)        
-        self.anal_error_str = QApplicationpplication.translate("ProjectViewDialog", "You must enter a name for this analysis", "", QApplication.UnicodeUTF8)        
-        self.process_str = QApplicationpplication.translate("ProjectViewDialog", "Processing...", "", QApplication.UnicodeUTF8)        
-        self.analysis_error = QApplicationpplication.translate("ProjectViewDialog", "Analysis Error", "", QApplication.UnicodeUTF8)        
-        self.div_zero_error = QApplicationpplication.translate("ProjectViewDialog", "Division by zero", "", QApplication.UnicodeUTF8)        
-        self.view_error = QApplicationpplication.translate("ProjectViewDialog", "View Error", "", QApplication.UnicodeUTF8)        
-        self.analysis_error_str = QApplicationpplication.translate("ProjectViewDialog", "The analysis failed for unknown reasons", "", QApplication.UnicodeUTF8)        
+        #Example self. = QApplication.translate("ProjectViewDialog", "", "", QApplication.UnicodeUTF8)                                    
+        self.help_clicked_str = QApplication.translate("ProjectViewDialog", 'Help Button Clicked', "", QApplication.UnicodeUTF8)                
+        self.help_success_str = QApplication.translate("ProjectViewDialog", 'You successfully clicked the example help button', "", QApplication.UnicodeUTF8)                
 
-        self.name_str = QApplicationpplication.translate("ProjectViewDialog", "Name", "", QApplication.UnicodeUTF8)        
-        self.desc_str = QApplicationpplication.translate("ProjectViewDialog", "Description", "", QApplication.UnicodeUTF8)        
-        self.create_str = QApplicationpplication.translate("ProjectViewDialog", "Creation Date", "", QApplication.UnicodeUTF8)        
-        self.orig_weight_str = QApplicationpplication.translate("ProjectViewDialog", "Original Weight", "", QApplication.UnicodeUTF8)        
-        self.std_weight_str = QApplicationpplication.translate("ProjectViewDialog", "Standardized Weight", "", QApplication.UnicodeUTF8)        
-        self.altern_str = QApplicationpplication.translate("ProjectViewDialog", "Alternative",  "", QApplication.UnicodeUTF8)       
-        self.orig_data_str = QApplicationpplication.translate("ProjectViewDialog", "Original Input Data", "", QApplication.UnicodeUTF8)        
-        self.quant_str = QApplicationpplication.translate("ProjectViewDialog", "Quantitative Impact Matrix", "", QApplication.UnicodeUTF8)        
-        self.qual_str = QApplicationpplication.translate("ProjectViewDialog", "Qualitative Impact Matrix", "", QApplication.UnicodeUTF8)        
-        self.final_str = QApplicationpplication.translate("ProjectViewDialog", "Final Matrix", "", QApplication.UnicodeUTF8)        
-        self.final_alt_str = QApplicationpplication.translate("ProjectViewDialog", "Final Alternative Scores", "", QApplication.UnicodeUTF8)        
-        self.tpl_export_str = QApplicationpplication.translate("ProjectViewDialog", "Template Exported", "", QApplication.UnicodeUTF8)        
-        self.export_success = QApplicationpplication.translate("ProjectViewDialog", "Analysis was successfully exported to", "", QApplication.UnicodeUTF8)        
-        self.score_str = QApplicationpplication.translate("ProjectViewDialog", "Score (The higher the better)", "", QApplication.UnicodeUTF8)        
-        self.del_anal_str = QApplicationpplication.translate("ProjectViewDialog", "Are you sure you want to delete this analysis run?", "", QApplication.UnicodeUTF8)        
-        self.del_anal_error = QApplicationpplication.translate("ProjectViewDialog", "Delete Analysis Error", "", QApplication.UnicodeUTF8)        
-        self.save_input_str = QApplicationpplication.translate("ProjectViewDialog", "Save Input", "", QApplication.UnicodeUTF8)        
-        self.save_q_str = QApplicationpplication.translate("ProjectViewDialog", "You have new or modified input values.  Do you want to save them now?", "", QApplication.UnicodeUTF8)      
+        self.delphos_str = QApplication.translate("ProjectViewDialog", "Delphos", "", QApplication.UnicodeUTF8)        
+        self.data_error_str = QApplication.translate("ProjectViewDialog", "Project data not found", "", QApplication.UnicodeUTF8)        
+        self.alt_error = QApplication.translate("ProjectViewDialog", "Alternative Error", "", QApplication.UnicodeUTF8)        
+        self.select_alt_str = QApplication.translate("ProjectViewDialog", "Please select or add an alternative first.", "", QApplication.UnicodeUTF8)        
+        self.rem_alt_error = QApplication.translate("ProjectViewDialog", "Remove Alternative Error", "", QApplication.UnicodeUTF8)        
+        self.rem_alt_error_str = QApplication.translate("ProjectViewDialog", "Failed to remove alternative and all associated input data", "", QApplication.UnicodeUTF8)        
+        self.crit_error = QApplication.translate("ProjectViewDialog", "Criteria Error", "", QApplication.UnicodeUTF8)        
+        self.crit_edit_error = QApplication.translate("ProjectViewDialog", "Error editing Criterion", "", QApplication.UnicodeUTF8)        
+        self.crit_remove_error = QApplication.translate("ProjectViewDialog", "Error Removing Criterion", "", QApplication.UnicodeUTF8)        
+        self.save_str = QApplication.translate("ProjectViewDialog", "Saving...", "", QApplication.UnicodeUTF8)        
+        self.load_str = QApplication.translate("ProjectViewDialog", 'Loading...', "", QApplication.UnicodeUTF8)        
+        self.input_error = QApplication.translate("ProjectViewDialog", "Input Error", "", QApplication.UnicodeUTF8)        
+        
+        self.exp_1 = QApplication.translate("ProjectViewDialog", "This file was generated by Delphos and should ONLY be used to input data", "", QApplication.UnicodeUTF8)        
+        self.exp_2 = QApplication.translate("ProjectViewDialog", "Instructions", "", QApplication.UnicodeUTF8)        
+        self.exp_3 = QApplication.translate("ProjectViewDialog", "1. Resize the spreadsheet columns as needed", "", QApplication.UnicodeUTF8)        
+        self.exp_4 = QApplication.translate("ProjectViewDialog", "2. Find the matrix below.  You will see:", "", QApplication.UnicodeUTF8)        
+        self.exp_5 = QApplication.translate("ProjectViewDialog", "Row 1: your alternatives", "", QApplication.UnicodeUTF8)        
+        self.exp_6 = QApplication.translate("ProjectViewDialog", "Column A: your criteria", "", QApplication.UnicodeUTF8)        
+        self.exp_7 = QApplication.translate("ProjectViewDialog", "Column B: summary of your criteria with options", "", QApplication.UnicodeUTF8)        
+        self.exp_8 = QApplication.translate("ProjectViewDialog", "Any input data you provided", "", QApplication.UnicodeUTF8)        
+        self.exp_9 = QApplication.translate("ProjectViewDialog", "3. Now, enter or edit the cell values", "", QApplication.UnicodeUTF8)        
+        self.exp_10 = QApplication.translate("ProjectViewDialog", "Ordinal/Binary: enter an option *number* from column B", "", QApplication.UnicodeUTF8)        
+        self.exp_11 = QApplication.translate("ProjectViewDialog", "Ratio: enter a positive whole number", "", QApplication.UnicodeUTF8)        
+        self.exp_12 = QApplication.translate("ProjectViewDialog", "4. When done, save this file as a CSV", "", QApplication.UnicodeUTF8)        
+        self.exp_13 = QApplication.translate("ProjectViewDialog", "For Apple computers, save in 'CSV (Windows)' format", "", QApplication.UnicodeUTF8)        
+        self.exp_14 = QApplication.translate("ProjectViewDialog", "5. Finally, load this data back into Delphos:", "", QApplication.UnicodeUTF8)        
+        self.exp_15 = QApplication.translate("ProjectViewDialog", "Click the Import button in the input data tab", "", QApplication.UnicodeUTF8)        
+        self.exp_16 = QApplication.translate("ProjectViewDialog", "If you change alternatives/criteria in Delphos, this template is no longer valid", "", QApplication.UnicodeUTF8)        
+        self.exp_17 = QApplication.translate("ProjectViewDialog", "DO NOT alter criteria or alternatives in the CSV template", "", QApplication.UnicodeUTF8)        
+        self.exp_18 = QApplication.translate("ProjectViewDialog", "DO NOT re-arrange rows/columns in the CSV template", "", QApplication.UnicodeUTF8)        
+        self.exp_19 = QApplication.translate("ProjectViewDialog", "Failure to follow directions may produce unexpected results!", "", QApplication.UnicodeUTF8)        
+        
+        self.csv_exported = QApplication.translate("ProjectViewDialog", "CSV Template Exported", "", QApplication.UnicodeUTF8)       
+        self.csv_loc_1 = QApplication.translate("ProjectViewDialog", "A CSV file has been exported to ", "", QApplication.UnicodeUTF8)        
+        self.csv_loc_2 = QApplication.translate("ProjectViewDialog", "Open this file in a spreadsheet program like OpenOffice Calc or MS Excel.  Follow the instructions at the bottom of the file.  Populate the template with data and import it back into Delphos", "", QApplication.UnicodeUTF8)        
+        self.export_error = QApplication.translate("ProjectViewDialog", "Export Error", "", QApplication.UnicodeUTF8)        
+        self.not_csv_file = QApplication.translate("ProjectViewDialog", "You did not select a CSV file", "", QApplication.UnicodeUTF8)        
+        self.import_error = QApplication.translate("ProjectViewDialog", "Import Error", "", QApplication.UnicodeUTF8)        
+        self.import_error_msg = QApplication.translate("ProjectViewDialog", "Missing or malformed values in CSV file, check all cells where input values are expected.  Make sure you are providing option *numbers* instead of option names.  See column B for option numbers", "", QApplication.UnicodeUTF8)        
+        self.import_succes = QApplication.translate("ProjectViewDialog", "Import Successful", "", QApplication.UnicodeUTF8)        
+        self.import_success_msg = QApplication.translate("ProjectViewDialog", "CSV loaded successfully", "", QApplication.UnicodeUTF8)        
+        self.bad_value = QApplication.translate("ProjectViewDialog", "A bad value was found in the imported CSV file. ", "", QApplication.UnicodeUTF8)        
+        self.value_str = QApplication.translate("ProjectViewDialog", "Value", "", QApplication.UnicodeUTF8)        
+        self.row_str = QApplication.translate("ProjectViewDialog", "Row", "", QApplication.UnicodeUTF8)        
+        self.col_str = QApplication.translate("ProjectViewDialog", "Column", "", QApplication.UnicodeUTF8)       
+        
+        self.anal_error = QApplication.translate("ProjectViewDialog", "Analysis Error", "", QApplication.UnicodeUTF8)        
+        self.anal_error_str = QApplication.translate("ProjectViewDialog", "You must enter a name for this analysis", "", QApplication.UnicodeUTF8)        
+        self.process_str = QApplication.translate("ProjectViewDialog", "Processing...", "", QApplication.UnicodeUTF8)        
+        self.analysis_error = QApplication.translate("ProjectViewDialog", "Analysis Error", "", QApplication.UnicodeUTF8)        
+        self.div_zero_error = QApplication.translate("ProjectViewDialog", "Division by zero", "", QApplication.UnicodeUTF8)        
+        self.view_error = QApplication.translate("ProjectViewDialog", "View Error", "", QApplication.UnicodeUTF8)        
+        self.analysis_error_str = QApplication.translate("ProjectViewDialog", "The analysis failed for unknown reasons", "", QApplication.UnicodeUTF8)        
+
+        self.name_str = QApplication.translate("ProjectViewDialog", "Name", "", QApplication.UnicodeUTF8)        
+        self.desc_str = QApplication.translate("ProjectViewDialog", "Description", "", QApplication.UnicodeUTF8)        
+        self.create_str = QApplication.translate("ProjectViewDialog", "Creation Date", "", QApplication.UnicodeUTF8)        
+        self.orig_weight_str = QApplication.translate("ProjectViewDialog", "Original Weight", "", QApplication.UnicodeUTF8)        
+        self.std_weight_str = QApplication.translate("ProjectViewDialog", "Standardized Weight", "", QApplication.UnicodeUTF8)        
+        self.altern_str = QApplication.translate("ProjectViewDialog", "Alternative",  "", QApplication.UnicodeUTF8)       
+        self.orig_data_str = QApplication.translate("ProjectViewDialog", "Original Input Data", "", QApplication.UnicodeUTF8)        
+        self.quant_str = QApplication.translate("ProjectViewDialog", "Quantitative Impact Matrix", "", QApplication.UnicodeUTF8)        
+        self.qual_str = QApplication.translate("ProjectViewDialog", "Qualitative Impact Matrix", "", QApplication.UnicodeUTF8)        
+        self.final_str = QApplication.translate("ProjectViewDialog", "Final Matrix", "", QApplication.UnicodeUTF8)        
+        self.final_alt_str = QApplication.translate("ProjectViewDialog", "Final Alternative Scores", "", QApplication.UnicodeUTF8)        
+        self.tpl_export_str = QApplication.translate("ProjectViewDialog", "Template Exported", "", QApplication.UnicodeUTF8)        
+        self.export_success = QApplication.translate("ProjectViewDialog", "Analysis was successfully exported to", "", QApplication.UnicodeUTF8)        
+        self.score_str = QApplication.translate("ProjectViewDialog", "Score (The higher the better)", "", QApplication.UnicodeUTF8)        
+        self.del_anal_str = QApplication.translate("ProjectViewDialog", "Are you sure you want to delete this analysis run?", "", QApplication.UnicodeUTF8)        
+        self.del_anal_error = QApplication.translate("ProjectViewDialog", "Delete Analysis Error", "", QApplication.UnicodeUTF8)        
+        self.save_input_str = QApplication.translate("ProjectViewDialog", "Save Input", "", QApplication.UnicodeUTF8)        
+        self.save_q_str = QApplication.translate("ProjectViewDialog", "You have new or modified input values.  Do you want to save them now?", "", QApplication.UnicodeUTF8)      
+        
+        self.no_altern_error = QApplication.translate("ProjectViewDialog", "Alternative Error", "", QApplication.UnicodeUTF8)                
+        self.no_altern_error_msg = QApplication.translate("ProjectViewDialog", "You need to add alternatives before you can input data", "", QApplication.UnicodeUTF8)               
+        self.no_crits_error = QApplication.translate("ProjectViewDialog", "Criteria Error", "", QApplication.UnicodeUTF8)                
+        self.no_crits_error_msg = QApplication.translate("ProjectViewDialog", "You need to add criteria before you can input data", "", QApplication.UnicodeUTF8)               
+        self.anal_altern_error = QApplication.translate("ProjectViewDialog", "Analysis Error", "", QApplication.UnicodeUTF8)                
+        self.anal_altern_error_msg = QApplication.translate("ProjectViewDialog", "You must add at least two alternatives before you can run analysis", "", QApplication.UnicodeUTF8)               
+        self.anal_crit_error = QApplication.translate("ProjectViewDialog", "Analysis Error", "", QApplication.UnicodeUTF8)                
+        self.anal_crit_error_msg = QApplication.translate("ProjectViewDialog", "You must add at least one criterion before you can run analysis", "", QApplication.UnicodeUTF8)                       

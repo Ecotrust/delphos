@@ -56,5 +56,5 @@ class OrdinalOptionTableWidget(QTableWidget):
             raise DelphosError, self.sel_opt_str
             
     def retranslate(self):
-        #Example self. = QApplicationpplication.translate("OrdinalOptionTableWidget", "", "", QApplication.UnicodeUTF8)                            
-        self.sel_opt_str = QApplicationpplication.translate("OrdinalOptionTableWidget", "You must first select an option", "", QApplication.UnicodeUTF8)                            
+        #Example self. = QApplication.translate("OrdinalOptionTableWidget", "", "", QApplication.UnicodeUTF8)                            
+        self.sel_opt_str = QApplication.translate("OrdinalOptionTableWidget", "You must first select an option", "", QApplication.UnicodeUTF8)                            

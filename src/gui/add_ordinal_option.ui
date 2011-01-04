@@ -2,7 +2,7 @@
  <class>AddOrdinalOptionDialog</class>
  <widget class="QWidget" name="AddOrdinalOptionDialog" >
   <property name="windowModality" >
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry" >
    <rect>
